@@ -2,6 +2,9 @@ import Tags from './tags.json'
 import Colores from './colors.json'
 
 export const Tag = (props:any) => {
+
+  console.log(props);
+
   return (
     <select>
       {Tags.map((Tag, index) => {
@@ -11,6 +14,9 @@ export const Tag = (props:any) => {
   )
 }
 export const Colors = (props:any) => {
+
+  console.log(props);
+
   return (
     <select>
       {Colores.map((Color, index) => {

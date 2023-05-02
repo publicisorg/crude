@@ -7,10 +7,11 @@ function Keywords(props: any) {
 
     function checkWord(value: any) {
         if (value.slice(-1) == ',' || value.slice(-1) == ' ') {
+            var auxValue = value.slice(0, -1);
             setKeywords(
                 [
                     ...keywords,
-                    { id: keywords.length, value: value.slice(0, -1) }
+                    auxValue
                 ]
             );
             setActualValue('');
@@ -37,8 +38,8 @@ function Keywords(props: any) {
 
         keywords.map((element: any, index: number) => {
             componentArray.push(
-                <div id={element.value} key={index} className="bg-black text-white rounded px-2 py-1 font-bold flex flex-row gap-2">
-                    <p className="m-0">{element.value}</p>
+                <div id={element} key={index} className="bg-black text-white rounded px-2 py-1 font-bold flex flex-row gap-2">
+                    <p className="m-0">{element}</p>
                     <span className="font-bold text-red-400 cursor-pointer" onClick={() => removeWord(element.id)}>X</span>
                 </div>
             );

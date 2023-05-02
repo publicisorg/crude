@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react"
 import Keywords from "../keywords"
 import { Colors, Tag } from "../selectors"
+import axios from 'axios'
 
 function FormatedData() {
+
+    //REVISAR ESTO
+    const actualId = 69;
+    //REVISAR ESTO
 
     const [keywords, setKeywords] = useState([]);
     const [tag1, setTag1] = useState('');
@@ -12,23 +17,50 @@ function FormatedData() {
     const [color2, setColor2] = useState('');
     const [color3, setColor3] = useState('');
 
+    async function postData(data: any) {
+        var myDataObj = data;
+        var formData = new FormData();
+        for (var key in myDataObj) {
+            formData.append(key, myDataObj[key])
+        }
+        try {
+            const response = await axios.post("../UpdateData.php", myDataObj, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            });
+            if (response.status == 200) {
+                console.log(response);
+            } else {
+                console.log(response);
+            }
+        } catch (error) {
+            console.log(error);
+            return "Error";
+        }
+    }
+
     useEffect(() => {
-        
-    }, [keywords])
+        const data = {
+            id: actualId,
+            tags: [tag1, tag2, tag3],
+            colors: [color1, color2, color3],
+            keywords: keywords
+        }
+
+        postData(data);
+    })
 
     return (
-      <>
-        <Keywords collectData={setKeywords}/>
-        <Tag collectData={setTag1}/>
-        <Tag collectData={setTag2}/>
-        <Tag collectData={setTag3}/>
+        <>
+            <Keywords collectData={setKeywords} />
+            <Tag collectData={setTag1} />
+            <Tag collectData={setTag2} />
+            <Tag collectData={setTag3} />
 
-        <Colors collectData={setColor1}/>
-        <Colors collectData={setColor2}/>
-        <Colors collectData={setColor3}/>
-      </>
+            <Colors collectData={setColor1} />
+            <Colors collectData={setColor2} />
+            <Colors collectData={setColor3} />
+        </>
     )
-  }
-  
-  export default FormatedData
-  
+}
+
+export default FormatedData
