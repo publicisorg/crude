@@ -40,7 +40,7 @@ function Keywords(props: any) {
             componentArray.push(
                 <div id={element} key={index} className="bg-black text-white rounded px-2 py-1 font-bold flex flex-row gap-2">
                     <p className="m-0">{element}</p>
-                    <span className="font-bold text-red-400 cursor-pointer" onClick={() => removeWord(element.id)}>X</span>
+                    <span className="font-bold text-red-400 cursor-pointer" onClick={() => removeWord(element)}>X</span>
                 </div>
             );
         })
@@ -50,7 +50,7 @@ function Keywords(props: any) {
 
     function removeWord(value:any) {
         setKeywords(
-            keywords.filter((word:any) => word.id !== value)
+            keywords.filter((word:any) => word !== value)
         );
     }
 
