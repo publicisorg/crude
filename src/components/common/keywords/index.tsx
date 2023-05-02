@@ -20,7 +20,7 @@ function Keywords(props: any) {
     }
 
     useEffect(() => {
-        console.log(keywords);
+        props.collectData(keywords);
     }, [keywords])
 
     useEffect(() => {
