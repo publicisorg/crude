@@ -1,7 +1,16 @@
+import { useEffect, useState } from "react";
 import FormatedData from "../../common/formatedData/formatedData"
+import axios from 'axios'
 
-function Table() {
-
+function Table(props:any) {
+  const [contenido, setContenido] = useState();
+  useEffect(() => {
+    async function fetchData() {
+        const response = await axios.get('https://desarrollodesitios0.site/crude/ImportDate.php');
+        setContenido(response.data);
+    }
+    fetchData();
+}, []);
   return (
     <>
       <table className="table-auto">
@@ -21,7 +30,8 @@ function Table() {
         </thead>
         <tbody>
         <tr>
-            <FormatedData/>
+    <FormatedData/>
+       
         </tr>
         </tbody>
       </table>
@@ -29,4 +39,5 @@ function Table() {
   )
 }
 
-export default Table
+export default Table;
+
