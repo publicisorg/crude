@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Keywords from "../keywords"
 import { Colors, Tag } from "../selectors"
 import axios from 'axios'
+import { Images } from "../images";
 
 function FormatedData() {
 
@@ -59,6 +60,7 @@ function FormatedData() {
             <Colors collectData={setColor1} />
             <Colors collectData={setColor2} />
             <Colors collectData={setColor3} />
+            <Images/>
         </>
     )
 }
