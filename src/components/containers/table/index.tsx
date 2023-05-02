@@ -4,7 +4,8 @@ function Table() {
 
   return (
     <>
-      <table>
+      <table className="table-auto">
+        <thead>
         <tr>
             <th>Foto</th>
             <th>Nombre</th>
@@ -17,9 +18,12 @@ function Table() {
             <th>Palabras Clave</th>
             <th>Eliminar</th>
         </tr>
+        </thead>
+        <tbody>
         <tr>
             <FormatedData/>
         </tr>
+        </tbody>
       </table>
     </>
   )
