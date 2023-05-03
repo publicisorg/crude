@@ -4,11 +4,9 @@ import { Colors, Tag } from "../selectors"
 import axios from 'axios'
 import Image from "../images"
 
-function FormatedData() {
+function FormatedData(props: any) {
 
-    //REVISAR ESTO
-    const actualId = 69;
-    //REVISAR ESTO
+    const actualId = props.data.id;
 
     const [keywords, setKeywords] = useState([]);
     const [imagen, setImagen] = useState('');
@@ -54,15 +52,44 @@ function FormatedData() {
 
     return (
         <>
-            <Keywords collectData={setKeywords} />
-            <Tag collectData={setTag1} />
-            <Tag collectData={setTag2} />
-            <Tag collectData={setTag3} />
-
-            <Colors collectData={setColor1} />
-            <Colors collectData={setColor2} />
-            <Colors collectData={setColor3} />
-            <Image collectData={setImagen} />
+            <tr key={props.index} className={`${(props.index % 2) > 0 ? "bg-black/5" : "bg-transparent"} border`}>
+                <td className="px-2">
+                    {props.data.id}
+                </td>
+                <td className="px-2">
+                    <Image Imagen={props.data.Imagen} collectData={setImagen} />
+                </td>
+                <td className="px-2">
+                    <p>{props.categoria}</p>
+                </td>
+                <td className="px-2">
+                    <p>{props.data.Display_name}</p>
+                </td>
+                <td className="px-2">
+                    <Tag tag={props.data.Tags[0]} collectData={setTag1} />
+                </td>
+                <td className="px-2">
+                    <Tag tag={props.data.Tags[1]} collectData={setTag2} />
+                </td>
+                <td className="px-2">
+                    <Tag tag={props.data.Tags[2]} collectData={setTag3} />
+                </td>
+                <td className="px-2">
+                    <Colors color={props.data.Colores[0]} collectData={setColor1} />
+                </td>
+                <td className="px-2">
+                    <Colors color={props.data.Colores[1]} collectData={setColor2} />
+                </td>
+                <td className="px-2">
+                    <Colors color={props.data.Colores[2]} collectData={setColor3} />
+                </td>
+                <td className="px-2">
+                    <Keywords keywords={props.data.keywords} collectData={setKeywords} />
+                </td>
+                <td className="px-2">
+                    <p>DUMMY</p>
+                </td>
+            </tr>
         </>
     )
 }

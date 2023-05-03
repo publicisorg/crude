@@ -24,44 +24,8 @@ function Table(props: any) {
 
     data.elementos.map((elemento: any, index: number) => {
       tableHtml.push(
-      <tr key={index} className={`${(index % 2) > 0 ? "bg-black/5" : "bg-transparent"} border`}>
-        <td>
-          {elemento.id}
-        </td>
-        <td>
-          <img src={elemento.Imagen} className="w-24 py-1 rounded-md"/>
-        </td>
-        <td>
-          <p>{categoria}</p>
-        </td>
-        <td>
-          <p>{elemento.Display_name}</p>
-        </td>
-        <td>
-          <p>{elemento.Tags[0]}</p>
-        </td>
-        <td>
-          <p>{elemento.Tags[1]}</p>
-        </td>
-        <td>
-          <p>{elemento.Tags[2]}</p>
-        </td>
-        <td>
-          <p>{elemento.Colores[0]}</p>
-        </td>
-        <td>
-          <p>{elemento.Colores[1]}</p>
-        </td>
-        <td>
-          <p>{elemento.Colores[2]}</p>
-        </td>
-        <td>
-          <p>DUMMY</p>
-        </td>
-        <td>
-          <p>DUMMY</p>
-        </td>
-      </tr>)
+        <FormatedData data={elemento} index={index} categoria={categoria}/>
+      )
     })
 
     return tableHtml;
@@ -69,7 +33,7 @@ function Table(props: any) {
 
   return (
     <>
-      <table className="table-auto border p-4 rounded-md shadow">
+      <table className="table-auto border p-4 rounded-md shadow w-full">
         <thead>
           <tr className="border ">
             <th className="px-4">ID</th>
