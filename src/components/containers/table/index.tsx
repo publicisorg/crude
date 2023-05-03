@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import FormatedData from "../../common/formatedData/formatedData"
 import axios from 'axios'
 
-function Table(props: any) {
+function Table() {
   const [contenido, setContenido] = useState([]);
+  const [webReady, isWebReady] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get('https://desarrollodesitios0.site/crude/ImportDate.php');
-        console.log(response);
+        const response = await axios.get('https://desarrollodesitios0.site/crude/ImportData.php');
         setContenido(response.data);
       } catch (error) {
         console.log(error);
@@ -19,20 +19,27 @@ function Table(props: any) {
 
   }, []);
 
-  function buildResultsByCategory(data: any, categoria:any) {
-    var tableHtml:any = [];
+  function buildResultsByCategory(data: any, categoria: any) {
+    var tableHtml: any = [];
 
     data.elementos.map((elemento: any, index: number) => {
       tableHtml.push(
-        <FormatedData data={elemento} index={index} categoria={categoria}/>
+        <FormatedData data={elemento} index={index} categoria={categoria} webReady={webReady}/>
       )
     })
 
     return tableHtml;
   }
 
+  useEffect(() => {
+    setTimeout(() => {
+      isWebReady(true);
+    }, 3000);
+  }, [])
+
   return (
     <>
+
       <table className="table-auto border p-4 rounded-md shadow w-full">
         <thead>
           <tr className="border ">
@@ -51,8 +58,7 @@ function Table(props: any) {
         </thead>
         <tbody>
 
-          {contenido.map((elementos: any, index: number) => {
-            console.log(elementos);
+          {contenido.map((elementos: any) => {
             return (
               buildResultsByCategory(elementos, elementos.categoria)
             )

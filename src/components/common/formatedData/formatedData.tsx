@@ -7,9 +7,8 @@ import Image from "../images"
 function FormatedData(props: any) {
 
     const actualId = props.data.id;
-
+    const [generalData, setGeneralData] = useState<any>([]);
     const [keywords, setKeywords] = useState([]);
-    const [imagen, setImagen] = useState('');
     const [tag1, setTag1] = useState('');
     const [tag2, setTag2] = useState('');
     const [tag3, setTag3] = useState('');
@@ -18,37 +17,49 @@ function FormatedData(props: any) {
     const [color3, setColor3] = useState('');
 
     async function postData(data: any) {
-        var myDataObj = data;
-        var formData = new FormData();
-        for (var key in myDataObj) {
-            formData.append(key, myDataObj[key])
-        }
-        try {
-            const response = await axios.post("../UpdateData.php", myDataObj, {
-                headers: { 'Content-Type': 'multipart/form-data' },
-            });
-            if (response.status == 200) {
-                console.log(response);
-            } else {
-                console.log(response);
+        if (props.webReady) {
+            console.log("Post Data");
+            var myDataObj = data;
+            var formData = new FormData();
+            for (var key in myDataObj) {
+                formData.append(key, myDataObj[key])
             }
-        } catch (error) {
-            console.log(error);
-            return "Error";
+            try {
+                const response = await axios.post("../UpdateData.php", myDataObj, {
+                    headers: { 'Content-Type': 'multipart/form-data' },
+                });
+                if (response.status == 200) {
+                    console.log(response);
+                } else {
+                    console.log(response);
+                }
+            } catch (error) {
+                console.log(error);
+                return "Error";
+            }
         }
     }
 
     useEffect(() => {
-        const data = {
+        var data = {
             id: actualId,
-            imagen: imagen,
-            tags: [tag1, tag2, tag3],
-            colors: [color1, color2, color3],
+            tag1: tag1,
+            tag2: tag2,
+            tag3: tag3,
+            color1: color1,
+            color2: color2,
+            color3: color3,
             keywords: keywords
         }
 
-        postData(data);
-    }, [imagen, tag1, tag2, tag3, color1, color2, color3, keywords])
+        if (props.webReady) {
+            setGeneralData(data);
+        }
+    }, [tag1, tag2, tag3, color1, color2, color3, keywords])
+
+    useEffect(() => {
+        postData(generalData);
+    }, [generalData])
 
     return (
         <>
@@ -57,7 +68,7 @@ function FormatedData(props: any) {
                     {props.data.id}
                 </td>
                 <td className="px-2">
-                    <Image Imagen={props.data.Imagen} collectData={setImagen} />
+                    <Image Imagen={props.data.Imagen} />
                 </td>
                 <td className="px-2">
                     <p>{props.data.Display_name}</p>

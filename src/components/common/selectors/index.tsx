@@ -1,12 +1,15 @@
 import Tags from './tags.json'
 import Colores from './colors.json'
+import { useEffect } from 'react'
 
 export const Tag = (props:any) => {
 
-  console.log(props);
+  useEffect(() => {
+    props.collectData(props.tag);
+  }, [])
 
   return (
-    <select defaultValue={props.tag}>
+    <select defaultValue={props.tag} onChange={(e) => props.collectData(e.target.value)}>
       {Tags.map((Tag, index) => {
           return (<option key={index} value={Tag.nombre}>{Tag.nombre}</option>)
         })}
@@ -15,10 +18,12 @@ export const Tag = (props:any) => {
 }
 export const Colors = (props:any) => {
 
-  console.log(props);
+  useEffect(() => {
+    props.collectData(props.color);
+  }, [])
 
   return (
-    <select defaultValue={props.color}>
+    <select defaultValue={props.color} onChange={(e) => props.collectData(e.target.value)}>
       {Colores.map((Color, index) => {
           return (<option key={index} value={Color.nombre}>{Color.nombre}</option>)
         })}
