@@ -48,7 +48,7 @@ function FormatedData(props: any) {
         }
 
         postData(data);
-    })
+    }, [imagen, tag1, tag2, tag3, color1, color2, color3, keywords])
 
     return (
         <>
@@ -58,9 +58,6 @@ function FormatedData(props: any) {
                 </td>
                 <td className="px-2">
                     <Image Imagen={props.data.Imagen} collectData={setImagen} />
-                </td>
-                <td className="px-2">
-                    <p>{props.categoria}</p>
                 </td>
                 <td className="px-2">
                     <p>{props.data.Display_name}</p>

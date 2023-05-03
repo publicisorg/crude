@@ -38,9 +38,8 @@ function Table(props: any) {
           <tr className="border ">
             <th className="px-4">ID</th>
             <th className="px-4">Foto</th>
-            <th className="px-4">Categoria</th>
             <th className="px-4">Nombre</th>
-            <th className="px-4">Tag 1</th>
+            <th className="px-4">Categoria</th>
             <th className="px-4">Tag 2</th>
             <th className="px-4">Tag 3</th>
             <th className="px-4">Color 1</th>
