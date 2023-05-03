@@ -19,12 +19,12 @@ function Table() {
 
   }, []);
 
-  function buildResultsByCategory(data: any, categoria: any) {
+  function buildResultsByCategory(data: any) {
     var tableHtml: any = [];
 
     data.elementos.map((elemento: any, index: number) => {
       tableHtml.push(
-        <FormatedData data={elemento} index={index} categoria={categoria} webReady={webReady}/>
+        <FormatedData data={elemento} index={index} webReady={webReady}/>
       )
     })
 
@@ -60,7 +60,7 @@ function Table() {
 
           {contenido.map((elementos: any) => {
             return (
-              buildResultsByCategory(elementos, elementos.categoria)
+                buildResultsByCategory(elementos)
             )
           })}
 
