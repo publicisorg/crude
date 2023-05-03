@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import Keywords from "../keywords"
 import { Colors, Tag } from "../selectors"
 import axios from 'axios'
-import { Images } from "../images";
+import Image from "../images"
 
 function FormatedData() {
 
@@ -11,6 +11,7 @@ function FormatedData() {
     //REVISAR ESTO
 
     const [keywords, setKeywords] = useState([]);
+    const [imagen, setImagen] = useState('');
     const [tag1, setTag1] = useState('');
     const [tag2, setTag2] = useState('');
     const [tag3, setTag3] = useState('');
@@ -42,6 +43,7 @@ function FormatedData() {
     useEffect(() => {
         const data = {
             id: actualId,
+            imagen: imagen,
             tags: [tag1, tag2, tag3],
             colors: [color1, color2, color3],
             keywords: keywords
@@ -60,7 +62,7 @@ function FormatedData() {
             <Colors collectData={setColor1} />
             <Colors collectData={setColor2} />
             <Colors collectData={setColor3} />
-            <Images/>
+            <Image collectData={setImagen} />
         </>
     )
 }

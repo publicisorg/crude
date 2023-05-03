@@ -1,6 +1,6 @@
 import  {useState} from 'react'
 
-export const Images = () => {
+function Image (props: any) {
     const [isActive, setIsActive] = useState(false);
     const handleClick = () => {
       setIsActive(!isActive);
@@ -9,7 +9,7 @@ export const Images = () => {
     
     return (
         <>
-            <img src="https://cdn.pixabay.com/photo/2020/01/23/17/37/monkey-4788331_640.jpg" width={150} alt="" onClick={handleClick} />
+            <img src={props.Imagen} width={150} alt="" onClick={handleClick} />
             {isActive && <div className='fixed top-0 left-0 bg-black/70 w-full h-full flex justify-center items-center z-30'  onClick={handleClick} >
                 <div className='relative'>
                     <span className='absolute -right-10 -top-10 text-xl  rounded-full w-6 h-6 text-gray-400 flex justify-center items-center' >
@@ -21,10 +21,11 @@ export const Images = () => {
                             </g>
                         </svg>
                     </span>
-                    <img src="https://cdn.pixabay.com/photo/2020/01/23/17/37/monkey-4788331_640.jpg" alt="" />
+                    <img src={props.Imagen} alt="" />
                 </div>
 
             </div>}
         </>
     )
 }
+export default Image
