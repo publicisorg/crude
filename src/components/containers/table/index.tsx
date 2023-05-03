@@ -34,6 +34,27 @@ function Table(props: any) {
         <td>
           <p>{categoria}</p>
         </td>
+        <td>
+          <p>{elemento.Display_name}</p>
+        </td>
+        <td>
+          <p>{elemento.Tags[0]}</p>
+        </td>
+        <td>
+          <p>{elemento.Tags[1]}</p>
+        </td>
+        <td>
+          <p>{elemento.Tags[2]}</p>
+        </td>
+        <td>
+          <p>{elemento.Colores[0]}</p>
+        </td>
+        <td>
+          <p>{elemento.Colores[1]}</p>
+        </td>
+        <td>
+          <p>{elemento.Colores[2]}</p>
+        </td>
       </tr>)
     })
 
