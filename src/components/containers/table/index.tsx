@@ -24,12 +24,12 @@ function Table(props: any) {
 
     data.elementos.map((elemento: any, index: number) => {
       tableHtml.push(
-      <tr key={index}>
+      <tr key={index} className={`${(index % 2) > 0 ? "bg-black/5" : "bg-transparent"} border`}>
         <td>
           {elemento.id}
         </td>
         <td>
-          <img src={elemento.Imagen} className="w-24"/>
+          <img src={elemento.Imagen} className="w-24 py-1 rounded-md"/>
         </td>
         <td>
           <p>{categoria}</p>
@@ -55,6 +55,12 @@ function Table(props: any) {
         <td>
           <p>{elemento.Colores[2]}</p>
         </td>
+        <td>
+          <p>DUMMY</p>
+        </td>
+        <td>
+          <p>DUMMY</p>
+        </td>
       </tr>)
     })
 
@@ -63,21 +69,21 @@ function Table(props: any) {
 
   return (
     <>
-      <table className="table-auto">
+      <table className="table-auto border p-4 rounded-md shadow">
         <thead>
-          <tr>
-            <th>ID</th>
-            <th>Foto</th>
-            <th>Categoria</th>
-            <th>Nombre</th>
-            <th>Tag 1</th>
-            <th>Tag 2</th>
-            <th>Tag 3</th>
-            <th>Color 1</th>
-            <th>Color 2</th>
-            <th>Color 3</th>
-            <th>Palabras Clave</th>
-            <th>Eliminar</th>
+          <tr className="border ">
+            <th className="px-4">ID</th>
+            <th className="px-4">Foto</th>
+            <th className="px-4">Categoria</th>
+            <th className="px-4">Nombre</th>
+            <th className="px-4">Tag 1</th>
+            <th className="px-4">Tag 2</th>
+            <th className="px-4">Tag 3</th>
+            <th className="px-4">Color 1</th>
+            <th className="px-4">Color 2</th>
+            <th className="px-4">Color 3</th>
+            <th className="px-4">Palabras Clave</th>
+            <th className="px-4">Eliminar</th>
           </tr>
         </thead>
         <tbody>
