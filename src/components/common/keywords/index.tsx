@@ -66,7 +66,7 @@ function Keywords(props: any) {
                         <div className="flex gap-2">
                             {listKeywords(keywords)}
                         </div>
-                        <span onClick={() => setShow(false)} className="absolute -right-4 -top-4 cursor-pointer text-3xl font-bold bg-white rounded-full w-12 h-12 flex justify-center items-center drop-shadow">X</span>
+                        <span onClick={() => setShow(false)} className="absolute -right-4 -top-4 cursor-pointer text-3xl font-bold bg-black border-2 border-white text-white rounded-full w-10 h-10 flex justify-center items-center drop-shadow">X</span>
                     </div>
                 </div>
 
