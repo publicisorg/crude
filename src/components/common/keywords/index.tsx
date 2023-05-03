@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 
 function Keywords(props: any) {
 
-    const [keywords, setKeywords] = useState<any>([]);
+    const [keywords, setKeywords] = useState<any>(props.previouskeywords);
     const [actualValue, setActualValue] = useState<any>('');
+    const [show, setShow] = useState(false);
 
     function checkWord(value: any) {
         if (value.slice(-1) == ',' || value.slice(-1) == ' ') {
@@ -48,20 +49,29 @@ function Keywords(props: any) {
         return componentArray;
     }
 
-    function removeWord(value:any) {
+    function removeWord(value: any) {
         setKeywords(
-            keywords.filter((word:any) => word !== value)
+            keywords.filter((word: any) => word !== value)
         );
     }
 
     return (
         <>
-            <div className="flex flex-col">
-                <input value={actualValue.toUpperCase()} type="text" className="border" onChange={(e) => checkWord(e.target.value)} />
-                <div className="flex gap-2">
-                    {listKeywords(keywords)}
+            <span onClick={() => setShow(true)} className="cursor-pointer font-bold border rounded-md px-2 py-1">Edit</span>
+            {
+                show &&
+                <div className="fixed inset-0 w-full h-screen bg-black/25 flex justify-center items-center">
+                    <div className="flex flex-col bg-white rounded-lg drop-shadow w-2/3 h-2/3 gap-8 justify-start items-center p-8">
+                        <input value={actualValue.toUpperCase()} type="text" className="border" onChange={(e) => checkWord(e.target.value)} />
+                        <div className="flex gap-2">
+                            {listKeywords(keywords)}
+                        </div>
+                        <span onClick={() => setShow(false)} className="absolute -right-4 -top-4 cursor-pointer text-3xl font-bold bg-white rounded-full w-12 h-12 flex justify-center items-center drop-shadow">X</span>
+                    </div>
                 </div>
-            </div>
+
+            }
+
         </>
     )
 }
