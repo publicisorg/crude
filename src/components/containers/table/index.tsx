@@ -9,9 +9,8 @@ function Table(props: any) {
     async function fetchData() {
       try {
         const response = await axios.get('https://desarrollodesitios0.site/crude/ImportDate.php');
+        console.log(response);
         setContenido(response.data);
-      
-
       } catch (error) {
         console.log(error);
       }
@@ -20,12 +19,35 @@ function Table(props: any) {
 
   }, []);
 
+  function buildResultsByCategory(data: any, categoria:any) {
+    var tableHtml:any = [];
+
+    data.elementos.map((elemento: any, index: number) => {
+      tableHtml.push(
+      <tr key={index}>
+        <td>
+          {elemento.id}
+        </td>
+        <td>
+          <img src={elemento.Imagen} className="w-24"/>
+        </td>
+        <td>
+          <p>{categoria}</p>
+        </td>
+      </tr>)
+    })
+
+    return tableHtml;
+  }
+
   return (
     <>
       <table className="table-auto">
         <thead>
           <tr>
+            <th>ID</th>
             <th>Foto</th>
+            <th>Categoria</th>
             <th>Nombre</th>
             <th>Tag 1</th>
             <th>Tag 2</th>
@@ -38,28 +60,13 @@ function Table(props: any) {
           </tr>
         </thead>
         <tbody>
-          {contenido.length > 0 ? (
-           contenido.map((elementos: any, index: number) => {
-          
-              return (
-                <tr key={index}>
-                  <td>{elementos.Nombre}</td>
-                  FUCK!
-                </tr>
-              )
-           
-          })
-          ) : (
-            <tr>
-              <td colSpan={10}>
-                <div className="flex flex-col justify-center items-center">
-                  <h3 className="text-3xl">
-                    No levanta ningún dato amigo :(
-                  </h3>
-                </div>
-              </td>
-            </tr>
-          )}
+
+          {contenido.map((elementos: any, index: number) => {
+            console.log(elementos);
+            return (
+              buildResultsByCategory(elementos, elementos.categoria)
+            )
+          })}
 
         </tbody>
       </table>
