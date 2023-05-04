@@ -12,7 +12,11 @@ function Keywords(props: any) {
 
     function checkWord(event: any) {
         if (event.target.value.slice(-1) == ',' || event.target.value.slice(-1) == ' ' || event.key === "Enter") {
-            var auxValue = event.target.value.slice(0, -1);
+            if(event.key === "Enter") {
+                var auxValue = event.target.value;
+            } else {
+                var auxValue = event.target.value.slice(0, -1);
+            }
             setKeywords(
                 [
                     ...keywords,
