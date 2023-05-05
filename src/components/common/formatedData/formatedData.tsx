@@ -94,9 +94,6 @@ function FormatedData(props: any) {
                 <td className="px-2">
                     <Keywords previouskeywords={props.data.Keywords} collectData={setKeywords} />
                 </td>
-                <td className="px-2">
-                    <p>DUMMY</p>
-                </td>
             </tr>
         </>
     )
