@@ -13,7 +13,7 @@ function Folders() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('http://desarrollodesitios0.site/folders.php');
+                const response = await axios.get('https://desarrollodesitios0.site/folders.php');
                 setContenido(response.data);
                 setContenidoGet(response.data);
             } catch (error) {

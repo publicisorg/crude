@@ -63,7 +63,7 @@ export function ItemFrame(props: any) {
                 <span onClick={() => openEditor(true)} className="text-black bg-white rounded-md cursor-pointer flex justify-center px-2 py-1 items-center text-lg drop-shadow-xl duration-200  hover:bg-gray-200">Editar</span>
                 <span onClick={handleClick} className="text-white bg-red-500 rounded-full top-4 right-4 cursor-pointer w-10 h-10 flex justify-center items-center text-3xl absolute drop-shadow-xl duration-200 hover:text-red-500 hover:bg-white">X</span>
             </div>} 
-            {editor && <iframe className="fixed z-[99999] w-full h-screen inset-0" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&loop=1"></iframe>}
+            {editor && <video className="fixed z-[99999] w-full inset-0" src="https://desarrollodesitios0.site/crude/tutorial.mp4" autoPlay loop></video>}
         </>
     )
 }
