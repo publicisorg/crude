@@ -55,7 +55,7 @@ export function ItemFrame(props: any) {
     return (
         <>
             <div onClick={handleClick} className={styles} key={props.index}>
-                <iframe className="bg-white rounded-xl w-48 h-48" scrolling="no" src={'https://desarrollodesitios0.site/2023/newsletters/' + props.path.join('/') + '/' + props.label} />
+                <iframe className="bg-white rounded-xl pointer-events-none w-48 h-48" scrolling="no" src={'https://desarrollodesitios0.site/2023/newsletters/' + props.path.join('/') + '/' + props.label} />
                 {props.label}
             </div>
             {show && <div className="z-50 w-full h-screen fixed bg-black/25 flex justify-center items-center inset-0 flex-col gap-4">
