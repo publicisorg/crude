@@ -35,7 +35,7 @@ export function ItemImage(props: any) {
                 <img className="w-48 max-h-48 object-cover" src={'https://desarrollodesitios0.site/2023/newsletters/' + props.path.join('/') + '/' + props.label} />
                 {props.label}
             </div>
-            {show && <div className="z-50 w-full h-screen fixed bg-black/25 flex justify-center items-center inset-0">
+            {show && <div onClick={handleClick} className="z-50 w-full h-screen fixed bg-black/25 flex justify-center items-center inset-0">
                 <img className="bg-white rounded-xl p-4" src={'https://desarrollodesitios0.site/2023/newsletters/' + props.path.join('/') + '/' + props.label} />
                 <span onClick={handleClick} className="text-white bg-red-500 rounded-full top-4 right-4 cursor-pointer w-10 h-10 flex justify-center items-center text-3xl absolute drop-shadow-xl duration-200 hover:text-red-500 hover:bg-white">X</span>
             </div>}
@@ -58,7 +58,7 @@ export function ItemFrame(props: any) {
                 <iframe className="bg-white rounded-xl pointer-events-none w-48 h-48" scrolling="no" src={'https://desarrollodesitios0.site/2023/newsletters/' + props.path.join('/') + '/' + props.label} />
                 {props.label}
             </div>
-            {show && <div className="z-50 w-full h-screen fixed bg-black/25 flex justify-center items-center inset-0 flex-col gap-4">
+            {show && <div onClick={handleClick} className="z-50 w-full h-screen fixed bg-black/25 flex justify-center items-center inset-0 flex-col gap-4">
                 <iframe className="bg-white rounded-xl p-4 w-2/3 h-4/5" src={'https://desarrollodesitios0.site/2023/newsletters/' + props.path.join('/') + '/' + props.label} />
                 <span onClick={() => openEditor(true)} className="text-black bg-white rounded-md cursor-pointer flex justify-center px-2 py-1 items-center text-lg drop-shadow-xl duration-200  hover:bg-gray-200">Editar</span>
                 <span onClick={handleClick} className="text-white bg-red-500 rounded-full top-4 right-4 cursor-pointer w-10 h-10 flex justify-center items-center text-3xl absolute drop-shadow-xl duration-200 hover:text-red-500 hover:bg-white">X</span>
