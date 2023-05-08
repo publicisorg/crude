@@ -4,13 +4,15 @@ import axios from 'axios'
 
 function Table() {
   const [contenido, setContenido] = useState([]);
+  const [estructura, setEstructura] = useState([]);
   const [webReady, isWebReady] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get('https://desarrollodesitios0.site/crude/ImportData.php');
-        setContenido(response.data);
+        const response = await axios.get('http://renaultmujeresemprendedoras.com.ar/ImportData.php');
+        setEstructura(response.data[0]);
+        setContenido(response.data[1]);
       } catch (error) {
         console.log(error);
       }
@@ -19,14 +21,15 @@ function Table() {
 
   }, []);
 
-  function buildResultsByCategory(data: any) {
+  function buildResultsByCategory() {
     var tableHtml: any = [];
 
-    data.elementos.map((elemento: any, index: number) => {
-      tableHtml.push(
-        <FormatedData data={elemento} index={index} webReady={webReady}/>
-      )
-    })
+    console.log(contenido);
+
+    contenido.forEach((element:any, index:any) => {
+      console.log(element);
+      tableHtml.push(<FormatedData data={element} index={index} webReady={webReady} estructura={estructura} editable={false}/>);
+    });
 
     return tableHtml;
   }
@@ -37,32 +40,27 @@ function Table() {
     }, 3000);
   }, [])
 
+  function buildTableHeader() {
+    const headerJSX: any = [];
+    estructura.forEach((element: any, index: number) => {
+      headerJSX.push(<th key={index} className="px-4 uppercase">{element.Field}</th>);
+    });
+
+    return headerJSX;
+  }
+
   return (
     <>
 
-      <table className="table-auto border p-4 rounded-md shadow max-w-[90%]">
+      <table className="table-auto border p-4 rounded-md shadow">
         <thead>
+
           <tr className="border ">
-            <th className="px-4">ID</th>
-            <th className="px-4">Foto</th>
-            <th className="px-4">Nombre</th>
-            <th className="px-4">Categoria</th>
-            <th className="px-4">Tag 2</th>
-            <th className="px-4">Tag 3</th>
-            <th className="px-4">Color 1</th>
-            <th className="px-4">Color 2</th>
-            <th className="px-4">Color 3</th>
-            <th className="px-4">Palabras Clave</th>
+            {buildTableHeader()}
           </tr>
         </thead>
         <tbody>
-
-          {contenido.map((elementos: any) => {
-            return (
-                buildResultsByCategory(elementos)
-            )
-          })}
-
+          {buildResultsByCategory()}
         </tbody>
       </table>
     </>

@@ -11,12 +11,17 @@ function FormatedData(props: any) {
     const actualId = props.data.id;
     const [generalData, setGeneralData] = useState<any>([]);
     const [keywords, setKeywords] = useState([]);
+    const [editable, isTableEditable] = useState(props.editable);
     const [tag1, setTag1] = useState('');
     const [tag2, setTag2] = useState('');
     const [tag3, setTag3] = useState('');
     const [color1, setColor1] = useState('');
     const [color2, setColor2] = useState('');
     const [color3, setColor3] = useState('');
+
+    useEffect(() => {
+        isTableEditable(props.editable);
+    }, [])
 
     async function postData(data: any) {
         if (props.webReady) {
@@ -63,10 +68,41 @@ function FormatedData(props: any) {
         postData(generalData);
     }, [generalData])
 
+    function buildTableContent() {
+        const tableContent:any = [];
+        props.estructura.forEach((key: any, index: number) => {
+            console.log(key.Field);
+            console.log(props.data);
+            var auxType = key.type;
+            var contentComponent: any = [];
+            if (editable) {
+                contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
+            } else {
+                switch (auxType) {
+                    case "int":
+                        contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
+                    case "varchar":
+                        contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
+                    default:
+                        contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
+                }
+            }
+
+            tableContent.push(<td className="px-2 text-center">
+                {contentComponent}
+            </td>)
+        });
+
+        return tableContent;
+    }
+
     return (
         <>
             <tr key={props.index} className={`${(props.index % 2) > 0 ? "bg-gray-100" : "bg-transparent"} border`}>
-                <td className="px-2 text-center">
+
+                {buildTableContent()}
+
+                {/*<td className="px-2 text-center">
                     {props.data.id}
                 </td>
                 <td className="px-2 text-center">
@@ -95,7 +131,7 @@ function FormatedData(props: any) {
                 </td>
                 <td className="px-2 text-center">
                     <Keywords previouskeywords={props.data.Keywords} collectData={setKeywords} />
-                </td>
+                </td>*/}
             </tr>
         </>
     )

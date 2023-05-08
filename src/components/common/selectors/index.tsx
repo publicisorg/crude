@@ -19,7 +19,7 @@ export const DropdownSelect = (props:any) => {
 export const NonEditable = (props:any) => {
 
   return (
-    <p>{props.children}</p>
+    <p className='max-w-[100px]'>{props.children}</p>
   )
 }
 
