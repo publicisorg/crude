@@ -25,7 +25,6 @@ function FormatedData(props: any) {
 
     async function postData(data: any) {
         if (props.webReady) {
-            console.log("Post Data");
             var myDataObj = data;
             var formData = new FormData();
             for (var key in myDataObj) {
@@ -36,9 +35,7 @@ function FormatedData(props: any) {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
                 if (response.status == 200) {
-                    console.log(response);
                 } else {
-                    console.log(response);
                 }
             } catch (error) {
                 console.log(error);
@@ -48,31 +45,33 @@ function FormatedData(props: any) {
     }
 
     useEffect(() => {
-        var data = {
-            id: actualId,
-            tag1: tag1,
-            tag2: tag2,
-            tag3: tag3,
-            color1: color1,
-            color2: color2,
-            color3: color3,
-            keywords: keywords
-        }
+        if (editable) {
+            var data = {
+                id: actualId,
+                tag1: tag1,
+                tag2: tag2,
+                tag3: tag3,
+                color1: color1,
+                color2: color2,
+                color3: color3,
+                keywords: keywords
+            }
 
-        if (props.webReady) {
-            setGeneralData(data);
+            if (props.webReady) {
+                setGeneralData(data);
+            }
         }
     }, [tag1, tag2, tag3, color1, color2, color3, keywords])
 
     useEffect(() => {
-        postData(generalData);
+        if (editable) {
+            postData(generalData);
+        }
     }, [generalData])
 
     function buildTableContent() {
-        const tableContent:any = [];
+        const tableContent: any = [];
         props.estructura.forEach((key: any, index: number) => {
-            console.log(key.Field);
-            console.log(props.data);
             var auxType = key.type;
             var contentComponent: any = [];
             if (editable) {
@@ -99,39 +98,7 @@ function FormatedData(props: any) {
     return (
         <>
             <tr key={props.index} className={`${(props.index % 2) > 0 ? "bg-gray-100" : "bg-transparent"} border`}>
-
                 {buildTableContent()}
-
-                {/*<td className="px-2 text-center">
-                    {props.data.id}
-                </td>
-                <td className="px-2 text-center">
-                    <Image Imagen={props.data.Imagen} />
-                </td>
-                <td className="px-2 text-center">
-                    <NonEditable>{props.data.Display_name}</NonEditable>
-                </td>
-                <td className="px-2 text-center">
-                    <DropdownSelect data={Tags} value={props.data.Tags[0]} collectData={setTag1} />
-                </td>
-                <td className="px-2 text-center">
-                    <DropdownSelect data={Tags} value={props.data.Tags[1]} collectData={setTag2} />
-                </td>
-                <td className="px-2 text-center">
-                    <DropdownSelect data={Tags} value={props.data.Tags[2]} collectData={setTag3} />
-                </td>
-                <td className="px-2 text-center">
-                    <DropdownSelect data={Colores} value={props.data.Colores[0]} collectData={setColor1} />
-                </td>
-                <td className="px-2 text-center">
-                    <DropdownSelect data={Colores} value={props.data.Colores[1]} collectData={setColor2} />
-                </td>
-                <td className="px-2 text-center">
-                    <DropdownSelect data={Colores} value={props.data.Colores[2]} collectData={setColor3} />
-                </td>
-                <td className="px-2 text-center">
-                    <Keywords previouskeywords={props.data.Keywords} collectData={setKeywords} />
-                </td>*/}
             </tr>
         </>
     )

@@ -24,10 +24,7 @@ function Table() {
   function buildResultsByCategory() {
     var tableHtml: any = [];
 
-    console.log(contenido);
-
     contenido.forEach((element:any, index:any) => {
-      console.log(element);
       tableHtml.push(<FormatedData data={element} index={index} webReady={webReady} estructura={estructura} editable={false}/>);
     });
 

@@ -1,5 +1,5 @@
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export const DropdownSelect = (props:any) => {
 
@@ -18,8 +18,14 @@ export const DropdownSelect = (props:any) => {
 
 export const NonEditable = (props:any) => {
 
+  //const [show, isShow] = useState(true);
+
+  /*if (props.children.length > 30) {
+    isShow(false);
+  }*/
+
   return (
-    <p className='max-w-[100px]'>{props.children}</p>
+    <p key={props.index} className='max-w-[100px]'>{props.children}</p>
   )
 }
 
