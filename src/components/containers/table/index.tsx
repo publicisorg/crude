@@ -48,7 +48,9 @@ function Table() {
 
   return (
     <>
-
+      <div className="">
+        Total: {contenido.length}
+      </div>
       <table className="table-auto border p-4 rounded-md shadow">
         <thead>
 

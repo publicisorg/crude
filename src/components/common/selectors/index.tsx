@@ -25,7 +25,7 @@ export const NonEditable = (props:any) => {
   }*/
 
   return (
-    <p key={props.index} className='max-w-[100px]'>{props.children}</p>
+    <p key={props.index} className='max-w-[100px] text-center'>{props.children}</p>
   )
 }
 
