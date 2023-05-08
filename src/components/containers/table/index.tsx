@@ -40,7 +40,10 @@ function Table() {
   function buildTableHeader() {
     const headerJSX: any = [];
     estructura.forEach((element: any, index: number) => {
-      headerJSX.push(<th key={index} className="px-4 uppercase">{element.Field}</th>);
+      if (element.Field != 'id') {
+        headerJSX.push(<th key={index} className="px-4 uppercase">{element.Field}</th>)
+      }
+      
     });
 
     return headerJSX;

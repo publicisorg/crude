@@ -72,24 +72,26 @@ function FormatedData(props: any) {
     function buildTableContent() {
         const tableContent: any = [];
         props.estructura.forEach((key: any, index: number) => {
-            var auxType = key.type;
-            var contentComponent: any = [];
-            if (editable) {
-                contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
-            } else {
-                switch (auxType) {
-                    case "int":
-                        contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
-                    case "varchar":
-                        contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
-                    default:
-                        contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
+            if (key.Field != 'id' ) {
+                var auxType = key.type;
+                var contentComponent: any = [];
+                if (!editable) {
+                    contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
+                } else {
+                    switch (auxType) {
+                        case "int":
+                            contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
+                        case "varchar":
+                            contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
+                        default:
+                            contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
+                    }
                 }
-            }
 
-            tableContent.push(<td className="px-2 text-center">
-                {contentComponent}
-            </td>)
+                tableContent.push(<td className="px-2 text-center">
+                    {contentComponent}
+                </td>)
+            }
         });
 
         return tableContent;
