@@ -39,13 +39,14 @@ function Table() {
 
   function buildTableHeader() {
     const headerJSX: any = [];
+    var lastIndex:any;
     estructura.forEach((element: any, index: number) => {
-      if (element.Field != 'id') {
+      if (element.Field != 'id' && index < 6) {
+        lastIndex = index;
         headerJSX.push(<th key={index} className="px-4 uppercase">{element.Field}</th>)
       }
-      
     });
-
+    headerJSX.push(<th key={lastIndex + 1} className="px-4 uppercase">Detalle</th>)
     return headerJSX;
   }
 

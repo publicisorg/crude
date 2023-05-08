@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import Keywords from "../keywords"
-import NonEditable, { DropdownSelect } from "../selectors"
+import NonEditable, { Details, DropdownSelect } from "../selectors"
 import Tags from '../selectors/tags.json'
 import Colores from '../selectors/colors.json'
 import axios from 'axios'
@@ -72,7 +72,7 @@ function FormatedData(props: any) {
     function buildTableContent() {
         const tableContent: any = [];
         props.estructura.forEach((key: any, index: number) => {
-            if (key.Field != 'id' ) {
+            if (key.Field != 'id' && index < 6) {
                 var auxType = key.type;
                 var contentComponent: any = [];
                 if (!editable) {
@@ -93,6 +93,7 @@ function FormatedData(props: any) {
                 </td>)
             }
         });
+        tableContent.push(<Details data={props.data} estructura={props.estructura} editable={editable}/>)
 
         return tableContent;
     }
