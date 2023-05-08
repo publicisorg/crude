@@ -40,7 +40,7 @@ function Table() {
   return (
     <>
 
-      <table className="table-auto border p-4 rounded-md shadow w-full">
+      <table className="table-auto border p-4 rounded-md shadow max-w-[90%]">
         <thead>
           <tr className="border ">
             <th className="px-4">ID</th>
@@ -53,7 +53,6 @@ function Table() {
             <th className="px-4">Color 2</th>
             <th className="px-4">Color 3</th>
             <th className="px-4">Palabras Clave</th>
-            <th className="px-4">Eliminar</th>
           </tr>
         </thead>
         <tbody>

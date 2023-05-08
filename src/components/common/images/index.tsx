@@ -9,7 +9,7 @@ function Image (props: any) {
     
     return (
         <>
-            <img src={props.Imagen} width={150} alt="" onClick={handleClick} />
+            <img src={props.Imagen} width={150} alt="" onClick={handleClick} className='mx-auto'/>
             {isActive && <div className='fixed top-0 left-0 bg-black/70 w-full h-full flex justify-center items-center z-30'  onClick={handleClick} >
                 <div className='relative'>
                     <span className='absolute -right-10 -top-10 text-xl  rounded-full w-6 h-6 text-gray-400 flex justify-center items-center' >

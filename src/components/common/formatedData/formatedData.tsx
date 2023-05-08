@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import Keywords from "../keywords"
-import { Colors, Tag } from "../selectors"
+import NonEditable, { DropdownSelect } from "../selectors"
+import Tags from '../selectors/tags.json'
+import Colores from '../selectors/colors.json'
 import axios from 'axios'
 import Image from "../images"
 
@@ -63,39 +65,36 @@ function FormatedData(props: any) {
 
     return (
         <>
-            <tr key={props.index} className={`${(props.index % 2) > 0 ? "bg-black/5" : "bg-transparent"} border`}>
-                <td className="px-2">
+            <tr key={props.index} className={`${(props.index % 2) > 0 ? "bg-gray-100" : "bg-transparent"} border`}>
+                <td className="px-2 text-center">
                     {props.data.id}
                 </td>
-                <td className="px-2">
+                <td className="px-2 text-center">
                     <Image Imagen={props.data.Imagen} />
                 </td>
-                <td className="px-2">
-                    <p>{props.data.Display_name}</p>
+                <td className="px-2 text-center">
+                    <NonEditable>{props.data.Display_name}</NonEditable>
                 </td>
-                <td className="px-2">
-                    <Tag tag={props.data.Tags[0]} collectData={setTag1} />
+                <td className="px-2 text-center">
+                    <DropdownSelect data={Tags} value={props.data.Tags[0]} collectData={setTag1} />
                 </td>
-                <td className="px-2">
-                    <Tag tag={props.data.Tags[1]} collectData={setTag2} />
+                <td className="px-2 text-center">
+                    <DropdownSelect data={Tags} value={props.data.Tags[1]} collectData={setTag2} />
                 </td>
-                <td className="px-2">
-                    <Tag tag={props.data.Tags[2]} collectData={setTag3} />
+                <td className="px-2 text-center">
+                    <DropdownSelect data={Tags} value={props.data.Tags[2]} collectData={setTag3} />
                 </td>
-                <td className="px-2">
-                    <Colors color={props.data.Colores[0]} collectData={setColor1} />
+                <td className="px-2 text-center">
+                    <DropdownSelect data={Colores} value={props.data.Colores[0]} collectData={setColor1} />
                 </td>
-                <td className="px-2">
-                    <Colors color={props.data.Colores[1]} collectData={setColor2} />
+                <td className="px-2 text-center">
+                    <DropdownSelect data={Colores} value={props.data.Colores[1]} collectData={setColor2} />
                 </td>
-                <td className="px-2">
-                    <Colors color={props.data.Colores[2]} collectData={setColor3} />
+                <td className="px-2 text-center">
+                    <DropdownSelect data={Colores} value={props.data.Colores[2]} collectData={setColor3} />
                 </td>
-                <td className="px-2">
+                <td className="px-2 text-center">
                     <Keywords previouskeywords={props.data.Keywords} collectData={setKeywords} />
-                </td>
-                <td className="px-2">
-                    <p>DUMMY</p>
                 </td>
             </tr>
         </>

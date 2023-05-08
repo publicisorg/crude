@@ -66,7 +66,7 @@ function Keywords(props: any) {
 
     return (
         <>
-            <span onClick={() => setShow(true)} className="cursor-pointer font-bold border rounded-md px-2 py-1 bg-white text-black dark:bg-black dark:text-white">Edit</span>
+            <span onClick={() => setShow(true)} className="cursor-pointer font-bold border rounded-md px-2 py-1 bg-white text-black">Edit</span>
             {
                 show &&
                 <div className="fixed inset-0 w-full h-screen bg-black/25 flex justify-center items-center">
