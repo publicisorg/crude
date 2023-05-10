@@ -10,7 +10,7 @@ function Table() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get('http://renaultmujeresemprendedoras.com.ar/ImportData.php');
+        const response = await axios.get('./ImportData.php');
         setEstructura(response.data[0]);
         setContenido(response.data[1]);
       } catch (error) {

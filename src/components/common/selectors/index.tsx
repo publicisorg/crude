@@ -48,10 +48,10 @@ export const Details = (props: any) => {
           contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
         } else {
           switch (auxType) {
-            case "int":
+            /*case "int":
               contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
             case "varchar":
-              contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
+              contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)*/
             default:
               contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
           }

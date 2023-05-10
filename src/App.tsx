@@ -1,12 +1,11 @@
-import { useState } from 'react'
+//import { useState } from 'react'
 import './App.css'
 import Table from './components/containers/table'
-import { ButtonToggle } from './components/common/buttons';
-import Folders from './components/containers/folders';
 
 function App() {
 
-  const [type, setType] = useState("db");
+  //const [type, setType] = useState("db");
+  const type = 'db';
 
   return (
     <main className="w-full flex flex-col justify-center items-center inset-0">

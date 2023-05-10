@@ -1,29 +1,25 @@
 import { useEffect, useState } from "react"
-import Keywords from "../keywords"
-import NonEditable, { Details, DropdownSelect } from "../selectors"
-import Tags from '../selectors/tags.json'
-import Colores from '../selectors/colors.json'
-import axios from 'axios'
-import Image from "../images"
+import NonEditable, { Details } from "../selectors"
+//import axios from 'axios'
 
 function FormatedData(props: any) {
 
-    const actualId = props.data.id;
-    const [generalData, setGeneralData] = useState<any>([]);
-    const [keywords, setKeywords] = useState([]);
+    //const actualId = props.data.id;
+    //const [generalData, setGeneralData] = useState<any>([]);
+    //const [keywords, setKeywords] = useState([]);
     const [editable, isTableEditable] = useState(props.editable);
-    const [tag1, setTag1] = useState('');
-    const [tag2, setTag2] = useState('');
-    const [tag3, setTag3] = useState('');
-    const [color1, setColor1] = useState('');
-    const [color2, setColor2] = useState('');
-    const [color3, setColor3] = useState('');
+    //const [tag1, setTag1] = useState('');
+    //const [tag2, setTag2] = useState('');
+    //const [tag3, setTag3] = useState('');
+    //const [color1, setColor1] = useState('');
+    //const [color2, setColor2] = useState('');
+    //const [color3, setColor3] = useState('');
 
     useEffect(() => {
         isTableEditable(props.editable);
     }, [])
 
-    async function postData(data: any) {
+    /*async function postData(data: any) {
         if (props.webReady) {
             var myDataObj = data;
             var formData = new FormData();
@@ -42,9 +38,9 @@ function FormatedData(props: any) {
                 return "Error";
             }
         }
-    }
+    }*/
 
-    useEffect(() => {
+/*    useEffect(() => {
         if (editable) {
             var data = {
                 id: actualId,
@@ -61,13 +57,13 @@ function FormatedData(props: any) {
                 setGeneralData(data);
             }
         }
-    }, [tag1, tag2, tag3, color1, color2, color3, keywords])
+    }, [tag1, tag2, tag3, color1, color2, color3, keywords])*/
 
-    useEffect(() => {
+    /*useEffect(() => {
         if (editable) {
             postData(generalData);
         }
-    }, [generalData])
+    }, [generalData])*/
 
     function buildTableContent() {
         const tableContent: any = [];
@@ -79,10 +75,10 @@ function FormatedData(props: any) {
                     contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
                 } else {
                     switch (auxType) {
-                        case "int":
+                        /*case "int":
                             contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
                         case "varchar":
-                            contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
+                            contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)*/
                         default:
                             contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
                     }
