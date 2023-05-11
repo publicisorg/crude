@@ -84,7 +84,7 @@ function FormatedData(props: any) {
                     }
                 }
 
-                tableContent.push(<td className="px-2 text-center border-l border-r">
+                tableContent.push(<td className="p-4  text-center border-l border-r">
                     {contentComponent}
                 </td>)
             }

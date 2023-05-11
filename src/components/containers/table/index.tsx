@@ -46,27 +46,28 @@ function Table() {
     estructura.forEach((element: any, index: number) => {
       if (element.Field != 'id' && index < 6) {
         lastIndex = index;
-        headerJSX.push(<th key={index} className="px-4 uppercase">{element.Field}</th>)
+        headerJSX.push(<th key={index} className="px-4 uppercase text-white text-xl ">{element.Field}</th>)
       }
     });
-    headerJSX.push(<th key={lastIndex + 1} className="px-4 uppercase">Detalle</th>)
+    headerJSX.push(<th key={lastIndex + 1} className="px-8 uppercase">Detalle</th>)
     return headerJSX;
   }
 
   return (
     <>
-      <div className="">
-        Total: {contenido.length}
+      <div className="text-4xl mb-6 font-bolder">
+        Total {contenido.length}
       </div>
       <div className="w-full flex justify-center items-center p-2">
-        <div className="w-[95%] p-5 bg-white rounded-xl">
+        <div className="w-[95%] p-1 bg-black rounded-xl">
           <table className="mx-auto rounded-xl shadow w-full">
             <thead>
-              <tr className="bg-white">
+              <tr className="bg-black">
                 {buildTableHeader()}
               </tr>
             </thead>
             <tbody>
+              
               {buildResultsByCategory()}
             </tbody>
           </table>
