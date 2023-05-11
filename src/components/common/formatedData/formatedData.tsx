@@ -84,7 +84,7 @@ function FormatedData(props: any) {
                     }
                 }
 
-                tableContent.push(<td className="px-2 text-center">
+                tableContent.push(<td className="px-2 text-center border-l border-r">
                     {contentComponent}
                 </td>)
             }
@@ -96,7 +96,7 @@ function FormatedData(props: any) {
 
     return (
         <>
-            <tr key={props.index} className={`${(props.index % 2) > 0 ? "bg-gray-100" : "bg-transparent"} border`}>
+            <tr key={props.index} className={`${(props.index % 2) > 0 ? "bg-gray-100" : "bg-white"} border h-12`}>
                 {buildTableContent()}
             </tr>
         </>

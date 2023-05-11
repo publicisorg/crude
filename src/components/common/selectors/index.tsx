@@ -25,7 +25,7 @@ export const NonEditable = (props: any) => {
   }*/
 
   return (
-    <p key={props.index} className='text-center'>{props.children}</p>
+    <p key={props.index} className='text-left'>{props.children}</p>
   )
 }
 
@@ -72,8 +72,8 @@ export const Details = (props: any) => {
   return (
     <>
       <td className="px-2 text-center">
-        <p key={props.index} className='max-w-[250px] text-center'>
-          <span className='cursor-pointer bg-white border rounded-md font-bold px-2 py-1' onClick={handleClick}>Ver más</span>
+        <p key={props.index} className='max-w-[250px] text-center '>
+          <span className='cursor-pointer bg-white border rounded-md font-bold px-2 py-1 hover:bg-gray-200 duration-300' onClick={handleClick}>Ver más</span>
         </p>
       </td>
       {showPopup && <div onClick={handleClick} className="fixed w-full h-screen flex justify-center items-center bg-black/25 z-50 top-0 left-0">

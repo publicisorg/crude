@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import FormatedData from "../../common/formatedData/formatedData"
 import axios from 'axios'
+import externalData from './data.json'
 
 function Table() {
   const [contenido, setContenido] = useState([]);
@@ -10,9 +11,11 @@ function Table() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get('./ImportData.php');
-        setEstructura(response.data[0]);
-        setContenido(response.data[1]);
+        const response = externalData; //await axios.get('./ImportData.php');
+        //setEstructura(response.data[0]);
+        //setContenido(response.data[1]);
+        setEstructura(response[0]);
+        setContenido(response[1]);
       } catch (error) {
         console.log(error);
       }
@@ -24,8 +27,8 @@ function Table() {
   function buildResultsByCategory() {
     var tableHtml: any = [];
 
-    contenido.forEach((element:any, index:any) => {
-      tableHtml.push(<FormatedData data={element} index={index} webReady={webReady} estructura={estructura} editable={false}/>);
+    contenido.forEach((element: any, index: any) => {
+      tableHtml.push(<FormatedData data={element} index={index} webReady={webReady} estructura={estructura} editable={false} />);
     });
 
     return tableHtml;
@@ -39,7 +42,7 @@ function Table() {
 
   function buildTableHeader() {
     const headerJSX: any = [];
-    var lastIndex:any;
+    var lastIndex: any;
     estructura.forEach((element: any, index: number) => {
       if (element.Field != 'id' && index < 6) {
         lastIndex = index;
@@ -55,17 +58,20 @@ function Table() {
       <div className="">
         Total: {contenido.length}
       </div>
-      <table className="table-auto border p-4 rounded-md shadow">
-        <thead>
-
-          <tr className="border ">
-            {buildTableHeader()}
-          </tr>
-        </thead>
-        <tbody>
-          {buildResultsByCategory()}
-        </tbody>
-      </table>
+      <div className="w-full flex justify-center items-center p-2">
+        <div className="w-[95%] p-5 bg-white rounded-xl">
+          <table className="mx-auto rounded-xl shadow w-full">
+            <thead>
+              <tr className="bg-white">
+                {buildTableHeader()}
+              </tr>
+            </thead>
+            <tbody>
+              {buildResultsByCategory()}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </>
   )
 }
