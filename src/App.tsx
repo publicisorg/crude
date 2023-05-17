@@ -1,12 +1,11 @@
-//import { useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 import SheetData from './components/common/sheetdata/SheetData';
 import Table from './components/containers/table'
 
 function App() {
 
-  //const [type, setType] = useState("db");
-  const type = 'db';
+  const [type, setType] = useState("db");
 
   return (
     <main className="">
@@ -15,7 +14,8 @@ function App() {
         {/*<ButtonToggle actualValue={type} function={setType} arguments={"db"} label="Base de datos" />*/}
       </div>
       {/*type == "folders" && <Folders />*/}
-      {type == "db" && 
+      {type == "db" && <Table />}
+      {type == "sheet" && 
       
       <>
     
