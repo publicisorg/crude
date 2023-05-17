@@ -5,7 +5,7 @@ import Table from './components/containers/table'
 
 function App() {
 
-  const [type, setType] = useState("db");
+  const [type, setType] = useState("sheet");
 
   return (
     <main className="">
