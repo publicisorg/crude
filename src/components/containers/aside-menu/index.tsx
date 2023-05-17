@@ -11,9 +11,12 @@ function MenuAside(props:any) {
     }, [menuSelected])
 
     return (
-        <aside className="h-screen fixed gap-4 bg-black/5 dark:bg-white/5 w-80 border-r border-black/25 dark:border-white/25 py-4 flex flex-col justify-between items-center">
-            <img className="h-28 mt-8" src="ThePub-Black.png" />
-            
+        <aside className="h-screen fixed gap-2 bg-black/5 dark:bg-white/5 w-80 border-r border-black/25 dark:border-white/25  flex flex-col justify-between items-center">
+            <div className="pb-8 px-6  w-full flex justify-center">
+                <div className="bg-white/5 mt-9 w-full flex justify-center items-center p-2">
+            <img className="w-1/2" src="ThePub-Black.png" />
+            </div>
+            </div>
             <div className="flex flex-col justify-center items-center w-full gap-1 px-4 ">
                 <MenuButton function={setMenuSelected} arguments="desktop" selected={menuSelected}><AiOutlineHome/>Escritorio</MenuButton>
                 <MenuButton function={setMenuSelected} arguments="tasks" selected={menuSelected}><AiOutlineContainer/>Tareas</MenuButton>
@@ -21,9 +24,12 @@ function MenuAside(props:any) {
                 <MenuButton function={setMenuSelected} arguments="databases" selected={menuSelected}><AiOutlinePieChart/>Bases de Datos</MenuButton>
             </div> 
 
-            <div className="flex justify-start items-center gap-5 mb-4 pt-8 border-gray-800  px-6  border-t-2 w-full">
+            <div className="flex justify-start items-center gap-5  py-3 bg-white/5   px-6   w-full">
                 <div>
-                    <img src="./profile.png" alt="Profile" className="w-12 rounded-full" />
+                <div className="relative">
+                    <img alt="" className="rounded w-12 rounded"  src="./profile.png" />
+                    <span className="absolute h-3.5 w-3.5 rounded-full border-2 border-white dark:border-gray-800 bg-green-400 -top-1 -left-1"></span></div>
+                  
                 </div>
                 <div>
                 <p>Hola Julian!</p>
