@@ -11,7 +11,7 @@ function App() {
   const [type, setType] = useState("sheet");
   const [beta, useBeta] = useState(false);
 
-  const mainBgColors = "bg-neutral-100 dark:bg-neutral-700";
+  const mainBgColors = "bg-neutral-100 dark:bg-neutral-600";
   const textColors = "text-black dark:text-white";
 
   return (

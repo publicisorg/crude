@@ -16,7 +16,7 @@ function ContentContainer(props: any) {
             {showComponent == "desktop" && "TEST"}
             {showComponent == "folders" && <Folders/>}
             {showComponent == "databases" && <Table/>}
-            {showComponent == "sheet" && <SheetData/>}
+            {showComponent == "tasks" && <SheetData/>}
         </section>
     )
 }
