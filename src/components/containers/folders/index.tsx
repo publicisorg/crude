@@ -38,19 +38,19 @@ function Folders() {
         }
     }, [contenido])
 
-    function enterFolder(folder:any) {
+    function enterFolder(folder: any) {
         updatePath([...path, folder]);
     }
 
     function exitFolder() {
         updatePath(
-            path.filter((a:any) => a !== path[path.length-1])
+            path.filter((a: any) => a !== path[path.length - 1])
         );
     }
 
     useEffect(() => {
         var auxContenido = contenidoGet;
-        path.forEach((element:any) => {
+        path.forEach((element: any) => {
             auxContenido = auxContenido[element];
         });
         setContenido(auxContenido);
@@ -76,25 +76,25 @@ function Folders() {
         return type;
     }
 
-    function renderItemByType(key:any, data:any, path:any, index:number) {
+    function renderItemByType(key: any, data: any, path: any, index: number) {
         if (data['type'] == 'folder') {
-            return (<ItemFolder function={setContenido} arguments={data} label={key} enterFolder={() => enterFolder(key)} index={index}/>)
+            return (<ItemFolder function={setContenido} arguments={data} label={key} enterFolder={() => enterFolder(key)} index={index} />)
         } else {
             var dataType = checkExtension(contenido[key]);
             switch (dataType) {
                 case "image":
-                    return (<ItemImage label={contenido[key]} path={path} index={index}/>);
+                    return (<ItemImage label={contenido[key]} path={path} index={index} />);
                 case "web":
-                    return (<ItemFrame label={contenido[key]} path={path} index={index}/>);
+                    return (<ItemFrame label={contenido[key]} path={path} index={index} />);
                 default:
-                    return (<ItemNotSupported label={contenido[key]} path={path} index={index}/>);
+                    return (<ItemNotSupported label={contenido[key]} path={path} index={index} />);
             }
         }
     }
 
     function renderJSX() {
-        const resultJSX:any = [];
-        Object.keys(contenido).forEach((key:any, index:any) => {
+        const resultJSX: any = [];
+        Object.keys(contenido).forEach((key: any, index: any) => {
             if (key != 'type') {
                 resultJSX.push(renderItemByType(key, contenido[key], path, index));
             }
@@ -105,9 +105,13 @@ function Folders() {
 
     return (
         <>
-            <section className="grid grid-cols-5 gap-8">
-                {backEnabled && dataReady && <span onClick={exitFolder} className="left-8 top-8 fixed cursor-pointer p-2 border shadow-md rounded-md hover:bg-gray-200">Anterior</span>}
-                {dataReady && renderJSX()}
+            <section className="flex flex-col justify-center">
+                <div className="h-12">
+                    {backEnabled && dataReady && <span onClick={exitFolder} className="p-2 text-black dark:text-white cursor-pointer duration-300 border rounded-md bg-white/25 dark:bg-black/25 hover:bg-white/50 hover:dark:bg-black/50 border-black/25 dark:border-white/25">Anterior</span>}
+                </div>
+                <div className="grid grid-cols-5 gap-8 relative">
+                    {dataReady && renderJSX()}
+                </div>
             </section>
         </>
     )
