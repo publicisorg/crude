@@ -28,7 +28,7 @@ function MenuButton(props: any) {
     }
 
     return (
-        <button className={`${selected ? "font-bold text-xl" : ""} h-20 w-full dark:bg-black/25 bg-white/25 hover:dark:bg-black/50 hover:bg-white/50 duration-300 py-6 border-t border-b dark:border-white/25 border-black/25 text-right px-8 ${opacity}`} onClick={handleClick}>{props.children}</button>
+        <button className={`${selected ? "font-bold text-xl" : ""} h-20 w-full dark:bg-black/25 bg-white/25 hover:dark:bg-black/50 hover:bg-white/50 duration-300 py-6 border-t border-b dark:border-white/25 border-black/25 text-left px-8 ${opacity}`} onClick={handleClick}>{props.children}</button>
     )
 }
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const styles = "flex flex-col justify-center items-center text-xl font-bold p-4 scale-100 hover:scale-105 text-black dark:text-white cursor-pointer duration-300 border rounded-md bg-white/25 dark:bg-black/25 hover:bg-white/50 hover:dark:bg-black/50 border-black/25 dark:border-white/25";
+const styles = "flex flex-col justify-center items-center text-xl font-bold p-4 scale-100 hover:scale-105 text-black dark:text-white cursor-pointer duration-300 rounded-3xl bg-black/10 dark:bg-white/10 hover:bg-white/50 hover:dark:bg-black/50 border-black/25 dark:border-white/25";
 const iconStyles = "w-32 fill-black dark:fill-white";
 
 export function ItemFolder(props: any) {
