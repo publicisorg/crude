@@ -18,10 +18,10 @@ function App() {
     <main className={`w-full ${mainBgColors} ${textColors}`}>
       {!beta && <>
         <div className="flex flex-row p-8 gap-8 justify-center items-center">
-          {<ButtonToggle actualValue={type} function={() => { useBeta(!beta) }} arguments={"folders"} label="Nuevas funciones (BETA)" />}
-          {<ButtonToggle actualValue={type} function={setType} arguments={"folders"} label="Carpetas" />}
-          {<ButtonToggle actualValue={type} function={setType} arguments={"db"} label="Base de datos" />}
-          {<ButtonToggle actualValue={type} function={setType} arguments={"sheet"} label="Status" />}
+          {<ButtonToggle actualValue={type} function={() => { useBeta(!beta) }} arguments={"folders"} label="Nuevas funciones (BETA)"  icon="home" />}
+          {<ButtonToggle actualValue={type} function={setType} arguments={"folders"} label="Carpetas"  icon=""/>}
+          {<ButtonToggle actualValue={type} function={setType} arguments={"db"} label="Base de datos" icon=""/>}
+          {<ButtonToggle actualValue={type} function={setType} arguments={"sheet"} label="Status"  icon=""/>}
         </div>
         {type == "folders" && <Folders />}
         {type == "db" && <Table />}
