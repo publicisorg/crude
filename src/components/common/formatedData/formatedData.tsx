@@ -1,24 +1,26 @@
 import { useEffect, useState } from "react"
-import Keywords from "../keywords"
-import { Colors, Tag } from "../selectors"
-import axios from 'axios'
-import Image from "../images"
+import NonEditable, { Details } from "../selectors"
+//import axios from 'axios'
 
 function FormatedData(props: any) {
 
-    const actualId = props.data.id;
-    const [generalData, setGeneralData] = useState<any>([]);
-    const [keywords, setKeywords] = useState([]);
-    const [tag1, setTag1] = useState('');
-    const [tag2, setTag2] = useState('');
-    const [tag3, setTag3] = useState('');
-    const [color1, setColor1] = useState('');
-    const [color2, setColor2] = useState('');
-    const [color3, setColor3] = useState('');
+    //const actualId = props.data.id;
+    //const [generalData, setGeneralData] = useState<any>([]);
+    //const [keywords, setKeywords] = useState([]);
+    const [editable, isTableEditable] = useState(props.editable);
+    //const [tag1, setTag1] = useState('');
+    //const [tag2, setTag2] = useState('');
+    //const [tag3, setTag3] = useState('');
+    //const [color1, setColor1] = useState('');
+    //const [color2, setColor2] = useState('');
+    //const [color3, setColor3] = useState('');
 
-    async function postData(data: any) {
+    useEffect(() => {
+        isTableEditable(props.editable);
+    }, [])
+
+    /*async function postData(data: any) {
         if (props.webReady) {
-            console.log("Post Data");
             var myDataObj = data;
             var formData = new FormData();
             for (var key in myDataObj) {
@@ -29,71 +31,73 @@ function FormatedData(props: any) {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
                 if (response.status == 200) {
-                    console.log(response);
                 } else {
-                    console.log(response);
                 }
             } catch (error) {
                 console.log(error);
                 return "Error";
             }
         }
+    }*/
+
+/*    useEffect(() => {
+        if (editable) {
+            var data = {
+                id: actualId,
+                tag1: tag1,
+                tag2: tag2,
+                tag3: tag3,
+                color1: color1,
+                color2: color2,
+                color3: color3,
+                keywords: keywords
+            }
+
+            if (props.webReady) {
+                setGeneralData(data);
+            }
+        }
+    }, [tag1, tag2, tag3, color1, color2, color3, keywords])*/
+
+    /*useEffect(() => {
+        if (editable) {
+            postData(generalData);
+        }
+    }, [generalData])*/
+
+    function buildTableContent() {
+        const tableContent: any = [];
+        props.estructura.forEach((key: any, index: number) => {
+            if (key.Field != 'id' && index < 6) {
+                var auxType = key.type;
+                var contentComponent: any = [];
+                if (!editable) {
+                    contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
+                } else {
+                    switch (auxType) {
+                        /*case "int":
+                            contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
+                        case "varchar":
+                            contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)*/
+                        default:
+                            contentComponent = (<NonEditable key={index}>{props.data[key.Field]}</NonEditable>)
+                    }
+                }
+
+                tableContent.push(<td className="p-4  text-center border-l border-r">
+                    {contentComponent}
+                </td>)
+            }
+        });
+        tableContent.push(<Details data={props.data} estructura={props.estructura} editable={editable}/>)
+
+        return tableContent;
     }
-
-    useEffect(() => {
-        var data = {
-            id: actualId,
-            tag1: tag1,
-            tag2: tag2,
-            tag3: tag3,
-            color1: color1,
-            color2: color2,
-            color3: color3,
-            keywords: keywords
-        }
-
-        if (props.webReady) {
-            setGeneralData(data);
-        }
-    }, [tag1, tag2, tag3, color1, color2, color3, keywords])
-
-    useEffect(() => {
-        postData(generalData);
-    }, [generalData])
 
     return (
         <>
-            <tr key={props.index} className={`${(props.index % 2) > 0 ? "bg-black/5" : "bg-transparent"} border`}>
-                <td className="px-2">
-                    {props.data.id}
-                </td>
-                <td className="px-2">
-                    <Image Imagen={props.data.Imagen} />
-                </td>
-                <td className="px-2">
-                    <p>{props.data.Display_name}</p>
-                </td>
-                <td className="px-2">
-                    <Tag tag={props.data.Tags[0]} collectData={setTag1} />
-                </td>
-                <td className="px-2">
-                    <Tag tag={props.data.Tags[1]} collectData={setTag2} />
-                </td>
-                <td className="px-2">
-                    <Tag tag={props.data.Tags[2]} collectData={setTag3} />
-                </td>
-                <td className="px-2">
-                    <Colors color={props.data.Colores[0]} collectData={setColor1} />
-                </td>
-                <td className="px-2">
-                    <Colors color={props.data.Colores[1]} collectData={setColor2} />
-                </td>
-                <td className="px-2">
-                    <Colors color={props.data.Colores[2]} collectData={setColor3} />
-                </td>
-                <td className="px-2">
-                    <Keywords previouskeywords={props.data.Keywords} collectData={setKeywords} />
-                </td>
+            <tr key={props.index} className={`${(props.index % 2) > 0 ? "bg-gray-100" : "bg-white"} border h-12`}>
+                {buildTableContent()}
             </tr>
         </>
     )
