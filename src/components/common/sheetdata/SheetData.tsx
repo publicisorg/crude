@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Papa from 'papaparse';
-import { countAsignado, countAsignadoforPeople } from './statusUtils';
 
 type Status = {
   DIGITAL: string,
