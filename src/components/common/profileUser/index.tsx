@@ -17,7 +17,7 @@ const Profile = () => {
                     </div>
                     <div>
 
-                        <p>Hola {user?.name}!</p>
+                        <p>Hola {user?.given_name}!</p>
                         <a href="#"><small className="text-gray-500"><Logout></Logout></small></a>
                     </div>
                 </div>
