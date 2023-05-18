@@ -6,11 +6,14 @@ import ContentContainer from "../content-container"
 function Main() {
 
     const [actualContent, setContent] = useState("desktop");
+    const [role, setRole] = useState("user");
+
+    const possibleRoles = ["user", "supervisor", "director"];
 
   return (
     <main className={`w-full`}>
-        <MenuAside changeContent={setContent}/>
-        <ContentContainer actualContent={actualContent}/>
+        <MenuAside changeContent={setContent} role={role} setRole={setRole} possibleRoles={possibleRoles}/>
+        <ContentContainer actualContent={actualContent} role={role}/>
     </main>
   )
 }
