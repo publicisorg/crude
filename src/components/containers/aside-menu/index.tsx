@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import MenuButton from "./complementary/menu-buttons"
 import { AiOutlineHome, AiOutlineContainer, AiOutlineFolder, AiOutlinePieChart, AiOutlineBell, AiFillSetting } from "react-icons/ai";
 import { Button, Tooltip } from "@material-tailwind/react";
+import Profile from "../../common/profileUser";
+import { Login } from "../login/login";
 
 function MenuAside(props: any) {
 
@@ -37,20 +39,7 @@ function MenuAside(props: any) {
                 </div>
             </div>
             <div className="flex justify-between items-center  bg-white/5   w-full">
-                <div className="flex  justify-start items-center gap-5  py-3 hover:bg-white/5   px-6   w-full">
-                    <div>
-                        <div className="relative">
-                            <img alt="" className="rounded w-12 rounded" src="./profile.png" />
-                            <span className="absolute h-3.5 w-3.5 rounded-full border-2 border-white dark:border-gray-800 bg-green-400 -top-1 -left-1"></span>
-                        </div>
-
-                    </div>
-                    <div>
-
-                        <p>Hola Julian!</p>
-                        <a href="#"><small className="text-gray-500">Cerrar Sesion</small></a>
-                    </div>
-                </div>
+            <Login></Login> 
 
                 <div className="p-4">
                     <div className="absolute inline-block z-10 rounded-lg py-2 px-3 text-sm font-medium shadow-sm transition-opacity duration-300 invisible opacity-0 bg-gray-900 text-white dark:bg-gray-700"><div className="relative z-20">Tooltip content</div><div className="absolute z-10 h-2 w-2 rotate-45 bg-gray-900 dark:bg-gray-700" >&nbsp;</div></div>
