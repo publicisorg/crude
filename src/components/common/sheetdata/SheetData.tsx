@@ -54,9 +54,11 @@ function SheetData(props: any) {
       }
       if (props.user != "all" && props.user != "none") {
         setFilteredStatus(status.filter((data: any) => data.DIGITAL == props.user))
-        props.getNotStarted(filteredStatus.filter((data:any) => data.ESTADO == "ASIGNADO").length);
-        props.getDone(filteredStatus.filter((data:any) => data.ESTADO == "EN TESTEO (WT)" || data.ESTADO == "EN VALIDACIÓN").length);
-        props.getInProcess(filteredStatus.filter((data:any) => data.ESTADO != "ASIGNADO" && data.ESTADO != "EN TESTEO (WT)" && data.ESTADO != "EN VALIDACIÓN").length);
+        if (props.getNotStarted != undefined && props.getDone != undefined && props.getInProcess != undefined) {
+          props.getNotStarted(filteredStatus.filter((data: any) => data.ESTADO == "ASIGNADO").length);
+          props.getDone(filteredStatus.filter((data: any) => data.ESTADO == "EN TESTEO (WT)" || data.ESTADO == "EN VALIDACIÓN").length);
+          props.getInProcess(filteredStatus.filter((data: any) => data.ESTADO != "ASIGNADO" && data.ESTADO != "EN TESTEO (WT)" && data.ESTADO != "EN VALIDACIÓN").length);
+        }
       }
     }
   }, [status])
@@ -70,7 +72,7 @@ function SheetData(props: any) {
           <p className={`${tableSize} py-4`}>Estado del pedido</p>
           {fullscreen && <p className={`${tableSize} py-4`}>Lo pide</p>}
         </div>
-        {filteredStatus.map((dataa: any, index:any) => (
+        {filteredStatus.map((dataa: any, index: any) => (
           <div key={index} className={`${dataa.X === 'x' ? 'text-white bg-red-500 p-1' : ''}  even:bg-white/10 h-20 w-full flex flex-row justify-between items-center px-6`}>
             {fullscreen && <p className={`${tableSize}`}>{dataa.DIGITAL}</p>}
             <p className={`${tableSize} text-slate-400`}>{dataa.PROYECTO}</p>
