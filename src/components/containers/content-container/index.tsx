@@ -16,7 +16,7 @@ function ContentContainer(props: any) {
         <section className="ml-80 h-screen relative overflow-y-auto">
             {showComponent == "desktop" && <Desktop/>}
             {showComponent == "folders" && <Folders/>}
-            {showComponent == "databases" && <Table/>}
+            {/*showComponent == "databases" && <Table/>*/}
             {showComponent == "tasks" && <SheetData fullscreen={true} user='Julian Di Pietrantonio'/>}
         </section>
     )
