@@ -73,18 +73,18 @@ function SheetData(props: any) {
           {fullscreen && <p className={`${tableSize} py-4`}>Lo pide</p>}
         </div>
         {filteredStatus.map((dataa: any, index: any) => (
-          <div key={index} className={`${dataa.X === 'x' ? 'text-white bg-red-500 p-1' : ''}  even:bg-white/10 h-20 w-full flex flex-row justify-between items-center px-6`}>
+          <div key={index} className={`${dataa.X === 'x' ? 'text-black dark:text-white bg-red-500 p-1' : ''}  even:bg-black/10 dark:even:bg-white/10 h-20 w-full flex flex-row justify-between items-center px-6`}>
             {fullscreen && <p className={`${tableSize}`}>{dataa.DIGITAL}</p>}
-            <p className={`${tableSize} text-slate-400`}>{dataa.PROYECTO}</p>
+            <p className={`${tableSize} text-black dark:text-white`}>{dataa.PROYECTO}</p>
 
             <p className={`${tableSize} p-2`}>
               <span className={`${dataa.ESTADO === 'EN TESTEO (WT)' ? 'text-white bg-violet-900 p-1' : ''}
             ${dataa.ESTADO === 'EN VALIDACIÓN' ? 'text-bold bg-orange-500 rounded-md p-1 text-white' : ''}
             ${dataa.ESTADO === 'ASIGNADO' ? 'text-bold bg-red-500 rounded-md p-1 text-white' : ''}
             ${dataa.ESTADO === 'EN DISEÑO' ? 'text-bold text-green-500 rounded-md p-1' : ''}
-            ${dataa.ESTADO === 'PEDIDO ENVIADO' ? 'text-bold text-white rounded-md p-1' : ''}
+            ${dataa.ESTADO === 'PEDIDO ENVIADO' ? 'text-bold text-black dark:text-white rounded-md p-1' : ''}
             `}> {dataa.ESTADO}</span></p>
-            {fullscreen && <p className={`${tableSize} text-slate-400`}>{dataa.CUENTAS}</p>}
+            {fullscreen && <p className={`${tableSize} text-black dark:text-white`}>{dataa.CUENTAS}</p>}
           </div>
         ))}
       </div>
