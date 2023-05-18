@@ -39,7 +39,6 @@ export const Details = (props: any) => {
 
   function buildTableContent() {
     const tableContent: any = [];
-    console.log(props.data);
     props.estructura.forEach((key: any, index: number) => {
       if (key.Field != 'id') {
         var auxType = key.type;
