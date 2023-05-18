@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import SheetData from "../../common/sheetdata/SheetData"
 import Folders from "../folders"
 import Table from "../table"
+import Desktop from "../desktop";
 
 function ContentContainer(props: any) {
 
@@ -12,11 +13,11 @@ function ContentContainer(props: any) {
     })
 
     return (
-        <section className="ml-80 p-4 h-screen relative overflow-y-auto">
-            {showComponent == "desktop" && "TEST"}
+        <section className="ml-80 h-screen relative overflow-y-auto">
+            {showComponent == "desktop" && <Desktop/>}
             {showComponent == "folders" && <Folders/>}
             {showComponent == "databases" && <Table/>}
-            {showComponent == "tasks" && <SheetData/>}
+            {showComponent == "tasks" && <SheetData fullscreen={true} user='Julian Di Pietrantonio'/>}
         </section>
     )
 }

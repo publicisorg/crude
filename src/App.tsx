@@ -38,7 +38,7 @@ function App() {
         </div>
         {type == "folders" && <Folders />}
         {type == "db" && <Table />}
-        {type == "sheet" && <SheetData />}
+        {type == "sheet" && <SheetData user="all" fullscreen={true}/>}
       </>}
       {beta && <div className={`w-full ${mainBgColors} ${textColors}`}>
         <Main/>
