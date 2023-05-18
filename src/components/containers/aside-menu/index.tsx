@@ -14,10 +14,8 @@ function MenuAside(props: any) {
         props.changeContent(menuSelected);
     }, [menuSelected])
 
-    console.log(props.possibleRoles);
-
     return (
-        <aside className="h-screen fixed gap-2 bg-[#1f2128] dark:bg-gradient-to-b from-[#1F1F1F] to-[#1f2128] w-80 border-r border-[#434343] dark:border-white/25  flex justify-between flex-col  items-center">
+        <aside className="h-screen fixed gap-2 bg-gradient-to-b from-black/40 to-black/10 dark:from-white/25 dark:to-white/10 w-80 border-r border-black/10 dark:border-white/25 flex justify-between flex-col  items-center">
             <div className="flex flex-col justify-evenly">
                 <div className="pb-8 px-6  w-full flex justify-center">
                     <div className="my-9 w-full flex justify-center items-center p-2">
@@ -40,14 +38,14 @@ function MenuAside(props: any) {
             </div>
             <div className="flex flex-col justify-center items-center w-full gap-6">
                 <SelectRole function={props.setRole} possibleRoles={props.possibleRoles}/>
-                <div className="flex flex-row justify-between items-center bg-white/5 w-full">
+                <div className="flex flex-row justify-evenly items-center bg-black/10 dark:bg-white/25 w-full">
                     <Login/>
                     <div className="p-4">
-                        <div className="absolute inline-block z-10 rounded-lg py-2 px-3 text-sm font-medium shadow-sm transition-opacity duration-300 invisible opacity-0 bg-gray-900 text-white dark:bg-gray-700">
+                        <div className="absolute inline-block z-10 rounded-lg py-2 px-3 text-sm font-medium shadow-sm transition-opacity duration-300 invisible opacity-0 bg-black/25 text-white dark:bg-white/25">
                             <div className="relative z-20">
                                 Tooltip content
                             </div>
-                            <div className="absolute z-10 h-2 w-2 rotate-45 bg-gray-900 dark:bg-gray-700" >
+                            <div className="absolute z-10 h-2 w-2 rotate-45 bg-black/25 dark:bg-white/25" >
                                 &nbsp;
                             </div>
                         </div>
