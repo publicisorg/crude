@@ -14,7 +14,7 @@ function App() {
 
     <main className={`w-full ${mainBgColors} ${textColors}`}>
 
-      {!isAuthenticated &&
+      {!true &&
         <div className="w-full h-screen flex flex-col justify-center items-center gap-8">
           <img src="logo.svg" className="w-48"/>
           <h1 className="text-2xl">Bienvenido a la herramienta interna de Publicis Groupe Argentina</h1>
@@ -23,7 +23,7 @@ function App() {
           </Auth0Provider>
         </div>}
         
-      {isAuthenticated && <div className={`w-full ${mainBgColors} ${textColors}`}>
+      {true && <div className={`w-full ${mainBgColors} ${textColors}`}>
         <Main />
       </div>}
     </main >

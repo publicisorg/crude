@@ -6,8 +6,8 @@ function SelectRole(props: any) {
 
     function buildOptions() {
         const optionsJSX:any = [];
-        props.possibleRoles.forEach((role: any) => {
-            optionsJSX.push(<option value={role}>{role}</option>)
+        props.possibleRoles.forEach((role: any, index:any) => {
+            optionsJSX.push(<option key={index} value={role}>{role}</option>)
         })
         return optionsJSX;
     }
