@@ -56,7 +56,7 @@ function SheetData(props: any) {
         setFilteredStatus(status.filter((data: any) => data.DIGITAL == props.user))
       }
       if (props.getNotStarted != undefined && props.getDone != undefined && props.getInProcess != undefined) {
-        props.getNotStarted(filteredStatus.filter((data: any) => data.DIGITAL == "").length);
+        props.getNotStarted(filteredStatus.filter((data: any) => data.ESTADO == "ASIGNADO").length);
         props.getDone(filteredStatus.filter((data: any) => data.ESTADO == "EN TESTEO (WT)" || data.ESTADO == "EN VALIDACIÓN").length);
         props.getInProcess(filteredStatus.filter((data: any) => data.ESTADO != "ASIGNADO" && data.ESTADO != "EN TESTEO (WT)" && data.ESTADO != "EN VALIDACIÓN" && data.ESTADO != "PEDIDO ENVIADO").length);
       }
