@@ -5,6 +5,7 @@ import { Button, Tooltip } from "@material-tailwind/react";
 import Profile from "../../common/profileUser";
 import { Login } from "../login/login";
 import SelectRole from "./complementary/select-role";
+import {supabase} from "../../../supabase/client";
 
 function MenuAside(props: any) {
 
@@ -41,14 +42,7 @@ function MenuAside(props: any) {
                 <div className="flex flex-row justify-evenly items-center bg-black/10 dark:bg-white/25 w-full">
                     <Login/>
                     <div className="p-4">
-                        <div className="absolute inline-block z-10 rounded-lg py-2 px-3 text-sm font-medium shadow-sm transition-opacity duration-300 invisible opacity-0 bg-black/25 text-white dark:bg-white/25">
-                            <div className="relative z-20">
-                                Tooltip content
-                            </div>
-                            <div className="absolute z-10 h-2 w-2 rotate-45 bg-black/25 dark:bg-white/25" >
-                                &nbsp;
-                            </div>
-                        </div>
+                        
                         <Tooltip content="Ajustes de usuario">
                             <Button>
                                 <AiFillSetting />

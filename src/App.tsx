@@ -1,11 +1,25 @@
 import './App.css'
 import Main from './components/containers/main';
-import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
-import { LoginButton } from './components/common/LoginButton';
+
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { supabase } from "./supabase/client";
+import { useEffect } from "react";
+import Home from './pages/Home'
+import Login from './pages/Login'
+import NotFound from './pages/NotFound'
 
 function App() {
+  const navigate = useNavigate();
 
-  const { isAuthenticated } = useAuth0();
+  useEffect(() => {
+    supabase.auth.onAuthStateChange((event, session) => {
+      if (!session) {
+        navigate("/login");
+      } else {
+        navigate("/");
+      }
+    });
+  }, [navigate]);
 
   const mainBgColors = "bg-stone-200 dark:bg-black";
   const textColors = "text-black dark:text-white";
@@ -14,18 +28,13 @@ function App() {
 
     <main className={`w-full ${mainBgColors} ${textColors}`}>
 
-      {!true &&
-        <div className="w-full h-screen flex flex-col justify-center items-center gap-8">
-          <img src="logo.svg" className="w-48"/>
-          <h1 className="text-2xl">Bienvenido a la herramienta interna de Publicis Groupe Argentina</h1>
-          <Auth0Provider domain={'thepub.us.auth0.com'} clientId={'aTPMnb756S8dZiOWZZjIJ6nZj0stWqDp'} authorizationParams={{ redirect_uri: window.location.origin }}>
-            <LoginButton />
-          </Auth0Provider>
-        </div>}
-        
-      {true && <div className={`w-full ${mainBgColors} ${textColors}`}>
-        <Main />
-      </div>}
+      <>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </>
     </main >
   )
 }
