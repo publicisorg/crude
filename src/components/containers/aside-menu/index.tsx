@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import MenuButton from "./complementary/menu-buttons"
 import { AiOutlineHome, AiOutlineContainer, AiOutlineFolder, AiOutlinePieChart, AiOutlineBell, AiFillSetting } from "react-icons/ai";
 import { Button, Tooltip } from "@material-tailwind/react";
-import Profile from "../../common/profileUser";
 import { Login } from "../login/login";
 import SelectRole from "./complementary/select-role";
-import {supabase} from "../../../supabase/client";
+import { TaskForm } from "../../common/Taskform";
 
 function MenuAside(props: any) {
 
@@ -33,6 +32,7 @@ function MenuAside(props: any) {
                         </span>
                     </MenuButton>
                     <MenuButton function={setMenuSelected} arguments="tasks" selected={menuSelected}><AiOutlineContainer />Tareas</MenuButton>
+                    <MenuButton function={setMenuSelected} arguments="createtasks" selected={menuSelected}><AiOutlineContainer />Crear Tareas</MenuButton>
                     <MenuButton function={setMenuSelected} arguments="folders" selected={menuSelected}><AiOutlineFolder />Carpetas</MenuButton>
                     {false && <MenuButton function={setMenuSelected} arguments="databases" selected={menuSelected}><AiOutlinePieChart />Bases de Datos</MenuButton>}
                 </div>

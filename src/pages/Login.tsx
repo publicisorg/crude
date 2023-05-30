@@ -4,12 +4,13 @@ import { supabase } from "../supabase/client";
 
 export function Login() {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
   e.preventDefault();
 try{
-  const result = await supabase.auth.signInWithOtp({
-    email,
+  const result = await supabase.auth.signInWithPassword({
+    email, password
   })
   console.log(result)
 } catch(error){
@@ -29,8 +30,19 @@ console.error(error)}
             value={email}
             name="email"
             onChange={(e) => setEmail(e.target.value)}
-            className="border px-2 py-1 m-2"
-            placeholder="youremail@site.com"
+            className="border px-2 py-1 m-2 !text-black"
+            placeholder="email"
+            required
+          />
+           <label htmlFor="email">Password:</label>
+          <input
+          
+            type="text"
+            value={password}
+            name="email"
+            onChange={(e) => setPassword(e.target.value)}
+            className="border px-2 py-1 m-2 !text-black"
+            placeholder="Contraseña"
             required
           />
           <div className="ms-auto">
@@ -40,15 +52,6 @@ console.error(error)}
         </form>
   </div>
   );
-}
-
-
-
-
-export const login = () => {
-  return (
-    <div>login</div>
-  )
 }
 
 export default Login; 

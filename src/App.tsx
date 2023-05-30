@@ -6,6 +6,7 @@ import { supabase } from "./supabase/client";
 import { useEffect } from "react";
 import Home from './pages/Home'
 import Login from './pages/Login'
+import SignUp from './pages/SignUp'
 import NotFound from './pages/NotFound'
 
 function App() {
@@ -31,7 +32,8 @@ function App() {
       <>
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<><Login /> <SignUp/></>} />
+            <Route path="/registrar" element={<><SignUp/></>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </>

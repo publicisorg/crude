@@ -7,9 +7,7 @@ export const Login = () => {
 
 
   return (
-    <Auth0Provider domain={'thepub.us.auth0.com'} clientId={'aTPMnb756S8dZiOWZZjIJ6nZj0stWqDp'} authorizationParams={{
-        redirect_uri: window.location.origin
-      }}>
+   
     <div>
 
 <Profile></Profile>
@@ -17,6 +15,5 @@ export const Login = () => {
      
         
         </div>
-    </Auth0Provider>
   )
 }

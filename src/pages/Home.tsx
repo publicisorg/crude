@@ -1,5 +1,6 @@
 import React from 'react'
-import { supabase } from "../supabase/client";
+import { supabase } from '../supabase/client';
+
 
 export const Home = () => {
   return (
@@ -9,4 +10,5 @@ export const Home = () => {
     </div>
   )
 }
+
 export default Home;
