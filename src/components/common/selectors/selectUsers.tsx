@@ -7,7 +7,6 @@ function SelectUser(props: any) {
 
     useEffect(() => {
         getUsers().then((result:any) => {
-            console.log(result.data);
             setUsers(result.data);
         });
     }, [])

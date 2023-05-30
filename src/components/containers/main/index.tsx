@@ -6,23 +6,40 @@ import { supabase } from "../../../supabase/client";
 
 function Main() {
 
-    const [actualContent, setContent] = useState("desktop");
-    const [role, setRole] = useState("user")
-    const [userId, setUserId] = useState("")
+  const [actualContent, setContent] = useState("desktop");
+  const [role, setRole] = useState("user")
+  const [userId, setUserId] = useState("");
+  const [name, setName] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [possibleRoles, setPossibleRoles] = useState([]);
 
-    const possibleRoles = ["user", "supervisor", "director"];
+  //const possibleRoles = ["user", "supervisor", "director"];
 
-    useEffect(() => {
-      var auxUser = supabase.auth.getUser();
-      auxUser.then((userinfo:any) => {
-        setUserId(userinfo.data.user.id);
-      })
-    }, [])
+  useEffect(() => {
+    var auxUser = supabase.auth.getUser();
+    auxUser.then((userinfo: any) => {
+      setUserId(userinfo.data.user.id);
+    })
+  }, [])
+
+  useEffect(() => {
+    getMyUserData(userId).then((user:any) => {
+      console.log(user);
+      setName(user.data[0].name);
+      setLastname(user.data[0].lastname);
+      setPossibleRoles(user.data[0].rol[0].rol);
+    });
+  }, [userId])
+
+  async function getMyUserData(myUserUUID:any) {
+    const data = await supabase.from('users').select('uuid, name, lastname, rol').eq('uuid', myUserUUID);
+    return data;
+  }
 
   return (
     <main className={`w-full`}>
-        <MenuAside userId={userId} changeContent={setContent} role={role} setRole={setRole} possibleRoles={possibleRoles}/>
-        <ContentContainer userId={userId} actualContent={actualContent} role={role}/>
+      <MenuAside userId={userId} changeContent={setContent} role={role} setRole={setRole} possibleRoles={possibleRoles} />
+      <ContentContainer userId={userId} actualContent={actualContent} role={role} />
     </main>
   )
 }
