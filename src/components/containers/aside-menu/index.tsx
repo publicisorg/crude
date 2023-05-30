@@ -4,7 +4,7 @@ import { AiOutlineHome, AiOutlineContainer, AiOutlineFolder, AiOutlinePieChart, 
 import { Button, Tooltip } from "@material-tailwind/react";
 import { Login } from "../login/login";
 import SelectRole from "./complementary/select-role";
-import { TaskForm } from "../../common/Taskform";
+import Profile from "../../common/profileUser";
 
 function MenuAside(props: any) {
 
@@ -40,7 +40,7 @@ function MenuAside(props: any) {
             <div className="flex flex-col justify-center items-center w-full gap-6">
                 <SelectRole function={props.setRole} possibleRoles={props.possibleRoles}/>
                 <div className="flex flex-row justify-evenly items-center bg-black/10 dark:bg-white/25 w-full">
-                    <Login/>
+                    <Profile name={props.name} lastName={props.lastName} profilePicUrl={props.urlImg} />
                     <div className="p-4">
                         
                         <Tooltip content="Ajustes de usuario">
