@@ -18,9 +18,9 @@ function ContentContainer(props: any) {
 
     return (
         <section className="ml-80 h-screen relative overflow-y-auto">
-            {showComponent == "desktop" && role == "user" && <Desktop user='Julian Di Pietrantonio'/>}
-            {showComponent == "desktop" && role == "supervisor" && <DesktopSupervisor user="all"/>}
-            {showComponent == "desktop" && role == "director" && <DesktopDirector user="all"/>}
+            {showComponent == "desktop" && role == "user" && <Desktop userId={props.userId} user={props.userId}/>}
+            {showComponent == "desktop" && role == "supervisor" && <DesktopSupervisor userId={props.userId} user="all"/>}
+            {showComponent == "desktop" && role == "director" && <DesktopDirector userId={props.userId} user="all"/>}
             {showComponent == "folders" && <Folders/>}
             {/*showComponent == "databases" && <Table/>*/}
             {showComponent == "createtasks" && <TaskForm/>}

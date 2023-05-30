@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../../../supabase/client'
+import SelectUser from '../selectors/selectUsers'
 export const TaskForm = () => {
     const [client, setClient] = useState("")
     const [marca, setMarca] = useState("")
@@ -13,8 +14,8 @@ export const TaskForm = () => {
         e.preventDefault()
 
         try {
-            const user = supabase.auth.getUser()
-            user.then((userId) => { setAuthUser(userId.data.user.id) })
+            const user:any = supabase.auth.getUser()
+            user.then((userId:any) => { setAuthUser(userId.data.user.id) })
         }
 
         catch (error) {
@@ -89,20 +90,7 @@ export const TaskForm = () => {
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div className="mb-2 block"><label className="text-sm font-medium text-gray-900 dark:text-gray-300" data-testid="flowbite-label">Asignar a: </label></div>
-                    <div className="flex">
-                        <div className="relative w-full">
-                            <input required
-                                className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
-
-
-                                type="text"
-                                onChange={e => setUser(e.target.value)}
-                            />
-                        </div>
-                    </div>
-                </div>
+                <SelectUser setUser={setUser}/>
                 <div>
                     <div className="mb-2 block"><label className="text-sm font-medium text-gray-900 dark:text-gray-300" data-testid="flowbite-label">Fecha de entrega: </label></div>
                     <div className="flex">
