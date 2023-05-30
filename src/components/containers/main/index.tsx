@@ -34,8 +34,10 @@ function Main() {
   }, [userId])
 
   async function getMyUserData(myUserUUID:any) {
-    const data = await supabase.from('users').select('uuid, name, lastname, rol, urlImg').eq('uuid', myUserUUID);
-    return data;
+    if (myUserUUID != "" && myUserUUID != undefined) {
+      const data = await supabase.from('users').select('uuid, name, lastname, rol, urlImg').eq('uuid', myUserUUID);
+      return data;
+    }
   }
 
   return (

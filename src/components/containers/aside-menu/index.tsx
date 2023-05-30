@@ -40,7 +40,7 @@ function MenuAside(props: any) {
             <div className="flex flex-col justify-center items-center w-full gap-6">
                 <SelectRole function={props.setRole} possibleRoles={props.possibleRoles}/>
                 <div className="flex flex-row justify-evenly items-center bg-black/10 dark:bg-white/25 w-full">
-                    <Profile name={props.name} lastName={props.lastName} profilePicUrl={props.urlImg} />
+                    <Profile name={props.name} lastName={props.lastName} urlImg={props.urlImg} />
                     <div className="p-4">
                         
                         <Tooltip content="Ajustes de usuario">
