@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { supabase } from '../../../supabase/client'
 export const TaskForm = () => {
     const [client, setClient] = useState("")
@@ -7,26 +7,14 @@ export const TaskForm = () => {
     const [usuario, setUser] = useState("")
     const [date, setDate] = useState("")
     const [comment, setComment] = useState("")
+    const [authUser, setAuthUser] = useState("")
 
-    const handleSubmit = async e => {
+    const handleSubmit = async (e:any) => {
         e.preventDefault()
 
         try {
-
             const user = supabase.auth.getUser()
-
-            user.then((userId) => {
-
-                const result =  supabase.from('tasks').insert({
-                    name: projet,
-                    client: client,
-                    marca: marca,
-                    user: usuario,
-                    date: date,
-                    comment: comment,
-                
-                })
-            })
+            user.then((userId) => { setAuthUser(userId.data.user.id) })
         }
 
         catch (error) {
@@ -34,6 +22,29 @@ export const TaskForm = () => {
             console.error(error);
         }
     }
+
+    async function impactDataOnTable() {
+        const result = await supabase.from('tasks').insert({
+            name: projet,
+            client: client,
+            marca: marca,
+            user: usuario,
+            date: date,
+            comment: comment,
+            userId: authUser
+        })
+        return result;
+    }
+
+    useEffect(() => {
+        if (authUser != "") {
+            impactDataOnTable().then((result:any) => {
+                console.log(result);
+                setAuthUser("");
+            });
+        }
+    }, [authUser])
+
     return (
         <div className='flex flex-col justify-center items-center w-full h-screen text-left'>
             <h2 className='text-2xl text-left'>Nueva Tarea</h2>
@@ -42,7 +53,7 @@ export const TaskForm = () => {
                     <div className="mb-2 block"><label className="text-sm font-medium text-gray-900 dark:text-gray-300" data-testid="flowbite-label" >Cliente</label></div>
                     <div className="flex">
                         <div className="relative w-full">
-                            <input
+                            <input required
                                 className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
                                 placeholder="L'Oreal"
                                 type="text"
@@ -56,7 +67,7 @@ export const TaskForm = () => {
                     <div className="mb-2 block"><label className="text-sm font-medium text-gray-900 dark:text-gray-300" data-testid="flowbite-label">Marca</label></div>
                     <div className="flex">
                         <div className="relative w-full">
-                            <input
+                            <input required
                                 className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
                                 type="text"
                                 onChange={e => setMarca(e.target.value)}
@@ -68,7 +79,7 @@ export const TaskForm = () => {
                     <div className="mb-2 block"><label className="text-sm font-medium text-gray-900 dark:text-gray-300" data-testid="flowbite-label">Proyecto</label></div>
                     <div className="flex">
                         <div className="relative w-full">
-                            <input
+                            <input required
                                 className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
 
 
@@ -82,7 +93,7 @@ export const TaskForm = () => {
                     <div className="mb-2 block"><label className="text-sm font-medium text-gray-900 dark:text-gray-300" data-testid="flowbite-label">Asignar a: </label></div>
                     <div className="flex">
                         <div className="relative w-full">
-                            <input
+                            <input required
                                 className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
 
 
@@ -96,7 +107,7 @@ export const TaskForm = () => {
                     <div className="mb-2 block"><label className="text-sm font-medium text-gray-900 dark:text-gray-300" data-testid="flowbite-label">Fecha de entrega: </label></div>
                     <div className="flex">
                         <div className="relative w-full">
-                            <input
+                            <input required
                                 className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
 
 
@@ -110,7 +121,7 @@ export const TaskForm = () => {
                     <div className="mb-2 block"><label className="text-sm font-medium text-gray-900 dark:text-gray-300" data-testid="flowbite-label">Comentario: </label></div>
                     <div className="flex">
                         <div className="relative w-full">
-                            <textarea
+                            <textarea required
                                 className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
 
 
@@ -121,7 +132,7 @@ export const TaskForm = () => {
                 </div>
                 <button
                     type="submit"
-                    className="text-white bg-cyan-700 border border-transparent hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 disabled:hover:bg-cyan-700 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800 dark:disabled:hover:bg-cyan-600 focus:!ring-2 group flex h-min items-center justify-center p-0.5 text-center font-medium focus:z-10 rounded-lg"
+                    className="text-white bg-cyan-700 border border-transparent hover:bg-cyan-800 focus:ring-cyan-300 disabled:hover:bg-cyan-700 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800 dark:disabled:hover:bg-cyan-600 focus:!ring-2 group flex h-min items-center justify-center p-0.5 text-center font-medium focus:z-10 rounded-lg"
                 >
                     <span className="flex items-center rounded-md text-sm px-4 py-2">Crear nueva tarea</span>
                 </button>
