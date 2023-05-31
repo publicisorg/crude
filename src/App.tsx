@@ -8,6 +8,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import NotFound from './pages/NotFound'
+import { ProfileSettings } from './components/containers/profile';
 
 function App() {
   const navigate = useNavigate();
@@ -32,8 +33,9 @@ function App() {
       <>
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/login" element={<><Login /> <SignUp/></>} />
+            <Route path="/login" element={<><Login /></>} />
             <Route path="/registrar" element={<><SignUp/></>} />
+            <Route path="/Setting" element={<><ProfileSettings/></>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </>
