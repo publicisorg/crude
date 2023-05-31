@@ -43,7 +43,7 @@ function Main() {
   return (
     <main className={`w-full`}>
       <MenuAside name={name} lastName={lastname} urlImg={urlImg} userId={userId} changeContent={setContent} role={role} setRole={setRole} possibleRoles={possibleRoles} />
-      <ContentContainer userId={userId} actualContent={actualContent} role={role} />
+      <ContentContainer name={name} lastName={lastname} urlImg={urlImg}  userId={userId} actualContent={actualContent} role={role} />
     </main>
   )
 }

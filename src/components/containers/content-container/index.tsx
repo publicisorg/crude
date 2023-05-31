@@ -2,9 +2,9 @@ import { useEffect, useState } from "react"
 import SheetData from "../../common/sheetdata/SheetData"
 import Folders from "../folders"
 import Table from "../table"
-
 import Desktop, { DesktopDirector, DesktopSupervisor } from "../desktop";
 import { TaskForm } from "../../common/Taskform"
+import { ProfileSettings } from "../profile"
 
 function ContentContainer(props: any) {
 
@@ -24,6 +24,7 @@ function ContentContainer(props: any) {
             {showComponent == "folders" && <Folders/>}
             {/*showComponent == "databases" && <Table/>*/}
             {showComponent == "createtasks" && <TaskForm/>}
+            {showComponent == "setting" && <ProfileSettings  name={props.name} lastName={props.lastName} urlImg={props.urlImg} />}
 
             {showComponent == "tasks" && <SheetData fullscreen={true} user='Julian Di Pietrantonio'/>}
         </section>
