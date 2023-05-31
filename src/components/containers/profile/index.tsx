@@ -1,10 +1,31 @@
-import React from 'react'
-import { supabase } from '../../../supabase/client'
+import React, { useState } from 'react';
+import { supabase } from '../../../supabase/client';
 
-export const ProfileSettings = (props: any) => {
+export const ProfileSettings = (props) => {
+  const [imageUrl, setImageUrl] = useState('');
+
+  const handleImageUrlChange = (e) => {
+    setImageUrl(e.target.value);
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await supabase
+        .from('users')
+        .update({ urlImg: imageUrl })
+        .eq('uuid', props.userId); 
+
+      console.log('Imagen de perfil actualizada correctamente');
+    } catch (error) {
+      console.error('Error al actualizar la imagen de perfil:', error);
+    }
+  };
+
     return (
         <main>
- 
+
             <div className="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4 dark:bg-black">
 
                 <div className="col-span-full xl:col-auto">
@@ -16,15 +37,31 @@ export const ProfileSettings = (props: any) => {
                                 <div className="mb-4 text-sm text-gray-500 dark:text-gray-400">
                                     Ingrese la url de la imagen
                                 </div>
-                                <div className="flex items-center space-x-4">
-                                    <input type="text" name="first-name" id="first-name" className="shadow-sm bg-gray-50/10 border border-gray-00/10 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500/10 focus:border-primary-500/10 block w-full p-2.5 dark:bg-gray-700/10 dark:border-gray-600/10 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="URL de la Imagen" required />
+                                <form>
+                                    <div className="flex items-center space-x-4">
+                                        <input
+                                            type="text"
+                                            name="url-img"
+                                            id="url-img"
+                                            className="shadow-sm bg-gray-50/10 border border-gray-00/10 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500/10 focus:border-primary-500/10 block w-full p-2.5 dark:bg-gray-700/10 dark:border-gray-600/10 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            placeholder="URL de la Imagen"
+                                            required
+                                            value={imageUrl}
+                                            onChange={handleImageUrlChange}
+                                        />
 
 
 
-                                    <button type="button" className="py-2 px-3 text-sm font-medium text-gray-900 focus:outline-none bg-white/10 rounded-lg border border-gray-200/10 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-white/10/10 dark:text-gray-400 dark:border-gray-600/10 dark:hover:text-white dark:hover:bg-gray-700">
-                                        Actualizar
-                                    </button>
-                                </div>
+                                        <button
+                                            type="button"
+                                            className="py-2 px-3 text-sm font-medium text-gray-900 focus:outline-none bg-white/10 rounded-lg border border-gray-200/10 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-white/10/10 dark:text-gray-400 dark:border-gray-600/10 dark:hover:text-white dark:hover:bg-gray-700"
+                                            onClick={handleFormSubmit}
+                                        >
+                                            Actualizar
+                                        </button>
+
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -76,7 +113,7 @@ export const ProfileSettings = (props: any) => {
                                             </a>
                                         </div>
                                         <div className="inline-flex items-center">
-                                        <input type="color" />
+                                            <input type="color" />
 
                                         </div>
                                     </div>
@@ -91,12 +128,12 @@ export const ProfileSettings = (props: any) => {
                         <div className="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">
 
                             <div>
-                               
-                                <div className="flex items-center space-x-4">
-                                   
 
-                                    <button onClick={()=> supabase.auth.signOut()} type="button" className="py-2 px-3 text-sm font-medium text-gray-900 focus:outline-none bg-white/10 rounded-lg border border-gray-200/10 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-white/10/10 dark:text-gray-400 dark:border-gray-600/10 dark:hover:text-white dark:hover:bg-gray-700">
-                                    Cerrar sesion 
+                                <div className="flex items-center space-x-4">
+
+
+                                    <button onClick={() => supabase.auth.signOut()} type="button" className="py-2 px-3 text-sm font-medium text-gray-900 focus:outline-none bg-white/10 rounded-lg border border-gray-200/10 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-white/10/10 dark:text-gray-400 dark:border-gray-600/10 dark:hover:text-white dark:hover:bg-gray-700">
+                                        Cerrar sesion
                                     </button>
                                 </div>
                             </div>
@@ -116,7 +153,7 @@ export const ProfileSettings = (props: any) => {
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido</label>
                                     <input type="text" name="last-name" id="last-name" className="shadow-sm bg-gray-50/10 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700/10 dark:border-gray-600/10 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value={props.lastName} disabled />
                                 </div>
-                               
+
                                 <div className="col-span-6 sm:col-span-3">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Agencia</label>
                                     <input type="text" name="organization" id="organization" className="shadow-sm bg-gray-50/10 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700/10 dark:border-gray-600/10 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="The Pub" disabled />
@@ -129,8 +166,8 @@ export const ProfileSettings = (props: any) => {
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Departamento</label>
                                     <input type="text" name="department" id="department" className="shadow-sm bg-gray-50/10 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700/10 dark:border-gray-600/10 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="Development" disabled />
                                 </div>
-                               
-                              
+
+
                             </div>
                         </form>
                     </div>
@@ -142,7 +179,7 @@ export const ProfileSettings = (props: any) => {
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nueva contraseña</label>
                                     <input type="text" name="current-password" id="current-password" className="shadow-sm bg-gray-50/10 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700/10 dark:border-gray-600/10 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="••••••••" required />
                                 </div>
-                                
+
                                 <div className="col-span-6 sm:col-span-3">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirmar contraseña</label>
                                     <input type="text" name="confirm-password" id="confirm-password" className="shadow-sm bg-gray-50/10 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700/10 dark:border-gray-600/10 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="••••••••" required />
@@ -153,7 +190,7 @@ export const ProfileSettings = (props: any) => {
                             </div>
                         </form>
                     </div>
-                    
+
                 </div>
 
             </div>

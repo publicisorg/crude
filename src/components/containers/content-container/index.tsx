@@ -25,8 +25,8 @@ function ContentContainer(props: any) {
             {showComponent == "desktop" && role == "supervisor" && <DesktopSupervisor userId={props.userId} user="all"/>}
             {showComponent == "desktop" && role == "director" && <DesktopDirector userId={props.userId} user="all"/>}
             {showComponent == "folders" && <Folders/>}
-            {showComponent == "notifications" && <Notifications/>}
-            {showComponent == "setting" && <ProfileSettings  name={props.name} lastName={props.lastName} urlImg={props.urlImg} />}
+            {showComponent == "notifications" && <Notifications userFilter={props.userId}/>}
+            {showComponent == "setting" && <ProfileSettings userId={props.userId} name={props.name} lastName={props.lastName} urlImg={props.urlImg} />}
             {/*showComponent == "databases" && <Table/>*/}
             {showComponent == "createtasks" && <TaskForm/>}
             {showComponent == "tasks" && role == "user" && <TasksTable userFilter={props.userId}/>}

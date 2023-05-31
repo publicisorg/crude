@@ -56,7 +56,7 @@ export const TaskForm = () => {
                     <div className="flex">
                         <div className="relative w-full">
                             <input required
-                                className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
+                                className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50/10 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-50/10 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
                                 placeholder="L'Oreal"
                                 type="text"
                                 onChange={e => setClient(e.target.value)}
@@ -70,7 +70,7 @@ export const TaskForm = () => {
                     <div className="flex">
                         <div className="relative w-full">
                             <input required
-                                className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
+                                className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50/10 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-50/10 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
                                 type="text"
                                 onChange={e => setMarca(e.target.value)}
                             />
@@ -83,7 +83,7 @@ export const TaskForm = () => {
                     <div className="flex">
                         <div className="relative w-full">
                             <input required
-                                className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
+                                className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50/10 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-50/10 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
 
 
                                 type="text"
@@ -98,7 +98,7 @@ export const TaskForm = () => {
                     <div className="flex">
                         <div className="relative w-full">
                             <input required
-                                className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
+                                className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50/10 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-50/10 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
 
 
                                 type="date"
@@ -112,7 +112,7 @@ export const TaskForm = () => {
                     <div className="flex">
                         <div className="relative w-full">
                             <textarea required
-                                className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
+                                className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50/10 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-50/10 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
 
 
                                 onChange={e => setComment(e.target.value)}
@@ -122,7 +122,7 @@ export const TaskForm = () => {
                 </div>
                 <button
                     type="submit"
-                    className="text-white bg-cyan-700 w-1/2  border border-transparent hover:bg-cyan-800 focus:ring-cyan-300 disabled:hover:bg-cyan-700 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800 dark:disabled:hover:bg-cyan-600 focus:!ring-2 group flex h-min items-center justify-center p-0.5 text-center font-medium focus:z-10 rounded-lg"
+                    className="text-white bg-green-500/30 hover:bg-green-700 w-1/2   flex h-min items-center justify-center p-0.5 text-center font-medium focus:z-10 rounded-lg"
                 >
                     <span className="flex items-center rounded-md text-sm px-4 py-2">Crear nueva tarea</span>
                 </button>
