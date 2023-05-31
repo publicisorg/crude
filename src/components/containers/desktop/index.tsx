@@ -1,4 +1,5 @@
 import { useState } from "react";
+import TasksTable from "../tasks";
 //import SheetData from "../../common/sheetdata/SheetData";
 
 function Desktop(props: any) {
@@ -9,7 +10,6 @@ function Desktop(props: any) {
 
     const containerStyle = "bg-black/10 dark:bg-white/10 p-8 rounded-2xl";
     const pStyle = "text-3xl";
-    const thisUser = props.user;
 
     return (
         <div className="flex flex-col gap-8 justify-start items-center h-full py-8">
@@ -31,13 +31,13 @@ function Desktop(props: any) {
                 <div className={`${containerStyle} w-full p-4 rounded-2xl flex flex-col h-full`}>
                     <p className={`${pStyle}`}>Tus tareas</p>
                     <div className="w-full h-full mt-6 rounded-2xl overflow-y-auto">
-                        {/*<SheetData fullscreen={false} user={thisUser} getInProcess={setInProcess} getDone={setDone} getNotStarted={setNotStarted}/>*/}
+                        <TasksTable userFilter={props.userId} />
                     </div>
                 </div>
                 <div className={`${containerStyle} w-full p-4 rounded-2xl flex flex-col h-full`}>
                     <p className={`${pStyle}`}>Tareas sin asignar</p>
                     <div className="w-full h-full mt-6 rounded-2xl overflow-y-auto">
-                        {/*<SheetData fullscreen={false} user="none" />*/}
+                        <TasksTable userFilter={props.userId} />
                     </div>
                 </div>
             </div>
@@ -74,13 +74,13 @@ export function DesktopSupervisor(props: any) {
                 <div className={`${containerStyle} w-full p-4 rounded-2xl flex flex-col h-full`}>
                     <p className={`${pStyle}`}>Tareas del Equipo</p>
                     <div className="w-full h-full mt-6 rounded-2xl overflow-y-auto">
-                        {/*<SheetData fullscreen={false} user={props.user} getInProcess={setInProcess} getDone={setDone} getNotStarted={setNotStarted}/>*/}
+                        <TasksTable userFilter={props.userId} />
                     </div>
                 </div>
                 <div className={`${containerStyle} w-full p-4 rounded-2xl flex flex-col h-full`}>
                     <p className={`${pStyle}`}>Tareas sin asignar</p>
                     <div className="w-full h-full mt-6 rounded-2xl overflow-y-auto">
-                        {/*<SheetData fullscreen={false} user="none" />*/}
+                        <TasksTable userFilter={props.userId} />
                     </div>
                 </div>
             </div>
@@ -117,7 +117,7 @@ export function DesktopDirector(props: any) {
                 <div className={`${containerStyle} w-full p-4 rounded-2xl flex flex-col h-full`}>
                     <p className={`${pStyle}`}>Tus tareas</p>
                     <div className="w-full h-full mt-6 rounded-2xl overflow-y-auto">
-                        <SheetData fullscreen={false} user={props.user} getInProcess={setInProcess} getDone={setDone} getNotStarted={setNotStarted}/>
+                        <SheetData fullscreen={false} user={props.user} getInProcess={setInProcess} getDone={setDone} getNotStarted={setNotStarted} />
                     </div>
                 </div>
                 <div className={`${containerStyle} w-full p-4 rounded-2xl flex flex-col h-full`}>
