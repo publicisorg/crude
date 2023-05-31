@@ -20,8 +20,8 @@ function ContentContainer(props: any) {
     return (
         
         <section className="ml-80 h-screen relative overflow-y-auto">
-            {showComponent == "desktop" && role == "supervisor" && <Desktop userId={props.userId} user={props.userId}/>}
-            {showComponent == "desktop" && role == "user" && <DesktopSupervisor userId={props.userId} user="*"/>}
+            {showComponent == "desktop" && role == "user" && <Desktop userId={props.userId} user={props.userId}/>}
+            {showComponent == "desktop" && role == "supervisor" && <DesktopSupervisor userId={props.userId} user="*"/>}
             {showComponent == "desktop" && role == "director" && <DesktopDirector userId={props.userId} user="*"/>}
             {showComponent == "folders" && <Folders/>}
             {showComponent == "notifications" && <Notifications userFilter={props.userId}/>}
