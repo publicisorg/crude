@@ -9,7 +9,7 @@ function TasksTable(props: any) {
     useEffect(() => {
         getTasksData().then((data: any) => {
             if (props.userFilter == "") {
-                setTasks(data.data.filter((task:any) => task.user == null))
+                setTasks(data.data.filter((task:any) => task.user == null || task.user == ""))
             } else {
                 setTasks(data.data);
             }
@@ -17,7 +17,6 @@ function TasksTable(props: any) {
     }, [])
 
     useEffect(() => {
-        console.log(tasks);
         if (tasks.length > 0) {
             if (props.userFilter != undefined && props.userFilter != "" && props.setNotStarted != undefined) {
                 const notStarted = tasks.filter((task: any) => task.status == "ASIGNADO");

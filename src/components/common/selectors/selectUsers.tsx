@@ -25,6 +25,7 @@ function SelectUser(props: any) {
                         className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-50/10 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
                         onChange={e => props.setUser(e.target.value)}
                     >
+                        <option value="">Sin asignar</option>
                         {users.map((user:any, index:number) => {
                             return (
                                 <option key={index} value={user.uuid}>{user.name + " " + user.lastname}</option>

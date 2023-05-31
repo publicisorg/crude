@@ -30,13 +30,13 @@ function Desktop(props: any) {
                 <div className={`${containerStyle} w-full p-4 rounded-2xl flex flex-col h-full`}>
                     <p className={`${pStyle}`}>Tus tareas</p>
                     <div className="w-full h-full mt-4 bg-black/25 rounded-2xl overflow-y-auto">
-                        <TasksTable userFilter={props.userId} setInProcess={setInProcess} setDone={setDone} desktop={true}/>
+                        <TasksTable userFilter={props.userId} setInProcess={setInProcess} setNotStarted={setNotStarted} setDone={setDone} desktop={true}/>
                     </div>
                 </div>
                 <div className={`${containerStyle} w-full p-4  rounded-2xl flex flex-col h-full`}>
                     <p className={`${pStyle}`}>Tareas sin asignar</p>
                     <div className="w-full h-full mt-4 bg-black/25 rounded-2xl overflow-y-auto">
-                        <TasksTable userFilter={""} desktop={true} setNotStarted={setNotStarted}/>
+                        <TasksTable userFilter={""} desktop={true}/>
                     </div>
                 </div>
             </div>
