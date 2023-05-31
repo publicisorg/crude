@@ -29,14 +29,14 @@ function Desktop(props: any) {
             <div className="flex flex-row justify-center items-center w-full h-2/3 gap-8 px-8">
                 <div className={`${containerStyle} w-full p-4 rounded-2xl flex flex-col h-full`}>
                     <p className={`${pStyle}`}>Tus tareas</p>
-                    <div className="w-full h-full mt-6 rounded-2xl overflow-y-auto">
-                        <TasksTable userFilter={props.userId} />
+                    <div className="w-full h-full mt-4 bg-black/25 rounded-2xl overflow-y-auto">
+                        <TasksTable userFilter={props.userId} setInProcess={setInProcess} setDone={setDone} desktop={true}/>
                     </div>
                 </div>
-                <div className={`${containerStyle} w-full p-4 rounded-2xl flex flex-col h-full`}>
+                <div className={`${containerStyle} w-full p-4  rounded-2xl flex flex-col h-full`}>
                     <p className={`${pStyle}`}>Tareas sin asignar</p>
-                    <div className="w-full h-full mt-6 rounded-2xl overflow-y-auto">
-                        <TasksTable userFilter={props.userId} />
+                    <div className="w-full h-full mt-4 bg-black/25 rounded-2xl overflow-y-auto">
+                        <TasksTable userFilter={""} desktop={true} setNotStarted={setNotStarted}/>
                     </div>
                 </div>
             </div>
@@ -71,15 +71,15 @@ export function DesktopSupervisor(props: any) {
             </div>
             <div className="flex flex-row justify-center items-center w-full h-2/3 gap-8 px-8">
                 <div className={`${containerStyle} w-full p-4 rounded-2xl flex flex-col h-full`}>
-                    <p className={`${pStyle}`}>Tareas del Equipo</p>
-                    <div className="w-full h-full mt-6 rounded-2xl overflow-y-auto">
-                        <TasksTable userFilter={props.userId} />
+                    <p className={`${pStyle}`}>Tus tareas</p>
+                    <div className="w-full h-full mt-4 bg-black/25 rounded-2xl overflow-y-auto">
+                        <TasksTable userFilter="*" setInProcess={setInProcess} setNotStarted={setNotStarted} setDone={setDone} desktop={true}/>
                     </div>
                 </div>
-                <div className={`${containerStyle} w-full p-4 rounded-2xl flex flex-col h-full`}>
+                <div className={`${containerStyle} w-full p-4  rounded-2xl flex flex-col h-full`}>
                     <p className={`${pStyle}`}>Tareas sin asignar</p>
-                    <div className="w-full h-full mt-6 rounded-2xl overflow-y-auto">
-                        <TasksTable userFilter={props.userId} />
+                    <div className="w-full h-full mt-4 bg-black/25 rounded-2xl overflow-y-auto">
+                        <TasksTable userFilter={""} desktop={true}/>
                     </div>
                 </div>
             </div>

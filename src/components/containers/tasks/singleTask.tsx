@@ -83,9 +83,9 @@ function SingleTask(props: any) {
                     {props.element.status}
                 </span>
             </td>
-            <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+            {!props.desktop && <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                 <a href="#" className="text-white hover:text-indigo-900">Detalle</a>
-            </td>
+            </td>}
 
             {showDetails && <div className={`${detailsSize} fixed inset-0 flex w-full items-center justify-center z-50 duration-300 bottom-0`}>
                 <div className="bg-white rounded shadow-md p-4 max-w-2xl mx-auto ">
