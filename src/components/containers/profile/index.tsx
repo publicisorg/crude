@@ -60,15 +60,15 @@ export const ProfileSettings = (props: any) => {
     return (
         <main>
 
-            <div className="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4 dark:bg-black">
+            <div className="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4">
 
                 <div className="col-span-full xl:col-auto">
                     <div className="p-4 mb-4 bg-white/10 border border-gray-200/10 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700/10 sm:p-6 dark:bg-white/10/10">
                         <div className="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">
                             <img className="mb-4 rounded-lg w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0" src={props.urlImg} alt={props.name} />
                             <div>
-                                <h3 className="mb-1 text-xl font-bold   dark: ">Imagen de perfil</h3>
-                                <div className="mb-4 text-sm   dark: ">
+                                <h3 className="mb-1 text-xl font-bold">Imagen de perfil</h3>
+                                <div className="mb-4 text-sm">
                                     Ingrese la url de la imagen
                                 </div>
                                 <form>
