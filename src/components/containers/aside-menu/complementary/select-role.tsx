@@ -13,7 +13,7 @@ function SelectRole(props: any) {
     }
 
     return (
-        <select onChange={(e) => handleChange(e)} className="w-3/4 p-2 bg-white/25 dark:bg-black/25 rounded-xl text-black dark:text-white" name="roles" id="roles">
+        <select onChange={(e) => handleChange(e)} className={`${props.possibleRoles > 1 ? "block" : "hidden"} w-3/4 p-2 bg-white/25 dark:bg-black/25 rounded-xl text-black dark:text-white" name="roles" id="roles`}>
             {buildOptions()}
         </select>
     )
