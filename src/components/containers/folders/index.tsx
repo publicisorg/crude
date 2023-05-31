@@ -11,6 +11,10 @@ function Folders() {
     const [path, updatePath] = useState<any>([]);
 
     useEffect(() => {
+        document.title = "Carpetas";
+    }, [])
+
+    useEffect(() => {
         async function fetchData() {
             try {
                 const response = await axios.get('https://desarrollodesitios0.site/folders.php');

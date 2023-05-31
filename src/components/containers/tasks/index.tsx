@@ -7,6 +7,10 @@ function TasksTable(props: any) {
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
+        document.title = "Tareas";
+    }, [])
+
+    useEffect(() => {
         getTasksData().then((data: any) => {
             if (props.userFilter == "") {
                 setTasks(data.data.filter((task:any) => task.user == null || task.user == ""))

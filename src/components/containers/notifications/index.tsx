@@ -10,6 +10,10 @@ export function Notifications(props: any) {
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
+        document.title = "Actividad";
+    }, [])
+
+    useEffect(() => {
         getTasksData().then((data: any) => {
             setTasks(data.data);
         })

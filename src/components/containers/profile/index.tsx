@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { supabase } from '../../../supabase/client';
 
 export const ProfileSettings = (props: any) => {
   const [imageUrl, setImageUrl] = useState('');
+
+  useEffect(() => {
+    document.title = "Configuracion";
+  }, [])
 
   const handleImageUrlChange = (e: any) => {
     setImageUrl(e.target.value);

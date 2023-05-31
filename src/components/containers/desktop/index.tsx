@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TasksTable from "../tasks";
 
 function Desktop(props: any) {
+
+    useEffect(() => {
+        document.title = "Escritorio";
+    }, [])
 
     const [inProcess, setInProcess] = useState(0);
     const [notStarted, setNotStarted] = useState(0);
@@ -50,6 +54,10 @@ export function DesktopSupervisor(props: any) {
     const [notStarted, setNotStarted] = useState(0);
     const [done, setDone] = useState(0);
 
+    useEffect(() => {
+        document.title = "Escritorio";
+    }, [])
+
     const containerStyle = "bg-black/10 dark:bg-white/10 p-8 rounded-2xl";
     const pStyle = "text-3xl";
 
@@ -88,6 +96,10 @@ export function DesktopSupervisor(props: any) {
 }
 
 export function DesktopDirector(props: any) {
+
+    useEffect(() => {
+        document.title = "Escritorio";
+    }, [])
 
     return (
         <div className="w-full h-full justify-center items-center">

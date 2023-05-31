@@ -28,6 +28,9 @@ console.error(error)}
     });
   }, [navigate]);
 
+  useEffect(() => {
+    document.title = "Log In";
+  }, [])
 
   return (
 

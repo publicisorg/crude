@@ -12,6 +12,10 @@ export const TaskForm = () => {
     const [showSuccess, setShowSuccess] = useState(false)
     const [successOpacity, setSuccessOpacity] = useState("opacity-0")
 
+    useEffect(() => {
+        document.title = "Nueva Tarea";
+    }, [])
+
     const handleSubmit = async (e:any) => {
         e.preventDefault()
 
