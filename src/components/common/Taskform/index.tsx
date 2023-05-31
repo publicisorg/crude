@@ -9,6 +9,8 @@ export const TaskForm = () => {
     const [date, setDate] = useState("")
     const [comment, setComment] = useState("")
     const [authUser, setAuthUser] = useState("")
+    const [showSuccess, setShowSuccess] = useState(false)
+    const [successOpacity, setSuccessOpacity] = useState("opacity-0")
 
     const handleSubmit = async (e:any) => {
         e.preventDefault()
@@ -40,7 +42,18 @@ export const TaskForm = () => {
     useEffect(() => {
         if (authUser != "") {
             impactDataOnTable().then((result:any) => {
-                console.log(result);
+                if (result.status == 201) {
+                    setShowSuccess(true);
+                    setTimeout(() => {
+                        setSuccessOpacity('opacity-100');
+                    }, 10);
+                    setTimeout(() => {
+                        setSuccessOpacity('opacity-0');
+                    }, 3010);
+                    setTimeout(() => {
+                        setShowSuccess(false);
+                    }, 3320);
+                }
                 setAuthUser("");
             });
         }
@@ -128,7 +141,7 @@ export const TaskForm = () => {
                 </button>
             </form>
 
-
+        {showSuccess && <div className={`${successOpacity} w-96 flex flex-row justify-center items-center py-2 px-4 rounded-lg bg-lime-600 duration-300`}>La tarea se ha creado correctamente.</div>}
         </div>
 
     )
