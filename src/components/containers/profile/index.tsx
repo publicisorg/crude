@@ -29,7 +29,7 @@ export const ProfileSettings = (props: any) => {
 
   async function handleChangeBg(e:any) {
     e.preventDefault();
-
+    props.changeBg2(e.target.value)
     try {
       await supabase
         .from('users')
@@ -44,7 +44,7 @@ export const ProfileSettings = (props: any) => {
 
   async function handleChangeText(e:any) {
     e.preventDefault();
-
+    props.changeText2(e.target.value)
     try {
       await supabase
         .from('users')

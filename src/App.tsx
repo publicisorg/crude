@@ -9,6 +9,7 @@ import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import NotFound from './pages/NotFound'
 import { ProfileSettings } from './components/containers/profile';
+import { TaskDetails } from './components/containers/tasks/TaskDetails';
 
 function App() {
   const navigate = useNavigate();
@@ -74,13 +75,7 @@ function App() {
     <main className={`w-full duration-300`} style={{backgroundColor: mainBgColors, color: textColors, fill: textColors}}>
 
       <>
-        <Routes>
-          <Route path="/" element={<Main/>} />
-          <Route path="/login" element={<><Login /></>} />
-          <Route path="/registrar" element={<><SignUp /></>} />
-          <Route path="/Setting" element={<><ProfileSettings /></>} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Main changeBg={changeBg} changeText={changeText} />
       </>
     </main >
   )
