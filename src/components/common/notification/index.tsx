@@ -9,8 +9,8 @@ export const Notification = () => {
         <p className="text-gray-400 mt-2">Hace 2 horas</p>
       </div>
       <div className="ml-auto">
-        <button className="bg-blue-500/30 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Empezar</button>
-        <button className="bg-red-500/30 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">Declinar</button>
+        <button className="bg-yellow-500/30 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">Ver tarea</button>
+        <button className="bg-green-500/30 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-2">Empezar tarea</button>
       </div>
     </div>
     </div>

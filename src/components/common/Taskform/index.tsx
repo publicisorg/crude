@@ -47,10 +47,11 @@ export const TaskForm = () => {
     }, [authUser])
 
     return (
-        <div className='flex flex-col justify-center items-center w-full h-screen text-left'>
-            <h2 className='text-2xl text-left'>Nueva Tarea</h2>
-            <form className="flex flex-col gap-6 w-1/2" onSubmit={handleSubmit}>
-                <div>
+        <div className='container mx-auto px-4 py-8 flex flex-col gap-4'>
+            <h1 className="text-3xl font-bold mb-4">Nueva Tarea</h1>
+            <form className="flex flex-col gap-6 w-2/3 p-8 bg-white/10 rounded-lg" onSubmit={handleSubmit}>
+               <div className='flex gap-3'> 
+                <div className='w-1/2'>
                     <div className="mb-2 block"><label className="text-sm font-medium text-gray-900 dark:text-gray-300" data-testid="flowbite-label" >Cliente</label></div>
                     <div className="flex">
                         <div className="relative w-full">
@@ -64,7 +65,7 @@ export const TaskForm = () => {
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className='w-1/2'>
                     <div className="mb-2 block"><label className="text-sm font-medium text-gray-900 dark:text-gray-300" data-testid="flowbite-label">Marca</label></div>
                     <div className="flex">
                         <div className="relative w-full">
@@ -75,6 +76,7 @@ export const TaskForm = () => {
                             />
                         </div>
                     </div>
+                </div>
                 </div>
                 <div>
                     <div className="mb-2 block"><label className="text-sm font-medium text-gray-900 dark:text-gray-300" data-testid="flowbite-label">Proyecto</label></div>
@@ -120,12 +122,14 @@ export const TaskForm = () => {
                 </div>
                 <button
                     type="submit"
-                    className="text-white bg-cyan-700 border border-transparent hover:bg-cyan-800 focus:ring-cyan-300 disabled:hover:bg-cyan-700 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800 dark:disabled:hover:bg-cyan-600 focus:!ring-2 group flex h-min items-center justify-center p-0.5 text-center font-medium focus:z-10 rounded-lg"
+                    className="text-white bg-cyan-700 w-1/2  border border-transparent hover:bg-cyan-800 focus:ring-cyan-300 disabled:hover:bg-cyan-700 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800 dark:disabled:hover:bg-cyan-600 focus:!ring-2 group flex h-min items-center justify-center p-0.5 text-center font-medium focus:z-10 rounded-lg"
                 >
                     <span className="flex items-center rounded-md text-sm px-4 py-2">Crear nueva tarea</span>
                 </button>
             </form>
 
+
         </div>
+
     )
 }
