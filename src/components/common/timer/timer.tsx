@@ -187,7 +187,7 @@ function Timer(props: any) {
                 {finish &&
                     <form onSubmit={handleSubmit} className={`${finish ? "opacity-100 h-auto w-auto" : "opacity-0 h-0 w-0"} gap-4 flex ${props.timerSettingsStyle == "floating" ? "flex-col" : "flex-row"} justify-center items-center duration-300`}>
                         <select onChange={(e) => handleState(e)} className={`${finish ? "opacity-100 h-auto w-full" : "opacity-0 h-0 w-0"} duration-300 py-2 px-3 text-sm font-medium focus:outline-none bg-black/25 rounded-lg border border-gray-200/10 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200`}>
-                            <option value="EN AJUSTES">EN AJUSTES</option>
+                            <option value="AJUSTES">AJUSTES</option>
                             <option value="ENVIADO">ENVIADO</option>
                         </select>
                         <input placeholder="Comentario" onChange={(e) => handleComment(e)} className={`${finish ? "opacity-100 h-auto w-full" : "opacity-0 h-0 w-0"} duration-300 py-2 px-3 text-sm font-medium focus:outline-none bg-black/25 rounded-lg border border-gray-200/10 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200`} />
