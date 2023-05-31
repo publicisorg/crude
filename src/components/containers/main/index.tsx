@@ -14,8 +14,6 @@ function Main(props:any) {
   const [urlImg, setUrlImg] = useState("");
   const [possibleRoles, setPossibleRoles] = useState([]);
 
-  //const possibleRoles = ["user", "supervisor", "director"];
-
   useEffect(() => {
     var auxUser = supabase.auth.getUser();
     auxUser.then((userinfo: any) => {
@@ -43,7 +41,7 @@ function Main(props:any) {
   return (
     <main className={`w-full`}>
       <MenuAside changeBg={props.changeBg} changeText={props.setTextColors} name={name} lastName={lastname} urlImg={urlImg} userId={userId} changeContent={setContent} role={role} setRole={setRole} possibleRoles={possibleRoles} />
-      <ContentContainer name={name} lastName={lastname} urlImg={urlImg}  userId={userId} actualContent={actualContent} role={role} />
+      <ContentContainer name={name} lastName={lastname} urlImg={urlImg} userId={userId} actualContent={actualContent} role={role} />
     </main>
   )
 }

@@ -34,7 +34,7 @@ export function Notifications(props: any) {
         if (tasks.length > 0) {
             const jsx: any = [];
             tasks.forEach((element: any, index:any) => {
-                jsx.push(<Notification index={index} element={element}/>)
+                jsx.push(<Notification handleTimer={props.handleTimer} index={index} element={element}/>)
             });
 
             return jsx;

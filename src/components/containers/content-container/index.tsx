@@ -13,25 +13,36 @@ function ContentContainer(props: any) {
     const [showComponent, setShowComponent] = useState(props.actualContent);
     const [role, setRole] = useState(props.role);
     const [timerOn, isTimerOn] = useState(false);
-    const [timerTaskId, isTimerTaskId] = useState("1");
+    const [timerAlertMessage, setTimerAlertMessage] = useState(false);
+    const [timerTaskId, setTimerTaskId] = useState("1");
 
     useEffect(() => {
         setShowComponent(props.actualContent);
         setRole(props.role);
     })
 
+    function handleTimer(taskId:any) {
+        if (!timerOn) {
+            setTimerTaskId(taskId);
+            isTimerOn(true);
+        } else {
+            setTimerAlertMessage(true);
+            console.log('El timer ya esta con otra tarea (' + timerTaskId + ')');
+        }
+    }
+
     return (
         
         <section className="ml-80 h-screen relative overflow-y-auto">
-            {true && <Timer timerSettingsStyle="floating" timerTaskId={timerTaskId}/>}
+            {timerOn && <Timer timerSettingsStyle="floating" timerTaskId={timerTaskId} isTimerOn={isTimerOn} timerAlertMessage={timerAlertMessage} setTimerAlertMessage={setTimerAlertMessage}/>}
             {showComponent == "desktop" && role == "user" && <Desktop userId={props.userId} user={props.userId}/>}
             {showComponent == "desktop" && role == "supervisor" && <DesktopSupervisor userId={props.userId} user="*"/>}
             {showComponent == "desktop" && role == "director" && <DesktopDirector userId={props.userId} user="*"/>}
             {showComponent == "folders" && <Folders/>}
-            {showComponent == "notifications" && <Notifications userFilter={props.userId}/>}
+            {showComponent == "notifications" && <Notifications handleTimer={handleTimer} userFilter={props.userId}/>}
             {showComponent == "setting" && <ProfileSettings userId={props.userId} name={props.name} lastName={props.lastName} urlImg={props.urlImg} />}
-            {showComponent == "createtasks" && <TaskForm/>}
-            {showComponent == "tasks" && role == "user" && <TasksTable userFilter={props.userId}/>}
+            {showComponent == "createtasks" && role == "supervisor" && <TaskForm/>}
+            {showComponent == "tasks" && role == "user" && <TasksTable handleTimer={handleTimer} userFilter={props.userId}/>}
             {showComponent == "tasks" && role == "supervisor" && <TasksTable userFilter="*"/>}
             
         </section>

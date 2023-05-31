@@ -42,18 +42,19 @@ export const Notification = (props: any) => {
 
     setTimeElapsed(timeText);
   }, []);
+  
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2"  key={props.index}>
     <div className="flex items-center bg-white/10 rounded-lg p-4">
       <img src={picture} alt="Foto de la persona" className="w-16 h-16 rounded-full"/>
       <div className="ml-4">
-        <h2 className="  text-lg font-bold">{user} te asigno la tarea:</h2>
-        <p className=" ">{props.element.name}</p>
-        <p className="  mt-2">{timeElapsed}</p>
+        <h2 className="text-lg font-bold">{user} te asigno la tarea:</h2>
+        <p className="">{props.element.name}</p>
+        <p className="mt-2">{timeElapsed}</p>
       </div>
       <div className="ml-auto">
-        <button className="bg-yellow-500/30 hover:bg-yellow-700   font-bold py-2 px-4 rounded">Ver tarea</button>
-        <button className="bg-green-500/30 hover:bg-green-700   font-bold py-2 px-4 rounded ml-2">Empezar tarea</button>
+        <button className="bg-yellow-500/30 hover:bg-yellow-700 font-bold py-2 px-4 rounded">Ver tarea</button>
+        <button onClick={() => props.handleTimer(props.element.id)} className="bg-green-500/30 hover:bg-green-700 font-bold py-2 px-4 rounded ml-2">Empezar tarea</button>
       </div>
     </div>
 
