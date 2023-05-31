@@ -6,6 +6,8 @@ import Table from "../table"
 import Desktop, { DesktopDirector, DesktopSupervisor } from "../desktop";
 import { TaskForm } from "../../common/Taskform"
 import { ProfileSettings } from "../profile"
+import TasksTable from "../tasks";
+import { Notifications } from "../notifications";
 
 function ContentContainer(props: any) {
 
