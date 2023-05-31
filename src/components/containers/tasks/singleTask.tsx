@@ -32,11 +32,9 @@ function SingleTask(props: any) {
     
     useEffect(() => {
         getUserById(props.element.user).then((element:any) => {
-            console.log(element);
             setUser(element.data[0].name + " " + element.data[0].lastname);
         });
         getUserById(props.element.userId).then((element:any) => {
-            console.log(element);
             setAskedFor(element.data[0].name + " " + element.data[0].lastname);
         });
     }, [])

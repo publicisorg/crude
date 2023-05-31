@@ -8,7 +8,6 @@ function TasksTable(props: any) {
 
     useEffect(() => {
         getTasksData().then((data: any) => {
-            console.log(data.data);
             setTasks(data.data);
         })
     }, [])
@@ -27,7 +26,6 @@ function TasksTable(props: any) {
         if (tasks.length > 0) {
             const jsx: any = [];
             tasks.forEach((element: any, index:any) => {
-                console.log(element);
                 jsx.push(<SingleTask index={index} element={element}/>)
             });
 
