@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../../supabase/client";
-// import SingleTask from "./singleTask";
 
 import { Notification } from "../../common/notification"
 

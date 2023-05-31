@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { supabase } from '../../../supabase/client';
 
-export const ProfileSettings = (props) => {
+export const ProfileSettings = (props: any) => {
   const [imageUrl, setImageUrl] = useState('');
 
-  const handleImageUrlChange = (e) => {
+  const handleImageUrlChange = (e: any) => {
     setImageUrl(e.target.value);
   };
 
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = async (e: any) => {
     e.preventDefault();
 
     try {

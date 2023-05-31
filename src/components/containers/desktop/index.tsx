@@ -1,6 +1,5 @@
 import { useState } from "react";
 import TasksTable from "../tasks";
-//import SheetData from "../../common/sheetdata/SheetData";
 
 function Desktop(props: any) {
 
@@ -117,13 +116,11 @@ export function DesktopDirector(props: any) {
                 <div className={`${containerStyle} w-full p-4 rounded-2xl flex flex-col h-full`}>
                     <p className={`${pStyle}`}>Tus tareas</p>
                     <div className="w-full h-full mt-6 rounded-2xl overflow-y-auto">
-                        <SheetData fullscreen={false} user={props.user} getInProcess={setInProcess} getDone={setDone} getNotStarted={setNotStarted} />
-                    </div>
+                           </div>
                 </div>
                 <div className={`${containerStyle} w-full p-4 rounded-2xl flex flex-col h-full`}>
                     <p className={`${pStyle}`}>Tareas sin asignar</p>
                     <div className="w-full h-full mt-6 rounded-2xl overflow-y-auto">
-                        <SheetData fullscreen={false} user="none" />
                     </div>
                 </div>
             </div>

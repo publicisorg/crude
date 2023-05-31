@@ -36,8 +36,34 @@ function TasksTable(props: any) {
     }
 
     return (
-        <div className="flex flex-col justify-start items-center">
+        <div className="container mx-auto px-4 py-8 flex flex-col gap-4">
+      <h1 className="text-3xl font-bold mb-4">Tareas</h1>
+      <div className="grid grid-cols-1 gap-4">
+
+      <table className="min-w-full overflow-x-scroll divide-y divide-gray-200">
+                <thead className="bg-gray-50/10">
+                    <tr>
+                        <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase">
+                            Titulo
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase">
+                            Autor
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase">
+                            Estado
+                        </th>
+
+                        <th scope="col" className="relative px-6 py-3">
+                            <span className="sr-only">Edit</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody className="bg-white/30 divide-y divide-gray-200">
+
             {buildMultipleTasks()}
+            </tbody>
+            </table>
+            </div>
         </div>
     );
 }
