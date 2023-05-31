@@ -3,7 +3,7 @@ export const Profile = (props: any) => {
 
 
   return (
-    <div className="flex justify-start items-center gap-5 py-3 hover:bg-white/25 px-2 w-full">
+    <div className="flex justify-start items-center gap-5 py-3 hover:bg-white/25 px-6 w-full">
       <div>
         <div className="relative">
           <img alt="" className="w-12 rounded" src={props.urlImg} />
