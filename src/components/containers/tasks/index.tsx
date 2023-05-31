@@ -17,7 +17,7 @@ function TasksTable(props: any) {
             const data = await supabase.from('tasks').select('*');
             return data;
         } else {
-            const data = await supabase.from('tasks').select('*').eq('userId', props.userFilter);
+            const data = await supabase.from('tasks').select('*').eq('user', props.userFilter);
             return data;
         }
     }

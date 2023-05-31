@@ -44,10 +44,6 @@ function SingleTask(props: any) {
             setAskedFor(element.data[0].name + " " + element.data[0].lastname);
         });
 
-
-
-
-
         const createdAt = moment(props.element.created_at);
         const now = moment();
 
@@ -64,41 +60,32 @@ function SingleTask(props: any) {
         }
 
         setTimeElapsed(timeText);
-
-
-
     }, [])
 
     return (
+        <tr className="transition-all hover:bg-gray-100 hover:shadow-lg" key={props.index} onClick={toggleDetails}>
+            <td className="px-6 py-4 whitespace-nowrap">
+                <div className="text-sm text-white">{props.element.name}</div>
+                <div className="text-sm text-white/50">{timeElapsed}</div>
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap">
+                <div className="flex items-center">
+                    <div className="flex-shrink-0 w-10 h-10">
+                        <img className="w-10 h-10 rounded-full"
+                            src={picture}
+                            alt="" />
+                    </div>
+                </div>
+            </td>
 
-
-
-
-                    <tr className="transition-all hover:bg-gray-100 hover:shadow-lg"  key={props.index} onClick={toggleDetails}>
-
-                        <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm text-white">{props.element.name}</div>
-                            <div className="text-sm text-white/50">{timeElapsed}</div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="flex items-center">
-                                <div className="flex-shrink-0 w-10 h-10">
-                                    <img className="w-10 h-10 rounded-full"
-                                        src={picture}
-                                        alt=""/>
-                                </div>
-                            </div>
-                        </td>
-
-                        <td className="px-6 py-4 whitespace-nowrap">
-                            <span className="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                            {props.element.status}
-                            </span>
-                        </td>
-                        <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                            <a href="#" className="text-white hover:text-indigo-900">Detalle</a>
-                        </td>
-                    
+            <td className="px-6 py-4 whitespace-nowrap">
+                <span className="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                    {props.element.status}
+                </span>
+            </td>
+            <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                <a href="#" className="text-white hover:text-indigo-900">Detalle</a>
+            </td>
 
             {showDetails && <div className={`${detailsSize} fixed inset-0 flex w-full items-center justify-center z-50 duration-300 bottom-0`}>
                 <div className="bg-white rounded shadow-md p-4 max-w-2xl mx-auto ">
@@ -127,11 +114,11 @@ function SingleTask(props: any) {
                         </div>
                         <div className="p-4 flex flex-col justify-center items-center border-r">
                             <p className="font-semibold text-xs">Asignado a:</p>
-                            <p className="text-xs">{user}</p>
+                            <p className="text-xs">{askedFor}</p>
                         </div>
                         <div className="p-4 flex flex-col justify-center items-center">
                             <p className="font-semibold text-xs">Solicitado por:</p>
-                            <p className="text-xs">{askedFor}</p>
+                            <p className="text-xs">{user}</p>
                         </div>
                     </div>
                     <div className={`${detailsOpacity} ${detailsSize} px-6 pt-2 pb-4 grid grid-cols-1 grid-rows-1 gap-4 duration-300 w-full  inset-0 justify-center items-center bg-white border-t dark:bg-gray-800 rounded-b-xl`}>
@@ -147,7 +134,7 @@ function SingleTask(props: any) {
                     </div>
                 </div>
             </div>}
-            </tr>
+        </tr>
     );
 }
 
