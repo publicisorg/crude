@@ -1,9 +1,10 @@
 import React from 'react'
+import { supabase } from '../../../supabase/client'
 
 export const ProfileSettings = (props: any) => {
     return (
         <main>
-
+ 
             <div className="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4 dark:bg-black">
 
                 <div className="col-span-full xl:col-auto">
@@ -86,7 +87,21 @@ export const ProfileSettings = (props: any) => {
                             </div>
                         </div>
                     </div>
-                    
+                    <div className="p-4 mb-4 bg-white/10 border border-gray-200/10 rounded-lg shadow-sm  dark:border-gray-700/10 sm:p-6 dark:bg-white/10/10">
+                        <div className="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">
+
+                            <div>
+                               
+                                <div className="flex items-center space-x-4">
+                                   
+
+                                    <button onClick={()=> supabase.auth.signOut()} type="button" className="py-2 px-3 text-sm font-medium text-gray-900 focus:outline-none bg-white/10 rounded-lg border border-gray-200/10 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-white/10/10 dark:text-gray-400 dark:border-gray-600/10 dark:hover:text-white dark:hover:bg-gray-700">
+                                    Cerrar sesion 
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="col-span-2">
                     <div className="p-4 mb-4 bg-white/10 border border-gray-200/10 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700/10 sm:p-6 dark:bg-white/10/10">
@@ -108,7 +123,7 @@ export const ProfileSettings = (props: any) => {
                                 </div>
                                 <div className="col-span-6 sm:col-span-3">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rol</label>
-                                    <input type="text" name="role" id="role" className="shadow-sm bg-gray-50/10 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700/10 dark:border-gray-600/10 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value={props.rol} disabled />
+                                    <input type="text" name="role" id="role" className="shadow-sm bg-gray-50/10 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700/10 dark:border-gray-600/10 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value={props.role} disabled />
                                 </div>
                                 <div className="col-span-6 sm:col-span-3">
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Departamento</label>

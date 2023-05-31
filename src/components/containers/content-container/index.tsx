@@ -5,6 +5,7 @@ import Table from "../table"
 import Desktop, { DesktopDirector, DesktopSupervisor } from "../desktop";
 import { TaskForm } from "../../common/Taskform"
 import { ProfileSettings } from "../profile"
+import { Notifications } from "../notifications";
 
 function ContentContainer(props: any) {
 
@@ -22,6 +23,7 @@ function ContentContainer(props: any) {
             {showComponent == "desktop" && role == "supervisor" && <DesktopSupervisor userId={props.userId} user="all"/>}
             {showComponent == "desktop" && role == "director" && <DesktopDirector userId={props.userId} user="all"/>}
             {showComponent == "folders" && <Folders/>}
+            {showComponent == "notifications" && <Notifications/>}
             {/*showComponent == "databases" && <Table/>*/}
             {showComponent == "createtasks" && <TaskForm/>}
             {showComponent == "setting" && <ProfileSettings  name={props.name} lastName={props.lastName} urlImg={props.urlImg} />}
