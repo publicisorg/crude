@@ -31,10 +31,15 @@ function ContentContainer(props: any) {
         }
     }
 
+    function clearTimer() {
+        setTimerTaskId("");
+        isTimerOn(false);
+    }
+
     return (
         
         <section className="ml-80 h-screen relative overflow-y-auto">
-            {timerOn && <Timer timerSettingsStyle="floating" timerTaskId={timerTaskId} isTimerOn={isTimerOn} timerAlertMessage={timerAlertMessage} setTimerAlertMessage={setTimerAlertMessage}/>}
+            {timerOn && <Timer timerSettingsStyle="floating" timerTaskId={timerTaskId} clearTimer={clearTimer} timerAlertMessage={timerAlertMessage} setTimerAlertMessage={setTimerAlertMessage}/>}
             {showComponent == "desktop" && role == "user" && <Desktop userId={props.userId} user={props.userId}/>}
             {showComponent == "desktop" && role == "supervisor" && <DesktopSupervisor userId={props.userId} user="*"/>}
             {showComponent == "desktop" && role == "director" && <DesktopDirector userId={props.userId} user="*"/>}
