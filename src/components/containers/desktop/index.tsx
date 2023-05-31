@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SheetData from "../../common/sheetdata/SheetData";
+//import SheetData from "../../common/sheetdata/SheetData";
 
 function Desktop(props: any) {
 
@@ -31,13 +31,13 @@ function Desktop(props: any) {
                 <div className={`${containerStyle} w-full p-4 rounded-2xl flex flex-col h-full`}>
                     <p className={`${pStyle}`}>Tus tareas</p>
                     <div className="w-full h-full mt-6 rounded-2xl overflow-y-auto">
-                        <SheetData fullscreen={false} user={thisUser} getInProcess={setInProcess} getDone={setDone} getNotStarted={setNotStarted}/>
+                        {/*<SheetData fullscreen={false} user={thisUser} getInProcess={setInProcess} getDone={setDone} getNotStarted={setNotStarted}/>*/}
                     </div>
                 </div>
                 <div className={`${containerStyle} w-full p-4 rounded-2xl flex flex-col h-full`}>
                     <p className={`${pStyle}`}>Tareas sin asignar</p>
                     <div className="w-full h-full mt-6 rounded-2xl overflow-y-auto">
-                        <SheetData fullscreen={false} user="none" />
+                        {/*<SheetData fullscreen={false} user="none" />*/}
                     </div>
                 </div>
             </div>
@@ -74,13 +74,13 @@ export function DesktopSupervisor(props: any) {
                 <div className={`${containerStyle} w-full p-4 rounded-2xl flex flex-col h-full`}>
                     <p className={`${pStyle}`}>Tareas del Equipo</p>
                     <div className="w-full h-full mt-6 rounded-2xl overflow-y-auto">
-                        <SheetData fullscreen={false} user={props.user} getInProcess={setInProcess} getDone={setDone} getNotStarted={setNotStarted}/>
+                        {/*<SheetData fullscreen={false} user={props.user} getInProcess={setInProcess} getDone={setDone} getNotStarted={setNotStarted}/>*/}
                     </div>
                 </div>
                 <div className={`${containerStyle} w-full p-4 rounded-2xl flex flex-col h-full`}>
                     <p className={`${pStyle}`}>Tareas sin asignar</p>
                     <div className="w-full h-full mt-6 rounded-2xl overflow-y-auto">
-                        <SheetData fullscreen={false} user="none" />
+                        {/*<SheetData fullscreen={false} user="none" />*/}
                     </div>
                 </div>
             </div>
