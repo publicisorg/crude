@@ -1,14 +1,24 @@
 
-import  {supabase}  from '../supabase/client';
-import { TaskForm } from "../components/common/Taskform";
+import { supabase } from '../supabase/client';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export function SignUp() {
- 
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    supabase.auth.onAuthStateChange((event, session) => {
+      if (session) {
+        navigate("/");
+      }
+    });
+  }, [navigate]);
 
   return (
-   <>
-    <TaskForm></TaskForm>
-   </>
+    <>
+      TEST
+    </>
   );
 }
 
