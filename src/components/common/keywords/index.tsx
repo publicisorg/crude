@@ -48,7 +48,7 @@ function Keywords(props: any) {
 
         keywords.map((element: any, index: number) => {
             componentArray.push(
-                <div id={element} key={index} className="bg-black text-white rounded px-2 py-1 font-bold flex justify-between flex-row gap-2">
+                <div id={element} key={index} className="bg-black   rounded px-2 py-1 font-bold flex justify-between flex-row gap-2">
                     <p className="m-0">{element}</p>
                     <span className="font-bold text-red-400 cursor-pointer" onClick={() => removeWord(element)}>X</span>
                 </div>
@@ -66,7 +66,7 @@ function Keywords(props: any) {
 
     return (
         <>
-            <span onClick={() => setShow(true)} className="cursor-pointer font-bold border rounded-md px-2 py-1 bg-white text-black dark:bg-black dark:text-white">Edit</span>
+            <span onClick={() => setShow(true)} className="cursor-pointer font-bold border rounded-md px-2 py-1 bg-white   dark:bg-black dark: ">Edit</span>
             {
                 show &&
                 <div className="fixed inset-0 w-full h-screen bg-black/25 flex justify-center items-center">
@@ -76,7 +76,7 @@ function Keywords(props: any) {
                         <div className="grid grid-cols-4 gap-2">
                             {listKeywords(keywords)}
                         </div>
-                        <span onClick={() => setShow(false)} className="absolute -right-4 -top-4 cursor-pointer text-3xl font-bold bg-black border-2 border-white text-white rounded-full w-10 h-10 flex justify-center items-center drop-shadow">X</span>
+                        <span onClick={() => setShow(false)} className="absolute -right-4 -top-4 cursor-pointer text-3xl font-bold bg-black border-2 border-white   rounded-full w-10 h-10 flex justify-center items-center drop-shadow">X</span>
                     </div>
                 </div>
 

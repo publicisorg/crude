@@ -25,7 +25,7 @@ function SelectRole(props: any) {
     }, [props.possibleRoles])
 
     return (
-        <select onChange={(e) => handleChange(e)} className={`${showSelect ? "" : "hidden"} w-3/4 p-2 bg-white/25 dark:bg-black/25 rounded-xl text-black dark:text-white" name="roles" id="roles`}>
+        <select onChange={(e) => handleChange(e)} className={`${showSelect ? "" : "hidden"} w-3/4 p-2 bg-white/25 dark:bg-black/25 rounded-xl   dark: " name="roles" id="roles`}>
             {buildOptions()}
         </select>
     )

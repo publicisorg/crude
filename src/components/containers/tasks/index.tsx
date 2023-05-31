@@ -64,13 +64,13 @@ function TasksTable(props: any) {
                 <table className="min-w-full overflow-x-scroll divide-y divide-gray-200">
                     <thead className="bg-gray-50/10">
                         <tr>
-                            <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase">
+                            <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left   uppercase">
                                 Titulo
                             </th>
-                            <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase">
+                            <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left   uppercase">
                                 Autor
                             </th>
-                            <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase">
+                            <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left   uppercase">
                                 Estado
                             </th>
 

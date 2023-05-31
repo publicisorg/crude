@@ -72,7 +72,7 @@ export const Details = (props: any) => {
     <>
       <td className="px-2 text-center">
         <p key={props.index} className='max-w-[250px] text-center '>
-          <span className='cursor-pointer bg-[#ffce33] border rounded-md font-bold px-4 py-1 hover:bg-black hover:text-white duration-300' onClick={handleClick}>Ver más</span>
+          <span className='cursor-pointer bg-[#ffce33] border rounded-md font-bold px-4 py-1 hover:bg-black hover:  duration-300' onClick={handleClick}>Ver más</span>
         </p>
       </td>
       {showPopup && <div onClick={handleClick} className="fixed w-full h-screen flex justify-center items-center bg-black/25 z-50 top-0 left-0">
@@ -82,7 +82,7 @@ export const Details = (props: any) => {
           </div>
 
         </div>
-        <span onClick={handleClick} className="text-white bg-red-500 rounded-full top-4 right-4 cursor-pointer w-10 h-10 flex justify-center items-center text-3xl absolute drop-shadow-xl duration-200 hover:text-red-500 hover:bg-white">X</span>
+        <span onClick={handleClick} className="  bg-red-500 rounded-full top-4 right-4 cursor-pointer w-10 h-10 flex justify-center items-center text-3xl absolute drop-shadow-xl duration-200 hover:text-red-500 hover:bg-white">X</span>
       </div>}
     </>
   )

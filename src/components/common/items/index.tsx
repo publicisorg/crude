@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const styles = "flex flex-col justify-center items-center text-xl font-bold p-4 scale-100 hover:scale-105 text-black dark:text-white cursor-pointer duration-300 rounded-3xl bg-black/10 dark:bg-white/10 hover:bg-white/50 hover:dark:bg-black/50 border-black/25 dark:border-white/25";
-const iconStyles = "w-32 fill-black dark:fill-white";
+const styles = "flex flex-col justify-center items-center text-xl font-bold p-4 scale-100 hover:scale-105   dark:  cursor-pointer duration-300 rounded-3xl bg-black/10 dark:bg-white/10 hover:bg-white/50 hover:dark:bg-black/50 border-black/25 dark:border-white/25";
+const iconStyles = "w-32";
 
 export function ItemFolder(props: any) {
 
@@ -37,7 +37,7 @@ export function ItemImage(props: any) {
             </div>
             {show && <div onClick={handleClick} className="z-50 w-full h-screen fixed bg-black/25 flex justify-center items-center inset-0">
                 <img className="bg-white rounded-xl p-4" src={'https://desarrollodesitios0.site/2023/newsletters/' + props.path.join('/') + '/' + props.label} />
-                <span onClick={handleClick} className="text-white bg-red-500 rounded-full top-4 right-4 cursor-pointer w-10 h-10 flex justify-center items-center text-3xl absolute drop-shadow-xl duration-200 hover:text-red-500 hover:bg-white">X</span>
+                <span onClick={handleClick} className="  bg-red-500 rounded-full top-4 right-4 cursor-pointer w-10 h-10 flex justify-center items-center text-3xl absolute drop-shadow-xl duration-200 hover:text-red-500 hover:bg-white">X</span>
             </div>}
         </>
     )
@@ -60,8 +60,8 @@ export function ItemFrame(props: any) {
             </div>
             {show && <div onClick={handleClick} className="z-50 w-full h-screen fixed bg-black/25 flex justify-center items-center inset-0 flex-col gap-4">
                 <iframe className="bg-white rounded-xl p-4 w-2/3 h-4/5" src={'https://desarrollodesitios0.site/2023/newsletters/' + props.path.join('/') + '/' + props.label} />
-                <span onClick={() => openEditor(true)} className="text-black bg-white rounded-md cursor-pointer flex justify-center px-2 py-1 items-center text-lg drop-shadow-xl duration-200  hover:bg-gray-200">Editar</span>
-                <span onClick={handleClick} className="text-white bg-red-500 rounded-full top-4 right-4 cursor-pointer w-10 h-10 flex justify-center items-center text-3xl absolute drop-shadow-xl duration-200 hover:text-red-500 hover:bg-white">X</span>
+                <span onClick={() => openEditor(true)} className="  bg-white rounded-md cursor-pointer flex justify-center px-2 py-1 items-center text-lg drop-shadow-xl duration-200  hover:bg-gray-200">Editar</span>
+                <span onClick={handleClick} className="  bg-red-500 rounded-full top-4 right-4 cursor-pointer w-10 h-10 flex justify-center items-center text-3xl absolute drop-shadow-xl duration-200 hover:text-red-500 hover:bg-white">X</span>
             </div>}
             {editor && <video className="fixed z-[99999] w-full inset-0" src="https://desarrollodesitios0.site/crude/tutorial.mp4" autoPlay loop></video>}
         </>

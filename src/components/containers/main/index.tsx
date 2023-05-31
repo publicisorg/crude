@@ -4,7 +4,7 @@ import ContentContainer from "../content-container"
 import { supabase } from "../../../supabase/client";
 
 
-function Main() {
+function Main(props:any) {
 
   const [actualContent, setContent] = useState("desktop");
   const [role, setRole] = useState("user")
@@ -42,7 +42,7 @@ function Main() {
 
   return (
     <main className={`w-full`}>
-      <MenuAside name={name} lastName={lastname} urlImg={urlImg} userId={userId} changeContent={setContent} role={role} setRole={setRole} possibleRoles={possibleRoles} />
+      <MenuAside changeBg={props.changeBg} changeText={props.setTextColors} name={name} lastName={lastname} urlImg={urlImg} userId={userId} changeContent={setContent} role={role} setRole={setRole} possibleRoles={possibleRoles} />
       <ContentContainer name={name} lastName={lastname} urlImg={urlImg}  userId={userId} actualContent={actualContent} role={role} />
     </main>
   )

@@ -107,7 +107,7 @@ function Folders() {
         <>
             <section className="flex flex-col justify-center p-8">
                 <div className="h-12">
-                    {backEnabled && dataReady && <span onClick={exitFolder} className="p-2 text-black dark:text-white cursor-pointer duration-300 border rounded-md bg-white/25 dark:bg-black/25 hover:bg-white/50 hover:dark:bg-black/50 border-black/25 dark:border-white/25">Anterior</span>}
+                    {backEnabled && dataReady && <span onClick={exitFolder} className="p-2   dark:  cursor-pointer duration-300 border rounded-md bg-white/25 dark:bg-black/25 hover:bg-white/50 hover:dark:bg-black/50 border-black/25 dark:border-white/25">Anterior</span>}
                 </div>
                 <div className="grid grid-cols-5 gap-8 relative">
                     {dataReady && renderJSX()}

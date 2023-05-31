@@ -65,8 +65,8 @@ function SingleTask(props: any) {
     return (
         <tr className="transition-all hover:bg-gray-100 hover:shadow-lg" key={props.index} onClick={toggleDetails}>
             <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-white">{props.element.name}</div>
-                <div className="text-sm text-white/50">{timeElapsed}</div>
+                <div className="text-sm  ">{props.element.name}</div>
+                <div className="text-sm  /50">{timeElapsed}</div>
             </td>
             <td className="px-6 py-4 whitespace-nowrap">
                 <div className="flex items-center">
@@ -84,7 +84,7 @@ function SingleTask(props: any) {
                 </span>
             </td>
             {!props.desktop && <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                <a href="#" className="text-white hover:text-indigo-900">Detalle</a>
+                <a href="#" className="  hover:text-indigo-900">Detalle</a>
             </td>}
 
             {showDetails && <div className={`${detailsSize} fixed inset-0 flex w-full items-center justify-center z-50 duration-300 bottom-0`}>
@@ -128,7 +128,7 @@ function SingleTask(props: any) {
                         </div>
                     </div>
                     <div className="flex justify-end mt-4">
-                        <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded" onClick={toggleDetails}>
+                        <button className="bg-blue-500 hover:bg-blue-600   font-semibold py-2 px-4 rounded" onClick={toggleDetails}>
                             Cerrar
                         </button>
                     </div>

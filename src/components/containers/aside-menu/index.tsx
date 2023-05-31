@@ -83,7 +83,7 @@ function MenuAside(props: any) {
                 <div className="flex flex-row justify-evenly items-center bg-black/10 dark:bg-white/25 w-full">
                 <MenuButton function={setMenuSelected} arguments="setting" selected={menuSelected} px="!px-0 bg-black">
                           
-                    <Profile name={props.name} lastName={props.lastName} urlImg={props.urlImg} />
+                    <Profile name={props.name} lastName={props.lastName} urlImg={props.urlImg} changeBg={props.changeBg} changeText={props.setTextColors}/>
                     <div className="p-4">
                              <AiFillSetting />
                       

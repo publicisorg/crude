@@ -12,7 +12,7 @@ function Image (props: any) {
             <img src={props.Imagen} width={150} alt="" onClick={handleClick} />
             {isActive && <div className='fixed top-0 left-0 bg-black/70 w-full h-full flex justify-center items-center z-30'  onClick={handleClick} >
                 <div className='relative'>
-                    <span className='absolute -right-10 -top-10 text-xl  rounded-full w-6 h-6 text-gray-400 flex justify-center items-center' >
+                    <span className='absolute -right-10 -top-10 text-xl  rounded-full w-6 h-6   flex justify-center items-center' >
                         <svg xmlns="http://www.w3.org/2000/svg"  className='w-7 h-7' viewBox="0 0 2.33333 2.33333">
 
                             <g id="Layer_x0020_1">
