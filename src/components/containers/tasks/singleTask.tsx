@@ -37,7 +37,7 @@ function SingleTask(props: any) {
         getUserById(props.element.user).then((element: any) => {
             setUser(element.data[0].name + " " + element.data[0].lastname);
         });
-        getUserById(props.element.user).then((element: any) => {
+        getUserById(props.element.userId).then((element: any) => {
             setPicture(element.data[0].urlImg);
         });
         getUserById(props.element.userId).then((element: any) => {
@@ -114,11 +114,11 @@ function SingleTask(props: any) {
                         </div>
                         <div className="p-4 flex flex-col justify-center items-center border-r">
                             <p className="font-semibold text-xs">Asignado a:</p>
-                            <p className="text-xs">{askedFor}</p>
+                            <p className="text-xs">{user}</p>
                         </div>
                         <div className="p-4 flex flex-col justify-center items-center">
                             <p className="font-semibold text-xs">Solicitado por:</p>
-                            <p className="text-xs">{user}</p>
+                            <p className="text-xs">{askedFor}</p>
                         </div>
                     </div>
                     <div className={`${detailsOpacity} ${detailsSize} px-6 pt-2 pb-4 grid grid-cols-1 grid-rows-1 gap-4 duration-300 w-full  inset-0 justify-center items-center bg-white border-t dark:bg-gray-800 rounded-b-xl`}>
