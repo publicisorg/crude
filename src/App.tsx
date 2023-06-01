@@ -23,6 +23,8 @@ function App() {
 
   const [mainBgColors, changeBg] = useState(defaultMainBgColors);
   const [textColors, changeText] = useState(defaultTextColors);
+  const [borderColor, changeBorder] = useState(defaultMainBgColors);
+  const [secondaryColor, changeSecondary] = useState(defaultTextColors);
 
   useEffect(() => {
     getBgColorFromDB().then((result: any) => {
@@ -89,10 +91,18 @@ function App() {
 
   return (
 
-    <main className={`w-full duration-300`} style={{ backgroundColor: mainBgColors, color: textColors, fill: textColors }}>
-
+    <main className={`w-full duration-300`} style={{ backgroundColor: mainBgColors, color: textColors, fill: textColors, borderColor: borderColor }}>
       <>
-        <Main changeBg={changeBg} changeText={changeText} />
+        <Main
+          changeBg={changeBg}
+          changeText={changeText}
+          changeBorder={changeBorder}
+          changeSecondary={changeSecondary}
+          mainBgColors={mainBgColors}
+          textColors={textColors}
+          borderColor={borderColor}
+          secondaryColor={secondaryColor}
+        />
       </>
     </main >
   )
