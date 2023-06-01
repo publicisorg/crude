@@ -18,11 +18,25 @@ export const ProfileSettings = (props: any) => {
 
     useEffect(() => {
         document.title = "Configuracion";
-        setPrimaryColor(props.mainBgColors);
-        setSecondaryColor(props.secondaryColor);
-        setTextColor(props.textColors);
-        setBorderColor(props.borderColor);
+        getColorsFromDB().then((result: any) => {
+            setPrimaryColor(result.data[0].bgcolor);
+            setTextColor(result.data[0].fontColor);
+            setSecondaryColor(result.data[0].secondaryColor);
+            setBorderColor(result.data[0].borderColor);
+        })
     }, [])
+
+    async function getColorsFromDB() {
+        if (props.userId != "" && props.userId != undefined) {
+            const color = await supabase
+                .from('users')
+                .select("bgcolor, secondaryColor, fontColor, borderColor")
+                .eq('uuid', props.userId)
+            return color;
+        } else {
+            return false;
+        }
+    }
 
     const handleImageUrlChange = (e: any) => {
         setImageUrl(e.target.value);
@@ -206,7 +220,7 @@ export const ProfileSettings = (props: any) => {
                                             </a>
                                         </div>
                                         <div className="inline-flex items-center">
-                                            <input type="color" className={`${inputColorStyle}`} onChange={(e) => handleChangeSecondary(e)} />
+                                            <input value={secondaryColor} type="color" className={`${inputColorStyle}`} onChange={(e) => handleChangeSecondary(e)} />
                                         </div>
                                     </div>
                                 </li>
@@ -248,7 +262,7 @@ export const ProfileSettings = (props: any) => {
                                             </a>
                                         </div>
                                         <div className="inline-flex items-center">
-                                            <input type="color" className={`${inputColorStyle}`} onChange={(e) => handleChangeBorder(e)} />
+                                            <input value={borderColor} type="color" className={`${inputColorStyle}`} onChange={(e) => handleChangeBorder(e)} />
                                         </div>
                                     </div>
                                 </li>

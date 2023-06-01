@@ -5,6 +5,7 @@ function MenuButton(props: any) {
 
     const [selected, setSelected] = useState(false);
     const [menuColor, setMenuColor] = useState(props.secondaryColor);
+    const [borderColor, setBorderColor] = useState(props.borderColor);
 
     useEffect(() => {
         if (props.selected == props.arguments) {
@@ -14,6 +15,7 @@ function MenuButton(props: any) {
         }
 
         setMenuColor(props.secondaryColor);
+        setBorderColor(props.borderColor);
     })
 
     function handleClick() {
@@ -28,7 +30,7 @@ function MenuButton(props: any) {
 
     return (
         <Link to={props.arguments} onClick={handleClick} className="w-full">
-            <div style={{ backgroundColor: menuColor }} className={`${selected ? "font-bold opacity-100" : "opacity-50"} ${props.px} rounded-xl h-14 my-1 w-full duration-300 py-1 border-white/25 border text-left flex gap-2 justify-start items-center`} >
+            <div style={{ backgroundColor: menuColor, borderColor: borderColor }} className={`${selected ? "font-bold opacity-100" : "opacity-50"} ${props.px} rounded-xl h-14 my-1 w-full duration-300 py-1 border text-left flex gap-2 justify-start items-center shadow-lg`} >
                 {props.children}
             </div>
         </Link>

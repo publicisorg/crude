@@ -82,7 +82,7 @@ function Main(props: any) {
       </Routes>
       <main className={`w-full`}>
         {timerOn && <Timer timerSettingsStyle="floating" timerTaskId={timerTaskId} clearTimer={clearTimer} timerAlertMessage={timerAlertMessage} setTimerAlertMessage={setTimerAlertMessage} />}
-        <MenuAside name={name} lastName={lastname} urlImg={urlImg} userId={userId} changeContent={setContent} role={role} setRole={setRole} possibleRoles={possibleRoles} secondaryColor={props.secondaryColor}/>
+        <MenuAside name={name} lastName={lastname} urlImg={urlImg} userId={userId} changeContent={setContent} role={role} setRole={setRole} possibleRoles={possibleRoles} secondaryColor={props.secondaryColor} borderColor={props.borderColor}/>
         <Routes>
           <Route path="/" element={<News name={name} lastName={lastname} urlImg={urlImg}/>} />
           <Route path="/desktop" element={<ContentContainer name={name} lastName={lastname} urlImg={urlImg} userId={userId} actualContent={actualContent} role={role} />} />
