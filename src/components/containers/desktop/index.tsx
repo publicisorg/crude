@@ -18,8 +18,8 @@ function Desktop(props: any) {
 
     return (
         <>
-            <div className="flex flex-col gap-8 h-full p-8">
-                <div className="flex flex-row gap-8">
+            <div className="flex flex-col gap-8 h-full p-8 relative">
+                <div className="flex flex-row h-auto gap-8">
                     <DataCard title="Sin iniciar" data={notStarted} iconBg="bg-red-500" borderColor={props.borderColor}>
                         <AiOutlineExclamationCircle className="w-9 h-9" />
                     </DataCard>
@@ -32,10 +32,10 @@ function Desktop(props: any) {
                 </div>
                 <div className="flex flex-row justify-center items-center w-full h-full gap-8">
                     <DataTasks title={"Tus tareas"} containerStyle={containerStyle} pStyle={pStyle} borderColor={props.borderColor}>
-                        <TasksTable userFilter={props.user} setInProcess={setInProcess} setNotStarted={setNotStarted} setDone={setDone} desktop={true} borderColor={props.borderColor}/>
+                        <TasksTable userFilter={props.user} setInProcess={setInProcess} setNotStarted={setNotStarted} setDone={setDone} desktop={true} borderColor={props.borderColor} secondaryColor={props.secondaryColor}/>
                     </DataTasks>
                     <DataTasks title="Tareas sin asignar" containerStyle={containerStyle} pStyle={pStyle} borderColor={props.borderColor}>
-                        <TasksTable userFilter={""} desktop={true} borderColor={props.borderColor}/>
+                        <TasksTable userFilter={""} desktop={true} borderColor={props.borderColor} secondaryColor={props.secondaryColor}/>
                     </DataTasks>
                 </div>
             </div>

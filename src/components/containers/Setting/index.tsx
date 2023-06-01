@@ -145,9 +145,9 @@ export const ProfileSettings = (props: any) => {
         <main>
             <div className="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4">
                 <div className="col-span-full xl:col-auto">
-                    <div className="p-4 mb-4 bg-white/10 border rounded-lg shadow-sm 2xl:col-span-2 sm:p-6" style={{ borderColor: borderColor }}>
+                    <div className="p-4 mb-4 bg-white/10 border rounded-lg 2xl:col-span-2 sm:p-6 shadow-lg" style={{ borderColor: borderColor }}>
                         <div className="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">
-                            <img className="mb-4 rounded-lg w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0" src={props.urlImg} alt={props.name} />
+                            <img className="mb-4 rounded-lg w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0 border" src={props.urlImg} alt={props.name} style={{ borderColor: borderColor, backgroundColor: secondaryColor }}/>
                             <div className="w-full">
                                 <h3 className="mb-1 text-xl font-bold">Imagen de perfil</h3>
                                 <div className="mb-4 text-sm">
@@ -179,7 +179,7 @@ export const ProfileSettings = (props: any) => {
                             </div>
                         </div>
                     </div>
-                    <div className="p-4 mb-4 bg-white/10 border rounded-lg shadow-sm 2xl:col-span-2 sm:p-6" style={{ borderColor: borderColor }}>
+                    <div className="p-4 mb-4 bg-white/10 border rounded-lg shadow-lg 2xl:col-span-2 sm:p-6" style={{ borderColor: borderColor }}>
                         <div className="flow-root">
                             <h3 className="text-xl font-semibold">Personaliza tu perfil</h3>
                             <ul className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -199,7 +199,7 @@ export const ProfileSettings = (props: any) => {
                                             </p>
                                         </div>
                                         <div className="inline-flex items-center">
-                                            <input value={primaryColor} type="color" className={`${inputColorStyle}`} onChange={(e) => handleChangeBg(e)} style={{ borderColor: borderColor }} />
+                                            <input value={primaryColor} type="color" className={`${inputColorStyle}`} onChange={(e) => handleChangeBg(e)} style={{ borderColor: borderColor, backgroundColor: secondaryColor }} />
                                         </div>
                                     </div>
                                 </li>
@@ -265,7 +265,7 @@ export const ProfileSettings = (props: any) => {
                             </ul>
                         </div>
                     </div>
-                    <div className="p-4 mb-4 bg-white/10 border rounded-lg shadow-sm sm:p-6" style={{ borderColor: borderColor }}>
+                    <div className="p-4 mb-4 bg-white/10 border rounded-lg shadow-lg sm:p-6" style={{ borderColor: borderColor }}>
                         <div className="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">
                             <div>
                                 <div className="flex items-center space-x-4">
@@ -278,7 +278,7 @@ export const ProfileSettings = (props: any) => {
                     </div>
                 </div>
                 <div className="col-span-2">
-                    <div className="p-4 mb-4 bg-white/10 border rounded-lg shadow-sm 2xl:col-span-2 sm:p-6" style={{ borderColor: borderColor }}>
+                    <div className="p-4 mb-4 bg-white/10 border rounded-lg shadow-lg 2xl:col-span-2 sm:p-6" style={{ borderColor: borderColor }}>
                         <h3 className="mb-4 text-xl font-semibold">Información general</h3>
                         <form action="#">
                             <div className="grid grid-cols-6 gap-6">
@@ -305,7 +305,7 @@ export const ProfileSettings = (props: any) => {
                             </div>
                         </form>
                     </div>
-                    <div className="p-4 mb-4 bg-white/10 border rounded-lg shadow-sm 2xl:col-span-2 sm:p-6" style={{ borderColor: borderColor }}>
+                    <div className="p-4 mb-4 bg-white/10 border rounded-lg shadow-lg 2xl:col-span-2 sm:p-6" style={{ borderColor: borderColor }}>
                         <h3 className="mb-4 text-xl font-semibold">Actualizar Password</h3>
                         <form action="#">
                             <div className="grid grid-cols-6 gap-6">

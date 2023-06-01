@@ -10,7 +10,9 @@ export const DataCard = (props: any) => {
                             <span className="font-semibold text-7xl">{props.data}</span>
                         </div>
                         <div className="relative w-auto pl-4 flex-initial">
-                            <div className={`${props.iconBg} text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full`} >{props.children}</div>
+                            <div className={`${props.iconBg} p-3 text-center inline-flex items-center justify-center w-12 h-12 rounded-full border`} style={{ borderColor: props.borderColor }}>
+                                {props.children}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -21,10 +23,12 @@ export const DataCard = (props: any) => {
 
 export const DataTasks = (props: any) => {
     return (
-        <div className={`${props.containerStyle} w-1/2 p-4  rounded flex flex-col h-full border shadow-lg `} style={{borderColor: props.borderColor}}>
+        <div className={`${props.containerStyle} w-full p-4 rounded flex flex-col h-full border shadow-lg`} style={{ borderColor: props.borderColor }}>
             <p className={`${props.pStyle}`}>{props.title}</p>
-            <div className="w-full h-full mt-4 bg-black/25 rounded overflow-y-auto">
-                {props.children}
+            <div className="w-full h-[596px] mt-4 rounded border relative" style={{ borderColor: props.borderColor }}>
+                <div className="overflow-auto h-full">
+                    {props.children}
+                </div>
             </div>
         </div>
     )

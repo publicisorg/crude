@@ -69,10 +69,10 @@ function SingleTask(props: any) {
     }, [])
 
     return (
-        <tr className="transition-all hover:bg-gray-100/10 hover:shadow-lg" key={props.index} onClick={toggleDetails}>
+        <tr className="border-b" key={props.index} onClick={toggleDetails} style={{borderColor: props.borderColor}}>
             <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm  ">{props.element.name}</div>
-                <div className="text-sm  /50">{timeElapsed}</div>
+                <div className="text-sm">{props.element.name}</div>
+                <div className="text-sm">{timeElapsed}</div>
             </td>
             <td className="px-6 py-4 whitespace-nowrap">
                 <div className="flex items-center">

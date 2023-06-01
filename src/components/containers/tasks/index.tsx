@@ -13,7 +13,7 @@ function TasksTable(props: any) {
     useEffect(() => {
         getTasksData().then((data: any) => {
             if (props.userFilter == "") {
-                setTasks(data.data.filter((task:any) => task.user == null || task.user == ""))
+                setTasks(data.data.filter((task: any) => task.user == null || task.user == ""))
             } else {
                 setTasks(data.data);
             }
@@ -51,9 +51,8 @@ function TasksTable(props: any) {
         if (tasks.length > 0) {
             const jsx: any = [];
             tasks.forEach((element: any, index: any) => {
-                jsx.push(<SingleTask index={index} element={element} desktop={props.desktop} />)
+                jsx.push(<SingleTask index={index} element={element} desktop={props.desktop} borderColor={props.borderColor} />)
             });
-
             return jsx;
         } else {
             return "";
@@ -61,31 +60,28 @@ function TasksTable(props: any) {
     }
 
     return (
-        <div className={`container mx-auto ${props.desktop ? "" : "px-4 py-8"} flex flex-col gap-4`}>
+        <div className={`mx-auto ${props.desktop ? "" : "p-8"} flex flex-col gap-4`}>
             {!props.desktop && <h1 className="text-3xl font-bold mb-4">Tareas</h1>}
-            <div className="grid grid-cols-1 gap-4">
-
-                <table className="min-w-full overflow-x-scroll divide-y divide-gray-200">
-                    <thead className="bg-gray-50/10">
+            <div className={`${props.desktop ? "" : "border rounded shadow-lg"} grid grid-cols-1 gap-4`} style={{ borderColor: props.borderColor }}>
+                <table className="min-w-full overflow-x-scroll" >
+                    <thead className="border-b" style={{ borderColor: props.borderColor, backgroundColor: props.secondaryColor }}>
                         <tr>
-                            <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left   uppercase">
+                            <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">
                                 Titulo
                             </th>
-                            <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left   uppercase">
+                            <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">
                                 Autor
                             </th>
-                            <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left   uppercase">
+                            <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">
                                 Estado
                             </th>
-
                             {!props.desktop && <th scope="col" className="relative px-6 py-3">
                                 <span className="sr-only">Edit</span>
                             </th>}
                         </tr>
                     </thead>
-                    <tbody className="bg-white/30 divide-y divide-gray-200">
-
-                        {buildMultipleTasks()}
+                    <tbody style={{ backgroundColor: props.secondaryColor }}>
+                            {buildMultipleTasks()}
                     </tbody>
                 </table>
             </div>
