@@ -7,8 +7,10 @@ import { useEffect, useState } from "react";
 
 function App() {
   const navigate = useNavigate();
-  const defaultMainBgColors = "bg-stone-200";
-  const defaultTextColors = " ";
+  const defaultMainBgColors = "#333333";
+  const defaultTextColors = "#FFFFFF";
+  const defaultSecondaryColors = "#444444";
+  const defaultBorderColors = "#222222";
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
@@ -41,11 +43,18 @@ function App() {
         changeText(defaultTextColors);
       }
     })
-    getActiveUserFromDB().then((result: any) => {
+    getSecondaryColorFromDB().then((result: any) => {
       if (result != undefined) {
-        changeText(result.data[0].fontColor);
+        changeSecondary(result.data[0].secondaryColor);
       } else {
-        changeText(defaultTextColors);
+        changeSecondary(defaultSecondaryColors);
+      }
+    })
+    getBorderColorFromDB().then((result: any) => {
+      if (result != undefined) {
+        changeBorder(result.data[0].borderColor);
+      } else {
+        changeBorder(defaultBorderColors);
       }
     })
   })
@@ -66,6 +75,28 @@ function App() {
       const color = await supabase
         .from('users')
         .select("fontColor")
+        .eq('uuid', userId)
+      return color;
+    } else {
+      return defaultTextColors;
+    }
+  }
+  async function getSecondaryColorFromDB() {
+    if (userId != "") {
+      const color = await supabase
+        .from('users')
+        .select("secondaryColor")
+        .eq('uuid', userId)
+      return color;
+    } else {
+      return defaultTextColors;
+    }
+  }
+  async function getBorderColorFromDB() {
+    if (userId != "") {
+      const color = await supabase
+        .from('users')
+        .select("borderColor")
         .eq('uuid', userId)
       return color;
     } else {
