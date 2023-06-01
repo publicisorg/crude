@@ -3,8 +3,8 @@ import { AiOutlineCheckCircle, AiOutlinePauseCircle, AiOutlinePlayCircle } from 
 import { supabase } from "../../../supabase/client";
 
 function Timer(props: any) {
-    const stylesBottomBar = "absolute bottom-0 w-full h-12 flex flex-row justify-evenly items-center gap-5 duration-300";
-    const stylesFloatingDiv = "fixed gap-4 bottom-4 right-4 h-42 rounded-2xl py-4 px-8 flex flex-col justify-center items-center shadow-lg"
+    const stylesBottomBar = "absolute z-50 bottom-0 w-full h-12 flex flex-row justify-evenly items-center gap-5 duration-300";
+    const stylesFloatingDiv = "fixed z-50 gap-4 bottom-4 right-4 h-42 rounded-2xl py-4 px-8 flex flex-col justify-center items-center shadow-lg"
 
     const [timerStyles, setTimerStyles] = useState('');
     const [timerColor, setTimerColor] = useState('bg-neutral-500');
