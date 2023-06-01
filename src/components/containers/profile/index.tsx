@@ -7,9 +7,6 @@ import { Link } from 'react-router-dom';
 
 export const ProfileUsers = (props: any) => {
     const [status, setStatus] = useState('');
-    const [data, setData] = useState(null);
-
-
     useEffect(() => {
         document.title = "Mi Perfil";
     }, [])
@@ -32,19 +29,8 @@ export const ProfileUsers = (props: any) => {
         }
     };
 
-
-
-
-
-
     return (
         <main>
-
-
-
-
-
-
             <div className="container mx-auto p-6 ">
                 <div className='card'>
                     <div className="card-body">
@@ -83,7 +69,7 @@ export const ProfileUsers = (props: any) => {
                     </button>
 
                 </div>
-                <CardStatus userId={props.userId} name={props.name} userNick={props.userNick} lastName={props.lastname} urlImg={props.urlImg} />
+                <CardStatus userId={props.userId} name={props.name} userNick={props.userNick} lastName={props.lastname} urlImg={props.urlImg}  urlImg={props.urlImg} />
                 
                 </div>
         </main>
