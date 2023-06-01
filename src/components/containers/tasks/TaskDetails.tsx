@@ -5,7 +5,7 @@ import moment from 'moment';
 import { useParams } from 'react-router-dom';
 import MenuAside from "../aside-menu";
 
-export const TaskDetails = () => {
+export const TaskDetails = (props:any) => {
 
   const [title, setTitle] = useState("");
   const [status, setStatus] = useState("");
@@ -15,8 +15,9 @@ export const TaskDetails = () => {
   const [date, setDate] = useState("");
   const [Comment, setComment] = useState("");
   const [userId, setUserId] = useState("");
+  const [userIdImage, setUserIdImage] = useState("");
 
-
+  const [timeElapsed, setTimeElapsed] = useState("");
 
   const { id } = useParams()
 
@@ -45,62 +46,74 @@ export const TaskDetails = () => {
       setTitle(element.data[0].name);
       setCliente(element.data[0].client);
       setComment(element.data[0].comment);
-      setDate(element.data[0].date);
+      setDate(element.data[0].created_at);
       setMarca(element.data[0].marca);
       // setUser(element.data[0].user);
       // setUserId(element.data[0].userId);
       setStatus(element.data[0].status);
+      const createdAt = moment(element.data[0].created_at); 
+      const now = moment(); 
+    
+      const duration = moment.duration(now.diff(createdAt));
+      const hoursElapsed = duration.asHours();
+    
+      let timeText = "";
+      if (hoursElapsed < 1) {
+        timeText = "Hace menos de una hora";
+      } else if (hoursElapsed < 24) {
+        timeText = `Hace ${Math.floor(hoursElapsed)} horas`;
+      } else {
+        timeText = `Hace ${Math.floor(hoursElapsed / 24)} días`;
+      }
+    
+      setTimeElapsed(timeText);
+      getUserById(element.data[0].userId).then((result: any) => {
 
-      getUserById(element.data[0].userId).then((result:any) => {setUserId(result.data[0].name + " " + result.data[0].lastname)}); 
-      getUserById(element.data[0].user).then((result:any) => {setUser(result.data[0].name + " " + result.data[0].lastname)}); 
-      console.log (element.data)
+        setUserId(result.data[0].name + " " + result.data[0].lastname)
+        setUserIdImage(result.data[0].urlImg)
+
+      });
+      getUserById(element.data[0].user).then((result: any) => { setUser(result.data[0].name + " " + result.data[0].lastname) });
+      console.log(element.data)
     });
-  
+
+
+
   }, [])
 
 
 
 
-
   return (
-<main className={`w-full`}>
-     
+    <main className={`w-full`}>
 
-    <div className="max-w-md mx-auto bg-white text-black shadow-lg p-8 mt-8">
-      <h2 className="text-2xl font-bold mb-4">Detalle</h2>
-      <div className="mb-4">
-        <label className="block font-bold mb-2" >Título:</label>
-        <input className="w-full bg-gray-200 border border-gray-300 rounded px-3 py-2" type="text" id="titulo" name="titulo" value={title} disabled />
+
+      <div className=" mx-auto shadow-lg p-8 mt-8">
+        <h2 className="text-2xl font-bold mb-4">Detalle de pedido</h2>
+        
+        <div className="p-4 rounded-lg bg-light mb-3  bg-white text-black max-w-xl">
+          <div className="flex flex-row items-center gap-4 w-full">
+            <img src={userIdImage} alt="" className="rounded-full" width="44" height="44" />
+            <h6 className="font-bold mb-0 fs-4">{userId} </h6>
+            <span className="flex justify-end"> •<span className="p-1 bg-muted rounded-circle d-inline-block"></span>{timeElapsed}</span>
+          </div>
+          <p className="mt-3"><b>{title}</b></p>
+          <p>
+            {Comment}
+          </p>
+          <div className="flex items-center">
+            <div className="flex items-center gap-2">
+
+              <span className="text-dark fw-semibold">{cliente}</span>
+            </div>
+            <div className="flex items-center gap-2 ms-4">
+              •
+              <span className="text-dark fw-semibold">{marca}</span>
+            </div>
+         
+          </div>
+        </div>
       </div>
-      <div className="mb-4">
-        <label className="block font-bold mb-2">Estado:</label>
-        <input className="w-full bg-gray-200 border border-gray-300 rounded px-3 py-2" type="text" id="estado" name="estado" value={status} disabled />
-      </div>
-      <div className="mb-4">
-        <label className="block font-bold mb-2" >Cliente:</label>
-        <input className="w-full bg-gray-200 border border-gray-300 rounded px-3 py-2" type="text" id="cliente" name="cliente" value={cliente} disabled />
-      </div>
-      <div className="mb-4">
-        <label className="block font-bold mb-2" >Marca:</label>
-        <input className="w-full bg-gray-200 border border-gray-300 rounded px-3 py-2" type="text" id="marca" name="marca" value={marca} disabled />
-      </div>
-      <div className="mb-4">
-        <label className="block font-bold mb-2" >Lo pide:</label>
-        <input className="w-full bg-gray-200 border border-gray-300 rounded px-3 py-2" type="text" id="usuario" name="usuario" value={userId} disabled />
-      </div>
-      <div className="mb-4">
-        <label className="block font-bold mb-2" >Lo tiene:</label>
-        <input className="w-full bg-gray-200 border border-gray-300 rounded px-3 py-2" type="text" id="usuario" name="usuario" value={user} disabled />
-      </div>
-      <div className="mb-4">
-        <label className="block font-bold mb-2" >Fecha:</label>
-        <input className="w-full bg-gray-200 border border-gray-300 rounded px-3 py-2" type="text" id="fecha" name="fecha" value={date} disabled />
-      </div>
-      <div className="mb-4">
-        <label className="block font-bold mb-2" >Comentario:</label>
-        <textarea className="w-full bg-gray-200 border border-gray-300 rounded px-3 py-2" id="comentario" name="comentario" value={Comment} disabled></textarea>
-      </div>
-    </div>
     </main>
   );
 };

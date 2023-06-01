@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../../supabase/client";
 import moment from 'moment'; 
+import { Link } from "react-router-dom";
 
 export const Notification = (props: any) => {
   const [user, setUser] = useState("");
@@ -53,7 +54,7 @@ export const Notification = (props: any) => {
         <p className="mt-2">{timeElapsed}</p>
       </div>
       <div className="ml-auto">
-        <button className="bg-yellow-500/30 hover:bg-yellow-700 font-bold py-2 px-4 rounded">Ver tarea</button>
+        <Link to={'/tasks/'+props.element.id} className="bg-yellow-500/30 hover:bg-yellow-700 font-bold py-2 px-4 rounded">Ver tarea</Link>
         <button onClick={() => props.handleTimer(props.element.id)} className="bg-green-500/30 hover:bg-green-700 font-bold py-2 px-4 rounded ml-2">Empezar tarea</button>
       </div>
     </div>

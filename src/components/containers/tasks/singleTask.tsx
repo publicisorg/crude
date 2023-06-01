@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../../supabase/client";
 import moment from 'moment';
+import { Link } from "react-router-dom";
 
 function SingleTask(props: any) {
 
@@ -84,56 +85,10 @@ function SingleTask(props: any) {
                 </span>
             </td>
             {!props.desktop && <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                <a href="#" className="  hover:text-indigo-900">Detalle</a>
+                <Link to={'/tasks/'+props.element.id} className="  hover:text-indigo-900">Detalle</Link>
             </td>}
 
-            {showDetails && <div className={`${detailsSize} fixed inset-0 flex w-full items-center justify-center z-50 duration-300 bottom-0`}>
-                <div className="bg-white rounded shadow-md p-4 max-w-2xl mx-auto ">
-                    <div className={`${detailsOpacity} ${detailsSize} px-6 pt-4 pb-2 grid grid-cols-4 grid-rows-1 gap-4 duration-300 w-full  inset-0 justify-center items-center bg-white border border-white/30 dark:bg-gray-800 rounded-t-xl`}>
-                        <div className="p-4  flex flex-col justify-center items-center border-r">
-                            <p className="font-semibold text-xs">Cliente:</p>
-                            <p className="text-xs">{props.element.client}</p>
-                        </div>
-                        <div className="p-4 flex flex-col justify-center items-center border-r">
-                            <p className="font-semibold text-xs">Marca:</p>
-                            <p className="text-xs">{props.element.marca}</p>
-                        </div>
-                        <div className="p-4 flex flex-col justify-center items-center border-r">
-                            <p className="font-semibold text-xs">Fecha de entrega:</p>
-                            <p className="text-xs">{props.element.date}</p>
-                        </div>
-                        <div className="p-4  flex flex-col justify-center items-center">
-                            <p className="font-semibold text-xs">Status:</p>
-                            <p className="text-xs">{props.element.status}</p>
-                        </div>
-                    </div>
-                    <div className={`${detailsOpacity} ${detailsSize} px-6 py-2 grid grid-cols-3 grid-rows-1 gap-4 duration-300 w-full  inset-0 justify-center items-center bg-white border-t border-b border-white/30 dark:bg-gray-800`}>
-                        <div className="p-4  flex flex-col justify-center items-center border-r">
-                            <p className="font-semibold text-xs">Tarea:</p>
-                            <p className="text-xs">{props.element.name}</p>
-                        </div>
-                        <div className="p-4 flex flex-col justify-center items-center border-r">
-                            <p className="font-semibold text-xs">Asignado a:</p>
-                            <p className="text-xs">{user}</p>
-                        </div>
-                        <div className="p-4 flex flex-col justify-center items-center">
-                            <p className="font-semibold text-xs">Solicitado por:</p>
-                            <p className="text-xs">{askedFor}</p>
-                        </div>
-                    </div>
-                    <div className={`${detailsOpacity} ${detailsSize} px-6 pt-2 pb-4 grid grid-cols-1 grid-rows-1 gap-4 duration-300 w-full  inset-0 justify-center items-center bg-white border-t dark:bg-gray-800 rounded-b-xl`}>
-                        <div className="p-4 flex flex-col justify-center items-center">
-                            <p className="font-semibold text-xs">Descripción:</p>
-                            <p className="text-xs">{props.element.comment}</p>
-                        </div>
-                    </div>
-                    <div className="flex justify-end mt-4">
-                        <button className="bg-blue-500 hover:bg-blue-600   font-semibold py-2 px-4 rounded" onClick={toggleDetails}>
-                            Cerrar
-                        </button>
-                    </div>
-                </div>
-            </div>}
+           
         </tr>
     );
 }
