@@ -4,7 +4,7 @@ import ContentContainer from "../content-container"
 import { supabase } from "../../../supabase/client";
 import { Route, Routes } from "react-router-dom";
 import SignUp from "../../../pages/SignUp";
-import { ProfileSettings } from "../profile";
+import { ProfileSettings } from "../Setting";
 import { TaskDetails } from "../tasks/TaskDetails";
 import NotFound from "../../../pages/NotFound";
 import { Notifications } from "../notifications";
@@ -13,6 +13,8 @@ import TasksTable from "../tasks";
 import Folders from "../folders";
 import { TaskForm } from "../../common/Taskform";
 import Login from "../../../pages/Login";
+import { ProfileUsers } from "../Profile";
+import { ProfileUsersPublic } from "../Profile/Profile";
 
 
 
@@ -28,6 +30,9 @@ function Main(props: any) {
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
   const [urlImg, setUrlImg] = useState("");
+  const [active, setUserActive] = useState("");
+  const [occupation, setOccupation] = useState("");
+  const [userNick, setUserNick] = useState("");
   const [possibleRoles, setPossibleRoles] = useState([]);
 
   useEffect(() => {
@@ -43,13 +48,16 @@ function Main(props: any) {
       setName(user.data[0].name);
       setLastname(user.data[0].lastname);
       setUrlImg(user.data[0].urlImg);
+      setOccupation(user.data[0].occupation);
+      setUserNick(user.data[0].userNick);
+      setUserActive(user.data[0].active);
       setPossibleRoles(user.data[0].rol[0].rol);
     });
   }, [userId])
 
   async function getMyUserData(myUserUUID: any) {
     if (myUserUUID != "" && myUserUUID != undefined) {
-      const data = await supabase.from('users').select('uuid, name, lastname, rol, urlImg').eq('uuid', myUserUUID);
+      const data = await supabase.from('users').select('uuid, name, lastname, rol, urlImg, occupation, userNick, active').eq('uuid', myUserUUID);
       return data;
     }
   }
@@ -86,6 +94,9 @@ function Main(props: any) {
           
           <Route path="/Setting" element={<div className="ml-80 h-screen relative overflow-y-auto"><ProfileSettings userId={userId} name={name} lastName={lastname} urlImg={urlImg} changeBg2={props.changeBg} changeText2={props.changeText} /></div>} />
           <Route path="/tasks/:id" element={<div className="ml-80 h-screen relative overflow-y-auto"><TaskDetails /></div>} />
+          <Route path="/myprofile" element={<div className="ml-80 h-screen relative overflow-y-auto"><ProfileUsers userId={userId}  name={name} lastName={lastname} urlImg={urlImg} rol={role} occupation={occupation} userNick={userNick} active={active}/></div>} />
+         
+          <Route path="/profile/:userNick" element={<div className="ml-80 h-screen relative overflow-y-auto"><ProfileUsersPublic userId={userId}  name={name} lastName={lastname} urlImg={urlImg} rol={role} occupation={occupation} userNick={userNick} active={active}/></div>} />
 
 
           <Route path="tasks" element={role == "user" && <div className="ml-80 h-screen relative overflow-y-auto"><TasksTable handleTimer={handleTimer} userFilter={userId} /></div>}></Route>

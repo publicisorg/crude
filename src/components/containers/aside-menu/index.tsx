@@ -4,6 +4,7 @@ import { AiOutlineHome, AiOutlineContainer, AiOutlineFolder, AiOutlinePieChart, 
 import SelectRole from "./complementary/select-role";
 import Profile from "../../common/profileUser";
 import { supabase } from "../../../supabase/client";
+import { Link } from "react-router-dom";
 
 
 function MenuAside(props: any) {
@@ -71,14 +72,15 @@ function MenuAside(props: any) {
             <div className="flex flex-col justify-center items-center w-full gap-6">
                 <SelectRole function={props.setRole} possibleRoles={props.possibleRoles} />
                 <div className="flex flex-row justify-evenly items-center bg-black/10 dark:bg-white/25 w-full">
-                    <MenuButton function={setMenuSelected} arguments="setting" selected={menuSelected} px="!px-0 bg-black">
-
+                  <Link to="myprofile">
                         <Profile name={props.name} lastName={props.lastName} urlImg={props.urlImg} changeBg={props.changeBg} changeText={props.setTextColors} />
-                        <div className="p-4">
+                        </Link>
+
+                        <Link to="setting">  <div className="p-4">
                             <AiFillSetting />
 
                         </div>
-                    </MenuButton>
+                    </Link>
                 </div>
             </div>
 

@@ -3,7 +3,7 @@ import Folders from "../folders"
 
 import Desktop, { DesktopDirector, DesktopSupervisor } from "../desktop";
 import { TaskForm } from "../../common/Taskform"
-import { ProfileSettings } from "../profile"
+import { ProfileSettings } from "../Setting"
 import TasksTable from "../tasks";
 import { Notifications } from "../notifications";
 import Timer from "../../common/timer/timer";

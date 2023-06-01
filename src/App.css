@@ -1,0 +1,54 @@
+.isActive {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    bottom: 10px;
+    z-index: 99999;
+    background: #00ff14;
+    border-radius: 100%;
+}
+.isActive:hover::after {
+  content: "Activo";
+  color: white;
+  background-color: black;
+  padding: 4px;
+  border-radius: 3px;
+}
+.inactive {
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  bottom: 10px;
+  z-index: 99999;
+  background: yellow;
+  border-radius: 100%;
+}
+.inactive:hover::after {
+  content: "Ausente";
+  color: white;
+  background-color: black;
+  padding: 4px;
+  border-radius: 3px;
+}
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+  }
+  
+  .profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  
+  .message {
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .like-count {
+    color: gray;
+    font-size: 14px;
+  }

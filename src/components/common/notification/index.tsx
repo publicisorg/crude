@@ -5,18 +5,20 @@ import { Link } from "react-router-dom";
 
 export const Notification = (props: any) => {
   const [user, setUser] = useState("");
+  const [userNick, setUserNick] = useState("");
   const [askedFor, setAskedFor] = useState("");
   const [picture, setPicture] = useState("");
   const [timeElapsed, setTimeElapsed] = useState("");
 
   async function getUserById(userUUID: any) {
-    const data: any = await supabase.from('users').select('name, lastname, urlImg').eq("uuid", userUUID);
+    const data: any = await supabase.from('users').select('name, lastname, urlImg,userNick').eq("uuid", userUUID);
     return data;
   }
 
   useEffect(() => {
     getUserById(props.element.userId).then((element: any) => {
       setUser(element.data[0].name );
+      setUserNick(element.data[0].userNick );
     });
     getUserById(props.element.userId).then((element: any) => {
       setPicture(element.data[0].urlImg );
@@ -47,7 +49,9 @@ export const Notification = (props: any) => {
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2"  key={props.index}>
     <div className="flex items-center bg-white/10 rounded-lg p-4">
+      <Link to={'/profile/'+userNick}>
       <img src={picture} alt="Foto de la persona" className="w-16 h-16 rounded-full"/>
+      </Link>
       <div className="ml-4">
         <h2 className="text-lg font-bold">{user} te asigno la tarea:</h2>
         <p className="">{props.element.name}</p>

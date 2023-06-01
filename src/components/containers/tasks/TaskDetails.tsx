@@ -4,8 +4,9 @@ import { supabase } from "../../../supabase/client";
 import moment from 'moment';
 import { useParams } from 'react-router-dom';
 import MenuAside from "../aside-menu";
-
-export const TaskDetails = (props:any) => {
+import { Button, Timeline } from 'flowbite-react';
+import { AiOutlineCalendar } from "react-icons/ai";
+export const TaskDetails = (props: any) => {
 
   const [title, setTitle] = useState("");
   const [status, setStatus] = useState("");
@@ -16,15 +17,13 @@ export const TaskDetails = (props:any) => {
   const [Comment, setComment] = useState("");
   const [userId, setUserId] = useState("");
   const [userIdImage, setUserIdImage] = useState("");
+  const [userImage, setUserImage] = useState("");
 
   const [timeElapsed, setTimeElapsed] = useState("");
 
   const { id } = useParams()
 
-  useEffect(() => {
-
-
-  }, [id]);
+  
 
   if (!id) {
     return <p>Cargando...</p>;
@@ -48,15 +47,13 @@ export const TaskDetails = (props:any) => {
       setComment(element.data[0].comment);
       setDate(element.data[0].created_at);
       setMarca(element.data[0].marca);
-      // setUser(element.data[0].user);
-      // setUserId(element.data[0].userId);
       setStatus(element.data[0].status);
-      const createdAt = moment(element.data[0].created_at); 
-      const now = moment(); 
-    
+      const createdAt = moment(element.data[0].created_at);
+      const now = moment();
+
       const duration = moment.duration(now.diff(createdAt));
       const hoursElapsed = duration.asHours();
-    
+
       let timeText = "";
       if (hoursElapsed < 1) {
         timeText = "Hace menos de una hora";
@@ -65,7 +62,7 @@ export const TaskDetails = (props:any) => {
       } else {
         timeText = `Hace ${Math.floor(hoursElapsed / 24)} días`;
       }
-    
+
       setTimeElapsed(timeText);
       getUserById(element.data[0].userId).then((result: any) => {
 
@@ -73,7 +70,11 @@ export const TaskDetails = (props:any) => {
         setUserIdImage(result.data[0].urlImg)
 
       });
-      getUserById(element.data[0].user).then((result: any) => { setUser(result.data[0].name + " " + result.data[0].lastname) });
+      getUserById(element.data[0].user).then((result: any) => { 
+        setUser(result.data[0].name + " " + result.data[0].lastname)
+        setUserImage(result.data[0].urlImg)
+       });
+      
       console.log(element.data)
     });
 
@@ -88,31 +89,76 @@ export const TaskDetails = (props:any) => {
     <main className={`w-full`}>
 
 
-      <div className=" mx-auto shadow-lg p-8 mt-8">
+      <div className=" mx-auto p-8 mt-8">
         <h2 className="text-2xl font-bold mb-4">Detalle de pedido</h2>
-        
-        <div className="p-4 rounded-lg bg-light mb-3  bg-white text-black max-w-xl">
-          <div className="flex flex-row items-center gap-4 w-full">
-            <img src={userIdImage} alt="" className="rounded-full" width="44" height="44" />
-            <h6 className="font-bold mb-0 fs-4">{userId} </h6>
-            <span className="flex justify-end"> •<span className="p-1 bg-muted rounded-circle d-inline-block"></span>{timeElapsed}</span>
-          </div>
-          <p className="mt-3"><b>{title}</b></p>
-          <p>
-            {Comment}
-          </p>
-          <div className="flex items-center">
-            <div className="flex items-center gap-2">
 
-              <span className="text-dark fw-semibold">{cliente}</span>
+
+        <div className="container mx-auto p-8 mt-8 grid">
+
+          <div className="p-4 rounded-lg bg-light mb-3  bg-white text-black max-w-xl shadow-lg ">
+            <div className="flex flex-row items-center gap-4 w-full">
+              <img src={userIdImage} alt="" className="rounded-full" width="44" height="44" />
+              <h6 className="font-bold mb-0 fs-4">{userId} </h6>
+              <span className="flex justify-end"> •<span className="p-1 bg-muted rounded-circle d-inline-block"></span>{timeElapsed}</span>
             </div>
-            <div className="flex items-center gap-2 ms-4">
-              •
-              <span className="text-dark fw-semibold">{marca}</span>
+            <p className="mt-3"><b>{title}</b></p>
+            <p>
+              {Comment}
+            </p>
+            <div className="flex items-center">
+              <div className="flex items-center gap-2">
+
+                <span className="text-dark fw-semibold">{cliente}</span>
+              </div>
+              <div className="flex items-center gap-2 ms-4">
+                •
+                <span className="text-dark fw-semibold">{marca}</span>
+              </div>
+
             </div>
-         
+          </div>
+          <div className="w-full flex items-center justify-center">
+            <Timeline>
+              <Timeline.Item>
+                <AiOutlineCalendar className="bg-[#7364d0] w-6 h-6 rounded-full -ml-9 " />
+                <Timeline.Content>
+                  <Timeline.Time>
+                    {date}
+                  </Timeline.Time>
+                  <Timeline.Title>
+                    {status}
+                  </Timeline.Title>
+
+                </Timeline.Content>
+              </Timeline.Item>
+
+            </Timeline>
+          </div>
+          <div className="p-4 rounded-lg bg-light mb-3  bg-white text-black max-w-xl shadow-lg ">
+            <div className="flex flex-row items-center gap-4 w-full">
+              <img src={userImage} alt="" className="rounded-full" width="44" height="44" />
+              <h6 className="font-bold mb-0 fs-4">{user} </h6>
+              <span className="flex justify-end"> •<span className="p-1 bg-muted rounded-circle d-inline-block"></span>{timeElapsed}</span>
+            </div>
+            <p className="mt-3"><b>{title}</b></p>
+            <p>
+              {Comment}
+            </p>
+            <div className="flex items-center">
+              <div className="flex items-center gap-2">
+
+                <span className="text-dark fw-semibold">{cliente}</span>
+              </div>
+              <div className="flex items-center gap-2 ms-4">
+                •
+                <span className="text-dark fw-semibold">{marca}</span>
+              </div>
+
+            </div>
           </div>
         </div>
+
+
       </div>
     </main>
   );

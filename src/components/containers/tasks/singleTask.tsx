@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../../supabase/client";
 import moment from 'moment';
 import { Link } from "react-router-dom";
+import { Tooltip } from "flowbite-react";
 
 function SingleTask(props: any) {
 
@@ -11,6 +12,8 @@ function SingleTask(props: any) {
     const [user, setUser] = useState("");
     const [askedFor, setAskedFor] = useState("");
     const [timeElapsed, setTimeElapsed] = useState("");
+    const [userNick, setUserNick] = useState("");
+    
     const [picture, setPicture] = useState("");
 
     function toggleDetails() {
@@ -30,16 +33,18 @@ function SingleTask(props: any) {
     }
 
     async function getUserById(userUUID: any) {
-        const data: any = await supabase.from('users').select('name, lastname, urlImg').eq("uuid", userUUID);
+        const data: any = await supabase.from('users').select('name, lastname, urlImg, userNick').eq("uuid", userUUID);
         return data;
     }
 
     useEffect(() => {
         getUserById(props.element.user).then((element: any) => {
             setUser(element.data[0].name + " " + element.data[0].lastname);
+        
         });
         getUserById(props.element.userId).then((element: any) => {
             setPicture(element.data[0].urlImg);
+            setUserNick(element.data[0].userNick);
         });
         getUserById(props.element.userId).then((element: any) => {
             setAskedFor(element.data[0].name + " " + element.data[0].lastname);
@@ -64,7 +69,7 @@ function SingleTask(props: any) {
     }, [])
 
     return (
-        <tr className="transition-all hover:bg-gray-100 hover:shadow-lg" key={props.index} onClick={toggleDetails}>
+        <tr className="transition-all hover:bg-gray-100/10 hover:shadow-lg" key={props.index} onClick={toggleDetails}>
             <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm  ">{props.element.name}</div>
                 <div className="text-sm  /50">{timeElapsed}</div>
@@ -72,9 +77,14 @@ function SingleTask(props: any) {
             <td className="px-6 py-4 whitespace-nowrap">
                 <div className="flex items-center">
                     <div className="flex-shrink-0 w-10 h-10">
-                        <img className="w-10 h-10 rounded-full"
-                            src={picture}
-                            alt="" />
+                    <Link to={'/profile/'+userNick}>
+                        <Tooltip content={askedFor} className="bg-black text-white">
+                            <img className="w-10 h-10 rounded-full"
+                                src={picture}
+                                alt="" />
+                        </Tooltip>
+                        </Link>
+
                     </div>
                 </div>
             </td>
@@ -85,10 +95,10 @@ function SingleTask(props: any) {
                 </span>
             </td>
             {!props.desktop && <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                <Link to={'/tasks/'+props.element.id} className="  hover:text-indigo-900">Detalle</Link>
+                <Link to={'/tasks/' + props.element.id} className="  hover:text-indigo-900">Detalle</Link>
             </td>}
 
-           
+
         </tr>
     );
 }

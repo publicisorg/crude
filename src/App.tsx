@@ -8,7 +8,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import NotFound from './pages/NotFound'
-import { ProfileSettings } from './components/containers/profile';
+import { ProfileSettings } from './components/containers/Setting';
 import { TaskDetails } from './components/containers/tasks/TaskDetails';
 
 function App() {
@@ -23,6 +23,8 @@ function App() {
         navigate("/login");
       } else {
         setUserId(session.user.id);
+
+        
       }
     });
   }, [navigate]);
@@ -39,6 +41,13 @@ function App() {
       }
      })
      getFontColorFromDB().then((result: any) => { 
+      if (result != undefined) {
+        changeText(result.data[0].fontColor);
+      } else {
+        changeText(defaultTextColors);
+      }
+     })
+     getActiveUserFromDB().then((result: any) => { 
       if (result != undefined) {
         changeText(result.data[0].fontColor);
       } else {
@@ -65,10 +74,37 @@ function App() {
         .select("fontColor")
         .eq('uuid', userId)
       return color;
+
+
     } else {
       return defaultTextColors;
     }
   }
+
+  async function getActiveUserFromDB() {
+    if (userId != "") {
+      
+      const activeUser = await supabase
+
+      .from('users')
+      .update({ active: 'isActive'})
+      .eq('uuid', userId)
+      return activeUser;
+
+
+    } else {
+      const activeUser = await supabase
+
+      .from('users')
+      .update({ active: 'disabled'})
+      .eq('uuid', userId)
+      return activeUser;
+    }
+  }3
+
+
+
+
 
   return (
 
