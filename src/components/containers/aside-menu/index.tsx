@@ -70,7 +70,7 @@ function MenuAside(props: any) {
     }
 
     return (
-        <aside className="h-screen fixed gap-2 bg-gradient-to-b from-black/40 to-black/10 dark:from-white/25 dark:to-white/10 w-80 border-r border-black/10 dark:border-white/25 flex justify-between flex-col  items-center">
+        <aside className="h-screen fixed gap-2 bg-white/10 w-80 border-r flex justify-between flex-col items-center shadow-lg" style={{ borderColor: props.borderColor }}>
             <div className="flex flex-col justify-evenly">
                 <div className="pb-8 px-6  w-full flex justify-center">
                     <div className="my-9 w-full flex justify-center items-center p-2">
@@ -97,15 +97,14 @@ function MenuAside(props: any) {
                     <label htmlFor="admin">Permisos Admin</label>
                 </div>}
                 <SelectRole function={props.setRole} possibleRoles={possibleRoles} setMenuSelected={setMenuSelected} />
-                <div className="flex flex-row justify-evenly items-center bg-black/10 dark:bg-white/25 w-full">
+                <div className="flex flex-row justify-evenly items-center w-full border-t" style={{ borderColor: props.borderColor }}>
                     <Link to="myprofile">
                         <Profile name={props.name} lastName={props.lastName} urlImg={props.urlImg} changeBg={props.changeBg} changeText={props.setTextColors} />
                     </Link>
-
-                    <Link to="setting">  <div className="p-4">
-                        <AiFillSetting />
-
-                    </div>
+                    <Link to="setting">
+                        <div className="p-4">
+                            <AiFillSetting />
+                        </div>
                     </Link>
                 </div>
             </div>

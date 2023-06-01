@@ -34,7 +34,7 @@ export function Notifications(props: any) {
         if (tasks.length > 0) {
             const jsx: any = [];
             tasks.forEach((element: any, index:any) => {
-                jsx.push(<Notification handleTimer={props.handleTimer} index={index} element={element}/>)
+                jsx.push(<Notification handleTimer={props.handleTimer} index={index} element={element} borderColor={props.borderColor} secondaryColor={props.secondaryColor}/>)
             });
 
             return jsx;
@@ -44,8 +44,8 @@ export function Notifications(props: any) {
     }
 
     return (
-      <div className="container mx-auto px-4 py-8 flex flex-col gap-4">
-      <h1 className="text-3xl font-bold mb-4">Actividad</h1>
+      <div className="mx-auto p-8 flex flex-col gap-4">
+      <h1 className="text-3xl font-bold">Actividad</h1>
             {buildMultipleTasks()}
         </div>
     );
