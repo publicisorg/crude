@@ -28,6 +28,7 @@ function Main(props: any) {
   const [lastname, setLastname] = useState("");
   const [urlImg, setUrlImg] = useState("");
   const [active, setUserActive] = useState("");
+  const [idLikeStatus, setUserIdLike] = useState("");
   const [occupation, setOccupation] = useState("");
   const [userNick, setUserNick] = useState("");
   const [possibleRoles, setPossibleRoles] = useState([]);
@@ -48,13 +49,14 @@ function Main(props: any) {
       setOccupation(user.data[0].occupation);
       setUserNick(user.data[0].userNick);
       setUserActive(user.data[0].active);
+      setUserIdLike(user.data[0].idLikeStatus);
       setPossibleRoles(user.data[0].rol[0].rol);
     });
   }, [userId])
 
   async function getMyUserData(myUserUUID: any) {
     if (myUserUUID != "" && myUserUUID != undefined) {
-      const data = await supabase.from('users').select('uuid, name, lastname, rol, urlImg, occupation, userNick, active').eq('uuid', myUserUUID);
+      const data = await supabase.from('users').select('*').eq('uuid', myUserUUID);
       return data;
     }
   }
@@ -88,8 +90,8 @@ function Main(props: any) {
           <Route path="/desktop" element={<ContentContainer name={name} lastName={lastname} urlImg={urlImg} userId={userId} actualContent={actualContent} role={role} />} />
           <Route path="/Setting" element={<div className="ml-80 h-screen relative overflow-y-auto"><ProfileSettings userId={userId} name={name} lastName={lastname} urlImg={urlImg} changeBg={props.changeBg} changeText={props.changeText} changeBorder={props.changeBorder} changeSecondary={props.changeSecondary} mainBgColors={props.mainBgColors} textColors={props.textColors} borderColor={props.borderColor} secondaryColor={props.secondaryColor}/></div>} />
           <Route path="/tasks/:id" element={<div className="ml-80 h-screen relative overflow-y-auto"><TaskDetails /></div>} />
-          <Route path="/myprofile" element={<div className="ml-80 h-screen relative overflow-y-auto"><ProfileUsers userId={userId} name={name} lastName={lastname} urlImg={urlImg} rol={role} occupation={occupation} userNick={userNick} active={active} /></div>} />
-          <Route path="/profile/:userNick" element={<div className="ml-80 h-screen relative overflow-y-auto"><ProfileUsersPublic userId={userId} name={name} lastName={lastname} urlImg={urlImg} rol={role} occupation={occupation} userNick={userNick} active={active} /></div>} />
+          <Route path="/myprofile" element={<div className="ml-80 h-screen relative overflow-y-auto"><ProfileUsers userId={userId} name={name} lastName={lastname} urlImg={urlImg} rol={role} occupation={occupation} userNick={userNick} active={active} idLikeStatus={idLikeStatus} /></div>} />
+          <Route path="/profile/:userNick" element={<div className="ml-80 h-screen relative overflow-y-auto"><ProfileUsersPublic userId={userId} name={name} lastName={lastname} urlImg={urlImg} rol={role} occupation={occupation} userNick={userNick} active={active} idLikeStatus={idLikeStatus} /></div>} />
           <Route path="/tasks" element={
             role == "user" && <div className="ml-80 h-screen relative overflow-y-auto"><TasksTable handleTimer={handleTimer} userFilter={userId} /></div>
             || role == "supervisor" && <div className="ml-80 h-screen relative overflow-y-auto"><TasksTable handleTimer={handleTimer} userFilter={"*"} /></div>
