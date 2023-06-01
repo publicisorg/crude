@@ -9,7 +9,7 @@ function App() {
   const navigate = useNavigate();
   const defaultMainBgColors = "#333333";
   const defaultTextColors = "#FFFFFF";
-  const defaultSecondaryColors = "#444444";
+  const defaultSecondaryColors = "#222222";
   const defaultBorderColors = "#222222";
   const [userId, setUserId] = useState("");
 
@@ -25,82 +25,36 @@ function App() {
 
   const [mainBgColors, changeBg] = useState(defaultMainBgColors);
   const [textColors, changeText] = useState(defaultTextColors);
-  const [borderColor, changeBorder] = useState(defaultMainBgColors);
-  const [secondaryColor, changeSecondary] = useState(defaultTextColors);
+  const [borderColor, changeBorder] = useState(defaultBorderColors);
+  const [secondaryColor, changeSecondary] = useState(defaultSecondaryColors);
 
   useEffect(() => {
-    getBgColorFromDB().then((result: any) => {
-      if (result != undefined) {
-        changeBg(result.data[0].bgcolor);
-      } else {
+    getColorsFromDB().then((result: any) => {
+      if (!result) {
+        console.log("DEFAULT");
         changeBg(defaultMainBgColors);
-      }
-    })
-    getFontColorFromDB().then((result: any) => {
-      if (result != undefined) {
-        changeText(result.data[0].fontColor);
-      } else {
         changeText(defaultTextColors);
-      }
-    })
-    getSecondaryColorFromDB().then((result: any) => {
-      if (result != undefined) {
-        changeSecondary(result.data[0].secondaryColor);
-      } else {
         changeSecondary(defaultSecondaryColors);
-      }
-    })
-    getBorderColorFromDB().then((result: any) => {
-      if (result != undefined) {
-        changeBorder(result.data[0].borderColor);
-      } else {
         changeBorder(defaultBorderColors);
+      } else {
+        console.log("DB");
+        changeBg(result.data[0].bgcolor);
+        changeText(result.data[0].fontColor);
+        changeSecondary(result.data[0].secondaryColor);
+        changeBorder(result.data[0].borderColor);
       }
     })
   })
 
-  async function getBgColorFromDB() {
+  async function getColorsFromDB() {
     if (userId != "") {
       const color = await supabase
         .from('users')
-        .select("bgcolor")
+        .select("bgcolor, secondaryColor, fontColor, borderColor")
         .eq('uuid', userId)
       return color;
     } else {
-      return defaultMainBgColors;
-    }
-  }
-  async function getFontColorFromDB() {
-    if (userId != "") {
-      const color = await supabase
-        .from('users')
-        .select("fontColor")
-        .eq('uuid', userId)
-      return color;
-    } else {
-      return defaultTextColors;
-    }
-  }
-  async function getSecondaryColorFromDB() {
-    if (userId != "") {
-      const color = await supabase
-        .from('users')
-        .select("secondaryColor")
-        .eq('uuid', userId)
-      return color;
-    } else {
-      return defaultTextColors;
-    }
-  }
-  async function getBorderColorFromDB() {
-    if (userId != "") {
-      const color = await supabase
-        .from('users')
-        .select("borderColor")
-        .eq('uuid', userId)
-      return color;
-    } else {
-      return defaultTextColors;
+      return false;
     }
   }
 
