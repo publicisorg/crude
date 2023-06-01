@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../../../supabase/client';
 import { CardStatus } from '../../common/Cardstatus';
+import { AiOutlineSetting } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 
 export const ProfileUsers = (props: any) => {
     const [status, setStatus] = useState('');
+    const [data, setData] = useState(null);
+
 
     useEffect(() => {
         document.title = "Mi Perfil";
@@ -29,6 +33,10 @@ export const ProfileUsers = (props: any) => {
     };
 
 
+
+
+
+
     return (
         <main>
 
@@ -40,8 +48,13 @@ export const ProfileUsers = (props: any) => {
             <div className="container mx-auto p-6 ">
                 <div className='card'>
                     <div className="card-body">
+                       
                     <div className="relative h-48 bg-cover bg-center" style={{ backgroundImage: "url('https://fotos.perfil.com/2022/07/14/trim/1280/720/ciudad-de-buenos-aires-1386884.jpg')" }}></div>
+                    
                     <div className="flex justify-center mt-[-4rem] relative">
+                    <div className='absolute top-3 left-3 z-30'>
+                            <Link to="/setting"><AiOutlineSetting className="fill-white/30 w-14 h-14"></AiOutlineSetting></Link>
+                            </div>
                         <div className="w-32 h-32 border-4 border-white rounded-full overflow-hidden z-10">
                             <img className="w-full h-full object-cover" src={props.urlImg} alt={props.name} />
                             <span className={props.active ? 'isActive' : 'inactive' + 'absolute z-10 top-0'}></span>
@@ -71,7 +84,8 @@ export const ProfileUsers = (props: any) => {
 
                 </div>
                 <CardStatus userId={props.userId} name={props.name} userNick={props.userNick} lastName={props.lastname} urlImg={props.urlImg} />
-            </div>
+                
+                </div>
         </main>
     )
 }
