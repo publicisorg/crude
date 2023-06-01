@@ -13,13 +13,13 @@ function Desktop(props: any) {
     const [notStarted, setNotStarted] = useState(0);
     const [done, setDone] = useState(0);
 
-    const containerStyle = "bg-black/10 dark:bg-white/10 p-8 rounded";
+    const containerStyle = "bg-white/10 p-8 rounded";
     const pStyle = "text-3xl";
 
     return (
         <>
-            <div className="flex flex-col gap-4  h-full py-8">
-                <div className="flex flex-wrap">
+            <div className="flex flex-col gap-8 h-full p-8">
+                <div className="flex flex-row gap-8">
                     <DataCard title="Sin iniciar" data={notStarted} iconBg="bg-red-500" borderColor={props.borderColor}>
                         <AiOutlineExclamationCircle className="w-9 h-9" />
                     </DataCard>
@@ -30,12 +30,12 @@ function Desktop(props: any) {
                         <AiOutlineCheck className="w-9 h-9" />
                     </DataCard>
                 </div>
-                <div className="flex flex-row justify-center items-center w-full h-2/3 my-4 gap-8 px-4">
-                    <DataTasks title={"Tus tareas"} containerStyle={containerStyle} pStyle={pStyle} >
-                        <TasksTable userFilter={props.user} setInProcess={setInProcess} setNotStarted={setNotStarted} setDone={setDone} desktop={true} />
+                <div className="flex flex-row justify-center items-center w-full h-full gap-8">
+                    <DataTasks title={"Tus tareas"} containerStyle={containerStyle} pStyle={pStyle} borderColor={props.borderColor}>
+                        <TasksTable userFilter={props.user} setInProcess={setInProcess} setNotStarted={setNotStarted} setDone={setDone} desktop={true} borderColor={props.borderColor}/>
                     </DataTasks>
-                    <DataTasks title="Tareas sin asignar" containerStyle={containerStyle} pStyle={pStyle} >
-                        <TasksTable userFilter={""} desktop={true} />
+                    <DataTasks title="Tareas sin asignar" containerStyle={containerStyle} pStyle={pStyle} borderColor={props.borderColor}>
+                        <TasksTable userFilter={""} desktop={true} borderColor={props.borderColor}/>
                     </DataTasks>
                 </div>
             </div>
