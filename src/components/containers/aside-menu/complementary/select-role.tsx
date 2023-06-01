@@ -4,20 +4,26 @@ function SelectRole(props: any) {
 
     const [showSelect, setShowSelect] = useState(false);
 
-    function handleChange(event:any) {
+    function handleChange(event: any) {
         props.function(event.target.value);
     }
 
     function buildOptions() {
-        const optionsJSX:any = [];
-        props.possibleRoles.forEach((role: any, index:any) => {
+        const optionsJSX: any = [];
+        var possibleRoles = props.possibleRoles.filter((rol: any) => rol != "admin");
+        if (props.possibleRoles.filter((rol: any) => rol == "admin").length > 0) {
+            possibleRoles = ["user", "supervisor", "director", "account"];
+        }
+        possibleRoles.forEach((role: any, index: any) => {
             optionsJSX.push(<option key={index} value={role}>{role}</option>)
         })
         return optionsJSX;
     }
 
     useEffect(() => {
-        if (props.possibleRoles.length > 1) {
+        console.log(props.possibleRoles);
+        var possibleRoles = props.possibleRoles.filter((rol: any) => rol != "admin");
+        if (possibleRoles.length > 1 || props.possibleRoles.filter((rol: any) => rol == "admin").length > 0) {
             setShowSelect(true);
         } else {
             setShowSelect(false);
