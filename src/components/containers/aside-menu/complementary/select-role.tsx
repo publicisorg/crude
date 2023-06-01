@@ -21,13 +21,13 @@ function SelectRole(props: any) {
     }
 
     useEffect(() => {
-        console.log(props.possibleRoles);
         var possibleRoles = props.possibleRoles.filter((rol: any) => rol != "admin");
         if (possibleRoles.length > 1 || props.possibleRoles.filter((rol: any) => rol == "admin").length > 0) {
             setShowSelect(true);
         } else {
             setShowSelect(false);
         }
+        props.function(possibleRoles[0]);
     }, [props.possibleRoles])
 
     return (

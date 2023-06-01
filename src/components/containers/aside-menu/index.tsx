@@ -10,16 +10,28 @@ import { Link } from "react-router-dom";
 function MenuAside(props: any) {
     const [tasks, setTasks] = useState([]);
     const [menuSelected, setMenuSelected] = useState("desktop");
+    const [possibleRoles, setPossibleRoles] = useState(props.possibleRoles);
+    const [isAdmin, setAdmin] = useState(true);
+    const [showAdmin, setShowAdmin] = useState(false);
 
-
+    const possibleRolesProps = props.possibleRoles;
 
     useEffect(() => {
         getTasksData().then((data: any) => {
             setTasks(data.data);
         })
-
         props.changeContent(menuSelected);
     }, [menuSelected])
+
+    useEffect(() => {
+        if (props.possibleRoles.length > 0) {
+            if (props.possibleRoles.filter((rol:any) => rol == 'admin').length > 0) {
+                setShowAdmin(true);
+            } else {
+                setShowAdmin(false);
+            }
+        }
+    })
 
     async function getTasksData() {
         if (props.userFilter == "*") {
@@ -31,17 +43,28 @@ function MenuAside(props: any) {
         }
     }
 
+    function handlePosibleRoles() {
+        console.log(isAdmin);
+        console.log(props.posibleRoles);
+        if (!isAdmin) {
+            setPossibleRoles(possibleRolesProps.filter((rol:any) => rol != "admin"));
+            setAdmin(true);
+        } else {
+            setPossibleRoles(possibleRolesProps);
+            setAdmin(false);
+        }
+    }
 
     function notificationDing() {
         if (tasks.length > 0) {
             const jsx: any = [];
             tasks.forEach((element: any, index: any) => {
-                jsx.push(<span className="relative flex h-3 w-3">
+                jsx.push(
+                <span key={index} className="relative flex h-3 w-3">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75 right-0 bottom-0"></span>
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                 </span>)
             });
-
             return jsx;
         } else {
             return "";
@@ -70,16 +93,20 @@ function MenuAside(props: any) {
                 </div>
             </div>
             <div className="flex flex-col justify-center items-center w-full gap-6">
-                <SelectRole function={props.setRole} possibleRoles={props.possibleRoles} />
+                {showAdmin && <div className="flex flex-row gap-2 justify-center items-center">
+                    <input type="checkbox" name="admin" onClick={handlePosibleRoles} defaultChecked={false} />
+                    <label htmlFor="admin">Permisos Admin</label>
+                </div>}
+                <SelectRole function={props.setRole} possibleRoles={possibleRoles} />
                 <div className="flex flex-row justify-evenly items-center bg-black/10 dark:bg-white/25 w-full">
-                  <Link to="myprofile">
+                    <Link to="myprofile">
                         <Profile name={props.name} lastName={props.lastName} urlImg={props.urlImg} changeBg={props.changeBg} changeText={props.setTextColors} />
-                        </Link>
+                    </Link>
 
-                        <Link to="setting">  <div className="p-4">
-                            <AiFillSetting />
+                    <Link to="setting">  <div className="p-4">
+                        <AiFillSetting />
 
-                        </div>
+                    </div>
                     </Link>
                 </div>
             </div>
