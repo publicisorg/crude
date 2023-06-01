@@ -53,8 +53,20 @@
     font-size: 14px;
   }
 
-
-
-  .liked{
-    background-color: red;
+  .heart {
+    background-image: url(https://i.ibb.co/8sTbrLt/1-MTZW1-G1m-E7-LSX1-Cnh-TYe-HA.png);
+    cursor: pointer;
+    height: 28px;
+    width: 27px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    scale: 1.8;
+}
+  .heart-animation {
+    animation: heart-beat .8s steps(28) 1 forwards;  
+  }
+  
+  @keyframes heart-beat {
+   from { background-position: left; }
+   to { background-position: right; }
   }

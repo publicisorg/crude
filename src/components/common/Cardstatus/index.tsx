@@ -219,8 +219,9 @@ const MyComponent = () => {
               className={`like-count text-gray-500 flex gap-2 items-center`}
               onClick={() => handleLikeClick(message.id)}
             >
-              <AiOutlineHeart className={`${likedMessageId === message.id ? 'fill-red-600' : ''}`} />
-              {message.like}
+             
+              <span className={`heart ${likedMessageId === message.id ? 'heart-animation' : ''}`} ></span>
+             <span className="-ml-2"> {message.like}</span>
             </p>
           </div>
         </div>
