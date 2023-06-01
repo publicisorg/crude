@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../../../supabase/client'
 import SelectUser from '../selectors/selectUsers'
-export const TaskForm = () => {
+export const TaskForm = (props:any) => {
     const [client, setClient] = useState("")
     const [marca, setMarca] = useState("")
     const [projet, setProject] = useState("")

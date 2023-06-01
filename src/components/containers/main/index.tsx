@@ -17,6 +17,8 @@ import { ProfileUsers } from "../profile";
 import { ProfileUsersPublic } from "../profile/Profile";
 import News from "../news";
 
+const containerStyles = "ml-80 h-screen relative overflow-y-auto";
+
 function Main(props: any) {
   const [timerOn, isTimerOn] = useState(false);
   const [timerAlertMessage, setTimerAlertMessage] = useState(false);
@@ -85,19 +87,19 @@ function Main(props: any) {
         <MenuAside name={name} lastName={lastname} urlImg={urlImg} userId={userId} changeContent={setContent} role={role} setRole={setRole} possibleRoles={possibleRoles} secondaryColor={props.secondaryColor} borderColor={props.borderColor}/>
         <Routes>
           <Route path="/" element={<News name={name} lastName={lastname} urlImg={urlImg}/>} />
-          <Route path="/desktop" element={<ContentContainer name={name} lastName={lastname} urlImg={urlImg} userId={userId} actualContent={actualContent} role={role} />} />
-          <Route path="/Setting" element={<div className="ml-80 h-screen relative overflow-y-auto"><ProfileSettings userId={userId} name={name} lastName={lastname} urlImg={urlImg} changeBg={props.changeBg} changeText={props.changeText} changeBorder={props.changeBorder} changeSecondary={props.changeSecondary} mainBgColors={props.mainBgColors} textColors={props.textColors} borderColor={props.borderColor} secondaryColor={props.secondaryColor}/></div>} />
-          <Route path="/tasks/:id" element={<div className="ml-80 h-screen relative overflow-y-auto"><TaskDetails /></div>} />
-          <Route path="/myprofile" element={<div className="ml-80 h-screen relative overflow-y-auto"><ProfileUsers userId={userId} name={name} lastName={lastname} urlImg={urlImg} rol={role} occupation={occupation} userNick={userNick} active={active} /></div>} />
-          <Route path="/profile/:userNick" element={<div className="ml-80 h-screen relative overflow-y-auto"><ProfileUsersPublic userId={userId} name={name} lastName={lastname} urlImg={urlImg} rol={role} occupation={occupation} userNick={userNick} active={active} /></div>} />
+          <Route path="/desktop" element={<ContentContainer name={name} lastName={lastname} urlImg={urlImg} userId={userId} actualContent={actualContent} role={role} secondaryColor={props.secondaryColor} borderColor={props.borderColor}/>} />
+          <Route path="/Setting" element={<div className={`${containerStyles}`}><ProfileSettings userId={userId} name={name} lastName={lastname} urlImg={urlImg} changeBg={props.changeBg} changeText={props.changeText} changeBorder={props.changeBorder} changeSecondary={props.changeSecondary} mainBgColors={props.mainBgColors} textColors={props.textColors} borderColor={props.borderColor} secondaryColor={props.secondaryColor}/></div>} />
+          <Route path="/tasks/:id" element={<div className={`${containerStyles}`}><TaskDetails secondaryColor={props.secondaryColor} borderColor={props.borderColor}/></div>} />
+          <Route path="/myprofile" element={<div className={`${containerStyles}`}><ProfileUsers userId={userId} name={name} lastName={lastname} urlImg={urlImg} rol={role} occupation={occupation} userNick={userNick} active={active} /></div>} />
+          <Route path="/profile/:userNick" element={<div className={`${containerStyles}`}><ProfileUsersPublic userId={userId} name={name} lastName={lastname} urlImg={urlImg} rol={role} occupation={occupation} userNick={userNick} active={active} /></div>} />
           <Route path="/tasks" element={
-            role == "user" && <div className="ml-80 h-screen relative overflow-y-auto"><TasksTable handleTimer={handleTimer} userFilter={userId} /></div>
-            || role == "supervisor" && <div className="ml-80 h-screen relative overflow-y-auto"><TasksTable handleTimer={handleTimer} userFilter={"*"} /></div>
+            role == "user" && <div className={`${containerStyles}`}><TasksTable handleTimer={handleTimer} userFilter={userId} secondaryColor={props.secondaryColor} borderColor={props.borderColor}/></div>
+            || role == "supervisor" && <div className={`${containerStyles}`}><TasksTable handleTimer={handleTimer} userFilter={"*"} secondaryColor={props.secondaryColor} borderColor={props.borderColor}/></div>
           }></Route>
-          <Route path="/notifications" element={<div className="ml-80 h-screen relative overflow-y-auto"><Notifications handleTimer={handleTimer} userFilter={userId} /></div>} />
-          <Route path="/folders" element={<div className="ml-80 h-screen relative overflow-y-auto"><Folders /></div>} />
-          <Route path="/createtasks" element={role == "supervisor" && <div className="ml-80 h-screen relative overflow-y-auto"><TaskForm /></div>} />
-          <Route path="*" element={<div className="ml-80 h-screen relative overflow-y-auto"><NotFound /></div>} />
+          <Route path="/notifications" element={<div className={`${containerStyles}`}><Notifications handleTimer={handleTimer} userFilter={userId} secondaryColor={props.secondaryColor} borderColor={props.borderColor}/></div>} />
+          <Route path="/folders" element={<div className={`${containerStyles}`}><Folders secondaryColor={props.secondaryColor} borderColor={props.borderColor}/></div>} />
+          <Route path="/createtasks" element={role == "supervisor" && <div className={`${containerStyles}`}><TaskForm secondaryColor={props.secondaryColor} borderColor={props.borderColor}/></div>} />
+          <Route path="*" element={<div className={`${containerStyles}`}><NotFound /></div>} />
         </Routes>
       </main>
     </>

@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SelectRole(props: any) {
 
     const [showSelect, setShowSelect] = useState(false);
+    const navigate = useNavigate();
 
     function handleChange(event: any) {
         props.function(event.target.value);
+        props.setMenuSelected("/");
+        navigate('/');
     }
 
     function buildOptions() {
@@ -21,7 +25,6 @@ function SelectRole(props: any) {
     }
 
     useEffect(() => {
-        console.log(props.possibleRoles);
         var possibleRoles = props.possibleRoles.filter((rol: any) => rol != "admin");
         if (possibleRoles.length > 1 || props.possibleRoles.filter((rol: any) => rol == "admin").length > 0) {
             setShowSelect(true);
