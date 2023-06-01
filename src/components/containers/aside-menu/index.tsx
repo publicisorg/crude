@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import MenuButton from "./complementary/menu-buttons"
-import { AiOutlineHome, AiOutlineContainer, AiOutlineFolder, AiOutlinePieChart, AiOutlineBell, AiFillSetting } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineContainer, AiOutlineFolder, AiOutlinePieChart, AiOutlineBell, AiFillSetting, AiOutlineStar } from "react-icons/ai";
 import SelectRole from "./complementary/select-role";
 import Profile from "../../common/profileUser";
 import { supabase } from "../../../supabase/client";
@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 function MenuAside(props: any) {
     const [tasks, setTasks] = useState([]);
-    const [menuSelected, setMenuSelected] = useState("desktop");
+    const [menuSelected, setMenuSelected] = useState("/");
     const [possibleRoles, setPossibleRoles] = useState(props.possibleRoles);
     const [isAdmin, setAdmin] = useState(true);
     const [showAdmin, setShowAdmin] = useState(false);
@@ -25,7 +25,7 @@ function MenuAside(props: any) {
 
     useEffect(() => {
         if (props.possibleRoles.length > 0) {
-            if (props.possibleRoles.filter((rol:any) => rol == 'admin').length > 0) {
+            if (props.possibleRoles.filter((rol: any) => rol == 'admin').length > 0) {
                 setShowAdmin(true);
             } else {
                 setShowAdmin(false);
@@ -44,10 +44,8 @@ function MenuAside(props: any) {
     }
 
     function handlePosibleRoles() {
-        console.log(isAdmin);
-        console.log(props.posibleRoles);
         if (!isAdmin) {
-            setPossibleRoles(possibleRolesProps.filter((rol:any) => rol != "admin"));
+            setPossibleRoles(possibleRolesProps.filter((rol: any) => rol != "admin"));
             setAdmin(true);
         } else {
             setPossibleRoles(possibleRolesProps);
@@ -60,10 +58,10 @@ function MenuAside(props: any) {
             const jsx: any = [];
             tasks.forEach((element: any, index: any) => {
                 jsx.push(
-                <span key={index} className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75 right-0 bottom-0"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                </span>)
+                    <span key={index} className="relative flex h-3 w-3">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75 right-0 bottom-0"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                    </span>)
             });
             return jsx;
         } else {
@@ -80,6 +78,7 @@ function MenuAside(props: any) {
                     </div>
                 </div>
                 <div className="flex flex-col justify-center items-center w-full gap-1 px-4 ">
+                    <MenuButton function={setMenuSelected} arguments="/" selected={menuSelected} px="px-8"><AiOutlineStar />   Noticias</MenuButton>
                     <MenuButton function={setMenuSelected} arguments="desktop" selected={menuSelected} px="px-8"><AiOutlineHome />   Escritorio</MenuButton>
                     <MenuButton function={setMenuSelected} arguments="notifications" selected={menuSelected} px="px-8">
                         <AiOutlineBell />

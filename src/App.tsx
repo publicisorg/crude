@@ -4,12 +4,6 @@ import Main from './components/containers/main';
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { supabase } from "./supabase/client";
 import { useEffect, useState } from "react";
-import Home from './pages/Home'
-import Login from './pages/Login'
-import SignUp from './pages/SignUp'
-import NotFound from './pages/NotFound'
-import { ProfileSettings } from './components/containers/Setting';
-import { TaskDetails } from './components/containers/tasks/TaskDetails';
 
 function App() {
   const navigate = useNavigate();
@@ -23,8 +17,6 @@ function App() {
         navigate("/login");
       } else {
         setUserId(session.user.id);
-
-        
       }
     });
   }, [navigate]);
@@ -33,27 +25,27 @@ function App() {
   const [textColors, changeText] = useState(defaultTextColors);
 
   useEffect(() => {
-    getBgColorFromDB().then((result: any) => { 
+    getBgColorFromDB().then((result: any) => {
       if (result != undefined) {
         changeBg(result.data[0].bgcolor);
       } else {
         changeBg(defaultMainBgColors);
       }
-     })
-     getFontColorFromDB().then((result: any) => { 
+    })
+    getFontColorFromDB().then((result: any) => {
       if (result != undefined) {
         changeText(result.data[0].fontColor);
       } else {
         changeText(defaultTextColors);
       }
-     })
-     getActiveUserFromDB().then((result: any) => { 
+    })
+    getActiveUserFromDB().then((result: any) => {
       if (result != undefined) {
         changeText(result.data[0].fontColor);
       } else {
         changeText(defaultTextColors);
       }
-     })
+    })
   })
 
   async function getBgColorFromDB() {
@@ -74,8 +66,6 @@ function App() {
         .select("fontColor")
         .eq('uuid', userId)
       return color;
-
-
     } else {
       return defaultTextColors;
     }
@@ -83,32 +73,23 @@ function App() {
 
   async function getActiveUserFromDB() {
     if (userId != "") {
-      
       const activeUser = await supabase
-
-      .from('users')
-      .update({ active: 'isActive'})
-      .eq('uuid', userId)
+        .from('users')
+        .update({ active: 'isActive' })
+        .eq('uuid', userId)
       return activeUser;
-
-
     } else {
       const activeUser = await supabase
-
-      .from('users')
-      .update({ active: 'disabled'})
-      .eq('uuid', userId)
+        .from('users')
+        .update({ active: 'disabled' })
+        .eq('uuid', userId)
       return activeUser;
     }
-  }3
-
-
-
-
+  }
 
   return (
 
-    <main className={`w-full duration-300`} style={{backgroundColor: mainBgColors, color: textColors, fill: textColors}}>
+    <main className={`w-full duration-300`} style={{ backgroundColor: mainBgColors, color: textColors, fill: textColors }}>
 
       <>
         <Main changeBg={changeBg} changeText={changeText} />
