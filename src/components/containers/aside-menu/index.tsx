@@ -74,7 +74,7 @@ function MenuAside(props: any) {
             <div className="flex flex-col justify-evenly">
                 <div className="pb-8 px-6  w-full flex justify-center">
                     <div className="my-9 w-full flex justify-center items-center p-2">
-                        <img className="w-1/2" src="http://localhost:5173/ThePub-Black.png" />
+                        <img className="w-1/2" src="./ThePub-Black.png" />
                     </div>
                 </div>
                 <div className="flex flex-col justify-center items-center w-full gap-1 px-4 ">
