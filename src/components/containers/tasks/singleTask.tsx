@@ -4,33 +4,18 @@ import moment from 'moment';
 import { Link } from "react-router-dom";
 import { Tooltip } from "flowbite-react";
 
+const buttonStyle = "border hover:brightness-150 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center duration-300";
+
 function SingleTask(props: any) {
 
-    const [showDetails, setShowDetails] = useState(false);
-    const [detailsSize, setDetailsSize] = useState("h-0");
-    const [detailsOpacity, setDetailsOpacity] = useState("opacity-0");
     const [user, setUser] = useState("");
-    const [askedFor, setAskedFor] = useState("");
+    const [askedFor, setAsker] = useState("");
     const [timeElapsed, setTimeElapsed] = useState("");
     const [userNick, setUserNick] = useState("");
+    const [askedForNick, setAskerNick] = useState("");
     
     const [picture, setPicture] = useState("");
-
-    function toggleDetails() {
-        if (showDetails) {
-            setDetailsOpacity('opacity-0')
-            setDetailsSize("h-screem");
-            setTimeout(() => {
-                setShowDetails(false);
-            }, 310);
-        } else {
-            setShowDetails(true);
-            setTimeout(() => {
-                setDetailsSize("h-screem");
-                setDetailsOpacity('opacity-100')
-            }, 310);
-        }
-    }
+    const [askerPicture, setAskerPicture] = useState("");
 
     async function getUserById(userUUID: any) {
         const data: any = await supabase.from('users').select('name, lastname, urlImg, userNick').eq("uuid", userUUID);
@@ -40,14 +25,13 @@ function SingleTask(props: any) {
     useEffect(() => {
         getUserById(props.element.user).then((element: any) => {
             setUser(element.data[0].name + " " + element.data[0].lastname);
-        
-        });
-        getUserById(props.element.userId).then((element: any) => {
             setPicture(element.data[0].urlImg);
             setUserNick(element.data[0].userNick);
         });
         getUserById(props.element.userId).then((element: any) => {
-            setAskedFor(element.data[0].name + " " + element.data[0].lastname);
+            setAsker(element.data[0].name + " " + element.data[0].lastname);
+            setAskerPicture(element.data[0].urlImg);
+            setAskerNick(element.data[0].userNick);
         });
 
         const createdAt = moment(props.element.created_at);
@@ -69,16 +53,16 @@ function SingleTask(props: any) {
     }, [])
 
     return (
-        <tr className="border-b" key={props.index} onClick={toggleDetails} style={{borderColor: props.borderColor}}>
+        <tr className="border-b" key={props.index} style={{borderColor: props.borderColor}}>
             <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm">{props.element.name}</div>
                 <div className="text-sm">{timeElapsed}</div>
             </td>
-            <td className="px-6 py-4 whitespace-nowrap">
+            {(props.isSupervisor || props.isAccount) && <td className="px-6 py-4 whitespace-nowrap">
                 <div className="flex items-center">
                     <div className="flex-shrink-0 w-10 h-10">
                     <Link to={'/profile/'+userNick}>
-                        <Tooltip content={askedFor} className="bg-black text-white">
+                        <Tooltip content={user} className="bg-black text-white">
                             <img className="w-10 h-10 rounded-full"
                                 src={picture}
                                 alt="" />
@@ -87,7 +71,21 @@ function SingleTask(props: any) {
 
                     </div>
                 </div>
-            </td>
+            </td>}
+            {!props.isAccount && <td className="px-6 py-4 whitespace-nowrap">
+                <div className="flex items-center">
+                    <div className="flex-shrink-0 w-10 h-10">
+                    <Link to={'/profile/'+askedForNick}>
+                        <Tooltip content={askedFor} className="bg-black text-white">
+                            <img className="w-10 h-10 rounded-full"
+                                src={askerPicture}
+                                alt="" />
+                        </Tooltip>
+                        </Link>
+
+                    </div>
+                </div>
+            </td>}
 
             <td className="px-6 py-4 whitespace-nowrap">
                 <span className="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
@@ -95,7 +93,11 @@ function SingleTask(props: any) {
                 </span>
             </td>
             {!props.desktop && <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                <Link to={'/tasks/' + props.element.id} className="  hover:text-indigo-900">Detalle</Link>
+                <Link to={'/tasks/' + props.element.id}>
+                    <button className={`${buttonStyle}`} style={{borderColor: props.borderColor, backgroundColor: props.secondaryColor}}>
+                        Detalle
+                    </button>
+                    </Link>
             </td>}
 
 

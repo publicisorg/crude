@@ -7,10 +7,10 @@ import { useEffect, useState } from "react";
 
 function App() {
   const navigate = useNavigate();
-  const defaultMainBgColors = "#333333";
+  const defaultMainBgColors = "#212121";
   const defaultTextColors = "#FFFFFF";
-  const defaultSecondaryColors = "#222222";
-  const defaultBorderColors = "#222222";
+  const defaultSecondaryColors = "#2E2E2E";
+  const defaultBorderColors = "#5E5E5E";
   const [userId, setUserId] = useState("");
 
   useEffect(() => {

@@ -32,10 +32,10 @@ function Desktop(props: any) {
                 </div>
                 <div className="flex flex-row justify-center items-center w-full h-full gap-8">
                     <DataTasks title={"Tus tareas"} containerStyle={containerStyle} pStyle={pStyle} borderColor={props.borderColor}>
-                        <TasksTable userFilter={props.user} setInProcess={setInProcess} setNotStarted={setNotStarted} setDone={setDone} desktop={true} borderColor={props.borderColor} secondaryColor={props.secondaryColor}/>
+                        <TasksTable userFilter={props.user} setInProcess={setInProcess} setNotStarted={setNotStarted} setDone={setDone} desktop={true} isAccount={props.isAccount == "account" ? true : false} borderColor={props.borderColor} secondaryColor={props.secondaryColor}/>
                     </DataTasks>
                     <DataTasks title="Tareas sin asignar" containerStyle={containerStyle} pStyle={pStyle} borderColor={props.borderColor}>
-                        <TasksTable userFilter={""} desktop={true} borderColor={props.borderColor} secondaryColor={props.secondaryColor}/>
+                        <TasksTable userFilter={""} desktop={true} isSupervisor={props.role == "supervisor" ? true : false} isAccount={props.role == "account" ? true : false} borderColor={props.borderColor} secondaryColor={props.secondaryColor}/>
                     </DataTasks>
                 </div>
             </div>

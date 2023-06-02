@@ -51,13 +51,15 @@ function TasksTable(props: any) {
         if (tasks.length > 0) {
             const jsx: any = [];
             tasks.forEach((element: any, index: any) => {
-                jsx.push(<SingleTask index={index} element={element} desktop={props.desktop} borderColor={props.borderColor} />)
+                jsx.push(<SingleTask isSupervisor={props.role == "supervisor" ? true : false} isAccount={props.role == "account" ? true : false} index={index} element={element} desktop={props.desktop} borderColor={props.borderColor} secondaryColor={props.secondaryColor} />)
             });
             return jsx;
         } else {
             return "";
         }
     }
+
+    console.log(props.isSupervisor);
 
     return (
         <div className={`mx-auto ${props.desktop ? "" : "p-8"} flex flex-col gap-4`}>
@@ -69,12 +71,16 @@ function TasksTable(props: any) {
                             <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">
                                 Titulo
                             </th>
-                            <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">
+                            {(props.role == "supervisor" || props.role == "account") && <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">
+                                Asignado a
+                            </th>}
+                            {(props.role != "account") && <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">
                                 Autor
-                            </th>
+                            </th>}
                             <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">
                                 Estado
                             </th>
+                            
                             {!props.desktop && <th scope="col" className="relative px-6 py-3">
                                 <span className="sr-only">Edit</span>
                             </th>}
