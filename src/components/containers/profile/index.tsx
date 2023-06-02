@@ -69,7 +69,7 @@ export const ProfileUsers = (props: any) => {
                     </button>
 
                 </div>
-                <CardStatus userId={props.userId} name={props.name} userNick={props.userNick} lastName={props.lastname} urlImg={props.urlImg}  urlImg={props.urlImg} />
+                <CardStatus userId={props.userId} name={props.name} userNick={props.userNick} lastName={props.lastname} urlImg={props.urlImg}  />
                 
                 </div>
         </main>
