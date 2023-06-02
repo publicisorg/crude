@@ -25,7 +25,7 @@ export const DataTasks = (props: any) => {
     return (
         <div className={`${props.containerStyle} w-full p-4 rounded flex flex-col h-full border shadow-lg`} style={{ borderColor: props.borderColor }}>
             <p className={`${props.pStyle}`}>{props.title}</p>
-            <div className="w-full h-[596px] mt-4 rounded border relative" style={{ borderColor: props.borderColor }}>
+            <div className="w-full h-full mt-4 rounded border relative" style={{ borderColor: props.borderColor }}>
                 <div className="overflow-auto h-full">
                     {props.children}
                 </div>

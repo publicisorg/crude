@@ -74,7 +74,7 @@ function TasksTable(props: any) {
                             {(props.role == "supervisor" || props.role == "account") && <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">
                                 Asignado a
                             </th>}
-                            {(props.role != "account") && <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">
+                            {(props.role != "account" && !(props.role == "supervisor" && props.desktop == true)) && <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">
                                 Autor
                             </th>}
                             <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">

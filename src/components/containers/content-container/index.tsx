@@ -23,7 +23,7 @@ function ContentContainer(props: any) {
     console.log(props.borderColor);
 
     return (
-        <section className="ml-80 h-screen relative overflow-hidden">
+        <section className="ml-80 h-screen relative overflow-y-auto">
             {showComponent == "desktop" && (role == "user" || role == "supervisor") && <Desktop userId={props.userId} role={role} user={userFilter} borderColor={props.borderColor} secondaryColor={props.secondaryColor}/>}
             {showComponent == "desktop" && role == "director" && <DesktopDirector userId={props.userId} user="*"/>}            
         </section>

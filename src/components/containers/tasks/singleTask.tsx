@@ -13,7 +13,7 @@ function SingleTask(props: any) {
     const [timeElapsed, setTimeElapsed] = useState("");
     const [userNick, setUserNick] = useState("");
     const [askedForNick, setAskerNick] = useState("");
-    
+
     const [picture, setPicture] = useState("");
     const [askerPicture, setAskerPicture] = useState("");
 
@@ -53,34 +53,43 @@ function SingleTask(props: any) {
     }, [])
 
     return (
-        <tr className="border-b" key={props.index} style={{borderColor: props.borderColor}}>
+        <tr className="border-b" key={props.index} style={{ borderColor: props.borderColor }}>
             <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm">{props.element.name}</div>
                 <div className="text-sm">{timeElapsed}</div>
             </td>
-            {(props.isSupervisor || props.isAccount) && <td className="px-6 py-4 whitespace-nowrap">
-                <div className="flex items-center">
+            {(props.isSupervisor || props.isAccount) && props.element.user != undefined && <td className="px-6 py-4 whitespace-nowrap">
+                <div className="flex justify-center items-center">
                     <div className="flex-shrink-0 w-10 h-10">
-                    <Link to={'/profile/'+userNick}>
-                        <Tooltip content={user} className="bg-black text-white">
-                            <img className="w-10 h-10 rounded-full"
-                                src={picture}
-                                alt="" />
-                        </Tooltip>
+                        <Link to={'/profile/' + userNick}>
+                            <Tooltip content={user} className="bg-black text-white">
+                                <img className="w-10 h-10 rounded-full border"
+                                    style={{ borderColor: props.borderColor }}
+                                    src={picture}
+                                    alt="" />
+                            </Tooltip>
                         </Link>
 
                     </div>
                 </div>
             </td>}
-            {!props.isAccount && <td className="px-6 py-4 whitespace-nowrap">
+            {(props.isSupervisor || props.isAccount) && props.element.user == undefined && <td className="px-6 py-4 whitespace-nowrap">
+                <div className="flex justify-center items-center">
+                    <span className="inline-flex px-2 text-xs font-semibold leading-5 text-red-200 bg-red-600 rounded-full">
+                        SIN ASIGNAR
+                    </span>
+                </div>
+            </td>}
+            {!props.isAccount && !(props.desktop && props.isSupervisor) && <td className="px-6 py-4 whitespace-nowrap">
                 <div className="flex items-center">
                     <div className="flex-shrink-0 w-10 h-10">
-                    <Link to={'/profile/'+askedForNick}>
-                        <Tooltip content={askedFor} className="bg-black text-white">
-                            <img className="w-10 h-10 rounded-full"
-                                src={askerPicture}
-                                alt="" />
-                        </Tooltip>
+                        <Link to={'/profile/' + askedForNick}>
+                            <Tooltip content={askedFor} className="bg-black text-white">
+                                <img className="w-10 h-10 rounded-full border"
+                                    style={{ borderColor: props.borderColor }}
+                                    src={askerPicture}
+                                    alt="" />
+                            </Tooltip>
                         </Link>
 
                     </div>
@@ -94,10 +103,10 @@ function SingleTask(props: any) {
             </td>
             {!props.desktop && <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                 <Link to={'/tasks/' + props.element.id}>
-                    <button className={`${buttonStyle}`} style={{borderColor: props.borderColor, backgroundColor: props.secondaryColor}}>
+                    <button className={`${buttonStyle}`} style={{ borderColor: props.borderColor, backgroundColor: props.secondaryColor }}>
                         Detalle
                     </button>
-                    </Link>
+                </Link>
             </td>}
 
 
