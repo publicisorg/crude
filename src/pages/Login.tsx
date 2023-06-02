@@ -47,7 +47,7 @@ console.error(error)}
             value={email}
             name="email"
             onChange={(e) => setEmail(e.target.value)}
-            className="border px-2 py-1 m-2 ! w-1/2 rounded"
+            className="border px-2 py-1 m-2 ! w-1/2 rounded text-black"
             placeholder="Mail"
             required
           />
