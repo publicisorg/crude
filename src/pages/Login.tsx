@@ -34,36 +34,45 @@ console.error(error)}
 
   return (
 
-    <div className="w-full h-screen flex flex-col justify-center items-center gap-8 bg-black  ">
+    <div className="w-full h-screen gap-8 flex flex-col justify-center items-center  bg-gray/600  ">
+      <div className="bg-white/10 rounded p-8 border-white/20 border text-center w-1/3 gap-8 flex flex-col justify-center items-center ">
     <img src="logo.svg" className="w-48"/>
-    <h1 className="text-2xl">Bienvenido a la herramienta interna de Publicis Groupe Argentina</h1>
-    <form onSubmit={handleSubmit} className="flex justify-center items-center">
-          <label htmlFor="email">Ingresar Mail:</label>
+    <h1 className="text-2xl">Iniciar Sesión </h1>
+    <form onSubmit={handleSubmit} className="flex text-left items-center  flex-col gap-2 w-full">
+      <div className="flex flex-col justify-center items-center w-full">
+        <div className="flex flex-col  w-full justify-center items-center ">
+          
+          <label htmlFor="email"  className="w-1/2">Ingresar Mail:</label>
           <input
             type="email"
             value={email}
             name="email"
             onChange={(e) => setEmail(e.target.value)}
-            className="border px-2 py-1 m-2 ! "
-            placeholder="email"
+            className="border px-2 py-1 m-2 ! w-1/2 rounded"
+            placeholder="Mail"
             required
           />
-           <label htmlFor="email">Password:</label>
+          </div>
+          <div className="text-left flex flex-col w-full justify-center items-center mt-4 ">
+           <label htmlFor="email" className="w-1/2">Password:</label>
           <input
           
-            type="text"
+            type="password"
             value={password}
             name="email"
             onChange={(e) => setPassword(e.target.value)}
-            className="border px-2 py-1 m-2 ! "
+            className="border px-2 py-1 m-2 !  w-1/2 rounded text-black"
             placeholder="Contraseña"
             required
           />
-          <div className="ms-auto">
-            <button className="bg-gray-400 py-1 px-4  "> ENTRAR
+          </div>
+          <div className="m-auto flex justify-center items-center">
+            <button className="border border-white/10 hover:brightness-150 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center duration-300 mt-10 mb-4 bg-gray-600"> ENTRAR
             </button>
           </div>
+          </div>
         </form>
+        </div>
   </div>
   );
 }

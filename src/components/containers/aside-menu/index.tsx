@@ -93,7 +93,7 @@ function MenuAside(props: any) {
             </div>
             <div className="flex flex-col justify-center items-center w-full gap-6">
                 {showAdmin && <div className="flex flex-row gap-2 justify-center items-center">
-                    <input type="checkbox" name="admin" onClick={handlePosibleRoles} defaultChecked={false} />
+                    <input type="checkbox" id="admin" name="admin" onClick={handlePosibleRoles} defaultChecked={false} />
                     <label htmlFor="admin">Permisos Admin</label>
                 </div>}
                 <SelectRole function={props.setRole} possibleRoles={possibleRoles} setMenuSelected={setMenuSelected} />

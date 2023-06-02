@@ -30,7 +30,7 @@ function MenuButton(props: any) {
 
     return (
         <Link to={props.arguments} onClick={handleClick} className="w-full">
-            <div style={{ backgroundColor: menuColor, borderColor: borderColor }} className={`${selected ? "font-bold opacity-100" : "opacity-50"} ${props.px} hover:brightness-125 rounded-xl h-14 my-1 w-full duration-300 py-1 border text-left flex gap-2 justify-start items-center`} >
+            <div style={{ backgroundColor: menuColor, borderColor: borderColor }} className={`${selected ? "font-bold opacity-100" : "opacity-50"} ${props.px} hover:brightness-125 rounded-lg h-14 my-1 w-full duration-300 py-1 border text-left flex gap-2 justify-start items-center`} >
                 {props.children}
             </div>
         </Link>
