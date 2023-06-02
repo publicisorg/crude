@@ -43,7 +43,7 @@ function Desktop(props: any) {
     )
 }
 
-export function DesktopDirector(props: any) {
+export function DesktopDirector(_props: any) {
 
     useEffect(() => {
         document.title = "Escritorio";

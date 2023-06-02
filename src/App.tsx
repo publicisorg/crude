@@ -1,7 +1,7 @@
 import './App.css'
 import Main from './components/containers/main';
 
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "./supabase/client";
 import { useEffect, useState } from "react";
 
@@ -14,7 +14,7 @@ function App() {
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
+    supabase.auth.onAuthStateChange((_event, session) => {
       if (!session) {
         navigate("/login");
       } else {
@@ -58,7 +58,7 @@ function App() {
     }
   }
 
-  async function getActiveUserFromDB() {
+  /*async function getActiveUserFromDB() {
     if (userId != "") {
       const activeUser = await supabase
         .from('users')
@@ -72,7 +72,7 @@ function App() {
         .eq('uuid', userId)
       return activeUser;
     }
-  }
+  }*/
 
   return (
 

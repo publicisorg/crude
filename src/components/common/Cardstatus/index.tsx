@@ -1,7 +1,8 @@
+// @ts-nocheck
+
 import { useEffect, useState } from "react";
 import { supabase } from "../../../supabase/client";
 import moment from 'moment';
-import { AiOutlineHeart } from "react-icons/ai";
 
 export function CardStatus(props: any) {
   const [messages, setMessages] = useState([]);
@@ -26,7 +27,7 @@ export function CardStatus(props: any) {
 
   useEffect(() => {
     if (messages.length > 0) {
-      const message = messages[0];
+      const message:any = messages[0];
       const createdAt = moment(message.created_at);
       const now = moment();
       const duration = moment.duration(now.diff(createdAt));

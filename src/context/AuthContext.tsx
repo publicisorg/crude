@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Session } from '@supabase/supabase-js'
 import {
   ReactNode,

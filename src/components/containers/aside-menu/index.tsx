@@ -56,7 +56,7 @@ function MenuAside(props: any) {
     function notificationDing() {
         if (tasks.length > 0) {
             const jsx: any = [];
-            tasks.forEach((element: any, index: any) => {
+            tasks.forEach((_element: any, index: any) => {
                 jsx.push(
                     <span key={index} className="relative flex h-3 w-3">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75 right-0 bottom-0"></span>

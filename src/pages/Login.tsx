@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import React from 'react'
 import { supabase } from "../supabase/client";
 import { useNavigate } from "react-router-dom";
 
@@ -21,7 +20,7 @@ console.error(error)}
   const navigate = useNavigate();
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
+    supabase.auth.onAuthStateChange((_event, session) => {
       if (session) {
         navigate("/");
       }

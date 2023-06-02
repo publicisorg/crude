@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../../../supabase/client'
-import SelectUser from '../selectors/selectUsers'
+import SelectUser, { GenericSelect } from '../selectors/selectUsers'
 export const TaskForm = (props:any) => {
     const [client, setClient] = useState("")
     const [marca, setMarca] = useState("")
@@ -8,9 +8,19 @@ export const TaskForm = (props:any) => {
     const [usuario, setUser] = useState("")
     const [date, setDate] = useState("")
     const [comment, setComment] = useState("")
+    const [state, setState] = useState("")
     const [authUser, setAuthUser] = useState("")
     const [showSuccess, setShowSuccess] = useState(false)
     const [successOpacity, setSuccessOpacity] = useState("opacity-0")
+
+    const taskStates = [
+        {value: "SIN ASIGNAR", displayValue: "SIN ASIGNAR"},
+        {value: "ASIGNADO", displayValue: "ASIGNADO"},
+        {value: "AJUSTES", displayValue: "AJUSTES"},
+        {value: "ENVIADO", displayValue: "ENVIADO"},
+        {value: "EN TESTEO", displayValue: "EN TESTEO"},
+        {value: "APROBADO", displayValue: "APROBADO"},
+        {value: "FINALIZADO", displayValue: "FINALIZADO"}];
 
     useEffect(() => {
         document.title = "Nueva Tarea";
@@ -18,14 +28,11 @@ export const TaskForm = (props:any) => {
 
     const handleSubmit = async (e:any) => {
         e.preventDefault()
-
         try {
             const user:any = supabase.auth.getUser()
             user.then((userId:any) => { setAuthUser(userId.data.user.id) })
         }
-
         catch (error) {
-
             console.error(error);
         }
     }
@@ -37,6 +44,7 @@ export const TaskForm = (props:any) => {
             marca: marca,
             user: usuario,
             date: date,
+            state: state,
             comment: comment,
             userId: authUser
         })
@@ -64,12 +72,12 @@ export const TaskForm = (props:any) => {
     }, [authUser])
 
     return (
-        <div className='container mx-auto px-4 py-8 flex flex-col gap-4'>
+        <div className='container mx-auto px-4 py-8 flex flex-col gap-4' style={{borderColor: props.borderColor}}>
             <h1 className="text-3xl font-bold mb-4">Nueva Tarea</h1>
             <form className="flex flex-col gap-6 w-2/3 p-8 bg-white/10 rounded-lg" onSubmit={handleSubmit}>
                <div className='flex gap-3'> 
                 <div className='w-1/2'>
-                    <div className="mb-2 block"><label className="text-sm font-medium    " data-testid="flowbite-label" >Cliente</label></div>
+                    <div className="mb-2 block"><label className="text-sm font-medium" data-testid="flowbite-label">Cliente</label></div>
                     <div className="flex">
                         <div className="relative w-full">
                             <input required
@@ -77,7 +85,6 @@ export const TaskForm = (props:any) => {
                                 placeholder="L'Oreal"
                                 type="text"
                                 onChange={e => setClient(e.target.value)}
-
                             />
                         </div>
                     </div>
@@ -96,13 +103,11 @@ export const TaskForm = (props:any) => {
                 </div>
                 </div>
                 <div>
-                    <div className="mb-2 block"><label className="text-sm font-medium    " data-testid="flowbite-label">Proyecto</label></div>
+                    <div className="mb-2 block"><label className="text-sm font-medium" data-testid="flowbite-label">Proyecto</label></div>
                     <div className="flex">
                         <div className="relative w-full">
                             <input required
                                 className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50/10 border-gray-300   focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-50/10 dark:  dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
-
-
                                 type="text"
                                 onChange={e => setProject(e.target.value)}
                             />
@@ -110,8 +115,9 @@ export const TaskForm = (props:any) => {
                     </div>
                 </div>
                 <SelectUser setUser={setUser}/>
+                <GenericSelect label="Estado:" data={taskStates} onChange={setState}/>
                 <div>
-                    <div className="mb-2 block"><label className="text-sm font-medium    " data-testid="flowbite-label">Fecha de entrega: </label></div>
+                    <div className="mb-2 block"><label className="text-sm font-medium" data-testid="flowbite-label">Fecha de entrega: </label></div>
                     <div className="flex">
                         <div className="relative w-full">
                             <input required

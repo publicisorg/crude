@@ -3,7 +3,7 @@ import axios from 'axios'
 import { ItemFolder, ItemFrame, ItemImage, ItemNotSupported } from "../../common/items";
 import extensions from '../../common/items/extensions.json'
 
-function Folders(props:any) {
+function Folders(_props:any) {
     const [contenido, setContenido] = useState([]);
     const [contenidoGet, setContenidoGet] = useState([]);
     const [dataReady, isDataReady] = useState(false);

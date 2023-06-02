@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react'
 export const DropdownSelect = (props: any) => {
 
   useEffect(() => {
-    props.collectData(props.value);
+    props.onChange(props.value);
   }, [])
 
   return (
-    <select defaultValue={props.value} className="border rounded-md" onChange={(e) => props.collectData(e.target.value)}>
+    <select defaultValue={props.value} className={props.className} onChange={(e) => props.onChange(e.target.value)}>
       {props.data.map((data: any, index: any) => {
         return (<option key={index} value={data.nombre}>{data.nombre}</option>)
       })}

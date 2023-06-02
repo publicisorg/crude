@@ -8,7 +8,7 @@ const buttonStyle = "border hover:brightness-125 focus:ring-4 focus:ring-primary
 export const Notification = (props: any) => {
   const [user, setUser] = useState("");
   const [userNick, setUserNick] = useState("");
-  const [askedFor, setAskedFor] = useState("");
+  //const [askedFor, setAskedFor] = useState("");
   const [picture, setPicture] = useState("");
   const [timeElapsed, setTimeElapsed] = useState("");
 
@@ -25,9 +25,9 @@ export const Notification = (props: any) => {
     getUserById(props.element.userId).then((element: any) => {
       setPicture(element.data[0].urlImg);
     });
-    getUserById(props.element.user).then((element: any) => {
+    /*getUserById(props.element.user).then((element: any) => {
       setAskedFor(element.data[0].name);
-    });
+    });*/
 
 
     const createdAt = moment(props.element.created_at);

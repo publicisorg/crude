@@ -4,13 +4,13 @@ import { CardStatus } from '../../common/Cardstatus';
 import { useParams } from 'react-router-dom';
 
 
-export const ProfileUsersPublic = (props: any) => {
+export const ProfileUsersPublic = (_props: any) => {
     const [urlImg, setUrlImg] = useState("");
     const [name, setName] = useState("");
     const [lastname, setLastName] = useState("");
     const [occupation, setOccupation] = useState("");
     const [active, setActive] = useState("");
-    const [status, setStatus] = useState("");
+    //const [status, setStatus] = useState("");
     const [userId, setUserid] = useState("");
 
 
@@ -32,7 +32,7 @@ export const ProfileUsersPublic = (props: any) => {
     setLastName(element.data[0].lastName);
     setOccupation(element.data[0].occupation);
     setActive(element.data[0].active);
-    setStatus(element.data[0].status);
+    //setStatus(element.data[0].status);
     setUserid(element.data[0].uuid);
   })
        
@@ -42,7 +42,7 @@ export const ProfileUsersPublic = (props: any) => {
         document.title = "Mi Perfil";
     }, [])
 
-    const handleStatusChange = (e: any) => {
+    /*const handleStatusChange = (e: any) => {
         setStatus(e.target.value);
     };
 
@@ -58,7 +58,7 @@ export const ProfileUsersPublic = (props: any) => {
         } catch (error) {
             console.error('Error al actualizar el estado:', error);
         }
-    };
+    };*/
 
   
     return (

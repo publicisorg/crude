@@ -3,10 +3,9 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../../supabase/client";
 import moment from 'moment';
 import { useParams } from 'react-router-dom';
-import MenuAside from "../aside-menu";
-import { Button, Timeline } from 'flowbite-react';
+import { Timeline } from 'flowbite-react';
 import { AiOutlineCalendar } from "react-icons/ai";
-export const TaskDetails = (props: any) => {
+export const TaskDetails = (_props: any) => {
 
   const [title, setTitle] = useState("");
   const [status, setStatus] = useState("");
