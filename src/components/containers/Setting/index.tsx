@@ -15,6 +15,7 @@ export const ProfileSettings = (props: any) => {
     const inputColorStyle = "border hover:brightness-150 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-1 py-[0.5] text-center duration-300";
 
     const [imageUrl, setImageUrl] = useState('');
+    const [imageUrlPortada, setImageUrlPortada] = useState('');
 
     useEffect(() => {
         document.title = "Configuracion";
@@ -42,6 +43,10 @@ export const ProfileSettings = (props: any) => {
         setImageUrl(e.target.value);
     };
 
+    const handleImageUrlPortadaChange = (e: any) => {
+        setImageUrlPortada(e.target.value);
+    };
+
     const handleFormSubmit = async (e: any) => {
         e.preventDefault();
 
@@ -56,6 +61,40 @@ export const ProfileSettings = (props: any) => {
             console.error('Error al actualizar la imagen de perfil:', error);
         }
     };
+
+
+    const handleFormSubmitUpdateNick = async (e: any) => {
+        e.preventDefault();
+
+        try {
+            await supabase
+                .from('users')
+                .update({ urlImg: imageUrl })
+                .eq('uuid', props.userId);
+
+            console.log('Imagen de perfil actualizada correctamente');
+        } catch (error) {
+            console.error('Error al actualizar la imagen de perfil:', error);
+        }
+    };
+
+    const handleFormSubmitUpdatePortada = async (e: any) => {
+        e.preventDefault();
+
+        try {
+            await supabase
+                .from('users')
+                .update({ urlImgPortada: imageUrlPortada })
+                .eq('uuid', props.userId);
+
+            console.log('Imagen de portada actualizada correctamente');
+        } catch (error) {
+            console.error('Error al actualizar la imagen de portada:', error);
+        }
+    };
+
+
+    
 
     async function handleChangeBg(e: any) {
         e.preventDefault();
@@ -179,6 +218,42 @@ export const ProfileSettings = (props: any) => {
                             </div>
                         </div>
                     </div>
+
+                    <div className="p-4 mb-4 bg-white/10 border rounded-lg 2xl:col-span-2 sm:p-6 shadow-lg" style={{ borderColor: borderColor }}>
+                        <div className="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">
+                            <img className="mb-4 rounded-lg w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0 border" src={props.urlImgPortada} alt={props.name} style={{ borderColor: borderColor, backgroundColor: secondaryColor }}/>
+                            <div className="w-full">
+                                <h3 className="mb-1 text-xl font-bold">Imagen de portada</h3>
+                                <div className="mb-4 text-sm">
+                                    Ingrese la url de la imagen
+                                </div>
+                                <form>
+                                    <div className="flex flex-col xl:flex-row justify-center items-start gap-4 w-full">
+                                        <input
+                                            type="text"
+                                            name="url-img"
+                                            id="url-img"
+                                            className={`${inputStyle}`}
+                                            placeholder="URL de la Imagen"
+                                            required
+                                            value={imageUrlPortada}
+                                            onChange={handleImageUrlPortadaChange}
+                                            style={{ borderColor: borderColor, backgroundColor: secondaryColor }}
+                                        />
+                                        <button
+                                            type="button"
+                                            className={`${buttonStyle}`}
+                                            onClick={handleFormSubmitUpdatePortada}
+                                            style={{ borderColor: borderColor, backgroundColor: secondaryColor }}
+                                        >
+                                            Actualizar
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className="p-4 mb-4 bg-white/10 border rounded-lg shadow-lg 2xl:col-span-2 sm:p-6" style={{ borderColor: borderColor }}>
                         <div className="flow-root">
                             <h3 className="text-xl font-semibold">Personaliza tu perfil</h3>

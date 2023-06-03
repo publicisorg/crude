@@ -29,6 +29,7 @@ function Main(props: any) {
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
   const [urlImg, setUrlImg] = useState("");
+  const [urlImgPortada, setUrlImgPortada] = useState("");
   const [active, setUserActive] = useState("");
   const [idLikeStatus, setUserIdLike] = useState("");
   const [occupation, setOccupation] = useState("");
@@ -48,6 +49,7 @@ function Main(props: any) {
       setName(user.data[0].name);
       setLastname(user.data[0].lastname);
       setUrlImg(user.data[0].urlImg);
+      setUrlImgPortada(user.data[0].urlImgPortada);
       setOccupation(user.data[0].occupation);
       setUserNick(user.data[0].userNick);
       setUserActive(user.data[0].active);
@@ -87,15 +89,15 @@ function Main(props: any) {
       </Routes>
       <main className={`w-full`}>
         {timerOn && <Timer timerSettingsStyle="floating" timerTaskId={timerTaskId} clearTimer={clearTimer} timerAlertMessage={timerAlertMessage} setTimerAlertMessage={setTimerAlertMessage} />}
-        <MenuAside name={name} lastName={lastname} urlImg={urlImg} userId={userId} changeContent={setContent} role={role} setRole={setRole} possibleRoles={possibleRoles} secondaryColor={props.secondaryColor} borderColor={props.borderColor}/>
+        <MenuAside name={props.name} lastName={lastname} urlImg={props.urlImg} userId={props.userId} changeContent={setContent} role={role} setRole={setRole} possibleRoles={possibleRoles} secondaryColor={props.secondaryColor} borderColor={props.borderColor}/>
         <Routes>
         <Route path="*" element={<div className={`${containerStyles}`}><NotFound /></div>} />
           <Route path="/" element={<News name={name} lastName={lastname} urlImg={urlImg}/>} />
           <Route path="/desktop" element={<ContentContainer role={role} name={name} lastName={lastname} urlImg={urlImg} userId={userId} actualContent={actualContent} secondaryColor={props.secondaryColor} borderColor={props.borderColor}/>} />
-          <Route path="/Setting" element={<div className={`${containerStyles}`}><ProfileSettings userId={userId} name={name} lastName={lastname} urlImg={urlImg} changeBg={props.changeBg} changeText={props.changeText} changeBorder={props.changeBorder} changeSecondary={props.changeSecondary} mainBgColors={props.mainBgColors} textColors={props.textColors} borderColor={props.borderColor} secondaryColor={props.secondaryColor}/></div>} />
+          <Route path="/Setting" element={<div className={`${containerStyles}`}><ProfileSettings userId={userId} name={name} lastName={lastname} urlImg={urlImg} urlImgPortada={urlImgPortada} changeBg={props.changeBg} changeText={props.changeText} changeBorder={props.changeBorder} changeSecondary={props.changeSecondary} mainBgColors={props.mainBgColors} textColors={props.textColors} borderColor={props.borderColor} secondaryColor={props.secondaryColor}/></div>} />
           <Route path="/tasks/:id" element={<div className={`${containerStyles}`}><TaskDetails secondaryColor={props.secondaryColor} borderColor={props.borderColor}/></div>} />
           <Route path="/myprofile" element={<div className={`${containerStyles}`}><ProfileUsers userId={userId} name={name} lastName={lastname} urlImg={urlImg} rol={role} occupation={occupation} userNick={userNick} active={active} idLikeStatus={idLikeStatus}/></div>} />
-          <Route path="/profile/:userNick" element={<div className={`${containerStyles}`}><ProfileUsersPublic userId={userId} name={name} lastName={lastname} urlImg={urlImg} rol={role} occupation={occupation} userNick={userNick} active={active} idLikeStatus={idLikeStatus}/></div>} />
+          <Route path="/profile/:userNick" element={<div className={`${containerStyles}`}><ProfileUsersPublic userId={userId} name={name} lastName={lastname}  urlImgPortada={urlImgPortada}  urlImg={urlImg} rol={role} occupation={occupation} userNick={userNick} active={active} idLikeStatus={idLikeStatus}/></div>} />
           <Route path="/tasks" element={
             role == "user" && <div className={`${containerStyles}`}><TasksTable role={role} handleTimer={handleTimer} userFilter={userId} secondaryColor={props.secondaryColor} borderColor={props.borderColor}/></div>
             || role == "supervisor" && <div className={`${containerStyles}`}><TasksTable role={role} handleTimer={handleTimer} userFilter={"*"} secondaryColor={props.secondaryColor} borderColor={props.borderColor}/></div>

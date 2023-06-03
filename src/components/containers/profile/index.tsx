@@ -35,7 +35,7 @@ export const ProfileUsers = (props: any) => {
                 <div className='card'>
                     <div className="card-body">
                        
-                    <div className="relative h-48 bg-cover bg-center" style={{ backgroundImage: "url('https://fotos.perfil.com/2022/07/14/trim/1280/720/ciudad-de-buenos-aires-1386884.jpg')" }}></div>
+                    <div className="relative h-48 bg-cover bg-center" style={{ backgroundImage: "url("+props.urlImgPortada+")" }}></div>
                     
                     <div className="flex justify-center mt-[-4rem] relative">
                     <div className='absolute top-3 left-3 z-30'>

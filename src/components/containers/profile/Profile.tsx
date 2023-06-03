@@ -4,7 +4,7 @@ import { CardStatus } from '../../common/Cardstatus';
 import { useParams } from 'react-router-dom';
 
 
-export const ProfileUsersPublic = (_props: any) => {
+export const ProfileUsersPublic = (props: any) => {
     const [urlImg, setUrlImg] = useState("");
     const [name, setName] = useState("");
     const [lastname, setLastName] = useState("");
@@ -65,7 +65,7 @@ export const ProfileUsersPublic = (_props: any) => {
         <main>
 
             <div className="container mx-auto p-6 ">
-                <div className="relative h-48 bg-cover bg-center" style={{ backgroundImage: "url('https://fotos.perfil.com/2022/07/14/trim/1280/720/ciudad-de-buenos-aires-1386884.jpg')" }}></div>
+                <div className="relative h-48 bg-cover bg-center" style={{ backgroundImage: "url("+props.urlImgPortada+")" }}></div>
                 <div className="flex justify-center mt-[-4rem] relative">
                     <div className="w-32 h-32 border-4 border-white rounded-full overflow-hidden z-10">
                         <img className="w-full h-full object-cover" src={urlImg} alt={name} />

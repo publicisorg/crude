@@ -28,6 +28,16 @@ function App() {
   const [borderColor, changeBorder] = useState(defaultBorderColors);
   const [secondaryColor, changeSecondary] = useState(defaultSecondaryColors);
 
+  const [name, setName] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [urlImg, setUrlImg] = useState("");
+  const [urlImgPortada, setUrlImgPortada] = useState("");
+  const [active, setUserActive] = useState("");
+  const [idLikeStatus, setUserIdLike] = useState("");
+  const [occupation, setOccupation] = useState("");
+  const [userNick, setUserNick] = useState("");
+  const [possibleRoles, setPossibleRoles] = useState([]);
+
   useEffect(() => {
     getColorsFromDB().then((result: any) => {
       if (!result) {
@@ -38,6 +48,17 @@ function App() {
         changeBorder(defaultBorderColors);
       } else {
         console.log("DB");
+        setName(result.data[0].name);
+        setLastname(result.data[0].lastname);
+        setUrlImg(result.data[0].urlImg);
+        setUrlImgPortada(result.data[0].urlImgPortada);
+        setOccupation(result.data[0].occupation);
+        setUserNick(result.data[0].userNick);
+        setUserActive(result.data[0].active);
+        setUserIdLike(result.data[0].idLikeStatus);
+        setPossibleRoles(result.data[0].rol[0].rol);
+        
+
         changeBg(result.data[0].bgcolor);
         changeText(result.data[0].fontColor);
         changeSecondary(result.data[0].secondaryColor);
@@ -50,7 +71,7 @@ function App() {
     if (userId != "") {
       const color = await supabase
         .from('users')
-        .select("bgcolor, secondaryColor, fontColor, borderColor")
+        .select("*")
         .eq('uuid', userId)
       return color;
     } else {
@@ -79,6 +100,13 @@ function App() {
     <main className={`w-full duration-300`} style={{ backgroundColor: mainBgColors, color: textColors, fill: textColors, borderColor: borderColor }}>
       <>
         <Main
+
+name={name} 
+lastName={lastname}
+ urlImg={urlImg}
+  userId={userId} 
+  possibleRoles={possibleRoles}
+
           changeBg={changeBg}
           changeText={changeText}
           changeBorder={changeBorder}
