@@ -106,7 +106,11 @@ lastName={lastname}
  urlImg={urlImg}
   userId={userId} 
   possibleRoles={possibleRoles}
-
+  urlImgPortada={urlImgPortada}
+  active={active}
+  idLikeStatus={idLikeStatus}
+  occupation={occupation}
+  userNick={userNick}
           changeBg={changeBg}
           changeText={changeText}
           changeBorder={changeBorder}
