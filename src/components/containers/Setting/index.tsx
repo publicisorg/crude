@@ -63,20 +63,20 @@ export const ProfileSettings = (props: any) => {
     };
 
 
-    const handleFormSubmitUpdateNick = async (e: any) => {
-        e.preventDefault();
+    // const handleFormSubmitUpdateNick = async (e: any) => {
+    //     e.preventDefault();
 
-        try {
-            await supabase
-                .from('users')
-                .update({ urlImg: imageUrl })
-                .eq('uuid', props.userId);
+    //     try {
+    //         await supabase
+    //             .from('users')
+    //             .update({ urlImg: imageUrl })
+    //             .eq('uuid', props.userId);
 
-            console.log('Imagen de perfil actualizada correctamente');
-        } catch (error) {
-            console.error('Error al actualizar la imagen de perfil:', error);
-        }
-    };
+    //         console.log('Imagen de perfil actualizada correctamente');
+    //     } catch (error) {
+    //         console.error('Error al actualizar la imagen de perfil:', error);
+    //     }
+    // };
 
     const handleFormSubmitUpdatePortada = async (e: any) => {
         e.preventDefault();
