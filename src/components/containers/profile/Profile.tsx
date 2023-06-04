@@ -4,7 +4,7 @@ import { CardStatus } from '../../common/Cardstatus';
 import { useParams } from 'react-router-dom';
 
 
-export const ProfileUsersPublic = (props: any) => {
+export const ProfileUsersPublic = () => {
     const [urlImg, setUrlImg] = useState("");
     const [urlImgPortada, setUrlImgPortada] = useState("");
     const [name, setName] = useState("");
