@@ -207,7 +207,7 @@ const MyComponent = () => {
   return (
     <div className="mt-14">
       {messages.map((message: any) => (
-        <div className="border border-gray-300 p-4 flex mb-4" key={message.created_at}>
+        <div className="border p-2 flex mb-4 rounded-md" style={{borderColor: props.borderColor, backgroundColor: props.BgsecondaryColor}} key={message.created_at}>
           <img className="profile-image w-12 h-12 rounded-full mr-4" src={props.urlImg} alt="Profile" />
           <div className="status-content">
             <div className="flex">
@@ -215,7 +215,7 @@ const MyComponent = () => {
               <p className="message font-sm font-normal text-gray-500">@{props.userNick}</p>
               <p className="message font-sm font-normal text-gray-500">{timeElapsed}</p>
             </div>
-            <p className="message font-bold">{message.message}</p>
+            <p className="message font-light">{message.message}</p>
             <p
               className={`like-count text-gray-500 flex gap-2 items-center`}
               onClick={() => handleLikeClick(message.id)}

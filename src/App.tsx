@@ -47,7 +47,6 @@ function App() {
         changeSecondary(defaultSecondaryColors);
         changeBorder(defaultBorderColors);
       } else {
-        console.log("DB");
         setName(result.data[0].name);
         setLastname(result.data[0].lastname);
         setUrlImg(result.data[0].urlImg);

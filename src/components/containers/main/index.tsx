@@ -14,7 +14,7 @@ import Folders from "../folders";
 import { TaskForm } from "../../common/Taskform";
 import Login from "../../../pages/Login";
 import { ProfileUsers } from "../profile";
-import { ProfileUsersPublic } from "../profile/Profile";
+import { ProfileUsersPublic } from "../profile/ProfilePublic";
 import News from "../news";
 
 const containerStyles = "ml-80 h-screen relative overflow-y-auto";
@@ -93,7 +93,7 @@ function Main(props: any) {
         <Routes>
         <Route path="*" element={<div className={`${containerStyles}`}><NotFound /></div>} />
           <Route path="/" element={<News name={name} lastName={lastname} urlImg={urlImg}/>} />
-          <Route path="/desktop" element={<ContentContainer role={role} name={name} lastName={lastname} urlImg={urlImg} userId={userId} actualContent={actualContent} secondaryColor={props.secondaryColor} borderColor={props.borderColor}/>} />
+          <Route path="/desktop" element={<ContentContainer role={role} name={name} lastName={lastname} urlImg={urlImg} userId={userId} userFilter={userId} actualContent={actualContent} secondaryColor={props.secondaryColor} borderColor={props.borderColor}/>} />
           <Route path="/Setting" element={<div className={`${containerStyles}`}><ProfileSettings userId={userId} name={name} lastName={lastname} urlImg={urlImg} urlImgPortada={urlImgPortada} changeBg={props.changeBg} changeText={props.changeText} changeBorder={props.changeBorder} changeSecondary={props.changeSecondary} mainBgColors={props.mainBgColors} textColors={props.textColors} borderColor={props.borderColor} secondaryColor={props.secondaryColor}/></div>} />
           <Route path="/tasks/:id" element={<div className={`${containerStyles}`}><TaskDetails secondaryColor={props.secondaryColor} borderColor={props.borderColor}/></div>} />
           <Route path="/myprofile" element={<div className={`${containerStyles}`}><ProfileUsers   urlImgPortada={urlImgPortada} userId={userId} name={name} lastName={lastname} urlImg={urlImg} rol={role} occupation={occupation} userNick={userNick} active={active} idLikeStatus={idLikeStatus}/></div>} />

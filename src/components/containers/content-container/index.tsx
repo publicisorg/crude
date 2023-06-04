@@ -20,7 +20,6 @@ function ContentContainer(props: any) {
         }
     }, [role])
 
-    console.log(props.borderColor);
 
     return (
         <section className="ml-80 h-screen relative overflow-y-auto">
