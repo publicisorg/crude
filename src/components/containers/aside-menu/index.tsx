@@ -70,7 +70,7 @@ function MenuAside(props: any) {
     }
 
     return (
-        <aside className="h-screen fixed gap-2 bg-white/10 w-80 border-r flex justify-between flex-col items-center shadow-lg" style={{ borderColor: props.borderColor }}>
+        <aside className="h-screen fixed gap-2 bg-[#383838] lg:bg-white/10 w-full  lg:w-80 border-r flex justify-between flex-col items-center shadow-lg" style={{ borderColor: props.borderColor }}>
             <div className="flex flex-col justify-evenly">
                 <div className="pb-8 px-6  w-full flex justify-center">
                     <div className="my-9 w-full flex justify-center items-center p-2">

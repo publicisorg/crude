@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 
 export const ProfileUsersPublic = (props: any) => {
     const [urlImg, setUrlImg] = useState("");
+    const [urlImgPortada, setUrlImgPortada] = useState("");
     const [name, setName] = useState("");
     const [lastname, setLastName] = useState("");
     const [occupation, setOccupation] = useState("");
@@ -28,6 +29,7 @@ export const ProfileUsersPublic = (props: any) => {
   }
   getTaskById(userNick).then((element: any) => {
     setUrlImg(element.data[0].urlImg);
+    setUrlImgPortada(element.data[0].urlImgPortada);
     setName(element.data[0].name);
     setLastName(element.data[0].lastName);
     setOccupation(element.data[0].occupation);
@@ -65,7 +67,7 @@ export const ProfileUsersPublic = (props: any) => {
         <main>
 
             <div className="container mx-auto p-6 ">
-                <div className="relative h-48 bg-cover bg-center" style={{ backgroundImage: "url("+props.urlImgPortada+")" }}></div>
+                <div className="relative h-48 bg-cover bg-center" style={{ backgroundImage: "url("+urlImgPortada+")" }}></div>
                 <div className="flex justify-center mt-[-4rem] relative">
                     <div className="w-32 h-32 border-4 border-white rounded-full overflow-hidden z-10">
                         <img className="w-full h-full object-cover" src={urlImg} alt={name} />

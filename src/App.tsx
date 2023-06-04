@@ -103,7 +103,9 @@ function App() {
 
 name={name} 
 lastName={lastname}
- urlImg={urlImg}
+urlImg={urlImg}
+
+
   userId={userId} 
   possibleRoles={possibleRoles}
   urlImgPortada={urlImgPortada}
