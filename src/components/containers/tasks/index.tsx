@@ -71,16 +71,15 @@ function TasksTable(props: any) {
                             <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">
                                 Titulo
                             </th>
-                            {(props.role == "supervisor" || props.role == "account") && <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">
+                            {(props.role == "supervisor" || props.role == "account") && <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">
                                 Asignado a
                             </th>}
-                            {(props.role != "account" && !(props.role == "supervisor" && props.desktop == true)) && <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">
+                            {(props.role != "account" && !(props.role == "supervisor" && props.desktop == true)) && <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">
                                 Autor
                             </th>}
-                            <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">
+                            <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">
                                 Estado
                             </th>
-                            
                             {!props.desktop && <th scope="col" className="relative px-6 py-3">
                                 <span className="sr-only">Edit</span>
                             </th>}

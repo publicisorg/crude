@@ -69,7 +69,6 @@ function SingleTask(props: any) {
                                     alt="" />
                             </Tooltip>
                         </Link>
-
                     </div>
                 </div>
             </td>}
@@ -81,7 +80,7 @@ function SingleTask(props: any) {
                 </div>
             </td>}
             {!props.isAccount && !(props.desktop && props.isSupervisor) && <td className="px-6 py-4 whitespace-nowrap">
-                <div className="flex items-center">
+                <div className="flex items-center justify-center">
                     <div className="flex-shrink-0 w-10 h-10">
                         <Link to={'/profile/' + askedForNick}>
                             <Tooltip content={askedFor} className="bg-black text-white">
@@ -96,8 +95,8 @@ function SingleTask(props: any) {
                 </div>
             </td>}
 
-            <td className="px-6 py-4 whitespace-nowrap">
-                <span className="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+            <td className="px-6 py-4 whitespace-nowrap flex justify-center items-center">
+                <span className="px-6 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-lg h-10 flex justify-center items-center">
                     {props.element.status}
                 </span>
             </td>
