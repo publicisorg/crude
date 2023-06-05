@@ -1,4 +1,4 @@
 {
     "image": ["jpg", "jpeg", "png", "webp", "gif", "svg", "avif", "apng"],
-    "web": ["php", "html"]
+    "web": ["php", "html", "htm"]
 }

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { ItemFolder, ItemFrame, ItemImage, ItemNotSupported } from "../../common/items";
 import extensions from '../../common/items/extensions.json'
 
-function Folders(_props:any) {
+function Folders(props: any) {
     const [contenido, setContenido] = useState([]);
     const [contenidoGet, setContenidoGet] = useState([]);
     const [dataReady, isDataReady] = useState(false);
@@ -82,16 +82,16 @@ function Folders(_props:any) {
 
     function renderItemByType(key: any, data: any, path: any, index: number) {
         if (data['type'] == 'folder') {
-            return (<ItemFolder function={setContenido} arguments={data} label={key} enterFolder={() => enterFolder(key)} index={index} />)
+            return (<ItemFolder secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setContenido} arguments={data} label={key} enterFolder={() => enterFolder(key)} index={index} />)
         } else {
             var dataType = checkExtension(contenido[key]);
             switch (dataType) {
                 case "image":
-                    return (<ItemImage label={contenido[key]} path={path} index={index} />);
+                    return (<ItemImage secondaryColor={props.secondaryColor} borderColor={props.borderColor} label={contenido[key]} path={path} index={index} />);
                 case "web":
-                    return (<ItemFrame label={contenido[key]} path={path} index={index} />);
+                    return (<ItemFrame secondaryColor={props.secondaryColor} borderColor={props.borderColor} label={contenido[key]} path={path} index={index} />);
                 default:
-                    return (<ItemNotSupported label={contenido[key]} path={path} index={index} />);
+                    return (<ItemNotSupported secondaryColor={props.secondaryColor} borderColor={props.borderColor} label={contenido[key]} path={path} index={index} />);
             }
         }
     }
@@ -109,11 +109,16 @@ function Folders(_props:any) {
 
     return (
         <>
-            <section className="flex flex-col justify-center p-8">
+            <section className="flex flex-col justify-center p-8 gap-4">
                 <div className="h-12">
-                    {backEnabled && dataReady && <span onClick={exitFolder} className="p-2   dark:  cursor-pointer duration-300 border rounded-md bg-white/25 dark:bg-black/25 hover:bg-white/50 hover:dark:bg-black/50 border-black/25 dark:border-white/25">Anterior</span>}
+                    {backEnabled && dataReady &&
+                        <span onClick={exitFolder}
+                            className="border relative hover:scale-105 flex flex-row gap-4 cursor-pointer justify-start items-center hover:brightness-150 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center duration-300 shadow-lg truncate w-32"
+                            style={{ borderColor: props.borderColor, backgroundColor: props.secondaryColor }}>
+                            Anterior
+                        </span>}
                 </div>
-                <div className="grid grid-cols-5 gap-8 relative">
+                <div className="flex flex-wrap gap-8 relative">
                     {dataReady && renderJSX()}
                 </div>
             </section>
