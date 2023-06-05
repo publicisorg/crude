@@ -50,13 +50,13 @@ function SingleTask(props: any) {
                 <div className="text-sm">{props.element.name}</div>
                 <div className="text-sm">{timeElapsed}</div>
             </div>
-            <MultipleProfiles users={props.element.user} isSupervisor={props.isSupervisor} isAccount={props.isAccount}/>
+            <MultipleProfiles users={props.element.user} isSupervisor={props.isSupervisor} isAccount={props.isAccount} borderColor={props.borderColor} secondaryColor={props.secondaryColor}/>
             {!props.isAccount && !(props.desktop && props.isSupervisor) && <div className={`px-6 py-4 whitespace-nowrap ${props.desktop ? "w-1/3" : "w-1/5"}`}>
                 <div className="flex items-center justify-center">
                     <div className="flex-shrink-0 w-10 h-10">
                         <Link to={'/profile/' + askedForNick}>
                             <Tooltip content={askedFor} className="bg-black text-white">
-                                <img className="w-10 h-10 rounded-full border"
+                                <img className="w-10 h-10 rounded-full border-2"
                                     style={{ borderColor: props.borderColor }}
                                     src={askerPicture}
                                     alt="" />

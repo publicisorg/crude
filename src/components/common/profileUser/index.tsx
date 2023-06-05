@@ -61,11 +61,13 @@ export function MultipleProfiles(props: any) {
             users.map((user: any) => {
               return (
                 <Link className="flex -space-x-4" to={'/profile/' + user.userNick}>
-                    <Avatar
-                      img={user.urlImg}
-                      rounded
-                      stacked
+                  <Tooltip content={user.name + " " + user.lastname} className="bg-black text-white">
+                    <img
+                      className="rounded-full w-10 h-10 border-2"
+                      src={user.urlImg}
+                      style={{ borderColor: props.borderColor, backgroundColor: props.secondaryColor }}
                     />
+                  </Tooltip>
                 </Link>
               )
             })
@@ -78,7 +80,8 @@ export function MultipleProfiles(props: any) {
                 <Tooltip content={user.name + " " + user.lastname} className="bg-black text-white">
                   <img
                     src={user.urlImg}
-                    className="w-10 h-10 rounded"
+                    className="w-10 h-10 rounded-full border-2"
+                    style={{ borderColor: props.borderColor, backgroundColor: props.secondaryColor }}
                   />
                 </Tooltip>
               </Link>

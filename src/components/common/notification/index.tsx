@@ -53,7 +53,7 @@ export const Notification = (props: any) => {
       <div className="flex flex-row justify-between items-center bg-white/10 rounded px-6 py-3 shadow-lg border" style={{ borderColor: props.borderColor }}>
         <div className="flex flex-row justify-center items-center">
           <Link to={'/profile/' + userNick}>
-            <img src={picture} alt="Foto de la persona" className="w-16 h-16 rounded-full border" style={{ borderColor: props.borderColor }} />
+            <img src={picture} alt="Foto de la persona" className="w-16 h-16 rounded-full border-2" style={{ borderColor: props.borderColor }} />
           </Link>
           <div className="ml-4">
             <h2 className="text-lg font-bold">{user} te asigno la tarea:</h2>
