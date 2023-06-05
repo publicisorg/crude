@@ -98,7 +98,7 @@ function MenuAside(props: any) {
                     <input type="checkbox" id="admin" name="admin" onClick={handlePosibleRoles} defaultChecked={false} />
                     <label htmlFor="admin">Permisos Admin</label>
                 </div>}
-                <SelectRole function={props.setRole} possibleRoles={possibleRoles} setMenuSelected={setMenuSelected} />
+                <SelectRole function={props.setRole} possibleRoles={possibleRoles} setMenuSelected={setMenuSelected} secondaryColor={props.secondaryColor} borderColor={props.borderColor}/>
                 <div className="flex flex-row justify-evenly items-center w-full border-t" style={{ borderColor: props.borderColor }}>
                     <Link to="myprofile">
                         <Profile name={props.name} lastName={props.lastName} urlImg={props.urlImg} changeBg={props.changeBg} changeText={props.setTextColors} />
