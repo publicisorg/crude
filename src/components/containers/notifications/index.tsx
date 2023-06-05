@@ -15,7 +15,25 @@ export function Notifications(props: any) {
 
     useEffect(() => {
         getTasksData().then((data: any) => {
-            setTasks(data.data);
+            getTasksData().then((data: any) => {
+                if (props.userFilter == "") {
+                    setTasks(data.data.filter((task: any) => task.user == null || task.user.length < 1));
+                } else {
+                    if (props.userFilter == "*") {
+                        setTasks(data.data.filter((task: any) => task.user != null && task.user.length > 0));
+                    } else {
+                        const tasks: any = [];
+                        data.data.forEach((element: any) => {
+                            element.user.forEach((users: any) => {
+                                if (users.userId === props.userFilter) {
+                                    tasks.push(element);
+                                }
+                            });
+                        });
+                        setTasks(tasks);
+                    }
+                }
+            })
         })
     }, [])
 
@@ -24,7 +42,7 @@ export function Notifications(props: any) {
             const data = await supabase.from('tasks').select('*');
             return data;
         } else {
-            const data = await supabase.from('tasks').select('*').eq('user', props.userFilter).eq('done', false);
+            const data = await supabase.from('tasks').select('*').eq('done', false);
             return data;
         }
     }

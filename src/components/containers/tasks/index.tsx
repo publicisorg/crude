@@ -71,12 +71,12 @@ function TasksTable(props: any) {
     }
 
     return (
-        <div className={`mx-auto ${props.desktop ? "" : "p-8"} flex flex-col gap-4`}>
+        <div className={`mx-auto ${props.desktop ? "" : "p-8"} gap-4`}>
             {!props.desktop && <h1 className="text-3xl font-bold mb-4">Tareas</h1>}
-            <div className={`${props.desktop ? "" : "border rounded shadow-lg"} grid grid-cols-1 gap-4`} style={{ borderColor: props.borderColor }}>
+            <div className={`${props.desktop ? "" : "border rounded shadow-lg"}`} style={{ borderColor: props.borderColor }}>
                 <div className="min-w-full ">
                     <div className="border-b flex flex-col justify-between w-full" style={{ borderColor: props.borderColor, backgroundColor: props.secondaryColor }}>
-                        <div className="flex flex-row justify-between items-center w-full">
+                        <div className="flex flex-row justify-between items-center w-full border-b" style={{ borderColor: props.borderColor, backgroundColor: props.secondaryColor }}>
                             <div className={`px-6 py-3 text-xs font-medium tracking-wider text-left uppercase ${props.desktop ? "w-1/3" : "w-1/5"}`}>
                                 Titulo
                             </div>
