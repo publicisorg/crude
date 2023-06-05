@@ -8,6 +8,9 @@ export const ProfileSettings = (props: any) => {
     const [secondaryColor, setSecondaryColor] = useState(props.secondaryColor);
     const [textColor, setTextColor] = useState(props.textColors);
     const [borderColor, setBorderColor] = useState(props.borderColor);
+    const [newPassword, setNewPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [error, setError] = useState('');
 
     const buttonStyle = "border hover:brightness-150 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center duration-300";
     const inputStyle = "border hover:brightness-150 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-left w-full duration-300";
@@ -63,20 +66,6 @@ export const ProfileSettings = (props: any) => {
     };
 
 
-    // const handleFormSubmitUpdateNick = async (e: any) => {
-    //     e.preventDefault();
-
-    //     try {
-    //         await supabase
-    //             .from('users')
-    //             .update({ urlImg: imageUrl })
-    //             .eq('uuid', props.userId);
-
-    //         console.log('Imagen de perfil actualizada correctamente');
-    //     } catch (error) {
-    //         console.error('Error al actualizar la imagen de perfil:', error);
-    //     }
-    // };
 
     const handleFormSubmitUpdatePortada = async (e: any) => {
         e.preventDefault();
@@ -94,7 +83,7 @@ export const ProfileSettings = (props: any) => {
     };
 
 
-    
+
 
     async function handleChangeBg(e: any) {
         e.preventDefault();
@@ -176,9 +165,38 @@ export const ProfileSettings = (props: any) => {
         }
     }
 
+
     useEffect(() => {
         changeBorderColorOnDB(borderColor);
     }, [borderColor])
+
+
+    const handleSubmitPassword   = async (event:any) => {
+        event.preventDefault();
+
+        if (newPassword !== confirmPassword) {
+            setError('Las contraseñas no coinciden. Por favor, inténtalo de nuevo.');
+            return;
+        }
+
+        try {
+            
+            const user = supabase.auth.getUser(); 
+            if (await user) {
+                const { error } = await supabase.auth.updateUser({
+                    password: newPassword
+                });
+                if (error) {
+                    setError(error.message);
+                } else {
+                    alert('Contraseña actualizada correctamente.');
+                }
+            }
+        } catch (error) {
+            console.log('Error al actualizar la contraseña:');
+            setError('Error al actualizar la contraseña. Por favor, inténtalo de nuevo.');
+        }
+    };
 
     return (
         <main>
@@ -186,7 +204,7 @@ export const ProfileSettings = (props: any) => {
                 <div className="col-span-full xl:col-auto">
                     <div className="p-4 mb-4 bg-white/10 border rounded-lg 2xl:col-span-2 sm:p-6 shadow-lg" style={{ borderColor: borderColor }}>
                         <div className="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">
-                            <img className="mb-4 rounded-lg w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0 border" src={props.urlImg} alt={props.name} style={{ borderColor: borderColor, backgroundColor: secondaryColor }}/>
+                            <img className="mb-4 rounded-lg w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0 border" src={props.urlImg} alt={props.name} style={{ borderColor: borderColor, backgroundColor: secondaryColor }} />
                             <div className="w-full">
                                 <h3 className="mb-1 text-xl font-bold">Imagen de perfil</h3>
                                 <div className="mb-4 text-sm">
@@ -221,7 +239,7 @@ export const ProfileSettings = (props: any) => {
 
                     <div className="p-4 mb-4 bg-white/10 border rounded-lg 2xl:col-span-2 sm:p-6 shadow-lg" style={{ borderColor: borderColor }}>
                         <div className="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">
-                            <img className="mb-4 rounded-lg w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0 border" src={props.urlImgPortada} alt={props.name} style={{ borderColor: borderColor, backgroundColor: secondaryColor }}/>
+                            <img className="mb-4 rounded-lg w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0 border" src={props.urlImgPortada} alt={props.name} style={{ borderColor: borderColor, backgroundColor: secondaryColor }} />
                             <div className="w-full">
                                 <h3 className="mb-1 text-xl font-bold">Imagen de portada</h3>
                                 <div className="mb-4 text-sm">
@@ -359,44 +377,65 @@ export const ProfileSettings = (props: any) => {
                             <div className="grid grid-cols-6 gap-6">
                                 <div className="col-span-6 sm:col-span-3">
                                     <label className="block mb-2 text-sm font-medium">Nombre</label>
-                                    <input type="text" name="first-name" id="first-name" className={`${inputDisabledStyle}`} value={props.name} disabled style={{ borderColor: borderColor, backgroundColor: secondaryColor }}/>
+                                    <input type="text" name="first-name" id="first-name" className={`${inputDisabledStyle}`} value={props.name} disabled style={{ borderColor: borderColor, backgroundColor: secondaryColor }} />
                                 </div>
                                 <div className="col-span-6 sm:col-span-3">
                                     <label className="block mb-2 text-sm font-medium">Apellido</label>
-                                    <input type="text" name="last-name" id="last-name" className={`${inputDisabledStyle}`} value={props.lastName} disabled style={{ borderColor: borderColor, backgroundColor: secondaryColor }}/>
+                                    <input type="text" name="last-name" id="last-name" className={`${inputDisabledStyle}`} value={props.lastName} disabled style={{ borderColor: borderColor, backgroundColor: secondaryColor }} />
                                 </div>
                                 <div className="col-span-6 sm:col-span-3">
                                     <label className="block mb-2 text-sm font-medium">Agencia</label>
-                                    <input type="text" name="organization" id="organization" className={`${inputDisabledStyle}`} value="The Pub" disabled style={{ borderColor: borderColor, backgroundColor: secondaryColor }}/>
+                                    <input type="text" name="organization" id="organization" className={`${inputDisabledStyle}`} value="The Pub" disabled style={{ borderColor: borderColor, backgroundColor: secondaryColor }} />
                                 </div>
                                 <div className="col-span-6 sm:col-span-3">
                                     <label className="block mb-2 text-sm font-medium">Rol</label>
-                                    <input type="text" name="role" id="role" className={`${inputDisabledStyle}`} value={props.role} disabled style={{ borderColor: borderColor, backgroundColor: secondaryColor }}/>
+                                    <input type="text" name="role" id="role" className={`${inputDisabledStyle}`} value={props.role} disabled style={{ borderColor: borderColor, backgroundColor: secondaryColor }} />
                                 </div>
                                 <div className="col-span-6 sm:col-span-3">
                                     <label className="block mb-2 text-sm font-medium">Departamento</label>
-                                    <input type="text" name="department" id="department" className={`${inputDisabledStyle}`} value="Development" disabled style={{ borderColor: borderColor, backgroundColor: secondaryColor }}/>
+                                    <input type="text" name="department" id="department" className={`${inputDisabledStyle}`} value="Development" disabled style={{ borderColor: borderColor, backgroundColor: secondaryColor }} />
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div className="p-4 mb-4 bg-white/10 border rounded-lg shadow-lg 2xl:col-span-2 sm:p-6" style={{ borderColor: borderColor }}>
                         <h3 className="mb-4 text-xl font-semibold">Actualizar Password</h3>
-                        <form action="#">
+                        <form onSubmit={handleSubmitPassword}>
                             <div className="grid grid-cols-6 gap-6">
                                 <div className="col-span-6 sm:col-span-3">
                                     <label className="block mb-2 text-sm font-medium">Nueva contraseña</label>
-                                    <input type="text" name="current-password" id="current-password" className={`${inputStyle}`} placeholder="••••••••" required style={{ borderColor: borderColor, backgroundColor: secondaryColor }}/>
+                                    <input
+                                        type="password"
+                                        value={newPassword}
+                                        onChange={(e) => setNewPassword(e.target.value)}
+                                        className={`${inputStyle}`}
+                                        placeholder="••••••••"
+                                        required
+                                        style={{ borderColor: borderColor, backgroundColor: secondaryColor }}
+                                    />
                                 </div>
 
                                 <div className="col-span-6 sm:col-span-3">
                                     <label className="block mb-2 text-sm font-medium">Confirmar contraseña</label>
-                                    <input type="text" name="confirm-password" id="confirm-password" className={`${inputStyle}`} placeholder="••••••••" required style={{ borderColor: borderColor, backgroundColor: secondaryColor }}/>
+                                    <input
+                                        type="password"
+                                        value={confirmPassword}
+                                        onChange={(e) => setConfirmPassword(e.target.value)}
+                                        className={`${inputStyle}`}
+                                        placeholder="••••••••"
+                                        required
+                                        style={{ borderColor: borderColor, backgroundColor: secondaryColor }}
+                                    />
                                 </div>
+
                                 <div className="col-span-6 sm:col-full">
-                                    <button className={`${buttonStyle}`} style={{ borderColor: borderColor, backgroundColor: secondaryColor }}>Actualizar</button>
+                                    <button className={`${buttonStyle}`} style={{ borderColor: borderColor, backgroundColor: secondaryColor }}>
+                                        Actualizar
+                                    </button>
                                 </div>
                             </div>
+
+                            {error && <p>{error}</p>}
                         </form>
                     </div>
 

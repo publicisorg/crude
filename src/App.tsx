@@ -56,7 +56,7 @@ function App() {
         setUserActive(result.data[0].active);
         setUserIdLike(result.data[0].idLikeStatus);
         setPossibleRoles(result.data[0].rol[0].rol);
-        
+
 
         changeBg(result.data[0].bgcolor);
         changeText(result.data[0].fontColor);
@@ -78,21 +78,6 @@ function App() {
     }
   }
 
-  /*async function getActiveUserFromDB() {
-    if (userId != "") {
-      const activeUser = await supabase
-        .from('users')
-        .update({ active: 'isActive' })
-        .eq('uuid', userId)
-      return activeUser;
-    } else {
-      const activeUser = await supabase
-        .from('users')
-        .update({ active: 'disabled' })
-        .eq('uuid', userId)
-      return activeUser;
-    }
-  }*/
 
   return (
 
@@ -100,18 +85,16 @@ function App() {
       <>
         <Main
 
-name={name} 
-lastName={lastname}
-urlImg={urlImg}
-
-
-  userId={userId} 
-  possibleRoles={possibleRoles}
-  urlImgPortada={urlImgPortada}
-  active={active}
-  idLikeStatus={idLikeStatus}
-  occupation={occupation}
-  userNick={userNick}
+          name={name}
+          lastName={lastname}
+          urlImg={urlImg}
+          userId={userId}
+          possibleRoles={possibleRoles}
+          urlImgPortada={urlImgPortada}
+          active={active}
+          idLikeStatus={idLikeStatus}
+          occupation={occupation}
+          userNick={userNick}
           changeBg={changeBg}
           changeText={changeText}
           changeBorder={changeBorder}

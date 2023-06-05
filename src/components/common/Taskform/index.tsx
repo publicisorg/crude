@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../../../supabase/client'
-import SelectUser, { GenericSelect } from '../selectors/selectUsers'
+import  { GenericSelect } from '../selectors/selectUsers'
 import GenericInput from '../inputs/inputs'
 import MultipleUsers from './multipleUsers'
 export const TaskForm = (props: any) => {
