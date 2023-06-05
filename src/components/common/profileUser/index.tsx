@@ -1,3 +1,8 @@
+import { Avatar, Tooltip } from "flowbite-react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { supabase } from "../../../supabase/client";
+
 export const Profile = (props: any) => {
 
   return (
@@ -13,4 +18,84 @@ export const Profile = (props: any) => {
     </div>
   );
 };
+
+export function MultipleProfiles(props: any) {
+
+  const [users, setUsers] = useState<any>([]);
+
+  async function getUserById(userUUID: any) {
+    const data: any = await supabase.from('users').select('name, lastname, urlImg, userNick').eq("uuid", userUUID);
+    return data;
+  }
+
+
+  useEffect(() => {
+    const usuarios: any = [];
+    props.users.forEach((user: any) => {
+      getUserById(user.userId).then((userData: any) => {
+        usuarios.push(
+          {
+            name: userData.data[0].name,
+            lastname: userData.data[0].lastname,
+            urlImg: userData.data[0].urlImg,
+            userNick: userData.data[0].userNick
+          }
+        );
+        console.log("VARIABLE USUARIOS");
+        console.log(usuarios);
+      });
+      setUsers(usuarios);
+    });
+  }, [])
+
+  useEffect(() => {
+    console.log("USERS");
+    console.log(users);
+  }, [users])
+
+  return (
+    <>
+      {(props.isSupervisor || props.isAccount) && props.users != undefined && <td className="flex justify-center items-center flex-wrap gap-2">
+        <Avatar.Group>
+          {users.length > 1 &&
+            users.map((user: any) => {
+              return (
+                <Link className="flex -space-x-4" to={'/profile/' + user.userNick}>
+                    <Avatar
+                      img={user.urlImg}
+                      rounded
+                      stacked
+                    />
+                </Link>
+              )
+            })
+          }
+        </Avatar.Group>
+        {users.length == 1 &&
+          users.map((user: any) => {
+            return (
+              <Link className="" to={'/profile/' + user.userNick}>
+                <Tooltip content={user.name + " " + user.lastname} className="bg-black text-white">
+                  <img
+                    src={user.urlImg}
+                    className="w-10 h-10 rounded"
+                  />
+                </Tooltip>
+              </Link>
+            )
+          })
+        }
+
+      </td>}
+      {(props.isSupervisor || props.isAccount) && props.users == undefined && <td className="px-6 py-4 whitespace-nowrap">
+        <div className="flex justify-center items-center">
+          <span className="inline-flex px-2 text-xs font-semibold leading-5 text-red-200 bg-red-600 rounded-full">
+            SIN ASIGNAR
+          </span>
+        </div>
+      </td>}
+    </>
+  )
+}
+
 export default Profile;

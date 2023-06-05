@@ -3,18 +3,15 @@ import { supabase } from "../../../supabase/client";
 import moment from 'moment';
 import { Link } from "react-router-dom";
 import { Tooltip } from "flowbite-react";
+import { MultipleProfiles } from "../../common/profileUser";
 
 const buttonStyle = "border hover:brightness-150 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center duration-300";
 
 function SingleTask(props: any) {
 
-    const [user, setUser] = useState("");
     const [askedFor, setAsker] = useState("");
     const [timeElapsed, setTimeElapsed] = useState("");
-    const [userNick, setUserNick] = useState("");
     const [askedForNick, setAskerNick] = useState("");
-
-    const [picture, setPicture] = useState("");
     const [askerPicture, setAskerPicture] = useState("");
 
     async function getUserById(userUUID: any) {
@@ -23,11 +20,6 @@ function SingleTask(props: any) {
     }
 
     useEffect(() => {
-        getUserById(props.element.user).then((element: any) => {
-            setUser(element.data[0].name + " " + element.data[0].lastname);
-            setPicture(element.data[0].urlImg);
-            setUserNick(element.data[0].userNick);
-        });
         getUserById(props.element.userId).then((element: any) => {
             setAsker(element.data[0].name + " " + element.data[0].lastname);
             setAskerPicture(element.data[0].urlImg);
@@ -58,27 +50,7 @@ function SingleTask(props: any) {
                 <div className="text-sm">{props.element.name}</div>
                 <div className="text-sm">{timeElapsed}</div>
             </td>
-            {(props.isSupervisor || props.isAccount) && props.element.user != undefined && <td className="px-6 py-4 whitespace-nowrap">
-                <div className="flex justify-center items-center">
-                    <div className="flex-shrink-0 w-10 h-10">
-                        <Link to={'/profile/' + userNick}>
-                            <Tooltip content={user} className="bg-black text-white">
-                                <img className="w-10 h-10 rounded-full border"
-                                    style={{ borderColor: props.borderColor }}
-                                    src={picture}
-                                    alt="" />
-                            </Tooltip>
-                        </Link>
-                    </div>
-                </div>
-            </td>}
-            {(props.isSupervisor || props.isAccount) && props.element.user == undefined && <td className="px-6 py-4 whitespace-nowrap">
-                <div className="flex justify-center items-center">
-                    <span className="inline-flex px-2 text-xs font-semibold leading-5 text-red-200 bg-red-600 rounded-full">
-                        SIN ASIGNAR
-                    </span>
-                </div>
-            </td>}
+            <MultipleProfiles users={props.element.user} isSupervisor={props.isSupervisor} isAccount={props.isAccount}/>
             {!props.isAccount && !(props.desktop && props.isSupervisor) && <td className="px-6 py-4 whitespace-nowrap">
                 <div className="flex items-center justify-center">
                     <div className="flex-shrink-0 w-10 h-10">

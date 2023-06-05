@@ -13,9 +13,21 @@ function TasksTable(props: any) {
     useEffect(() => {
         getTasksData().then((data: any) => {
             if (props.userFilter == "") {
-                setTasks(data.data.filter((task: any) => task.user == null || task.user == ""))
+                setTasks(data.data.filter((task: any) => task.user == null || task.user.length < 1));
             } else {
-                setTasks(data.data);
+                if (props.userFilter == "*") {
+                    setTasks(data.data.filter((task: any) => task.user != null && task.user.length > 0));
+                } else {
+                    const tasks: any = [];
+                    data.data.forEach((element: any) => {
+                        element.user.forEach((users: any) => {
+                            if (users.userId === props.userFilter) {
+                                tasks.push(element);
+                            }
+                        });
+                    });
+                    setTasks(tasks);
+                }
             }
         })
     }, [])
@@ -40,13 +52,8 @@ function TasksTable(props: any) {
     }, [tasks])
 
     async function getTasksData() {
-        if (props.userFilter == "*" || props.userFilter == "") {
-            const data = await supabase.from('tasks').select('*');
-            return data;
-        } else {
-            const data = await supabase.from('tasks').select('*').eq('user', props.userFilter);
-            return data;
-        }
+        const data = await supabase.from('tasks').select('*');
+        return data;
     }
 
     function buildMultipleTasks() {
@@ -62,8 +69,6 @@ function TasksTable(props: any) {
             }
         }
     }
-
-    console.log(props.isSupervisor);
 
     return (
         <div className={`mx-auto ${props.desktop ? "" : "p-8"} flex flex-col gap-4`}>
