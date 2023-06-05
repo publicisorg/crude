@@ -88,7 +88,7 @@ function MenuAside(props: any) {
                         {notificationDing()}
                     </MenuButton>
                     <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="tasks" selected={menuSelected} px="px-8"><AiOutlineContainer />Tareas</MenuButton>
-                    {props.role == "supervisor" && <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="createtasks" selected={menuSelected} px="px-8"><AiOutlineContainer />Crear Tareas</MenuButton>}
+                    {(props.role == "supervisor" || props.role == "account") && <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="createtasks" selected={menuSelected} px="px-8"><AiOutlineContainer />Crear Tareas</MenuButton>}
                     <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="folders" selected={menuSelected} px="px-8"><AiOutlineFolder />Carpetas</MenuButton>
                     {false && <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="databases" selected={menuSelected} px="px-8"><AiOutlinePieChart />Bases de Datos</MenuButton>}
                 </div>
