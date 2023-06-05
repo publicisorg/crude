@@ -55,7 +55,7 @@ export function MultipleProfiles(props: any) {
 
   return (
     <>
-      {(props.isSupervisor || props.isAccount) && props.users != undefined && <td className="flex justify-center items-center flex-wrap gap-2">
+      {(props.isSupervisor || props.isAccount) && props.users != undefined && <td className="w-1/5 flex justify-center items-center flex-wrap gap-2">
         <Avatar.Group>
           {users.length > 1 &&
             users.map((user: any) => {

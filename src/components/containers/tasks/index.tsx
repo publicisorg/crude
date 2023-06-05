@@ -74,33 +74,33 @@ function TasksTable(props: any) {
         <div className={`mx-auto ${props.desktop ? "" : "p-8"} flex flex-col gap-4`}>
             {!props.desktop && <h1 className="text-3xl font-bold mb-4">Tareas</h1>}
             <div className={`${props.desktop ? "" : "border rounded shadow-lg"} grid grid-cols-1 gap-4`} style={{ borderColor: props.borderColor }}>
-                <table className="min-w-full overflow-x-scroll" >
-                    <thead className="border-b" style={{ borderColor: props.borderColor, backgroundColor: props.secondaryColor }}>
-                        <tr>
-                            <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">
+                <div className="min-w-full ">
+                    <div className="border-b flex flex-col justify-between w-full" style={{ borderColor: props.borderColor, backgroundColor: props.secondaryColor }}>
+                        <div className="flex flex-row justify-between items-center w-full">
+                            <div className={`px-6 py-3 text-xs font-medium tracking-wider text-left uppercase ${props.desktop ? "w-1/3" : "w-1/5"}`}>
                                 Titulo
-                            </th>
-                            {(props.role == "supervisor" || props.role == "account") && <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">
+                            </div>
+                            {(props.role == "supervisor" || props.role == "account") && <div className={`px-6 py-3 ${props.desktop ? "w-1/3" : "w-1/5"} text-xs font-medium tracking-wider text-center uppercase`}>
                                 Asignado a
-                            </th>}
-                            {(props.role != "account" && !(props.role == "supervisor" && props.desktop == true)) && <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">
+                            </div>}
+                            {(props.role != "account" && !(props.role == "supervisor" && props.desktop == true)) && <div className={`px-6 py-3 ${props.desktop ? "w-1/3" : "w-1/5"} text-xs font-medium tracking-wider text-center uppercase`}>
                                 Autor
-                            </th>}
-                            <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">
+                            </div>}
+                            <div className={`px-6 py-3 text-xs font-medium tracking-wider text-center uppercase ${props.desktop ? "w-1/3" : "w-1/5"}`}>
                                 Estado
-                            </th>
-                            {!props.desktop && <th scope="col" className="relative px-6 py-3">
+                            </div>
+                            {!props.desktop && <div className={`relative px-6 py-3 ${props.desktop ? "w-1/3" : "w-1/5"}`}>
                                 <span className="sr-only">Edit</span>
-                            </th>}
-                        </tr>
-                    </thead>
-                    <tbody style={{ backgroundColor: props.secondaryColor }}>
-                        {buildMultipleTasks()}
-                    </tbody>
-                </table>
+                            </div>}
+                        </div>
+                        <div style={{ backgroundColor: props.secondaryColor }}>
+                            {buildMultipleTasks()}
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    );
+            </div>
+            );
 }
 
-export default TasksTable;
+            export default TasksTable;

@@ -45,13 +45,13 @@ function SingleTask(props: any) {
     }, [])
 
     return (
-        <tr className="border-b" key={props.index} style={{ borderColor: props.borderColor }}>
-            <td className="px-6 py-4 whitespace-nowrap">
+        <div className="border-b flex flex-row justify-between" key={props.index} style={{ borderColor: props.borderColor }}>
+            <div className={`px-6 py-4 truncate ${props.desktop ? "w-1/3" : "w-1/5"}`}>
                 <div className="text-sm">{props.element.name}</div>
                 <div className="text-sm">{timeElapsed}</div>
-            </td>
+            </div>
             <MultipleProfiles users={props.element.user} isSupervisor={props.isSupervisor} isAccount={props.isAccount}/>
-            {!props.isAccount && !(props.desktop && props.isSupervisor) && <td className="px-6 py-4 whitespace-nowrap">
+            {!props.isAccount && !(props.desktop && props.isSupervisor) && <div className={`px-6 py-4 whitespace-nowrap ${props.desktop ? "w-1/3" : "w-1/5"}`}>
                 <div className="flex items-center justify-center">
                     <div className="flex-shrink-0 w-10 h-10">
                         <Link to={'/profile/' + askedForNick}>
@@ -65,23 +65,23 @@ function SingleTask(props: any) {
 
                     </div>
                 </div>
-            </td>}
+            </div>}
 
-            <td className="px-6 py-4 whitespace-nowrap flex justify-center items-center">
+            <div className={`px-6 py-4 whitespace-nowrap flex justify-center items-center ${props.desktop ? "w-1/3" : "w-1/5"}`}>
                 <span className="px-6 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-lg h-10 flex justify-center items-center">
                     {props.element.status}
                 </span>
-            </td>
-            {!props.desktop && <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+            </div>
+            {!props.desktop && <div className={`px-6 py-4 text-sm font-medium text-right whitespace-nowrap ${props.desktop ? "w-1/3" : "w-1/5"}`}>
                 <Link to={'/tasks/' + props.element.id}>
                     <button className={`${buttonStyle}`} style={{ borderColor: props.borderColor, backgroundColor: props.secondaryColor }}>
                         Detalle
                     </button>
                 </Link>
-            </td>}
+            </div>}
 
 
-        </tr>
+        </div>
     );
 }
 
