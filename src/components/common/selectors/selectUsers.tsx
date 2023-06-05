@@ -9,11 +9,11 @@ export function GenericSelect(props: any) {
             <div className="flex">
                 <div className="relative w-full">
                     <select
-                        className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300   focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-50/10 dark:  dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
+                        className="border hover:brightness-150 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-left w-full duration-300"
                         onChange={e => props.onChange(e.target.value)}
-                    >
+                        style={{ backgroundColor: props.secondaryColor, borderColor: props.borderColor }}>
                         <option value="">Sin asignar</option>
-                        {props.data.map((element:any, index:number) => {
+                        {props.data.map((element: any, index: number) => {
                             return (
                                 <option key={index} value={element.value}>{element.displayValue}</option>
                             )
@@ -21,7 +21,7 @@ export function GenericSelect(props: any) {
                     </select>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
@@ -30,7 +30,7 @@ export function SelectUser(props: any) {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        getUsers().then((result:any) => {
+        getUsers().then((result: any) => {
             setUsers(result.data);
         });
     }, [])
@@ -41,16 +41,16 @@ export function SelectUser(props: any) {
     }
 
     return (
-        <div>
+        <div className="w-full">
             <div className="mb-2 block"><label className="text-sm font-medium    " data-testid="flowbite-label">Asignar a: </label></div>
             <div className="flex">
                 <div className="relative w-full">
                     <select
-                        className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300   focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-50/10 dark:  dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 rounded-lg shadow-sm dark:shadow-sm-light p-2.5 text-sm"
+                        className="border hover:brightness-150 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-left w-full duration-300"
                         onChange={e => props.setUser(e.target.value)}
-                    >
+                        style={{ backgroundColor: props.secondaryColor, borderColor: props.borderColor }}>
                         <option value="">Sin asignar</option>
-                        {users.map((user:any, index:number) => {
+                        {users.map((user: any, index: number) => {
                             return (
                                 <option key={index} value={user.uuid}>{user.name + " " + user.lastname}</option>
                             )
