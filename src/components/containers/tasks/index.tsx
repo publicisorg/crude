@@ -77,19 +77,22 @@ function TasksTable(props: any) {
                 <div className="min-w-full ">
                     <div className="border-b flex flex-col justify-between w-full" style={{ borderColor: props.borderColor, backgroundColor: props.secondaryColor }}>
                         <div className="flex flex-row justify-between items-center w-full border-b" style={{ borderColor: props.borderColor, backgroundColor: props.secondaryColor }}>
-                            <div className={`px-6 py-3 text-xs font-medium tracking-wider text-left uppercase ${props.desktop ? "w-1/3" : "w-1/5"}`}>
+                            <div className={`px-6 py-3 text-xs font-medium tracking-wider text-left uppercase ${props.desktop ? "w-1/3" : "w-1/6"}`}>
                                 Titulo
                             </div>
-                            {(props.role == "supervisor" || props.role == "account") && <div className={`px-6 py-3 ${props.desktop ? "w-1/3" : "w-1/5"} text-xs font-medium tracking-wider text-center uppercase`}>
+                            {(props.role == "supervisor" || props.role == "account") && <div className={`px-6 py-3 ${props.desktop ? "w-1/3" : "w-1/6"} text-xs font-medium tracking-wider text-center uppercase`}>
                                 Asignado a
                             </div>}
-                            {(props.role != "account" && !(props.role == "supervisor" && props.desktop == true)) && <div className={`px-6 py-3 ${props.desktop ? "w-1/3" : "w-1/5"} text-xs font-medium tracking-wider text-center uppercase`}>
+                            {(props.role != "account" && !(props.role == "supervisor" && props.desktop == true)) && <div className={`px-6 py-3 ${props.desktop ? "w-1/3" : "w-1/6"} text-xs font-medium tracking-wider text-center uppercase`}>
                                 Autor
                             </div>}
-                            <div className={`px-6 py-3 text-xs font-medium tracking-wider text-center uppercase ${props.desktop ? "w-1/3" : "w-1/5"}`}>
+                            <div className={`px-6 py-3 text-xs font-medium tracking-wider text-center uppercase ${props.desktop ? "w-1/3" : "w-1/6"}`}>
                                 Estado
                             </div>
-                            {!props.desktop && <div className={`relative px-6 py-3 ${props.desktop ? "w-1/3" : "w-1/5"}`}>
+                            <div className={`px-6 py-3 text-xs font-medium tracking-wider text-center uppercase ${props.desktop ? "w-1/3" : "w-1/6"}`}>
+                                Prioridad
+                            </div>
+                            {!props.desktop && <div className={`relative px-6 py-3 ${props.desktop ? "w-1/3" : "w-1/6"}`}>
                                 <span className="sr-only">Edit</span>
                             </div>}
                         </div>
