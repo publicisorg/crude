@@ -55,7 +55,7 @@ function MenuAside(props: any) {
 
     function notificationDing() {
         if (tasks != null) {
-            if (tasks.length > 0 && tasks != null) {
+            if (tasks.length > 0) {
                 const jsx: any = [];
                 tasks.forEach((_element: any, index: any) => {
                     jsx.push(

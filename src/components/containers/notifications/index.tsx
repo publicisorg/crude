@@ -20,32 +20,34 @@ export function Notifications(props: any) {
     }, [])
 
     async function getTasksData() {
-      if (props.userFilter == "*") {
-          const data = await supabase.from('tasks').select('*');
-          return data;
-      } else {
-          const data = await supabase.from('tasks').select('*').eq('user', props.userFilter).eq('done', false);
-          return data;
-      }
-  }
-  
+        if (props.userFilter == "*") {
+            const data = await supabase.from('tasks').select('*');
+            return data;
+        } else {
+            const data = await supabase.from('tasks').select('*').eq('user', props.userFilter).eq('done', false);
+            return data;
+        }
+    }
+
 
     function buildMultipleTasks() {
-        if (tasks.length > 0) {
-            const jsx: any = [];
-            tasks.forEach((element: any, index:any) => {
-                jsx.push(<Notification handleTimer={props.handleTimer} index={index} element={element} borderColor={props.borderColor} secondaryColor={props.secondaryColor}/>)
-            });
+        if (tasks != null) {
+            if (tasks.length > 0) {
+                const jsx: any = [];
+                tasks.forEach((element: any, index: any) => {
+                    jsx.push(<Notification handleTimer={props.handleTimer} index={index} element={element} borderColor={props.borderColor} secondaryColor={props.secondaryColor} />)
+                });
 
-            return jsx;
-        } else {
-            return "";
+                return jsx;
+            } else {
+                return "";
+            }
         }
     }
 
     return (
-      <div className="mx-auto p-8 flex flex-col gap-4">
-      <h1 className="text-3xl font-bold">Actividad</h1>
+        <div className="mx-auto p-8 flex flex-col gap-4">
+            <h1 className="text-3xl font-bold">Actividad</h1>
             {buildMultipleTasks()}
         </div>
     );

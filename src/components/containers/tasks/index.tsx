@@ -21,18 +21,20 @@ function TasksTable(props: any) {
     }, [])
 
     useEffect(() => {
-        if (tasks.length > 0) {
-            if (props.userFilter != undefined && props.userFilter != "" && props.setNotStarted != undefined) {
-                const notStarted = tasks.filter((task: any) => task.status == "ASIGNADO");
-                props.setNotStarted(notStarted.length);
-            }
-            if (props.userFilter != undefined && props.userFilter != "" && props.setInProcess != undefined) {
-                const inProcess = tasks.filter((task: any) => task.user != null && task.user != "" && task.status != null && task.status != "ASIGNADO" && task.done == false);
-                props.setInProcess(inProcess.length);
-            }
-            if (props.userFilter != undefined && props.userFilter != "" && props.setDone != undefined) {
-                const done = tasks.filter((task: any) => task.done == true);
-                props.setDone(done.length);
+        if (tasks != null) {
+            if (tasks.length > 0) {
+                if (props.userFilter != undefined && props.userFilter != "" && props.setNotStarted != undefined) {
+                    const notStarted = tasks.filter((task: any) => task.status == "ASIGNADO");
+                    props.setNotStarted(notStarted.length);
+                }
+                if (props.userFilter != undefined && props.userFilter != "" && props.setInProcess != undefined) {
+                    const inProcess = tasks.filter((task: any) => task.user != null && task.user != "" && task.status != null && task.status != "ASIGNADO" && task.done == false);
+                    props.setInProcess(inProcess.length);
+                }
+                if (props.userFilter != undefined && props.userFilter != "" && props.setDone != undefined) {
+                    const done = tasks.filter((task: any) => task.done == true);
+                    props.setDone(done.length);
+                }
             }
         }
     }, [tasks])
@@ -48,14 +50,16 @@ function TasksTable(props: any) {
     }
 
     function buildMultipleTasks() {
-        if (tasks.length > 0) {
-            const jsx: any = [];
-            tasks.forEach((element: any, index: any) => {
-                jsx.push(<SingleTask isSupervisor={props.role == "supervisor" ? true : false} isAccount={props.role == "account" ? true : false} index={index} element={element} desktop={props.desktop} borderColor={props.borderColor} secondaryColor={props.secondaryColor} />)
-            });
-            return jsx;
-        } else {
-            return "";
+        if (tasks != null) {
+            if (tasks.length > 0) {
+                const jsx: any = [];
+                tasks.forEach((element: any, index: any) => {
+                    jsx.push(<SingleTask isSupervisor={props.role == "supervisor" ? true : false} isAccount={props.role == "account" ? true : false} index={index} element={element} desktop={props.desktop} borderColor={props.borderColor} secondaryColor={props.secondaryColor} />)
+                });
+                return jsx;
+            } else {
+                return "";
+            }
         }
     }
 
@@ -86,7 +90,7 @@ function TasksTable(props: any) {
                         </tr>
                     </thead>
                     <tbody style={{ backgroundColor: props.secondaryColor }}>
-                            {buildMultipleTasks()}
+                        {buildMultipleTasks()}
                     </tbody>
                 </table>
             </div>
