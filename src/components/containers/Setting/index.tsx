@@ -66,20 +66,6 @@ export const ProfileSettings = (props: any) => {
     };
 
 
-    // const handleFormSubmitUpdateNick = async (e: any) => {
-    //     e.preventDefault();
-
-    //     try {
-    //         await supabase
-    //             .from('users')
-    //             .update({ urlImg: imageUrl })
-    //             .eq('uuid', props.userId);
-
-    //         console.log('Imagen de perfil actualizada correctamente');
-    //     } catch (error) {
-    //         console.error('Error al actualizar la imagen de perfil:', error);
-    //     }
-    // };
 
     const handleFormSubmitUpdatePortada = async (e: any) => {
         e.preventDefault();
@@ -207,7 +193,7 @@ export const ProfileSettings = (props: any) => {
                 }
             }
         } catch (error) {
-            console.log('Error al actualizar la contraseña:', error.message);
+            console.log('Error al actualizar la contraseña:');
             setError('Error al actualizar la contraseña. Por favor, inténtalo de nuevo.');
         }
     };
