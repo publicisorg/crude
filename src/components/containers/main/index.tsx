@@ -100,7 +100,7 @@ function Main(props: any) {
           <Route path="/profile/:userNick" element={<div className={`${containerStyles}`}><ProfileUsersPublic /></div>} />
           <Route path="/tasks" element={
             role == "user" && <div className={`${containerStyles}`}><TasksTable role={role} handleTimer={handleTimer} userFilter={userId} secondaryColor={props.secondaryColor} borderColor={props.borderColor}/></div>
-            || role == "supervisor" && <div className={`${containerStyles}`}><TasksTable role={role} handleTimer={handleTimer} userFilter={"*"} secondaryColor={props.secondaryColor} borderColor={props.borderColor}/></div>
+            || (role == "supervisor" || role == "account") && <div className={`${containerStyles}`}><TasksTable role={role} handleTimer={handleTimer} userFilter={"*"} secondaryColor={props.secondaryColor} borderColor={props.borderColor}/></div>
           }></Route>
           <Route path="/notifications" element={<div className={`${containerStyles}`}><Notifications handleTimer={handleTimer} userFilter={userId} secondaryColor={props.secondaryColor} borderColor={props.borderColor}/></div>} />
           <Route path="/folders" element={<div className={`${containerStyles}`}><Folders secondaryColor={props.secondaryColor} borderColor={props.borderColor}/></div>} />
