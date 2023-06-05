@@ -90,7 +90,7 @@ export const TaskForm = (props:any) => {
                     </div>
                 </div>
                 <div className='w-1/2'>
-                    <div className="mb-2 block"><label className="text-sm font-medium    " data-testid="flowbite-label">Marca</label></div>
+                    <div className="mb-2 block"><label className="text-sm font-medium" data-testid="flowbite-label">Marca</label></div>
                     <div className="flex">
                         <div className="relative w-full">
                             <input required
