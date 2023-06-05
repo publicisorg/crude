@@ -11,6 +11,7 @@ export function GenericSelect(props: any) {
                     <select
                         className="border hover:brightness-150 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-left w-full duration-300"
                         onChange={e => props.onChange(e.target.value)}
+                        required={props.required}
                         style={{ backgroundColor: props.secondaryColor, borderColor: props.borderColor }}>
                         <option value="">Sin asignar</option>
                         {props.data.map((element: any, index: number) => {

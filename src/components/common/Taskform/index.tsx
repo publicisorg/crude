@@ -11,6 +11,7 @@ export const TaskForm = (props: any) => {
     const [date, setDate] = useState("")
     const [comment, setComment] = useState("")
     const [state, setState] = useState("")
+    const [priority, setPriority] = useState("")
     const [authUser, setAuthUser] = useState("")
     const [showSuccess, setShowSuccess] = useState(false)
     const [successOpacity, setSuccessOpacity] = useState("opacity-0")
@@ -23,6 +24,14 @@ export const TaskForm = (props: any) => {
         { value: "EN TESTEO", displayValue: "EN TESTEO" },
         { value: "APROBADO", displayValue: "APROBADO" },
         { value: "FINALIZADO", displayValue: "FINALIZADO" }];
+
+    const taskPriority = [
+        { value: "NINGUNA", displayValue: "NINGUNA" },
+        { value: "POCA", displayValue: "POCA" },
+        { value: "NORMAL", displayValue: "NORMAL" },
+        { value: "ALTA", displayValue: "ALTA" },
+        { value: "MUY ALTA", displayValue: "MUY ALTA" },
+        { value: "URGENTE", displayValue: "URGENTE" }];
 
     useEffect(() => {
         document.title = "Nueva Tarea";
@@ -62,6 +71,7 @@ export const TaskForm = (props: any) => {
             user: users,
             date: date,
             status: state,
+            priority: priority,
             comment: comment,
             userId: authUser
         })
@@ -104,18 +114,19 @@ export const TaskForm = (props: any) => {
                 </div>
                 <GenericInput required={true} function={setProject} label="Proyecto:" placeholder={""} type="text" id="project" name="project" secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
                 <MultipleUsers addUser={addUser} removeUser={removeUser} users={users} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
-                <GenericSelect label="Estado:" data={taskStates} function={setState} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
+                <GenericSelect required={true} label="Estado:" data={taskStates} onChange={setState} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
+                <GenericSelect required={true} label="Prioridad:" data={taskPriority} onChange={setPriority} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
                 <GenericInput required={true} function={setDate} label="Fecha de entrega:" type="date" id="finishDate" name="finishDate" secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
                 <GenericInput required={true} function={setComment} label="Comentario:" type="text" id="comment" name="comment" secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
                 <button
                     type="submit"
-                    className="bg-green-500/30 hover:bg-green-700 w-1/2 flex h-min items-center justify-center p-0.5 text-center font-medium focus:z-10 rounded-lg"
+                    className="bg-green-500/30 hover:bg-green-700 w-full flex h-min items-center justify-center p-0.5 text-center font-medium focus:z-10 rounded-lg"
                 >
                     <span className="flex items-center rounded-md text-sm px-4 py-2">Crear nueva tarea</span>
                 </button>
             </form>
 
-            {showSuccess && <div className={`${successOpacity} w-96 flex flex-row justify-center items-center py-2 px-4 rounded-lg bg-lime-600 duration-300`}>La tarea se ha creado correctamente.</div>}
+            {showSuccess && <div className={`${successOpacity} w-full flex flex-row justify-center items-center py-2 px-4 rounded-lg bg-lime-600 duration-300`}>La tarea se ha creado correctamente.</div>}
         </div>
 
     )
