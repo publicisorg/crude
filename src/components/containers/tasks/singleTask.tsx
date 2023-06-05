@@ -122,12 +122,12 @@ function SingleTask(props: any) {
                 </span>}
                 {(props.isAccount || props.isSupervisor) && <GenericSelect value={state} required={true} data={taskStates} onChange={setState} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />}
             </div>
-            <div className={`px-6 py-4 whitespace-nowrap flex justify-center items-center ${props.desktop ? "w-1/3" : "w-1/6"}`}>
+            {!props.desktop && <div className={`px-6 py-4 whitespace-nowrap flex justify-center items-center ${props.desktop ? "w-1/3" : "w-1/6"}`}>
                 {(!props.isAccount && !props.isSupervisor) && <span className="px-6 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-lg h-10 flex justify-center items-center">
                     {props.element.priority}
                 </span>}
                 {(props.isAccount || props.isSupervisor) && <GenericSelect value={priority} required={true} data={taskPriority} onChange={setPriority} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />}
-            </div>
+            </div>}
             {!props.desktop && <div className={`px-6 py-4 text-sm font-medium text-right whitespace-nowrap ${props.desktop ? "w-1/3" : "w-1/6"}`}>
                 <Link to={'/tasks/' + props.element.id}>
                     <button className={`${buttonStyle}`} style={{ borderColor: props.borderColor, backgroundColor: props.secondaryColor }}>

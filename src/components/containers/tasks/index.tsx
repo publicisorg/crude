@@ -89,9 +89,9 @@ function TasksTable(props: any) {
                             <div className={`px-6 py-3 text-xs font-medium tracking-wider text-center uppercase ${props.desktop ? "w-1/3" : "w-1/6"}`}>
                                 Estado
                             </div>
-                            <div className={`px-6 py-3 text-xs font-medium tracking-wider text-center uppercase ${props.desktop ? "w-1/3" : "w-1/6"}`}>
+                            {!props.desktop && <div className={`px-6 py-3 text-xs font-medium tracking-wider text-center uppercase ${props.desktop ? "w-1/3" : "w-1/6"}`}>
                                 Prioridad
-                            </div>
+                            </div>}
                             {!props.desktop && <div className={`relative px-6 py-3 ${props.desktop ? "w-1/3" : "w-1/6"}`}>
                                 <span className="sr-only">Edit</span>
                             </div>}
