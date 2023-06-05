@@ -15,25 +15,23 @@ export function Notifications(props: any) {
 
     useEffect(() => {
         getTasksData().then((data: any) => {
-            getTasksData().then((data: any) => {
-                if (props.userFilter == "") {
-                    setTasks(data.data.filter((task: any) => task.user == null || task.user.length < 1));
+            if (props.userFilter == "") {
+                setTasks(data.data.filter((task: any) => task.user == null || task.user.length < 1));
+            } else {
+                if (props.userFilter == "*") {
+                    setTasks(data.data.filter((task: any) => task.user != null && task.user.length > 0));
                 } else {
-                    if (props.userFilter == "*") {
-                        setTasks(data.data.filter((task: any) => task.user != null && task.user.length > 0));
-                    } else {
-                        const tasks: any = [];
-                        data.data.forEach((element: any) => {
-                            element.user.forEach((users: any) => {
-                                if (users.userId === props.userFilter) {
-                                    tasks.push(element);
-                                }
-                            });
+                    const tasks: any = [];
+                    data.data.forEach((element: any) => {
+                        element.user.forEach((users: any) => {
+                            if (users.userId === props.userFilter) {
+                                tasks.push(element);
+                            }
                         });
-                        setTasks(tasks);
-                    }
+                    });
+                    setTasks(tasks);
                 }
-            })
+            }
         })
     }, [])
 
