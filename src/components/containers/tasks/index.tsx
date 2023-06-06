@@ -16,7 +16,7 @@ function TasksTable(props: any) {
                 setTasks(data.data.filter((task: any) => task.user == null || task.user.length < 1));
             } else {
                 if (props.userFilter == "*") {
-                    setTasks(data.data.filter((task: any) => task.user != null && task.user.length > 0));
+                    setTasks(data.data);
                 } else {
                     const tasks: any = [];
                     data.data.forEach((element: any) => {

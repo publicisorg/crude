@@ -24,8 +24,14 @@ function SingleTask(props: any) {
 
     async function changeState() {
         if (state != "") {
+            if (state == "FINALIZADO") {
+                var done = true;
+            } else {
+                var done = false;
+            }
             const result = await supabase.from('tasks').update({
-                status: state
+                status: state,
+                done: done
             }).eq("id", props.element.id);
             return result;
         }
