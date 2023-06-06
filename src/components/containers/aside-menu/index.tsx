@@ -87,7 +87,7 @@ function MenuAside(props: any) {
                         Actividad
                         {notificationDing()}
                     </MenuButton>
-                    <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="tasks" selected={menuSelected} px="px-8"><AiOutlineContainer />Tareas</MenuButton>
+                    {props.role != "director" && <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="tasks" selected={menuSelected} px="px-8"><AiOutlineContainer />Tareas</MenuButton>}
                     {(props.role == "supervisor" || props.role == "account") && <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="createtasks" selected={menuSelected} px="px-8"><AiOutlineContainer />Crear Tareas</MenuButton>}
                     <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="folders" selected={menuSelected} px="px-8"><AiOutlineFolder />Carpetas</MenuButton>
                     {false && <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="databases" selected={menuSelected} px="px-8"><AiOutlinePieChart />Bases de Datos</MenuButton>}
@@ -101,7 +101,7 @@ function MenuAside(props: any) {
                 <SelectRole function={props.setRole} possibleRoles={possibleRoles} setMenuSelected={setMenuSelected} secondaryColor={props.secondaryColor} borderColor={props.borderColor}/>
                 <div className="flex flex-row justify-evenly items-center w-full border-t" style={{ borderColor: props.borderColor }}>
                     <Link to="myprofile">
-                        <Profile name={props.name} lastName={props.lastName} urlImg={props.urlImg} changeBg={props.changeBg} changeText={props.setTextColors} />
+                        <Profile name={props.name} lastName={props.lastName} urlImg={props.urlImg} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
                     </Link>
                     <Link to="setting">
                         <div className="p-4">

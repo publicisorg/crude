@@ -27,7 +27,7 @@ export function CardStatus(props: any) {
 
   useEffect(() => {
     if (messages.length > 0) {
-      const message:any = messages[0];
+      const message: any = messages[0];
       const createdAt = moment(message.created_at);
       const now = moment();
       const duration = moment.duration(now.diff(createdAt));
@@ -168,61 +168,58 @@ export function CardStatus(props: any) {
 
 
 
-    
+
   };
 
 
 
-const MyComponent = () => {
-  const [likedMessageId, setLikedMessageId] = useState<string | null>(null);
-  const [idLikeStatus, setIdLikeStatus] = useState<string[]>([]);
+  const MyComponent = () => {
+    const [likedMessageId, setLikedMessageId] = useState<string | null>(null);
+    const [idLikeStatus, setIdLikeStatus] = useState<string[]>([]);
 
-  // Obtener el valor actual de idLikeStatus de la tabla users al cargar el componente
-  useEffect(() => {
-    const fetchIdLikeStatus = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('users')
-          .select('idLikeStatus')
-          .eq('uuid', props.userId)
-          .single();
+    // Obtener el valor actual de idLikeStatus de la tabla users al cargar el componente
+    useEffect(() => {
+      const fetchIdLikeStatus = async () => {
+        try {
+          const { data, error } = await supabase
+            .from('users')
+            .select('idLikeStatus')
+            .eq('uuid', props.userId)
+            .single();
 
-        if (error) {
-          throw new Error('Error al obtener la columna idLikeStatus');
+          if (error) {
+            throw new Error('Error al obtener la columna idLikeStatus');
+          }
+
+          const currentIdLikeStatus = data?.idLikeStatus || [];
+          setIdLikeStatus(currentIdLikeStatus);
+        } catch (error) {
+          console.error('Error al obtener la columna idLikeStatus:', error);
         }
+      };
 
-        const currentIdLikeStatus = data?.idLikeStatus || [];
-        setIdLikeStatus(currentIdLikeStatus);
-      } catch (error) {
-        console.error('Error al obtener la columna idLikeStatus:', error);
-      }
-    };
+      fetchIdLikeStatus();
+    }, [props.userId]);
 
-    fetchIdLikeStatus();
-  }, [props.userId]);
-
-};
+  };
 
 
   return (
-    <div className="mt-14">
+    <div className="mt-0">
       {messages.map((message: any) => (
-        <div className="border p-2 flex mb-4 rounded-md" style={{borderColor: props.borderColor, backgroundColor: props.BgsecondaryColor}} key={message.created_at}>
-          <img className="profile-image w-12 h-12 rounded-full mr-4" src={props.urlImg} alt="Profile" />
+        <div className="border py-2 px-4 flex items-start mb-4 rounded-lg gap-2 bg-white/10" style={{ borderColor: props.borderColor }} key={message.created_at}>
+          <img className="profile-image w-16 h-16 mt-2 rounded-full border-2" src={props.urlImg} alt="Profile" style={{ borderColor: props.borderColor }}/>
           <div className="status-content">
-            <div className="flex">
-              <p className="message font-bold">{props.name}</p>
-              <p className="message font-sm font-normal text-gray-500">@{props.userNick}</p>
-              <p className="message font-sm font-normal text-gray-500">{timeElapsed}</p>
+            <div className="flex flex-row gap-2">
+              <p className="message font-bold">{props.name + " " + props.lastName}</p>
+              <p className="message font-sm font-normal opacity-60">@{props.userNick}</p>
+              <p className="message font-sm font-normal opacity-60">{timeElapsed}</p>
             </div>
             <p className="message font-light">{message.message}</p>
             <p
-              className={`like-count text-gray-500 flex gap-2 items-center`}
-              onClick={() => handleLikeClick(message.id)}
-            >
-             
-              <span className={`heart ${likedMessageId === message.id ? 'heart-animation' : ''}`} ></span>
-             <span className="-ml-2"> {message.like}</span>
+              className={`like-count opacity-60 flex gap-2 items-center`}>
+              <span onClick={() => handleLikeClick(message.id)} className={`heart ${likedMessageId === message.id ? 'heart-animation' : ''}`} ></span>
+              <span className="-ml-2"> {message.like}</span>
             </p>
           </div>
         </div>
