@@ -59,24 +59,6 @@ export const TaskDetails = (props: any) => {
           setComment(errorComment);
         }
         setMarca(element.marca);
-
-        const createdAt = moment(element.created_at);
-        const now = moment();
-        const duration = moment.duration(now.diff(createdAt));
-        const hoursElapsed = duration.asHours();
-
-        let timeText = "";
-        if (hoursElapsed < 1) {
-          timeText = "Hace menos de una hora";
-        } else if (hoursElapsed < 24) {
-          if (hoursElapsed < 2) {
-            timeText = `Hace ${Math.floor(hoursElapsed)} hora`;
-          } else {
-            timeText = `Hace ${Math.floor(hoursElapsed)} horas`;
-          }
-        } else {
-          timeText = `Hace ${Math.floor(hoursElapsed / 24)} días`;
-        }
       }
     });
   }, []);
