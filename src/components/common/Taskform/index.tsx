@@ -12,8 +12,8 @@ export const TaskForm = (props: any) => {
     const [date, setDate] = useState("")
     const [comment, setComment] = useState("")
     const [state, setState] = useState("")
-    const [priority, setPriority] = useState("")
-    const [authUser, setAuthUser] = useState("")
+    const [priority, setPriority] = useState("NINGUNA")
+    const [authUser, setAuthUser] = useState("SIN ASIGNAR")
     const [showSuccess, setShowSuccess] = useState(false)
     const [successOpacity, setSuccessOpacity] = useState("opacity-0")
 
