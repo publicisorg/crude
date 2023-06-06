@@ -30,8 +30,8 @@ export const ProfileUsers = (props: any) => {
 
     return (
         <main>
-            <div className="container mx-auto p-6">
-                <div className='border rounded-lg overflow-hidden pb-6 bg-white/10' style={{borderColor: props.borderColor}}>
+            <div className="mx-auto p-8">
+                <div className='border rounded-lg overflow-hidden pb-6 bg-white/10 shadow-lg' style={{borderColor: props.borderColor}}>
                     <div className="card-body">
                     <div className="relative h-48 bg-cover bg-center" style={{ backgroundImage: "url("+props.urlImgPortada+")" }}></div>
                     <div className="flex justify-center mt-[-4rem] relative">
@@ -50,7 +50,7 @@ export const ProfileUsers = (props: any) => {
                     </div>
                     </div>
                 </div>
-                <div className="card my-4 bg-white/10" style={{borderColor: props.borderColor}}>
+                <div className="card my-4 bg-white/10 shadow-lg" style={{borderColor: props.borderColor}}>
                     <textarea value={status} onChange={handleStatusChange} className="w-full h-24 p-2 border rounded-lg resize-none mb-2" placeholder={'¿Qué estás pensando, ' + props.name} style={{borderColor: props.borderColor, backgroundColor: props.secondaryColor}}/>
                     <GenericButton type="button" onClick={handleFormSubmit} label="Compartir estado" borderColor={props.borderColor} secondaryColor={props.secondaryColor}/>
                 </div>
