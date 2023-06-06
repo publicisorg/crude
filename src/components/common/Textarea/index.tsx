@@ -10,13 +10,13 @@ interface WysiwygTextareaProps extends React.HTMLProps<HTMLDivElement> {
   const WysiwygTextarea = ({ id, name, ...rest }: WysiwygTextareaProps) => {
     const [content, setContent] = useState('');
   
-    const handleChange = (value:any) => {
+    const handleTextareaChange = (value:any) => {
       setContent(value);
     };
   
     return (
       <div  {...rest}>
-        <ReactQuill value={content} onChange={handleChange}  />
+        <ReactQuill value={content} onChange={handleTextareaChange}  />
         <input type="hidden" id={id} name={name} value={content} />
       </div>
     );
