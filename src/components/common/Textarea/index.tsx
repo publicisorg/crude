@@ -1,25 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-interface WysiwygTextareaProps extends React.HTMLProps<HTMLDivElement> {
-    id?: string;
-    name?: string;
-    onChange: (value: string) => void;
-  }
 
-  const WysiwygTextarea = ({ id, name, ...rest }: WysiwygTextareaProps) => {
-    const [content, setContent] = useState('');
+
+export function WysiwygTextarea(props: any) {
+  const [value, setValue] = useState('');
+  useEffect(() => { props.function(value); }, [value]);
   
-    const handleTextareaChange = (value:any) => {
-      setContent(value);
-    };
-  
-    return (
-      <div  {...rest}>
-        <ReactQuill value={content} onChange={handleTextareaChange}  />
-        <input type="hidden" id={id} name={name} value={content} />
+
+  return (
+    <div className="w-auto">
+      <div className='mb-2 block'>
+        <label htmlFor={props.name} className="text-sm font-medium" data-testid="flowbite-label">{props.label}</label>
       </div>
-    );
-  };
+      <div className="flex">
+        <div className='relative w-full'>
+          <ReactQuill value={value} onChange={setValue} />
+        </div>
+      </div>
+    </div>
+  )
+}
 
-export default WysiwygTextarea;
+export default WysiwygTextarea
+
+

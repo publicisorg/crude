@@ -99,6 +99,7 @@ function Main(props: any) {
           <Route path="/notifications" element={<div className={`${containerStyles}`}><Notifications handleTimer={handleTimer} userFilter={userId} secondaryColor={props.secondaryColor} borderColor={props.borderColor}/></div>} />
           <Route path="/folders" element={<div className={`${containerStyles}`}><Folders secondaryColor={props.secondaryColor} borderColor={props.borderColor}/></div>} />
           <Route path="/createtasks" element={(role == "supervisor" || role == "account") && <div className={`${containerStyles}`}><TaskForm secondaryColor={props.secondaryColor} borderColor={props.borderColor}/></div>} />
+          <Route path="/edittasks/:id" element={(role == "supervisor" || role == "account") && <div className={`${containerStyles}`}><TaskForm secondaryColor={props.secondaryColor} borderColor={props.borderColor}/></div>} />
           <Route path="*" element={<div className={`${containerStyles}`}><NotFound /></div>} />
           <Route path="/login" element={<><Login /></>} />
         <Route path="/registrar" element={<><SignUp /></>} /> 

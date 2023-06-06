@@ -62,6 +62,7 @@ export const TaskForm = (props: any) => {
     const handleTextareaChange = (value: string) => {
         setComment(value);
       };
+      useEffect(() => { console.log(comment); }, [comment]); 
 
     async function impactDataOnTable() {
         const result = await supabase.from('tasks').insert({
@@ -117,7 +118,7 @@ export const TaskForm = (props: any) => {
                 <GenericSelect required={true} label="Estado:" data={taskStates} onChange={setState} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
                 <GenericSelect required={true} label="Prioridad:" data={taskPriority} onChange={setPriority} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
                 <GenericInput required={true} function={setDate} label="Fecha de entrega:" type="date" id="finishDate" name="finishDate" secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
-                <WysiwygTextarea onChange={handleTextareaChange} label="Comentario:"  id="comment" name="comment" />
+                <WysiwygTextarea function={handleTextareaChange} label="Comentario:"  id="comment" name="comment" />
                 <button
                     type="submit"
                     className="bg-green-500/30 hover:bg-green-700 w-full flex h-min items-center justify-center p-0.5 text-center font-medium focus:z-10 rounded-lg"
