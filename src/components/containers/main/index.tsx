@@ -45,7 +45,6 @@ function Main(props: any) {
 
   useEffect(() => {
     getMyUserData(userId).then((user: any) => {
-      console.log(user);
       setName(user.data[0].name);
       setLastname(user.data[0].lastname);
       setUrlImg(user.data[0].urlImg);

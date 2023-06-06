@@ -22,8 +22,6 @@ export const ProfileUsers = (props: any) => {
             await supabase
                 .from('statusProfile')
                 .insert({ uuid: props.userId, message: status, like: 0, show: true });
-
-            console.log(props.userId);
         } catch (error) {
             console.error('Error al actualizar el estado:', error);
         }

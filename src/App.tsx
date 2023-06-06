@@ -41,7 +41,6 @@ function App() {
   useEffect(() => {
     getColorsFromDB().then((result: any) => {
       if (!result) {
-        console.log("DEFAULT");
         changeBg(defaultMainBgColors);
         changeText(defaultTextColors);
         changeSecondary(defaultSecondaryColors);

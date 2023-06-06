@@ -49,10 +49,6 @@ export const TaskForm = (props: any) => {
         setUsers(users.filter((user: any) => user.id !== id));
     }
 
-    useEffect(() => {
-        console.log(users);
-    }, [users])
-
     const handleSubmit = async (e: any) => {
         e.preventDefault()
         try {
@@ -64,8 +60,6 @@ export const TaskForm = (props: any) => {
         }
     }
     const handleTextareaChange = (value: string) => {
-        console.log('Contenido actualizado:', value);
-
         setComment(value);
       };
 
