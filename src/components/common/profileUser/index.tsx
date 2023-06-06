@@ -41,17 +41,10 @@ export function MultipleProfiles(props: any) {
             userNick: userData.data[0].userNick
           }
         );
-        console.log("VARIABLE USUARIOS");
-        console.log(usuarios);
       });
       setUsers(usuarios);
     });
   }, [])
-
-  useEffect(() => {
-    console.log("USERS");
-    console.log(users);
-  }, [users])
 
   return (
     <>
