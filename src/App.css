@@ -70,3 +70,88 @@
    from { background-position: left; }
    to { background-position: right; }
   }
+
+
+
+
+
+  /* Estilos TextArea*/
+.ql-container {
+  box-sizing: border-box;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  height: 100%;
+  position: relative;
+  min-height: 200px;
+}
+
+.ql-editor {
+  min-height: 100px;
+  padding: 12px;
+  overflow-y: auto;
+  cursor: text;
+
+}
+
+.ql-editor p {
+  margin: 0;
+  padding: 0;
+}
+
+.ql-editor ol,
+.ql-editor ul {
+  padding-left: 1.5em;
+}
+
+.ql-editor ol > li,
+.ql-editor ul > li {
+  list-style-type: none;
+}
+
+.ql-editor ul > li::before {
+  content: '\2022';
+  margin-right: 5px;
+}
+
+.ql-toolbar {
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #ccc;
+}
+
+.ql-toolbar .ql-formats {
+  margin-right: 15px;
+}
+
+.ql-toolbar .ql-picker-label {
+  color: #666;
+}
+
+.ql-toolbar .ql-picker-options {
+  padding: 4px 8px;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  font-size: 13px;
+}
+
+.ql-toolbar .ql-picker-options .ql-selected {
+  background-color: #ccc;
+}
+
+.ql-snow.ql-toolbar:after,
+.ql-snow .ql-toolbar:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+.ql-snow .ql-editor h1 {
+  font-size: 2em;
+}
+
+.ql-snow .ql-editor h2 {
+  font-size: 1.5em;
+}
+
+.ql-snow .ql-editor h3 {
+  font-size: 1.17em;
+}

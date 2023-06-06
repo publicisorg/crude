@@ -3,6 +3,7 @@ import { supabase } from '../../../supabase/client'
 import  { GenericSelect } from '../selectors/selectUsers'
 import GenericInput from '../inputs/inputs'
 import MultipleUsers from './multipleUsers'
+import WysiwygTextarea from '../Textarea'
 export const TaskForm = (props: any) => {
     const [client, setClient] = useState("")
     const [marca, setMarca] = useState("")
@@ -62,6 +63,11 @@ export const TaskForm = (props: any) => {
             console.error(error);
         }
     }
+    const handleTextareaChange = (value: string) => {
+        console.log('Contenido actualizado:', value);
+
+        setComment(value);
+      };
 
     async function impactDataOnTable() {
         const result = await supabase.from('tasks').insert({
@@ -117,7 +123,7 @@ export const TaskForm = (props: any) => {
                 <GenericSelect required={true} label="Estado:" data={taskStates} onChange={setState} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
                 <GenericSelect required={true} label="Prioridad:" data={taskPriority} onChange={setPriority} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
                 <GenericInput required={true} function={setDate} label="Fecha de entrega:" type="date" id="finishDate" name="finishDate" secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
-                <GenericInput required={true} function={setComment} label="Comentario:" type="text" id="comment" name="comment" secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
+                <WysiwygTextarea onChange={handleTextareaChange} label="Comentario:"  id="comment" name="comment" />
                 <button
                     type="submit"
                     className="bg-green-500/30 hover:bg-green-700 w-full flex h-min items-center justify-center p-0.5 text-center font-medium focus:z-10 rounded-lg"

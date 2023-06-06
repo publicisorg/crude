@@ -95,6 +95,7 @@ export const TaskDetails = (_props: any) => {
 
   return (
     <main className={`w-full`}>
+      
       <div className="mx-auto p-8 mt-8">
         <h2 className="text-2xl font-bold mb-4">Detalle de pedido</h2>
         <div className="">
