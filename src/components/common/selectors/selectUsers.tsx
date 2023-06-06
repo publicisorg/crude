@@ -4,7 +4,7 @@ import { supabase } from "../../../supabase/client"
 export function GenericSelect(props: any) {
 
     return (
-        <div>
+        <div className="w-full">
             <div className={`${props.label != undefined ? "mb-2" : ""} block`}><label className="text-sm font-medium" data-testid="flowbite-label">{props.label}</label></div>
             <div className="flex">
                 <div className="relative w-full">
@@ -22,7 +22,7 @@ export function GenericSelect(props: any) {
                     </select>
                 </div>
             </div>
-        </div >
+        </div>
     )
 }
 

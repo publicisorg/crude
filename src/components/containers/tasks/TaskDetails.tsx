@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../../supabase/client";
 import { useParams } from 'react-router-dom';
 import CardComment from "./cardComment";
+import TaskMenu from "./taskMenu";
 
 export const TaskDetails = (props: any) => {
 
@@ -26,6 +27,7 @@ export const TaskDetails = (props: any) => {
   const [title, setTitle] = useState("");
   const [cliente, setCliente] = useState("");
   const [marca, setMarca] = useState("");
+  const [task, setTask] = useState<any>([]);
   const [comment, setComment] = useState<any>(loadingComment);
 
   const { id } = useParams();
@@ -50,9 +52,9 @@ export const TaskDetails = (props: any) => {
     getTaskById(id).then((data: any) => {
       if (data) {
         const element = data[0];
+        setTask(element);
         setTitle(element.name);
         setCliente(element.client);
-        console.log(element);
         if (element.comment.length > 0) {
           setComment(element.comment);
         } else {
@@ -72,17 +74,15 @@ export const TaskDetails = (props: any) => {
           <hr className="border mt-2" style={{ borderColor: props.borderColor }} />
         </div>
         <div className="container mx-auto flex flex-col">
-          <div className="flex flex-row justify-around items-center p-4">
+          <div className="flex flex-row justify-around items-start p-4">
             <div className="flex flex-col justify-start gap-4 relative">
               {comment.map((comentario: any) => {
                 return (
-                  <CardComment comment={comentario} marca={marca} cliente={cliente} borderColor={props.borderColor} />
+                  <CardComment comment={comentario} marca={marca} cliente={cliente} borderColor={props.borderColor} secondaryColor={props.secondaryColor}/>
                 )
               })}
             </div>
-            <div className="p-4 rounded-lg shadow-lg w-1/2 border bg-white/10" style={{ borderColor: props.borderColor }}>
-              
-            </div>
+            <TaskMenu task={task} borderColor={props.borderColor} secondaryColor={props.secondaryColor}/>
           </div>
         </div>
       </div>
