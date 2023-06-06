@@ -71,6 +71,7 @@ export const TaskForm = (props: any) => {
                     id: 0,
                     comment: value,
                     lastChange: "CREATED",
+                    userId: authUser,
                     time: Date.now()
                 }
             ]

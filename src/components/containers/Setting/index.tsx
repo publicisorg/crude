@@ -200,7 +200,7 @@ export const ProfileSettings = (props: any) => {
 
     return (
         <main>
-            <div className="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4">
+            <div className="grid grid-cols-1 p-8 xl:grid-cols-3 xl:gap-4">
                 <div className="col-span-full xl:col-auto">
                     <div className="p-4 mb-4 bg-white/10 border rounded-lg 2xl:col-span-2 sm:p-6 shadow-lg" style={{ borderColor: borderColor }}>
                         <div className="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">

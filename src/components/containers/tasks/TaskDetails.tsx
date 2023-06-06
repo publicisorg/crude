@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../../supabase/client";
 import moment from 'moment';
-import { useParams } from 'react-router-dom';
-import { Timeline } from 'flowbite-react';
-import { AiOutlineCalendar } from "react-icons/ai";
+import { Link, useParams } from 'react-router-dom';
 
 export const TaskDetails = (props: any) => {
 
@@ -26,15 +24,8 @@ export const TaskDetails = (props: any) => {
   ]
 
   const [title, setTitle] = useState("");
-  const [status, setStatus] = useState("");
   const [cliente, setCliente] = useState("");
   const [marca, setMarca] = useState("");
-  const [user, setUser] = useState("");
-  const [date, setDate] = useState("");
-  const [userId, setUserId] = useState("");
-  const [userIdImage, setUserIdImage] = useState("");
-  const [userImage, setUserImage] = useState("");
-  const [timeElapsed, setTimeElapsed] = useState("");
   const [comment, setComment] = useState<any>(loadingComment);
 
   const { id } = useParams();
@@ -55,22 +46,6 @@ export const TaskDetails = (props: any) => {
     return data;
   }
 
-  async function getUserById(userId: any) {
-    const { data, error } = await supabase
-      .from('users')
-      .select('name, lastname, urlImg')
-      .eq("uuid", userId);
-    if (error) {
-      console.error(error);
-      return null;
-    }
-    return data;
-  }
-
-  useEffect(() => {
-    console.log(comment);
-  }, [comment])
-
   useEffect(() => {
     getTaskById(id).then((data: any) => {
       if (data) {
@@ -83,10 +58,7 @@ export const TaskDetails = (props: any) => {
         } else {
           setComment(errorComment);
         }
-        //setComment(element.comment);
-        setDate(element.created_at);
         setMarca(element.marca);
-        setStatus(element.status);
 
         const createdAt = moment(element.created_at);
         const now = moment();
@@ -97,26 +69,14 @@ export const TaskDetails = (props: any) => {
         if (hoursElapsed < 1) {
           timeText = "Hace menos de una hora";
         } else if (hoursElapsed < 24) {
-          timeText = `Hace ${Math.floor(hoursElapsed)} horas`;
+          if (hoursElapsed < 2) {
+            timeText = `Hace ${Math.floor(hoursElapsed)} hora`;
+          } else {
+            timeText = `Hace ${Math.floor(hoursElapsed)} horas`;
+          }
         } else {
           timeText = `Hace ${Math.floor(hoursElapsed / 24)} días`;
         }
-
-        setTimeElapsed(timeText);
-
-        getUserById(element.userId).then((result: any) => {
-          if (result) {
-            setUserId(result[0].name + " " + result[0].lastname);
-            setUserIdImage(result[0].urlImg);
-          }
-        });
-
-        getUserById(element.user).then((result: any) => {
-          if (result) {
-            setUser(result[0].name + " " + result[0].lastname);
-            setUserImage(result[0].urlImg);
-          }
-        });
       }
     });
   }, []);
@@ -130,28 +90,15 @@ export const TaskDetails = (props: any) => {
           <hr className="border mt-2" style={{ borderColor: props.borderColor }} />
         </div>
         <div className="container mx-auto flex flex-col">
-          <div className="flex flex-row justify-center items-center p-4 gap-4">
-            <div className="p-4 rounded-lg shadow-lg w-1/2 border bg-white/10" style={{ borderColor: props.borderColor}}>
-              <div className="flex flex-row items-center gap-4 w-full">
-                <img src={userIdImage} alt="" className="rounded-full w-10 h-10 border-2" width="40" height="40" style={{ borderColor: props.borderColor }} />
-                <h6 className="font-bold mb-0 fs-4">{userId} </h6>
-                <span className="flex justify-end"> •<span className="p-1 bg-muted rounded-circle d-inline-block"></span>{timeElapsed}</span>
-              </div>
-              <p className="mt-3"><b>{title}</b></p>
-              <p>
-                {comment[0].comment}
-              </p>
-              <div className="flex items-center">
-                <div className="flex items-center gap-2">
-                  <span className="text-dark fw-semibold">{cliente}</span>
-                </div>
-                <div className="flex items-center gap-2 ms-4">
-                  •
-                  <span className="text-dark fw-semibold">{marca}</span>
-                </div>
-              </div>
+          <div className="flex flex-row justify-around items-center p-4">
+            <div className="flex flex-col justify-start gap-4 relative">
+              {comment.map((comentario: any) => {
+                return (
+                  <CardComment comment={comentario} marca={marca} cliente={cliente} borderColor={props.borderColor} />
+                )
+              })}
             </div>
-            <div className="p-4 rounded-lg shadow-lg w-1/2 border bg-white/10" style={{ borderColor: props.borderColor}}>
+            <div className="p-4 rounded-lg shadow-lg w-1/2 border bg-white/10" style={{ borderColor: props.borderColor }}>
             </div>
           </div>
         </div>
@@ -159,3 +106,92 @@ export const TaskDetails = (props: any) => {
     </main>
   );
 };
+
+export function TextToComponent(props: any) {
+  return <div className={props.className} dangerouslySetInnerHTML={{ __html: props.text }}></div>
+}
+
+export function CardComment(props: any) {
+
+  const [userIdName, setUserIdName] = useState("");
+  const [userIdNick, setUserIdNick] = useState("");
+  const [userIdImage, setUserIdImage] = useState("");
+  const [lastChangeDescription, setLastChangeDescription] = useState("");
+  const [lastChangeStyle, setLastChangeStyle] = useState("");
+
+  useEffect(() => {
+    switch (props.comment.lastChange) {
+      case "CREATED":
+        setLastChangeDescription("Creacion de la tarea");
+        setLastChangeStyle("flex h-fit items-center gap-1 font-semibold bg-indigo-100 text-indigo-800 rounded px-2 py-0.5 p-1 text-xs")
+        break;
+      case "DONE":
+        setLastChangeDescription("Hilo cerrado");
+        setLastChangeStyle("flex h-fit items-center gap-1 font-semibold bg-green-100 text-green-800 rounded px-2 py-0.5 p-1 text-xs")
+        break;
+      case "":
+        setLastChangeDescription("El estado de este pedido no se ha alterado");
+        setLastChangeStyle("flex h-fit items-center gap-1 font-semibold bg-gray-100 text-gray-800 rounded px-2 py-0.5 p-1 text-xs")
+        break;
+      default:
+        setLastChangeDescription(props.comment.lastChange);
+        setLastChangeStyle("flex h-fit items-center gap-1 font-semibold bg-yellow-100 text-yellow-800 rounded px-2 py-0.5 p-1 text-xs")
+    }
+  })
+
+  async function getUserById(userId: any) {
+    const { data, error } = await supabase
+      .from('users')
+      .select('name, lastname, urlImg, userNick')
+      .eq("uuid", userId);
+    if (error) {
+      console.error(error);
+      return null;
+    }
+    return data;
+  }
+
+  getUserById(props.comment.userId).then((result: any) => {
+    if (result) {
+      setUserIdName(result[0].name + " " + result[0].lastname);
+      setUserIdImage(result[0].urlImg);
+      setUserIdNick(result[0].userNick);
+    }
+  });
+
+  function returnInDateFormat() {
+    var date = new Date(props.comment.time).toLocaleString();
+    return date;
+  }
+
+  return (
+    <div className={`p-4 rounded-lg shadow-lg w-full ${props.comment.id > 0 ? "bg-white/10 border" : "bg-white/0 border-2"}`} style={{ borderColor: props.borderColor }}>
+      <div className="flex flex-row items-center gap-2 w-full mb-2">
+        <Link to={"/profile/" + userIdNick} className="flex flex-row gap-2 justify-center items-center">
+          <img src={userIdImage} alt="" className="rounded-full w-10 h-10 border-2" width="40" height="40" style={{ borderColor: props.borderColor }} />
+          <h6 className="font-bold mb-0 fs-4 ml-2">{userIdName}</h6>
+        </Link>
+      </div>
+      <TextToComponent text={props.comment.comment} />
+      <div className="mt-4 flex justify-start">
+        <div className={`${lastChangeStyle}`}>
+          {lastChangeDescription}
+        </div>
+      </div>
+      <div className="flex flex-row justify-between items-center gap-2 mt-2 opacity-50">
+        <div className="flex flex-row gap-2">
+          <div className="flex items-center gap-2">
+            <span className="text-dark fw-semibold">{props.cliente}</span>
+          </div>
+          <span className="text-dark fw-semibold">•</span>
+          <div className="flex items-center gap-2">
+            <span className="text-dark fw-semibold">{props.marca}</span>
+          </div>
+        </div>
+        <div>
+          {returnInDateFormat()}
+        </div>
+      </div>
+    </div>
+  )
+}
