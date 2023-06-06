@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../../../supabase/client'
-import  { GenericSelect } from '../selectors/selectUsers'
+import { GenericSelect } from '../selectors/selectUsers'
 import GenericInput from '../inputs/inputs'
 import MultipleUsers from './multipleUsers'
 import WysiwygTextarea from '../Textarea'
@@ -10,12 +10,16 @@ export const TaskForm = (props: any) => {
     const [projet, setProject] = useState("")
     const [users, setUsers] = useState<any>([])
     const [date, setDate] = useState("")
-    const [comment, setComment] = useState("")
+    const [comment, setComment] = useState<any>([])
     const [state, setState] = useState("")
     const [priority, setPriority] = useState("NINGUNA")
     const [authUser, setAuthUser] = useState("SIN ASIGNAR")
     const [showSuccess, setShowSuccess] = useState(false)
     const [successOpacity, setSuccessOpacity] = useState("opacity-0")
+
+    useEffect(() => {
+        console.log(comment);
+    }, [comment])
 
     const taskStates = [
         { value: "SIN ASIGNAR", displayValue: "SIN ASIGNAR" },
@@ -59,9 +63,19 @@ export const TaskForm = (props: any) => {
             console.error(error);
         }
     }
+
     const handleTextareaChange = (value: string) => {
-        setComment(value);
-      };
+        setComment(
+            [
+                {
+                    id: 0,
+                    comment: value,
+                    lastChange: "CREATED",
+                    time: Date.now()
+                }
+            ]
+        );
+    };
 
     async function impactDataOnTable() {
         const result = await supabase.from('tasks').insert({
@@ -117,7 +131,7 @@ export const TaskForm = (props: any) => {
                 <GenericSelect required={true} label="Estado:" data={taskStates} onChange={setState} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
                 <GenericSelect required={true} label="Prioridad:" data={taskPriority} onChange={setPriority} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
                 <GenericInput required={true} function={setDate} label="Fecha de entrega:" type="date" id="finishDate" name="finishDate" secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
-                <WysiwygTextarea onChange={handleTextareaChange} label="Comentario:"  id="comment" name="comment" />
+                <WysiwygTextarea function={handleTextareaChange} label="Comentario:" id="comment" name="comment" />
                 <button
                     type="submit"
                     className="bg-green-500/30 hover:bg-green-700 w-full flex h-min items-center justify-center p-0.5 text-center font-medium focus:z-10 rounded-lg"
