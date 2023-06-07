@@ -170,8 +170,23 @@ export const ProfileSettings = (props: any) => {
         changeBorderColorOnDB(borderColor);
     }, [borderColor])
 
+    const handleCerrarSesion = async () => {
+        try {
+            await supabase.auth.signOut();
+            await supabase
+              .from('users')
+              .update({ active: 'inactive' })
+              .eq('uuid', props.userId);
+            
+            console.log('Sesión cerrada y base de datos actualizada correctamente.');
+          } catch (error) {
+            console.error('Error al cerrar sesión y actualizar la base de datos:', error);
+          }
+      };
 
-    const handleSubmitPassword   = async (event:any) => {
+
+
+    const handleSubmitPassword = async (event: any) => {
         event.preventDefault();
 
         if (newPassword !== confirmPassword) {
@@ -180,8 +195,8 @@ export const ProfileSettings = (props: any) => {
         }
 
         try {
-            
-            const user = supabase.auth.getUser(); 
+
+            const user = supabase.auth.getUser();
             if (await user) {
                 const { error } = await supabase.auth.updateUser({
                     password: newPassword
@@ -362,9 +377,15 @@ export const ProfileSettings = (props: any) => {
                         <div className="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">
                             <div>
                                 <div className="flex items-center space-x-4">
-                                    <button onClick={() => supabase.auth.signOut()} type="button" className={`${buttonStyle}`} style={{ borderColor: borderColor, backgroundColor: secondaryColor }}>
-                                        Cerrar sesion
+                                    <button
+                                        type="button"
+                                        className={`${buttonStyle}`}
+                                        style={{ borderColor: borderColor, backgroundColor: secondaryColor }}
+                                        onClick={handleCerrarSesion}
+                                    >
+                                        Cerrar sesión
                                     </button>
+
                                 </div>
                             </div>
                         </div>

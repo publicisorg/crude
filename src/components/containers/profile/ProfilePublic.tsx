@@ -60,23 +60,7 @@ export const ProfileUsersPublic = () => {
         document.title = "Mi Perfil";
     }, [])
 
-    /*const handleStatusChange = (e: any) => {
-        setStatus(e.target.value);
-    };
-
-    const handleFormSubmit = async (e: any) => {
-        e.preventDefault();
-
-        try {
-            await supabase
-                .from('statusProfile')
-                .insert({ uuid: props.userId, message: status, like: 0, show:true });
-
-            console.log(props.userId);
-        } catch (error) {
-            console.error('Error al actualizar el estado:', error);
-        }
-    };*/
+   
 
 
     return (
@@ -85,9 +69,9 @@ export const ProfileUsersPublic = () => {
                 <div className='border rounded-lg overflow-hidden pb-6 bg-white/10 mb-4 shadow-lg' style={{ borderColor: borderColor }}>
                     <div className="relative h-48 bg-cover bg-center" style={{ backgroundImage: "url(" + urlImgPortada + ")" }}></div>
                     <div className="flex justify-center mt-[-4rem] relative">
-                        <div className={`w-32 h-32 border-4 rounded-full overflow-hidden z-10 shadow-lg`} style={{ borderColor: borderColor }}>
+                        <div className={active !='isActive'  ? "!border-yellow-400 w-32 h-32 border-4 rounded-full overflow-hidden z-10 shadow-lg":" w-32 h-32 border-4 rounded-full overflow-hidden z-10 shadow-lg" + ``} style={{borderColor: borderColor}}>
                             <img className="w-full h-full object-cover" src={urlImg} alt={name} />
-                            <span className={active ? 'isActive' : 'inactive' + 'absolute z-10 top-0'}></span>
+                            <span className={active  + ' absolute z-10 bottom-0'}></span>
                         </div>
                     </div>
                     <div className="mt-4 text-center">

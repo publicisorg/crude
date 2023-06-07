@@ -29,8 +29,13 @@ function Desktop(props: any) {
                     <DataCard title="Completadas" data={done} iconBg="bg-green-500" borderColor={props.borderColor}>
                         <AiOutlineCheck className="w-9 h-9" />
                     </DataCard>
+                    
+
                 </div>
+            
+                
                 <div className="flex flex-row justify-center items-center w-full h-full gap-8">
+                   
                     <DataTasks title={props.role == "supervisor" ? "Tareas de tu equipo" : "Tus tareas"} containerStyle={containerStyle} pStyle={pStyle} borderColor={props.borderColor}>
                         <TasksTable userFilter={props.user} setInProcess={setInProcess} setNotStarted={setNotStarted} setDone={setDone} desktop={true} role={props.role} borderColor={props.borderColor} secondaryColor={props.secondaryColor}/>
                     </DataTasks>

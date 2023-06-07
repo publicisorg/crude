@@ -14,14 +14,18 @@ function App() {
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange((_event, session) => {
+    supabase.auth.onAuthStateChange(async (_event, session) => {
       if (!session) {
         navigate("/login");
       } else {
         setUserId(session.user.id);
+        await supabase.from('users')
+          .update({ active: 'isActive' })
+          .eq('uuid', session.user.id);
       }
     });
   }, [navigate]);
+
 
   const [mainBgColors, changeBg] = useState(defaultMainBgColors);
   const [textColors, changeText] = useState(defaultTextColors);
@@ -72,10 +76,12 @@ function App() {
         .select("*")
         .eq('uuid', userId)
       return color;
+      
     } else {
       return false;
     }
   }
+
 
 
   return (
