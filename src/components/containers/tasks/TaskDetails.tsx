@@ -59,8 +59,7 @@ export const TaskDetails = (props: any) => {
         setTask(element);
         setTitle(element.name);
         setCliente(element.client);
-        setCreateDate(element.created_at);
-        if (element.comment.length > 0) {
+        if (element.comment?.length > 0) {
           setComment(element.comment);
         } else {
           setComment(errorComment);
@@ -117,8 +116,8 @@ export const TaskDetails = (props: any) => {
         </div>
         <hr className="border mt-2" style={{ borderColor: props.borderColor }} />
         <div className="container mx-auto flex flex-col">
-          <div className="flex flex-row justify-around items-start p-4">
-            <div className="flex flex-col justify-start gap-4 relative">
+          <div className="flex flex-row justify-around items-start p-4 gap-4">
+            <div className="flex flex-col justify-start gap-4 relative w-full">
               {comment.map((comentario: any) => {
                 return (
                   <CardComment

@@ -17,10 +17,6 @@ export const TaskForm = (props: any) => {
     const [showSuccess, setShowSuccess] = useState(false)
     const [successOpacity, setSuccessOpacity] = useState("opacity-0")
 
-    useEffect(() => {
-        console.log(comment);
-    }, [comment])
-
     const taskStates = [
         { value: "SIN ASIGNAR", displayValue: "SIN ASIGNAR" },
         { value: "ASIGNADO", displayValue: "ASIGNADO" },
@@ -40,7 +36,38 @@ export const TaskForm = (props: any) => {
 
     useEffect(() => {
         document.title = "Nueva Tarea";
+        getAuthUser();
     }, [])
+
+    function getAuthUser() {
+        try {
+            const user: any = supabase.auth.getUser()
+            user.then((userId: any) => { setAuthUser(userId.data.user.id) })
+        }
+        catch (error) {
+            console.error(error);
+        }
+    }
+
+    function handleSubmit(e: any) {
+        e.preventDefault();
+        impactDataOnTable().then((result: any) => {
+            if (result.status == 201) {
+                setShowSuccess(true);
+                setTimeout(() => {
+                    setSuccessOpacity('opacity-100');
+                }, 10);
+                setTimeout(() => {
+                    setSuccessOpacity('opacity-0');
+                }, 3010);
+                setTimeout(() => {
+                    setShowSuccess(false);
+                }, 3320);
+            } else {
+                console.log(result);
+            }
+        });
+    }
 
     function addUser(id: any, userId: any, hours: any, price: any, userFullname: any) {
         setUsers([
@@ -51,17 +78,6 @@ export const TaskForm = (props: any) => {
 
     function removeUser(id: any) {
         setUsers(users.filter((user: any) => user.id !== id));
-    }
-
-    const handleSubmit = async (e: any) => {
-        e.preventDefault()
-        try {
-            const user: any = supabase.auth.getUser()
-            user.then((userId: any) => { setAuthUser(userId.data.user.id) })
-        }
-        catch (error) {
-            console.error(error);
-        }
     }
 
     const handleTextareaChange = (value: string) => {
@@ -92,28 +108,6 @@ export const TaskForm = (props: any) => {
         })
         return result;
     }
-
-    useEffect(() => {
-        if (authUser != "") {
-            impactDataOnTable().then((result: any) => {
-                if (result.status == 201) {
-                    setShowSuccess(true);
-                    setTimeout(() => {
-                        setSuccessOpacity('opacity-100');
-                    }, 10);
-                    setTimeout(() => {
-                        setSuccessOpacity('opacity-0');
-                    }, 3010);
-                    setTimeout(() => {
-                        setShowSuccess(false);
-                    }, 3320);
-                } else {
-                    console.log(result);
-                }
-                setAuthUser("");
-            });
-        }
-    }, [authUser])
 
     return (
         <div className='mx-auto p-8 flex flex-col gap-4' >
