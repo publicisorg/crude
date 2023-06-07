@@ -52,7 +52,7 @@ function Table() {
             <th className="px-4">Color 1</th>
             <th className="px-4">Color 2</th>
             <th className="px-4">Color 3</th>
-            <th className="px-4">Palabras Clave</th>
+            <th className="px-4">Eliminar</th>
           </tr>
         </thead>
         <tbody>

@@ -15,6 +15,7 @@ function FormatedData(props: any) {
     const [color1, setColor1] = useState('');
     const [color2, setColor2] = useState('');
     const [color3, setColor3] = useState('');
+    const [hidden, setHidden] = useState(false);
 
     async function postData(data: any) {
         if (props.webReady) {
@@ -25,11 +26,12 @@ function FormatedData(props: any) {
                 formData.append(key, myDataObj[key])
             }
             try {
+                console.log(myDataObj);
                 const response = await axios.post("../UpdateData.php", myDataObj, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
                 if (response.status == 200) {
-                    console.log(response);
+                    return response;
                 } else {
                     console.log(response);
                 }
@@ -61,9 +63,32 @@ function FormatedData(props: any) {
         postData(generalData);
     }, [generalData])
 
+    function removeTags() {
+        if (actualId != undefined && actualId != "") {
+            var data = {
+                id: actualId,
+                tag1: "",
+                tag2: "",
+                tag3: "",
+                color1: "",
+                color2: "",
+                color3: "",
+                keywords: ""
+            }
+            postData(data).then((response:any) => {
+                if (response.status == "200") {
+                    alert("Se elimino correctamente.");
+                    setHidden(true);
+                }
+            });
+        } else {
+            alert("Error al borrar");
+        }
+    }
+
     return (
         <>
-            <tr key={props.index} className={`${(props.index % 2) > 0 ? "bg-black/5" : "bg-transparent"} border`}>
+            <tr key={props.index} className={`${(props.index % 2) > 0 ? "bg-black/5" : "bg-transparent"} ${hidden ? "hidden" : ""} border`}>
                 <td className="px-2">
                     {props.data.id}
                 </td>
@@ -91,8 +116,12 @@ function FormatedData(props: any) {
                 <td className="px-2">
                     <Colors color={props.data.Colores[2]} collectData={setColor3} />
                 </td>
-                <td className="px-2">
-                    <Keywords previouskeywords={props.data.Keywords} collectData={setKeywords} />
+                <td className="px-2 m-auto">
+                    <button className="text-red-600 w-10 h-10 flex justify-center items-center m-auto border-2 border-red-600 hover:bg-neutral-600 hover:border-red-600 duration-300" 
+                    onClick={() => removeTags()}>
+                        X
+                    </button>
+                    {false && <Keywords previouskeywords={props.data.Keywords} collectData={setKeywords} />}
                 </td>
             </tr>
         </>
