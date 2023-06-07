@@ -40,7 +40,7 @@ function News(props: any) {
                                         GIF
                                     </div>
                                 </div>
-                                <GenericButton label="Publicar" borderColor={props.borderColor} backgroundColor={props.secondaryColor} />
+                                <GenericButton label="Publicar" borderColor={props.borderColor} secondaryColor={props.secondaryColor} />
                             </div>
                         </div>
                     </div>
