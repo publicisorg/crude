@@ -33,7 +33,7 @@ export function MultipleUsers(props: any) {
         <div className="w-full flex flex-col justify-center items-center">
             <div className="w-full flex flex-row justify-center items-center gap-4">
                 <SelectUser setUser={setUser} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
-                <GenericInput function={setHours} name="hours" id="hours" label="Horas estimadas:" type="number" defaultValue={0} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
+                <GenericInput function={setHours} name="hours" id="hours" label="Horas:" type="number" defaultValue={0} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
                 <GenericInput function={setPrice} name="price" id="price" label="Precio hora:" type="number" defaultValue={0} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
                 <GenericButton className="mt-8" function={handleClick} label="+" secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
             </div>
