@@ -10,7 +10,7 @@ interface User {
   userNick: string;
 }
 
-function ActiveUsers(props: any) {
+function ActiveUsers() {
   const [activeUsers, setActiveUsers] = useState<User[]>([]);
   useEffect(() => {
 

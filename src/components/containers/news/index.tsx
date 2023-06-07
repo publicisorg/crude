@@ -60,7 +60,7 @@ function News(props: any) {
                         <hr className="border-black/20 border-4 mt-4" />
                         
                     </div>
-                    <StatusData name={props.name}></StatusData>
+                    <StatusData urlImg={props.urlImg} name={props.name} userNick={props.userNick} ></StatusData>
                 </div>
 
 
@@ -77,7 +77,7 @@ function News(props: any) {
 
                         <hr className="border-gray-600 p-4" />
 
-                        <ActiveUsers secondaryColor={props.secondaryColor} />
+                        <ActiveUsers  />
                         <hr className="border-gray-600" />
                     </div>
 
