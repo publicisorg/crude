@@ -17,6 +17,19 @@ export function GenericButton(props: any) {
   )
 }
 
+export function GenericButtonDummy(props: any) {
+
+  return (
+    <>
+      <button
+        style={{backgroundColor: props.secondaryColor, borderColor: props.borderColor}}
+        className={`border hover:brightness-150 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-left duration-300 ${props.className}`} >
+        {props.label}
+      </button>
+    </>
+  )
+}
+
 export function ButtonToggle(props: any) {
 
   function handleClick() {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from '../../../supabase/client'
 import { Link } from "react-router-dom";
-import GenericButton from "../buttons";
+import { GenericButtonDummy } from "../buttons";
 
 interface User {
   id: string;
@@ -48,8 +48,8 @@ function ActiveUsers(props: any) {
               </div>
             </div>
           </div>
-          <Link to={"/profile/" + user.userNick} className=" float-right">
-            <GenericButton label="Perfil" borderColor={props.borderColor} secondaryColor={props.secondaryColor} />
+          <Link to={"/profile/" + user.userNick} className="float-right">
+            <GenericButtonDummy label="Perfil" borderColor={props.borderColor} secondaryColor={props.secondaryColor} />
           </Link>
         </div>
       ))}
