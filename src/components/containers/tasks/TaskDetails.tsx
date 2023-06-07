@@ -29,7 +29,7 @@ export const TaskDetails = (props: any) => {
   const [timeDetails, setTimeDetails] = useState("");
   const [title, setTitle] = useState("");
   const [cliente, setCliente] = useState("");
-  const [createDate] = useState("");
+  const [createDate, setCreateDate] = useState("");
   const [marca, setMarca] = useState("");
   const [task, setTask] = useState<any>([]);
   const [comment, setComment] = useState<any>(loadingComment);
@@ -59,6 +59,7 @@ export const TaskDetails = (props: any) => {
         setTask(element);
         setTitle(element.name);
         setCliente(element.client);
+        setCreateDate(element.created_at);
         if (element.comment?.length > 0) {
           setComment(element.comment);
         } else {
@@ -70,6 +71,7 @@ export const TaskDetails = (props: any) => {
   }, [id]);
 
   useEffect(() => {
+    console.log(createDate);
     if (createDate) {
       const createdAt = moment(createDate);
       const now = moment();
