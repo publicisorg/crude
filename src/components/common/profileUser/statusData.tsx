@@ -29,7 +29,7 @@ async function getStatusData() {
   }
 }
 
-export const StatusData = (props: { urlImg: string; name: string; userNick: string }) => {
+export const StatusData = (props: any) => {
   const [statusData, setStatusData] = useState<StatusProfile[]>([]);
 
   useEffect(() => {
@@ -43,31 +43,40 @@ export const StatusData = (props: { urlImg: string; name: string; userNick: stri
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       {statusData.map((status) => (
-        <div key={status.id}>
-          <div className="flex flex-shrink-0 p-4 pb-0">
-            <a href="#" className="flex-shrink-0 group block">
-              <div className="flex items-center">
+        <div key={status.id} className='bg-white/10 p-4 border rounded-lg shadow-lg' style={{ borderColor: props.borderColor }}>
+          <div className="flex flex-shrink-0">
+            <div className="flex-shrink-0 group block">
+              <div className="flex items-center justify-center gap-4">
                 <div>
                   <img
-                    className="inline-block h-10 w-10 rounded-full"
+                    className="inline-block h-10 w-10 rounded-full border-2"
                     src={props.urlImg}
                     alt=""
+                    style={{ borderColor: props.borderColor }}
                   />
                 </div>
-                <div className="ml-3">
+                <div className="flex flex-col justify-start items-start gap-0">
                   <p className="text-base leading-6 font-medium text-white">
-                    {props.name}
-                    <span className="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
-                      @{props.userNick} . fecha..
-                    </span>
+                    {props.name + " " + props.lastname}
                   </p>
+                  <div className="flex flex-row gap-2 items-center justify-start">
+                    <span className="text-sm leading-5 font-medium opacity-70">
+                      @{props.userNick}
+                    </span>
+                    <span className="text-sm leading-5 font-medium opacity-70">
+                      -
+                    </span>
+                    <span className="text-sm leading-5 font-medium opacity-70">
+                      FECHA
+                    </span>
+                  </div>
                 </div>
               </div>
-            </a>
+            </div>
           </div>
-          <div className="pl-16">
+          <div className="pl-14 mt-2">
             <p className="text-base width-auto font-medium text-white flex-shrink">
               {status.message}
             </p>
@@ -77,7 +86,6 @@ export const StatusData = (props: { urlImg: string; name: string; userNick: stri
               </div>
             </div>
           </div>
-          <hr className="border-gray-600" />
         </div>
       ))}
     </div>
