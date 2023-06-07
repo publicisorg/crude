@@ -29,7 +29,7 @@ export const TaskDetails = (props: any) => {
   const [timeDetails, setTimeDetails] = useState("");
   const [title, setTitle] = useState("");
   const [cliente, setCliente] = useState("");
-  const [createDate, setCreateDate] = useState("");
+  const [createDate] = useState("");
   const [marca, setMarca] = useState("");
   const [task, setTask] = useState<any>([]);
   const [comment, setComment] = useState<any>(loadingComment);
@@ -78,7 +78,6 @@ export const TaskDetails = (props: any) => {
 
       let timeText = "";
       if (hoursElapsed < 1) {
-        const minutesElapsed = duration.asMinutes();
         timeText = `Hace menos de una hora, hoy a las ${createdAt.format("HH:mm")}`;
       } else if (hoursElapsed < 2) {
         timeText = `Hace ${Math.floor(hoursElapsed)} hora`;
