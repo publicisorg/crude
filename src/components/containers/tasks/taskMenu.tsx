@@ -98,7 +98,6 @@ export function TaskMenu(props: any) {
 
     useEffect(() => {
         if (comment.length > 0 && comment != props.task.comment) {
-            console.log(comment);
             updateDataInTable().then((response: any) => {
                 if (response.status == 204) {
                     setShowSuccess(true);
@@ -193,7 +192,8 @@ export function TaskMenu(props: any) {
     }
 
     async function getUserById(userId: any) {
-        const { data, error } = await supabase
+        if (userId != undefined) {
+            const { data, error } = await supabase
             .from('users')
             .select('name, lastname, urlImg, userNick')
             .eq("uuid", userId);
@@ -202,6 +202,9 @@ export function TaskMenu(props: any) {
             return null;
         }
         return data;
+        } else {
+            return null;
+        }
     }
 
     const taskStates = [

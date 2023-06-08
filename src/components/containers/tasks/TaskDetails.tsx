@@ -24,7 +24,7 @@ export const TaskDetails = (props: any) => {
       time: 0
     }
   ];
-  
+
   const [timeElapsed, setTimeElapsed] = useState("");
   const [timeDetails, setTimeDetails] = useState("");
   const [title, setTitle] = useState("");
@@ -86,7 +86,7 @@ export const TaskDetails = (props: any) => {
       else if (hoursElapsed < 24) {
         timeText = `Hace ${Math.floor(hoursElapsed)} horas`;
       }
-       else {
+      else {
         timeText = `Hace ${Math.floor(hoursElapsed / 24)} días, ${createdAt.format("D/M/YYYY, HH:mm:ss")}`;
       }
 
@@ -99,28 +99,29 @@ export const TaskDetails = (props: any) => {
     <main className={`w-full`}>
       <div className="mx-auto p-8">
         <div className="flex flex-row justify-between">
-        <div>
-          <h2 className="text-3xl font-bold">Detalle de pedido</h2>
-          <p>Se te asignó la tarea: <b>{title}</b></p>
-        </div>
-        <div className="flex justify-center items-center">
-        <Tooltip content={timeDetails}>
-        {timeElapsed}
-        </Tooltip>
+          <div>
+            <h2 className="text-3xl font-bold">Detalle de pedido</h2>
+            <p>Se te asignó la tarea: <b>{title}</b></p>
+          </div>
+          <div className="flex justify-center items-center">
+            <Tooltip content={timeDetails}>
+              {timeElapsed}
+            </Tooltip>
 
-        
-          <br />
 
-          
-        </div>
+            <br />
+
+
+          </div>
         </div>
         <hr className="border mt-2" style={{ borderColor: props.borderColor }} />
         <div className="container mx-auto flex flex-col">
           <div className="flex flex-row justify-around items-start p-4 gap-4">
             <div className="flex flex-col justify-start gap-4 relative w-full">
-              {comment.map((comentario: any) => {
+              {comment.map((comentario: any, index: number) => {
                 return (
                   <CardComment
+                    key={index}
                     comment={comentario}
                     marca={marca}
                     cliente={cliente}

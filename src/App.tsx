@@ -50,7 +50,8 @@ function App() {
         changeSecondary(defaultSecondaryColors);
         changeBorder(defaultBorderColors);
       } else {
-        setName(result.data[0].name);
+        if (result.data != undefined) {
+          setName(result.data[0].name);
         setLastname(result.data[0].lastname);
         setUrlImg(result.data[0].urlImg);
         setUrlImgPortada(result.data[0].urlImgPortada);
@@ -65,6 +66,7 @@ function App() {
         changeText(result.data[0].fontColor);
         changeSecondary(result.data[0].secondaryColor);
         changeBorder(result.data[0].borderColor);
+        }
       }
     })
   })
