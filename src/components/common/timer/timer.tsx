@@ -17,12 +17,22 @@ function Timer(props: any) {
     const [errorMsg, showErrorMsg] = useState(false);
     const [totalTime, setTotalTime] = useState(0);
     const [lastTimestamp, setLastTimestamp] = useState(0);
+    const [elapsedTimeCount, setElapsedTimeCount] = useState(0);
+    const [lastElapsedTime, setLastElapsedTime] = useState(0);
     const [elapsedTime, setElapsedTime] = useState(0);
+    const [elapsedTimeObject, setElapsedTimeObject] = useState<any>([]);
     const [timerTitle, setTimerTitle] = useState('');
-    const [dbElapsedTime, setDBElapsedTime] = useState(0);
-    const [taskState, setTaskState] = useState('');
     const [taskComment, setTaskComment] = useState('');
+    const [authUser, setAuthUser] = useState("SIN ASIGNAR");
 
+    const [status, setStatus] = useState("");
+    const [statusDesc, setStatusDesc] = useState("");
+    const [previousStatus, setPreviousStatus] = useState("");
+
+    const [actualComment, setActualComment] = useState<any>({});
+    const [lastComments, setLastComments] = useState<any>({});
+    const [commentCount, setCommentCount] = useState(0);
+    const [lastChangeDesc, setLastChangeDesc] = useState("");
 
     useEffect(() => {
         if (props.timerAlertMessage) {
@@ -44,7 +54,27 @@ function Timer(props: any) {
         setOpacity("opacity-100");
         const thisTime = Date.now();
         setLastTimestamp(thisTime);
+
+        const auxUser = supabase.auth.getUser();
+        auxUser.then((userinfo: any) => {
+            setAuthUser(userinfo.data.user.id);
+        });
+
+        getTasksData().then((data: any) => {
+            setStatus(data.data[0].status);
+            setPreviousStatus(data.data[0].status);
+            setLastComments(data.data[0].comment);
+            setCommentCount(data.data[0].comment?.length);
+            setLastElapsedTime(data.data[0].elapsedTime);
+            setElapsedTimeCount(data.data[0].elapsedTime?.length);
+            setTimerTitle(data.data[0].name);
+        })
     }, [])
+
+    async function getTasksData() {
+        const data = await supabase.from('tasks').select('name, status, comment, elapsedTime').eq('id', props.timerTaskId);
+        return data;
+    }
 
     function handlePlay() {
         setTimerColor("bg-red-500");
@@ -121,28 +151,58 @@ function Timer(props: any) {
         return strhrs + ':' + strmins + ':' + strsecs;
     }
 
-    async function getTaskName() {
-        const data = await supabase.from('tasks').select('name, elapsedTime').eq('id', props.timerTaskId);
-        return data;
-    }
+    useEffect(() => {
+        setStatusDesc('Se actualizo el estado de "' + previousStatus + '" a "' + status + '"');
+        setPreviousStatus(status);
+    }, [status])
 
     useEffect(() => {
-        getTaskName().then((result: any) => {
-            setTimerTitle(result.data[0].name);
-            if (result.data[0].elapsedTime == null) {
-                setDBElapsedTime(0);
-            } else {
-                setDBElapsedTime(parseInt(result.data[0].elapsedTime));
-            }
+        if (status == previousStatus) {
+            setLastChangeDesc("");
+        } else {
+            setLastChangeDesc(statusDesc);
+        }
+    }, [statusDesc])
 
-        })
-    }, [])
+    useEffect(() => {
+        setActualComment(
+            {
+                id: commentCount,
+                comment: taskComment,
+                lastChange: lastChangeDesc,
+                userId: authUser,
+                time: Date.now()
+            }
+        );
+    }, [commentCount, taskComment, lastChangeDesc, authUser])
+
+    useEffect(() => {
+        setElapsedTimeObject(
+            {
+                id: elapsedTimeCount,
+                elapsedTime: elapsedTime,
+                userId: authUser,
+                time: Date.now()
+            }
+        );
+    }, [elapsedTimeCount, elapsedTime])
 
     async function handleForm() {
+        const fullCommentChain = [];
+        fullCommentChain.push(lastComments);
+        fullCommentChain.push(actualComment);
+
+        const fullElapsedTimeChain = [];
+        fullElapsedTimeChain.push(lastElapsedTime);
+        fullElapsedTimeChain.push(elapsedTimeObject);
         try {
             const response = await supabase
                 .from('tasks')
-                .update({ elapsedTime: (dbElapsedTime + elapsedTime), status: taskState, comment: taskComment })
+                .update({
+                    elapsedTime: fullElapsedTimeChain,
+                    status: status,
+                    comment: fullCommentChain
+                })
                 .eq('id', props.timerTaskId)
 
             return response;
@@ -153,7 +213,7 @@ function Timer(props: any) {
     }
 
     function handleState(e: any) {
-        setTaskState(e.target.value);
+        setStatus(e.target.value);
     }
 
     function handleComment(e: any) {
