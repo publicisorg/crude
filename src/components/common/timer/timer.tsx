@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { AiOutlineCheckCircle, AiOutlinePauseCircle, AiOutlinePlayCircle } from "react-icons/ai";
 import { supabase } from "../../../supabase/client";
+import { GenericSelectNoClass } from "../selectors/selectUsers";
 
 function Timer(props: any) {
     const stylesBottomBar = "absolute z-50 bottom-0 w-full h-12 flex flex-row justify-evenly items-center gap-5 duration-300";
@@ -18,7 +19,7 @@ function Timer(props: any) {
     const [totalTime, setTotalTime] = useState(0);
     const [lastTimestamp, setLastTimestamp] = useState(0);
     const [elapsedTimeCount, setElapsedTimeCount] = useState(0);
-    const [lastElapsedTime, setLastElapsedTime] = useState(0);
+    const [lastElapsedTime, setLastElapsedTime] = useState<any>([]);
     const [elapsedTime, setElapsedTime] = useState(0);
     const [elapsedTimeObject, setElapsedTimeObject] = useState<any>([]);
     const [timerTitle, setTimerTitle] = useState('');
@@ -33,6 +34,15 @@ function Timer(props: any) {
     const [lastComments, setLastComments] = useState<any>({});
     const [commentCount, setCommentCount] = useState(0);
     const [lastChangeDesc, setLastChangeDesc] = useState("");
+
+    const taskStates = [
+        { value: "SIN ASIGNAR", displayValue: "SIN ASIGNAR" },
+        { value: "ASIGNADO", displayValue: "ASIGNADO" },
+        { value: "AJUSTES", displayValue: "AJUSTES" },
+        { value: "ENVIADO", displayValue: "ENVIADO" },
+        { value: "EN TESTEO", displayValue: "EN TESTEO" },
+        { value: "APROBADO", displayValue: "APROBADO" },
+        { value: "FINALIZADO", displayValue: "FINALIZADO" }];
 
     useEffect(() => {
         if (props.timerAlertMessage) {
@@ -61,6 +71,7 @@ function Timer(props: any) {
         });
 
         getTasksData().then((data: any) => {
+            console.log(data);
             setStatus(data.data[0].status);
             setPreviousStatus(data.data[0].status);
             setLastComments(data.data[0].comment);
@@ -188,13 +199,16 @@ function Timer(props: any) {
     }, [elapsedTimeCount, elapsedTime])
 
     async function handleForm() {
-        const fullCommentChain = [];
-        fullCommentChain.push(lastComments);
+        const fullCommentChain = lastComments;
         fullCommentChain.push(actualComment);
 
-        const fullElapsedTimeChain = [];
-        fullElapsedTimeChain.push(lastElapsedTime);
-        fullElapsedTimeChain.push(elapsedTimeObject);
+        var fullElapsedTimeChain;
+        if (lastElapsedTime == null) {
+            fullElapsedTimeChain = elapsedTimeObject
+        } else {
+            fullElapsedTimeChain = lastElapsedTime;
+            fullElapsedTimeChain.push(elapsedTimeObject);
+        }
         try {
             const response = await supabase
                 .from('tasks')
@@ -210,10 +224,6 @@ function Timer(props: any) {
         catch (error) {
             console.log(error);
         }
-    }
-
-    function handleState(e: any) {
-        setStatus(e.target.value);
     }
 
     function handleComment(e: any) {
@@ -246,11 +256,14 @@ function Timer(props: any) {
                 </div>
                 {finish &&
                     <form onSubmit={handleSubmit} className={`${finish ? "opacity-100 h-auto w-auto" : "opacity-0 h-0 w-0"} gap-4 flex ${props.timerSettingsStyle == "floating" ? "flex-col" : "flex-row"} justify-center items-center duration-300`}>
-                        <select required onChange={(e) => handleState(e)} className={`${finish ? "opacity-100 h-auto w-full" : "opacity-0 h-0 w-0"} duration-300 py-2 px-3 text-sm font-medium focus:outline-none bg-black/25 rounded-lg border border-gray-200/10 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200`}>
-                            <option value="">Seleccione una opcion</option>
-                            <option value="AJUSTES">AJUSTES</option>
-                            <option value="ENVIADO">ENVIADO</option>
-                        </select>
+                        <GenericSelectNoClass
+                            className={`${finish ? "opacity-100 h-auto w-full" : "opacity-0 h-0 w-0"} duration-300 py-2 px-3 text-sm font-medium focus:outline-none bg-black/25 rounded-lg border border-gray-200/10 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200`}
+                            value={status}
+                            onChange={setStatus}
+                            data={taskStates}
+                            borderColor={props.borderColor}
+                            secondaryColor={props.secondaryColor}
+                        />
                         <input placeholder="Comentario" onChange={(e) => handleComment(e)} className={`${finish ? "opacity-100 h-auto w-full" : "opacity-0 h-0 w-0"} duration-300 py-2 px-3 text-sm font-medium focus:outline-none bg-black/25 rounded-lg border border-gray-200/10 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200`} />
                         <button className={`${finish ? "opacity-100 h-auto w-full" : "opacity-0 h-0 w-0"} duration-300 py-2 px-3 text-sm font-medium focus:outline-none bg-black/25 rounded-lg border border-gray-200/10 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200`}>Confirmar</button>
                     </form>

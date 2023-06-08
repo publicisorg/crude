@@ -26,6 +26,31 @@ export function GenericSelect(props: any) {
     )
 }
 
+export function GenericSelectNoClass(props: any) {
+
+    return (
+        <div className="w-full">
+            <div className={`${props.label != undefined ? "mb-2" : ""} block`}><label className="text-sm font-medium" data-testid="flowbite-label">{props.label}</label></div>
+            <div className="flex">
+                <div className="relative w-full">
+                    <select
+                        className={props.className}
+                        onChange={e => props.onChange(e.target.value)}
+                        required={props.required}
+                        value={props.value}
+                        style={{ backgroundColor: props.secondaryColor, borderColor: props.borderColor }}>
+                        {props.data.map((element: any, index: number) => {
+                            return (
+                                <option key={index} value={element.value}>{element.displayValue}</option>
+                            )
+                        })}
+                    </select>
+                </div>
+            </div>
+        </div>
+    )
+}
+
 export function SelectUser(props: any) {
 
     const [users, setUsers] = useState([]);
