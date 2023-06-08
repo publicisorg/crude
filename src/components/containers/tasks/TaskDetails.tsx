@@ -71,7 +71,6 @@ export const TaskDetails = (props: any) => {
   }, [id]);
 
   useEffect(() => {
-    console.log(createDate);
     if (createDate) {
       const createdAt = moment(createDate);
       const now = moment();

@@ -56,15 +56,17 @@ function Main(props: any) {
     }
 
     getMyUserData(userId).then((user: any) => {
-      setName(user[0].name);
-      setLastname(user[0].lastname);
-      setUrlImg(user[0].urlImg);
-      setUrlImgPortada(user[0].urlImgPortada);
-      setOccupation(user[0].occupation);
-      setUserNick(user[0].userNick);
-      setUserActive(user[0].active);
-      setUserIdLike(user[0].idLikeStatus);
-      setPossibleRoles(user[0].rol[0].rol);
+      if (user != undefined) {
+        setName(user[0].name);
+        setLastname(user[0].lastname);
+        setUrlImg(user[0].urlImg);
+        setUrlImgPortada(user[0].urlImgPortada);
+        setOccupation(user[0].occupation);
+        setUserNick(user[0].userNick);
+        setUserActive(user[0].active);
+        setUserIdLike(user[0].idLikeStatus);
+        setPossibleRoles(user[0].rol[0].rol);
+      }
     });
   }, [userId]);
 

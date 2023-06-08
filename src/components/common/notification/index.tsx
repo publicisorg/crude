@@ -49,7 +49,7 @@ export const Notification = (props: any) => {
   }, []);
 
   return (
-    <div className="" key={props.index}>
+    <div className="" >
       <div className="flex flex-row justify-between items-center bg-white/10 rounded px-6 py-3 shadow-lg border" style={{ borderColor: props.borderColor }}>
         <div className="flex flex-row justify-center items-center">
           <Link to={'/profile/' + userNick}>

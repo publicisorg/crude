@@ -36,9 +36,7 @@ export const StatusData = (props: any) => {
     async function fetchData() {
       const data = await getStatusData();
       setStatusData(data);
-      console.log(data);
     }
-
     fetchData();
   }, []);
 

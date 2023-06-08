@@ -82,16 +82,16 @@ function Folders(props: any) {
 
     function renderItemByType(key: any, data: any, path: any, index: number) {
         if (data['type'] == 'folder') {
-            return (<ItemFolder secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setContenido} arguments={data} label={key} enterFolder={() => enterFolder(key)} index={index} />)
+            return (<ItemFolder key={index} secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setContenido} arguments={data} label={key} enterFolder={() => enterFolder(key)} index={index} />)
         } else {
             var dataType = checkExtension(contenido[key]);
             switch (dataType) {
                 case "image":
-                    return (<ItemImage secondaryColor={props.secondaryColor} borderColor={props.borderColor} label={contenido[key]} path={path} index={index} />);
+                    return (<ItemImage key={index} secondaryColor={props.secondaryColor} borderColor={props.borderColor} label={contenido[key]} path={path} index={index} />);
                 case "web":
-                    return (<ItemFrame secondaryColor={props.secondaryColor} borderColor={props.borderColor} label={contenido[key]} path={path} index={index} />);
+                    return (<ItemFrame key={index} secondaryColor={props.secondaryColor} borderColor={props.borderColor} label={contenido[key]} path={path} index={index} />);
                 default:
-                    return (<ItemNotSupported secondaryColor={props.secondaryColor} borderColor={props.borderColor} label={contenido[key]} path={path} index={index} />);
+                    return (<ItemNotSupported key={index} secondaryColor={props.secondaryColor} borderColor={props.borderColor} label={contenido[key]} path={path} index={index} />);
             }
         }
     }

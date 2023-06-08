@@ -51,9 +51,9 @@ export function MultipleProfiles(props: any) {
       {(props.isSupervisor || props.isAccount) && props.users != undefined && <div className="w-1/6 flex justify-center items-center flex-wrap gap-2">
         <Avatar.Group>
           {users.length > 1 &&
-            users.map((user: any) => {
+            users.map((user: any, index:number) => {
               return (
-                <Link className="flex -space-x-4" to={'/profile/' + user.userNick}>
+                <Link key={index} className="flex -space-x-4" to={'/profile/' + user.userNick}>
                   <Tooltip content={user.name + " " + user.lastname} className="bg-black text-white">
                     <img
                       className="rounded-full w-10 h-10 border-2"

@@ -101,7 +101,7 @@ function SingleTask(props: any) {
     }, [])
 
     return (
-        <div className="border-b flex flex-row justify-between" key={props.index} style={{ borderColor: props.borderColor }}>
+        <div className="border-b flex flex-row justify-between" style={{ borderColor: props.borderColor }}>
             <div className={`px-6 py-4 truncate ${props.desktop ? "w-1/3" : "w-1/6"}`}>
                 <div className="text-sm">{props.element.name}</div>
                 <div className="text-sm">{timeElapsed}</div>

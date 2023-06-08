@@ -20,7 +20,9 @@ export function MultipleUsers(props: any) {
 
     useEffect(() => {
         getUserData(userId).then((user: any) => {
-            setFullname(user.data[0].name + ' ' + user.data[0].lastname);
+            if (user.data != undefined) {
+                setFullname(user.data[0].name + ' ' + user.data[0].lastname);
+            }
         })
     }, [userId])
 

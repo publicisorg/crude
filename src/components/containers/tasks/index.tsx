@@ -61,7 +61,7 @@ function TasksTable(props: any) {
             if (tasks.length > 0) {
                 const jsx: any = [];
                 tasks.forEach((element: any, index: any) => {
-                    jsx.push(<SingleTask isSupervisor={props.role == "supervisor" ? true : false} isAccount={props.role == "account" ? true : false} index={index} element={element} desktop={props.desktop} borderColor={props.borderColor} secondaryColor={props.secondaryColor} />)
+                    jsx.push(<SingleTask key={index} isSupervisor={props.role == "supervisor" ? true : false} isAccount={props.role == "account" ? true : false} element={element} desktop={props.desktop} borderColor={props.borderColor} secondaryColor={props.secondaryColor} />)
                 });
                 return jsx;
             } else {
