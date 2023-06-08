@@ -237,7 +237,21 @@ export function TaskMenu(props: any) {
             </div>
             <div className="flex flex-row w-full gap-4">
                 <GenericSelect value={status} onChange={setStatus} label="Estado:" data={taskStates} borderColor={props.borderColor} secondaryColor={props.secondaryColor} />
-                <GenericSelect value={priority} onChange={setPriority} label="Prioridad:" data={taskPriority} borderColor={props.borderColor} secondaryColor={props.secondaryColor} />
+                {props.role != "user" && <GenericSelect value={priority} onChange={setPriority} label="Prioridad:" data={taskPriority} borderColor={props.borderColor} secondaryColor={props.secondaryColor} />}
+                {props.role == "user" &&
+                    <div className="w-full">
+                        <div className="flex flex-col">
+                            <div className="mb-2 block">
+                                <label className="text-sm font-medium" data-testid="flowbite-label">Prioridad:</label>
+                            </div>
+                            <div
+                                className="border font-medium rounded-lg text-sm px-5 py-2.5 text-left w-full"
+                                style={{ borderColor: props.borderColor, backgroundColor: props.secondaryColor }}>
+                                {priority}
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
             <div className="flex flex-col">
                 <p className="text-sm">Usuarios asignados:</p>
@@ -255,7 +269,7 @@ export function TaskMenu(props: any) {
                         })}
                 </div>
             </div>
-            <MultipleUsers addUser={addUser} removeUser={removeUser} users={users} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
+            {props.role != "user" && <MultipleUsers addUser={addUser} removeUser={removeUser} users={users} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />}
             <WysiwygTextarea required={true} function={handleTextareaChange} borderColor={props.borderColor} secondaryColor={props.secondaryColor} />
             <GenericButton function={handleSubmit} label="Enviar" borderColor={props.borderColor} secondaryColor={props.secondaryColor} />
             {showSuccess && <div className={`${successOpacity} w-full flex flex-row justify-center items-center py-2 px-4 rounded-lg bg-lime-600 duration-300`}>La tarea se ha actualizado correctamente.</div>}

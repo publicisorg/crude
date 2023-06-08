@@ -108,8 +108,8 @@ function Main(props: any) {
           borderColor={props.borderColor}
         />
         <Routes location={location}>
-          <Route path="/" element={<News name={name} lastName={lastname} urlImg={urlImg}   secondaryColor={props.secondaryColor}
-                borderColor={props.borderColor} />} />
+          <Route path="/" element={<News name={name} lastName={lastname} urlImg={urlImg} secondaryColor={props.secondaryColor}
+            borderColor={props.borderColor} />} />
           <Route
             path="/desktop"
             element={
@@ -152,7 +152,10 @@ function Main(props: any) {
             path="/tasks/:id"
             element={
               <div className={`${containerStyles}`}>
-                <TaskDetails secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
+                <TaskDetails
+                  secondaryColor={props.secondaryColor}
+                  borderColor={props.borderColor}
+                  rol={role} />
               </div>
             }
           />

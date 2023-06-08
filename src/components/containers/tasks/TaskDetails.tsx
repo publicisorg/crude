@@ -135,6 +135,7 @@ export const TaskDetails = (props: any) => {
               task={task}
               borderColor={props.borderColor}
               secondaryColor={props.secondaryColor}
+              role={props.rol}
             />
           </div>
         </div>
