@@ -15,6 +15,7 @@ function FormatedData(props: any) {
     const [color1, setColor1] = useState('');
     const [color2, setColor2] = useState('');
     const [color3, setColor3] = useState('');
+    const [url, setUrl] = useState('');
     const [hidden, setHidden] = useState(false);
 
     async function postData(data: any) {
@@ -51,6 +52,7 @@ function FormatedData(props: any) {
             color1: color1,
             color2: color2,
             color3: color3,
+            url_Destino: url,
             keywords: keywords
         }
 
@@ -88,14 +90,14 @@ function FormatedData(props: any) {
 
     return (
         <>
-            <tr key={props.index} className={`${(props.index % 2) > 0 ? "bg-black/5" : "bg-transparent"} ${hidden ? "hidden" : ""} border`}>
-                <td className="px-2">
+            <tr key={props.index} className={`${hidden ? "hidden" : ""} border odd:bg-black/25 border-gray-900`}>
+                <td className="px-2 text-center">
                     {props.data.id}
                 </td>
-                <td className="px-2">
+                <td className="px-2 flex justify-center">
                     <Image Imagen={props.data.Imagen} />
                 </td>
-                <td className="px-2">
+                <td className="px-2 text-center">
                     <p>{props.data.Display_name}</p>
                 </td>
                 <td className="px-2">
@@ -116,8 +118,14 @@ function FormatedData(props: any) {
                 <td className="px-2">
                     <Colors color={props.data.Colores[2]} collectData={setColor3} />
                 </td>
+                <td className="px-2">
+                    <input 
+                    onChange={(e) => {setUrl(e.target.value)}}
+                    className="bg-transparent border px-2 py-1 rounded-md bg-gray-700 border-gray-900 w-full" 
+                    placeholder="https://urldelsitio.com/ejemplo"/>
+                </td>
                 <td className="px-2 m-auto">
-                    <button className="text-red-600 w-10 h-10 flex justify-center items-center m-auto border-2 border-red-600 hover:bg-neutral-600 hover:border-red-600 duration-300" 
+                    <button className="text-red-600 w-10 h-10 flex justify-center rounded-md items-center m-auto border-2 border-red-600 hover:bg-gray-600 hover:border-red-600 duration-300" 
                     onClick={() => removeTags()}>
                         X
                     </button>

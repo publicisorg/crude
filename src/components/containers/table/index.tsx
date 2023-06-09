@@ -39,20 +39,20 @@ function Table() {
 
   return (
     <>
-
-      <table className="table-auto border p-4 rounded-md shadow w-full">
+      <table className="border p-4 w-full bg-gray-800 text-white border-gray-900 shadow-lg">
         <thead>
-          <tr className="border ">
-            <th className="px-4">ID</th>
-            <th className="px-4">Foto</th>
-            <th className="px-4">Nombre</th>
-            <th className="px-4">Categoria</th>
-            <th className="px-4">Tag 2</th>
-            <th className="px-4">Tag 3</th>
-            <th className="px-4">Color 1</th>
-            <th className="px-4">Color 2</th>
-            <th className="px-4">Color 3</th>
-            <th className="px-4">Eliminar</th>
+          <tr className="border border-gray-900 rounded-md">
+            <th className="px-4 py-2">ID</th>
+            <th className="px-4 py-2">Foto</th>
+            <th className="px-4 py-2">Nombre</th>
+            <th className="px-4 py-2">Categoria</th>
+            <th className="px-4 py-2">Tag 2</th>
+            <th className="px-4 py-2">Tag 3</th>
+            <th className="px-4 py-2">Color 1</th>
+            <th className="px-4 py-2">Color 2</th>
+            <th className="px-4 py-2">Color 3</th>
+            <th className="px-4 py-2">URL</th>
+            <th className="px-4 py-2">Eliminar</th>
           </tr>
         </thead>
         <tbody>

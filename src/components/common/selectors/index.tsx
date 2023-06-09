@@ -9,7 +9,7 @@ export const Tag = (props:any) => {
   }, [])
 
   return (
-    <select defaultValue={props.tag} onChange={(e) => props.collectData(e.target.value)}>
+    <select className="bg-transparent border px-2 py-1 rounded-md bg-gray-700 border-gray-900 w-full" defaultValue={props.tag} onChange={(e) => props.collectData(e.target.value)}>
       {Tags.map((Tag, index) => {
           return (<option key={index} value={Tag.nombre}>{Tag.nombre}</option>)
         })}
@@ -23,7 +23,7 @@ export const Colors = (props:any) => {
   }, [])
 
   return (
-    <select defaultValue={props.color} onChange={(e) => props.collectData(e.target.value)}>
+    <select className="bg-transparent border px-2 py-1 rounded-md bg-gray-700 border-gray-900 w-full" defaultValue={props.color} onChange={(e) => props.collectData(e.target.value)}>
       {Colores.map((Color, index) => {
           return (<option key={index} value={Color.nombre}>{Color.nombre}</option>)
         })}
