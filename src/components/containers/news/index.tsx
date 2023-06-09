@@ -1,8 +1,13 @@
+import { useEffect } from "react";
 import GenericButton from "../../common/buttons"
 import { StatusData } from "../../common/profileUser/statusData"
 import ActiveUsers from "../../common/profileUser/usersArctives"
 
 function News(props: any) {
+
+    useEffect(() => {
+        document.title = "Noticias";
+    }, [])
 
     return (
         <div className="ml-80 h-screen relative overflow-y-auto">
