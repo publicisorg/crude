@@ -97,7 +97,7 @@ function Main(props: any) {
             setTimerAlertMessage={setTimerAlertMessage}
           />
         )}
-        <MenuAside
+        {(location.pathname != "/login" && location.pathname != "/register") && <MenuAside
           name={props.name}
           lastName={lastname}
           urlImg={props.urlImg}
@@ -108,7 +108,7 @@ function Main(props: any) {
           possibleRoles={possibleRoles}
           secondaryColor={props.secondaryColor}
           borderColor={props.borderColor}
-        />
+        />}
         <Routes location={location}>
           <Route path="/" element={<News name={name} lastName={lastname} urlImg={urlImg} secondaryColor={props.secondaryColor}
             borderColor={props.borderColor} />} />
@@ -248,7 +248,14 @@ function Main(props: any) {
               )
             }
           />
-          <Route path="*" element={<div className={`${containerStyles}`}><NotFound /></div>} />
+          {
+            (location.pathname != "/login" && location.pathname != "/register") &&
+            <Route path="*" element={
+              <div className={`${containerStyles}`}>
+                <NotFound />
+              </div>
+            } />
+          }
           <Route path="/login" element={<Login />} />
           <Route path="/registrar" element={<SignUp />} />
         </Routes>
