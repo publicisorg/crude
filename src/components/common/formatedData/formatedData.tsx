@@ -18,6 +18,10 @@ function FormatedData(props: any) {
     const [url, setUrl] = useState('');
     const [hidden, setHidden] = useState(false);
 
+    useEffect(() => {
+        setUrl(props.data.url_Destino);
+    }, [])
+
     async function postData(data: any) {
         if (props.webReady) {
             console.log("Post Data");
@@ -59,7 +63,7 @@ function FormatedData(props: any) {
         if (props.webReady) {
             setGeneralData(data);
         }
-    }, [tag1, tag2, tag3, color1, color2, color3, keywords])
+    }, [tag1, tag2, tag3, color1, color2, color3, keywords, url])
 
     useEffect(() => {
         postData(generalData);
@@ -121,6 +125,7 @@ function FormatedData(props: any) {
                 <td className="px-2">
                     <input 
                     onChange={(e) => {setUrl(e.target.value)}}
+                    value={url}
                     className="bg-transparent border px-2 py-1 rounded-md bg-gray-700 border-gray-900 w-full" 
                     placeholder="https://urldelsitio.com/ejemplo"/>
                 </td>
