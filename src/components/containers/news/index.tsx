@@ -49,7 +49,7 @@ function News(props: any) {
                             </div>
                         </div>
                     </div>
-                    <StatusData urlImg={props.urlImg} name={props.name} userNick={props.userNick} borderColor={props.borderColor} secondaryColor={props.secondaryColor}></StatusData>
+                    <StatusData urlImg={props.urlImg} name={props.name} lastname={props.lastname} userNick={props.userNick} borderColor={props.borderColor} secondaryColor={props.secondaryColor}></StatusData>
                 </div>
                 <div className="w-1/4 border h-full rounded-lg shadow-lg bg-white/10" style={{ borderColor: props.borderColor }}>
                     <div className="max-w-full m-4">

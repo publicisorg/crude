@@ -110,7 +110,7 @@ function Main(props: any) {
           borderColor={props.borderColor}
         />}
         <Routes location={location}>
-          <Route path="/" element={<News name={name} lastName={lastname} urlImg={urlImg} secondaryColor={props.secondaryColor}
+          <Route path="/" element={<News name={name} lastname={lastname} urlImg={urlImg} secondaryColor={props.secondaryColor}
             borderColor={props.borderColor} />} />
           <Route
             path="/desktop"
