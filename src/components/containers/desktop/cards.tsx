@@ -2,7 +2,7 @@ export const DataCard = (props: any) => {
 
     return (
         <div className="w-full lg:w-6/12 xl:w-4/12">
-            <div className="relative flex flex-col min-w-0 break-words bg-white/10 rounded mb-6 xl:mb-0 shadow-lg border" style={{ borderColor: props.borderColor }}>
+            <div className="relative flex flex-col min-w-0 break-words rounded mb-6 xl:mb-0 shadow-lg border" style={{ borderColor: props.borderColor, backgroundColor:  props.cardBg  }}>
                 <div className="flex-auto p-4">
                     <div className="flex flex-wrap">
                         <div className="relative w-full pr-4 max-w-full flex-grow flex-1">

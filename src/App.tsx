@@ -10,6 +10,7 @@ function App() {
   const defaultMainBgColors = "#212121";
   const defaultTextColors = "#FFFFFF";
   const defaultSecondaryColors = "#2E2E2E";
+  const defaultCardBg = "bg-white/10";
   const defaultBorderColors = "#5E5E5E";
   const [userId, setUserId] = useState("");
 
@@ -31,6 +32,7 @@ function App() {
   const [textColors, changeText] = useState(defaultTextColors);
   const [borderColor, changeBorder] = useState(defaultBorderColors);
   const [secondaryColor, changeSecondary] = useState(defaultSecondaryColors);
+  const [cardBg, changeCardBg] = useState(defaultCardBg);
 
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
@@ -42,47 +44,49 @@ function App() {
   const [userNick, setUserNick] = useState("");
   const [possibleRoles, setPossibleRoles] = useState([]);
 
-  useEffect(() => {
-    getColorsFromDB().then((result: any) => {
-      if (!result) {
-        changeBg(defaultMainBgColors);
-        changeText(defaultTextColors);
-        changeSecondary(defaultSecondaryColors);
-        changeBorder(defaultBorderColors);
-      } else {
-        if (result.data != undefined) {
-          setName(result.data[0].name);
-        setLastname(result.data[0].lastname);
-        setUrlImg(result.data[0].urlImg);
-        setUrlImgPortada(result.data[0].urlImgPortada);
-        setOccupation(result.data[0].occupation);
-        setUserNick(result.data[0].userNick);
-        setUserActive(result.data[0].active);
-        setUserIdLike(result.data[0].idLikeStatus);
-        setPossibleRoles(result.data[0].rol[0].rol);
+  // useEffect(() => {
+  //   getColorsFromDB().then((result: any) => {
+  //     if (!result) {
+  //       changeBg(defaultMainBgColors);
+  //       changeText(defaultTextColors);
+  //       changeSecondary(defaultSecondaryColors);
+  //       changeCardBg(defaultCardBg);
+  //       changeBorder(defaultBorderColors);
+  //     } else {
+  //       if (result.data != undefined) {
+  //         setName(result.data[0].name);
+  //       setLastname(result.data[0].lastname);
+  //       setUrlImg(result.data[0].urlImg);
+  //       setUrlImgPortada(result.data[0].urlImgPortada);
+  //       setOccupation(result.data[0].occupation);
+  //       setUserNick(result.data[0].userNick);
+  //       setUserActive(result.data[0].active);
+  //       setUserIdLike(result.data[0].idLikeStatus);
+  //       setPossibleRoles(result.data[0].rol[0].rol);
 
 
-        changeBg(result.data[0].bgcolor);
-        changeText(result.data[0].fontColor);
-        changeSecondary(result.data[0].secondaryColor);
-        changeBorder(result.data[0].borderColor);
-        }
-      }
-    })
-  })
+  //       changeBg(result.data[0].bgcolor);
+  //       changeText(result.data[0].fontColor);
+  //       changeSecondary(result.data[0].secondaryColor);
+  //       changeCardBg(result.data[0].cardBg);
+  //       changeBorder(result.data[0].borderColor);
+  //       }
+  //     }
+  //   })
+  // })
 
-  async function getColorsFromDB() {
-    if (userId != "") {
-      const color = await supabase
-        .from('users')
-        .select("*")
-        .eq('uuid', userId)
-      return color;
+  // async function getColorsFromDB() {
+  //   if (userId != "") {
+  //     const color = await supabase
+  //       .from('users')
+  //       .select("*")
+  //       .eq('uuid', userId)
+  //     return color;
       
-    } else {
-      return false;
-    }
-  }
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
 
 
@@ -105,11 +109,13 @@ function App() {
           changeBg={changeBg}
           changeText={changeText}
           changeBorder={changeBorder}
+          changeCardBg={changeCardBg}
           changeSecondary={changeSecondary}
           mainBgColors={mainBgColors}
           textColors={textColors}
           borderColor={borderColor}
           secondaryColor={secondaryColor}
+          cardBg={cardBg}
         />
       </>
     </main >

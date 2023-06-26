@@ -16,6 +16,7 @@ export const ProfileUsersPublic = () => {
     const [BgsecondaryColor, setBgsecondaryColor] = useState("");
 
     const [borderColor, setborderColor] = useState("");
+    const [cardBg, setCardBg] = useState("");
     const [fontColor, setfontColor] = useState("");
 
 
@@ -48,6 +49,7 @@ export const ProfileUsersPublic = () => {
         setBgsecondaryColor(element.data[0].secondaryColor)
 
         setborderColor(element.data[0].borderColor)
+        setCardBg(element.data[0].cardBg)
         setfontColor(element.data[0].fontColor)
 
 
@@ -66,7 +68,7 @@ export const ProfileUsersPublic = () => {
     return (
         <main className="h-screen overflow-y-auto" style={{ backgroundColor: bgColor2, color: fontColor, borderColor: borderColor }}>
             <div className="mx-auto p-8">
-                <div className='border rounded-lg overflow-hidden pb-6 bg-white/10 mb-4 shadow-lg' style={{ borderColor: borderColor }}>
+                <div className='border rounded-lg overflow-hidden pb-6 mb-4 shadow-lg' style={{ borderColor: borderColor, backgroundColor:  cardBg  }}>
                     <div className="relative h-48 bg-cover bg-center" style={{ backgroundImage: "url(" + urlImgPortada + ")" }}></div>
                     <div className="flex justify-center mt-[-4rem] relative">
                         <div className={active !='isActive'  ? "!border-yellow-400 w-32 h-32 border-4 rounded-full overflow-hidden z-10 shadow-lg":" w-32 h-32 border-4 rounded-full overflow-hidden z-10 shadow-lg" + ``} style={{borderColor: borderColor}}>

@@ -4,7 +4,7 @@ import { supabase } from "../../../supabase/client";
 import MenuAside from "../aside-menu";
 import ContentContainer from "../content-container";
 import SignUp from "../../../pages/SignUp";
-import { ProfileSettings } from "../Setting";
+import { ProfileSettings } from "../setting";
 import { TaskDetails } from "../tasks/TaskDetails";
 import NotFound from "../../../pages/NotFound";
 import { Notifications } from "../notifications";
@@ -107,6 +107,7 @@ function Main(props: any) {
           setRole={setRole}
           possibleRoles={possibleRoles}
           secondaryColor={props.secondaryColor}
+          cardBg={props.cardBg}
           borderColor={props.borderColor}
         />}
         <Routes location={location}>
@@ -142,10 +143,12 @@ function Main(props: any) {
                   changeText={props.changeText}
                   changeBorder={props.changeBorder}
                   changeSecondary={props.changeSecondary}
+                  changeCardBg={props.changeCardBg}
                   mainBgColors={props.mainBgColors}
                   textColors={props.textColors}
                   borderColor={props.borderColor}
                   secondaryColor={props.secondaryColor}
+                  cardBg={props.cardBg}
                 />
               </div>
             }

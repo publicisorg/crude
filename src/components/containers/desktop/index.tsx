@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import TasksTable from "../tasks";
 import { AiOutlineCheck, AiOutlineCoffee, AiOutlineExclamationCircle } from "react-icons/ai";
 import DataCard, { DataTasks } from "./cards";
+import Dashboard from "../../common/pieChart/dashboard";
 
 function Desktop(props: any) {
 
@@ -56,7 +57,7 @@ export function DesktopDirector(_props: any) {
 
     return (
         <div className="w-full h-full justify-center items-center">
-            En construccion.
+            <Dashboard></Dashboard>
         </div>
     )
 }

@@ -207,7 +207,7 @@ export function CardStatus(props: any) {
   return (
     <div className="mt-0">
       {messages.map((message: any) => (
-        <div className="border py-2 px-4 flex items-start mb-4 rounded-lg gap-2 bg-white/10 shadow-lg" style={{ borderColor: props.borderColor }} key={message.created_at}>
+        <div className="border py-2 px-4 flex items-start mb-4 rounded-lg gap-2shadow-lg" style={{ borderColor: props.borderColor, backgroundColor:  props.cardBg  }} key={message.created_at}>
           <img className="profile-image w-16 h-16 mt-2 rounded-full border-2" src={props.urlImg} alt="Profile" style={{ borderColor: props.borderColor }}/>
           <div className="status-content">
             <div className="flex flex-row gap-2">

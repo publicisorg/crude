@@ -13,7 +13,7 @@ function News(props: any) {
         <div className="ml-80 h-screen relative overflow-y-auto">
             <div className="flex p-8 gap-4">
                 <div className="flex flex-col w-3/4 gap-4">
-                    <div className="w-full flex flex-col justify-center gap-4 p-4 border h-auto rounded-lg shadow-lg bg-white/10" style={{ borderColor: props.borderColor }}>
+                    <div className="w-full flex flex-col justify-center gap-4 p-4 border h-auto rounded-lg shadow-lg" style={{ borderColor: props.borderColor, backgroundColor:  props.cardBg  }}>
                         <div className="flex justify-between items-center ">
                             <h2 className="text-xl font-semibold text-white ml-2">Inicio</h2>
                             <a href=""
@@ -51,7 +51,7 @@ function News(props: any) {
                     </div>
                     <StatusData urlImg={props.urlImg} name={props.name} userNick={props.userNick} borderColor={props.borderColor} secondaryColor={props.secondaryColor}></StatusData>
                 </div>
-                <div className="w-1/4 border h-full rounded-lg shadow-lg bg-white/10" style={{ borderColor: props.borderColor }}>
+                <div className="w-1/4 border h-full rounded-lg shadow-lg" style={{ borderColor: props.borderColor, backgroundColor:  props.cardBg  }}>
                     <div className="max-w-full m-4">
                         <div className="flex mb-2">
                             <div className="flex-1">

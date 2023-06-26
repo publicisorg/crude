@@ -101,6 +101,7 @@ function SingleTask(props: any) {
     }, [])
 
     return (
+        <Link to={'/tasks/' + props.element.id}>
         <div className="border-b flex flex-row justify-between" style={{ borderColor: props.borderColor }}>
             <div className={`px-6 py-4 truncate ${props.desktop ? "w-1/3" : "w-1/6"}`}>
                 <div className="text-sm">{props.element.name}</div>
@@ -144,6 +145,7 @@ function SingleTask(props: any) {
 
 
         </div>
+         </Link>
     );
 }
 

@@ -6,6 +6,7 @@ export const ProfileSettings = (props: any) => {
 
     const [primaryColor, setPrimaryColor] = useState(props.mainBgColors);
     const [secondaryColor, setSecondaryColor] = useState(props.secondaryColor);
+    const [cardBg, setCardBgColor] = useState(props.cardBg);
     const [textColor, setTextColor] = useState(props.textColors);
     const [borderColor, setBorderColor] = useState(props.borderColor);
     const [newPassword, setNewPassword] = useState('');
@@ -27,6 +28,7 @@ export const ProfileSettings = (props: any) => {
                 setPrimaryColor(result.data[0].bgcolor);
                 setTextColor(result.data[0].fontColor);
                 setSecondaryColor(result.data[0].secondaryColor);
+                setCardBgColor(result.data[0].setcardBgColor);
                 setBorderColor(result.data[0].borderColor);
             }
         })
@@ -36,7 +38,7 @@ export const ProfileSettings = (props: any) => {
         if (props.userId != "" && props.userId != undefined) {
             const color = await supabase
                 .from('users')
-                .select("bgcolor, secondaryColor, fontColor, borderColor")
+                .select("cardBg, bgcolor, secondaryColor, fontColor, borderColor")
                 .eq('uuid', props.userId)
             return color;
         } else {
@@ -128,7 +130,29 @@ export const ProfileSettings = (props: any) => {
     useEffect(() => {
         changeTextColorOnDB(textColor);
     }, [textColor])
+// ______________________ Bg Card
+async function handleChangeCardBg(e: any) {
+    e.preventDefault();
+    setCardBgColor(e.target.value);
+}
 
+async function changeCardBgOnDB(e: any) {
+    props.changeCardBg(e)
+    try {
+        await supabase
+            .from('users')
+            .update({ cardBg: e })
+            .eq('uuid', props.userId);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+useEffect(() => {
+    changeCardBgOnDB(cardBg);
+}, [cardBg])
+
+// ______________________ Bg Secundary
     async function handleChangeSecondary(e: any) {
         e.preventDefault();
         setSecondaryColor(e.target.value);
@@ -149,7 +173,7 @@ export const ProfileSettings = (props: any) => {
     useEffect(() => {
         changeSecondaryColorOnDB(secondaryColor);
     }, [secondaryColor])
-
+// ______________________ Border Color
     async function handleChangeBorder(e: any) {
         e.preventDefault();
         setBorderColor(e.target.value);
@@ -171,7 +195,7 @@ export const ProfileSettings = (props: any) => {
     useEffect(() => {
         changeBorderColorOnDB(borderColor);
     }, [borderColor])
-
+// ______________________ Sign Out
     const handleCerrarSesion = async () => {
         try {
             await supabase.auth.signOut();
@@ -187,7 +211,7 @@ export const ProfileSettings = (props: any) => {
     };
 
 
-
+// ______________________ Change Password
     const handleSubmitPassword = async (event: any) => {
         event.preventDefault();
 
@@ -219,7 +243,7 @@ export const ProfileSettings = (props: any) => {
         <main>
             <div className="grid grid-cols-1 p-8 xl:grid-cols-3 xl:gap-4">
                 <div className="col-span-full xl:col-auto">
-                    <div className="p-4 mb-4 bg-white/10 border rounded-lg 2xl:col-span-2 sm:p-6 shadow-lg" style={{ borderColor: borderColor }}>
+                    <div className="p-4 mb-4  border rounded-lg 2xl:col-span-2 sm:p-6 shadow-lg" style={{ borderColor: borderColor, backgroundColor:  props.cardBg  }}>
                         <div className="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">
                             <img className="mb-4 rounded-lg w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0 border" src={props.urlImg} alt={props.name} style={{ borderColor: borderColor, backgroundColor: secondaryColor }} />
                             <div className="w-full">
@@ -253,7 +277,7 @@ export const ProfileSettings = (props: any) => {
                         </div>
                     </div>
 
-                    <div className="p-4 mb-4 bg-white/10 border rounded-lg 2xl:col-span-2 sm:p-6 shadow-lg" style={{ borderColor: borderColor }}>
+                    <div className="p-4 mb-4 border rounded-lg 2xl:col-span-2 sm:p-6 shadow-lg" style={{ borderColor: borderColor, backgroundColor:  props.cardBg }}>
                         <div className="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">
                             <img className="mb-4 rounded-lg w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0 border" src={props.urlImgPortada} alt={props.name} style={{ borderColor: borderColor, backgroundColor: secondaryColor }} />
                             <div className="w-full">
@@ -287,7 +311,7 @@ export const ProfileSettings = (props: any) => {
                         </div>
                     </div>
 
-                    <div className="p-4 mb-4 bg-white/10 border rounded-lg shadow-lg 2xl:col-span-2 sm:p-6" style={{ borderColor: borderColor }}>
+                    <div className="p-4 mb-4 border rounded-lg shadow-lg 2xl:col-span-2 sm:p-6" style={{ borderColor: borderColor, backgroundColor:  props.cardBg }}>
                         <div className="flow-root">
                             <h3 className="text-xl font-semibold">Personaliza tu perfil</h3>
                             <ul className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -308,6 +332,24 @@ export const ProfileSettings = (props: any) => {
                                         </div>
                                         <div className="inline-flex items-center">
                                             <input value={primaryColor} type="color" className={`${inputColorStyle}`} onChange={(e) => handleChangeBg(e)} style={{ borderColor: borderColor, backgroundColor: secondaryColor }} />
+                                        </div>
+                                    </div>
+                                </li>
+                                <li className="py-4">
+                                    <div className="flex items-center space-x-4">
+                                        <div className="flex-shrink-0">
+                                            <AiOutlineBgColors size={20} />
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                            <span className="block text-base font-semibold   truncate">
+                                                Color Primario 
+                                            </span>
+                                            <a href="#" className="block text-sm font-normal truncate text-primary-700 hover:underline dark:text-primary-500">
+                                                Cambia el color primario
+                                            </a>
+                                        </div>
+                                        <div className="inline-flex items-center">
+                                            <input value={cardBg} type="color" className={`${inputColorStyle}`} onChange={(e) => handleChangeCardBg(e)} style={{ borderColor: borderColor, backgroundColor: secondaryColor }} />
                                         </div>
                                     </div>
                                 </li>
@@ -373,7 +415,7 @@ export const ProfileSettings = (props: any) => {
                             </ul>
                         </div>
                     </div>
-                    <div className="p-4 mb-4 bg-white/10 border rounded-lg shadow-lg sm:p-6" style={{ borderColor: borderColor }}>
+                    <div className="p-4 mb-4 border rounded-lg shadow-lg sm:p-6" style={{ borderColor: borderColor, backgroundColor:  props.cardBg }}>
                         <div className="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">
                             <div>
                                 <div className="flex items-center space-x-4">
@@ -392,7 +434,7 @@ export const ProfileSettings = (props: any) => {
                     </div>
                 </div>
                 <div className="col-span-2">
-                    <div className="p-4 mb-4 bg-white/10 border rounded-lg shadow-lg 2xl:col-span-2 sm:p-6" style={{ borderColor: borderColor }}>
+                    <div className="p-4 mb-4  border rounded-lg shadow-lg 2xl:col-span-2 sm:p-6" style={{ borderColor: borderColor, backgroundColor: props.cardBg }}>
                         <h3 className="mb-4 text-xl font-semibold">Información general</h3>
                         <form action="#">
                             <div className="grid grid-cols-6 gap-6">
@@ -419,7 +461,7 @@ export const ProfileSettings = (props: any) => {
                             </div>
                         </form>
                     </div>
-                    <div className="p-4 mb-4 bg-white/10 border rounded-lg shadow-lg 2xl:col-span-2 sm:p-6" style={{ borderColor: borderColor }}>
+                    <div className="p-4 mb-4  border rounded-lg shadow-lg 2xl:col-span-2 sm:p-6" style={{ borderColor: borderColor, backgroundColor: props.cardBg }}>
                         <h3 className="mb-4 text-xl font-semibold">Actualizar Password</h3>
                         <form onSubmit={handleSubmitPassword}>
                             <div className="grid grid-cols-6 gap-6">

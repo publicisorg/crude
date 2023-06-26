@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../../supabase/client";
 import moment from 'moment';
 import { Link } from "react-router-dom";
+import { StartTask } from "../buttons";
 
 const buttonStyle = "border hover:brightness-125 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center duration-300"
 
@@ -67,6 +68,7 @@ export const Notification = (props: any) => {
               Ver tarea
             </button>
           </Link>
+
           <button onClick={() => props.handleTimer(props.element.id)} className={`${buttonStyle}`} style={{ backgroundColor: props.secondaryColor, borderColor: props.borderColor }}>
             Empezar tarea
           </button>
