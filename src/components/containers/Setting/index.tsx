@@ -28,7 +28,7 @@ export const ProfileSettings = (props: any) => {
                 setPrimaryColor(result.data[0].bgcolor);
                 setTextColor(result.data[0].fontColor);
                 setSecondaryColor(result.data[0].secondaryColor);
-                setCardBgColor(result.data[0].setcardBgColor);
+                setCardBgColor(result.data[0].cardBg);
                 setBorderColor(result.data[0].borderColor);
             }
         })

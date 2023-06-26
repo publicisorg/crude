@@ -73,7 +73,8 @@ function App() {
         }
       }
     })
-  })
+  },[userId]
+  )
 
   async function getColorsFromDB() {
     if (userId != "") {
