@@ -4,7 +4,7 @@ import { supabase } from "../../../supabase/client";
 import MenuAside from "../aside-menu";
 import ContentContainer from "../content-container";
 import SignUp from "../../../pages/SignUp";
-import { ProfileSettings } from "../setting";
+import { ProfileSettings } from "../setting/index";
 import { TaskDetails } from "../tasks/TaskDetails";
 import NotFound from "../../../pages/NotFound";
 import { Notifications } from "../notifications";
