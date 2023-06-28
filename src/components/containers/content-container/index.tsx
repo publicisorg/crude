@@ -23,8 +23,8 @@ function ContentContainer(props: any) {
 
     return (
         <section className="ml-80 h-screen relative overflow-y-auto">
-            {showComponent == "desktop" && (role == "user" || role == "supervisor") && <Desktop userId={props.userId} role={role} user={userFilter} borderColor={props.borderColor} secondaryColor={props.secondaryColor}/>}
-            {showComponent == "desktop" && role == "director" && <DesktopDirector role={role} userId={props.userId} user="*"/>}            
+            {showComponent == "desktop" && (role == "user" || role == "supervisor") && <Desktop userId={props.userId} role={role} user={userFilter} borderColor={props.borderColor} secondaryColor={props.secondaryColor} cardBg={props.cardBg}/>}
+            {showComponent == "desktop" && role == "director" && <DesktopDirector role={role} userId={props.userId} user="*" cardBg={props.cardBg}/>}            
         </section>
     )
 }

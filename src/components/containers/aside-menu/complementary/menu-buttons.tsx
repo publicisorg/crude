@@ -6,14 +6,16 @@ function MenuButton(props: any) {
     const [selected, setSelected] = useState(false);
     const [menuColor, setMenuColor] = useState(props.secondaryColor);
     const [borderColor, setBorderColor] = useState(props.borderColor);
+    const [px, setPx] = useState("px-4");
 
     useEffect(() => {
         if (props.selected == props.arguments) {
             setSelected(true);
+            setPx('px-6 tracking-widest');
         } else {
             setSelected(false);
+            setPx('px-4');
         }
-
         setMenuColor(props.secondaryColor);
         setBorderColor(props.borderColor);
     })
@@ -30,7 +32,7 @@ function MenuButton(props: any) {
 
     return (
         <Link to={props.arguments} onClick={handleClick} className="w-full">
-            <div style={{ backgroundColor: menuColor, borderColor: borderColor }} className={`${selected ? "font-bold opacity-100" : "opacity-50"} ${props.px} hover:brightness-125 rounded-lg h-14 w-full duration-300 py-1  text-left flex gap-2 justify-start items-center`} >
+            <div style={{ backgroundColor: menuColor, borderColor: borderColor }} className={`${selected ? "" : "!bg-transparent hover:px-2"} ${px} rounded-lg h-10 w-full duration-300 text-left flex gap-2 justify-start items-center`} >
                 {props.children}
             </div>
         </Link>

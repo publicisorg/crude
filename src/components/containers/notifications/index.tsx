@@ -51,7 +51,7 @@ export function Notifications(props: any) {
             if (tasks.length > 0) {
                 const jsx: any = [];
                 tasks.forEach((element: any, index: any) => {
-                    jsx.push(<Notification key={index} handleTimer={props.handleTimer} element={element} borderColor={props.borderColor} secondaryColor={props.secondaryColor} />)
+                    jsx.push(<Notification key={index} handleTimer={props.handleTimer} element={element} borderColor={props.borderColor} secondaryColor={props.secondaryColor} cardBg={props.cardBg}/>)
                 });
 
                 return jsx;

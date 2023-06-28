@@ -80,17 +80,17 @@ function MenuAside(props: any) {
                     </div>
                 </div>
                 <div className="flex flex-col justify-center items-center w-full gap-1 px-4 ">
-                    <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="/" selected={menuSelected} px="px-8"><AiOutlineStar />   Noticias</MenuButton>
-                    <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="desktop" selected={menuSelected} px="px-8"><AiOutlineHome />   Escritorio</MenuButton>
-                    <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="notifications" selected={menuSelected} px="px-8">
+                    <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="/" selected={menuSelected}><AiOutlineStar />   Noticias</MenuButton>
+                    <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="desktop" selected={menuSelected}><AiOutlineHome />   Escritorio</MenuButton>
+                    <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="notifications" selected={menuSelected}>
                         <AiOutlineBell />
                         Actividad
                         {notificationDing()}
                     </MenuButton>
-                    {props.role != "director" && <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="tasks" selected={menuSelected} px="px-8"><AiOutlineContainer />Tareas</MenuButton>}
-                    {(props.role == "supervisor" || props.role == "account") && <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="createtasks" selected={menuSelected} px="px-8"><AiOutlineContainer />Crear Tareas</MenuButton>}
-                    <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="folders" selected={menuSelected} px="px-8"><AiOutlineFolder />Carpetas</MenuButton>
-                    {false && <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="databases" selected={menuSelected} px="px-8"><AiOutlinePieChart />Bases de Datos</MenuButton>}
+                    {props.role != "director" && <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="tasks" selected={menuSelected}><AiOutlineContainer />Tareas</MenuButton>}
+                    {(props.role == "supervisor" || props.role == "account") && <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="createtasks" selected={menuSelected}><AiOutlineContainer />Crear Tareas</MenuButton>}
+                    <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="folders" selected={menuSelected}><AiOutlineFolder />Carpetas</MenuButton>
+                    {false && <MenuButton secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setMenuSelected} arguments="databases" selected={menuSelected}><AiOutlinePieChart />Bases de Datos</MenuButton>}
                 </div>
             </div>
             <div className="flex flex-col justify-center items-center w-full gap-6">

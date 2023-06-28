@@ -82,16 +82,16 @@ function Folders(props: any) {
 
     function renderItemByType(key: any, data: any, path: any, index: number) {
         if (data['type'] == 'folder') {
-            return (<ItemFolder key={index} secondaryColor={props.secondaryColor} borderColor={props.borderColor} function={setContenido} arguments={data} label={key} enterFolder={() => enterFolder(key)} index={index} />)
+            return (<ItemFolder key={index} secondaryColor={props.secondaryColor} borderColor={props.borderColor} cardBg={props.cardBg} function={setContenido} arguments={data} label={key} enterFolder={() => enterFolder(key)} index={index} />)
         } else {
             var dataType = checkExtension(contenido[key]);
             switch (dataType) {
                 case "image":
-                    return (<ItemImage key={index} secondaryColor={props.secondaryColor} borderColor={props.borderColor} label={contenido[key]} path={path} index={index} />);
+                    return (<ItemImage key={index} secondaryColor={props.secondaryColor} borderColor={props.borderColor} cardBg={props.cardBg} label={contenido[key]} path={path} index={index} />);
                 case "web":
-                    return (<ItemFrame key={index} secondaryColor={props.secondaryColor} borderColor={props.borderColor} label={contenido[key]} path={path} index={index} />);
+                    return (<ItemFrame key={index} secondaryColor={props.secondaryColor} borderColor={props.borderColor} cardBg={props.cardBg} label={contenido[key]} path={path} index={index} />);
                 default:
-                    return (<ItemNotSupported key={index} secondaryColor={props.secondaryColor} borderColor={props.borderColor} label={contenido[key]} path={path} index={index} />);
+                    return (<ItemNotSupported key={index} secondaryColor={props.secondaryColor} borderColor={props.borderColor} cardBg={props.cardBg} label={contenido[key]} path={path} index={index} />);
             }
         }
     }
@@ -114,7 +114,7 @@ function Folders(props: any) {
                     {backEnabled && dataReady &&
                         <span onClick={exitFolder}
                             className="border relative hover:scale-105 flex flex-row gap-4 cursor-pointer justify-start items-center hover:brightness-150 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center duration-300 shadow-lg truncate w-32"
-                            style={{ borderColor: props.borderColor, backgroundColor: props.secondaryColor }}>
+                            style={{ borderColor: props.borderColor, backgroundColor: props.cardBg }}>
                             Anterior
                         </span>}
                 </div>

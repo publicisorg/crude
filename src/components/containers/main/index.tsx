@@ -4,7 +4,6 @@ import { supabase } from "../../../supabase/client";
 import MenuAside from "../aside-menu";
 import ContentContainer from "../content-container";
 import SignUp from "../../../pages/SignUp";
-import { ProfileSettings } from "../setting/index";
 import { TaskDetails } from "../tasks/TaskDetails";
 import NotFound from "../../../pages/NotFound";
 import { Notifications } from "../notifications";
@@ -16,6 +15,7 @@ import Login from "../../../pages/Login";
 import { ProfileUsers } from "../profile";
 import { ProfileUsersPublic } from "../profile/ProfilePublic";
 import News from "../news";
+import { ProfileSettings } from "../setting";
 
 const containerStyles = "ml-80 h-screen relative overflow-y-auto";
 
@@ -97,22 +97,31 @@ function Main(props: any) {
             setTimerAlertMessage={setTimerAlertMessage}
           />
         )}
-        {(location.pathname != "/login" && location.pathname != "/register") && <MenuAside
-          name={props.name}
-          lastName={lastname}
-          urlImg={props.urlImg}
-          userId={props.userId}
-          changeContent={setContent}
-          role={role}
-          setRole={setRole}
-          possibleRoles={possibleRoles}
-          secondaryColor={props.secondaryColor}
-          cardBg={props.cardBg}
-          borderColor={props.borderColor}
-        />}
+        {(location.pathname != "/login" && location.pathname != "/register") &&
+          <MenuAside
+            name={props.name}
+            lastName={lastname}
+            urlImg={props.urlImg}
+            userId={props.userId}
+            changeContent={setContent}
+            role={role}
+            setRole={setRole}
+            possibleRoles={possibleRoles}
+            secondaryColor={props.secondaryColor}
+            cardBg={props.cardBg}
+            borderColor={props.borderColor}
+          />}
         <Routes location={location}>
-          <Route path="/" element={<News name={name} lastname={lastname} urlImg={urlImg} secondaryColor={props.secondaryColor}
-            borderColor={props.borderColor} />} />
+          <Route path="/" element={
+            <News
+              name={name}
+              lastname={lastname}
+              urlImg={urlImg}
+              secondaryColor={props.secondaryColor}
+              cardBg={props.cardBg}
+              borderColor={props.borderColor}
+            />}
+          />
           <Route
             path="/desktop"
             element={
@@ -126,6 +135,7 @@ function Main(props: any) {
                 actualContent={actualContent}
                 secondaryColor={props.secondaryColor}
                 borderColor={props.borderColor}
+                cardBg={props.cardBg}
               />
             }
           />
@@ -160,6 +170,7 @@ function Main(props: any) {
                 <TaskDetails
                   secondaryColor={props.secondaryColor}
                   borderColor={props.borderColor}
+                  cardBg={props.cardBg}
                   rol={role} />
               </div>
             }
@@ -181,6 +192,7 @@ function Main(props: any) {
                   idLikeStatus={idLikeStatus}
                   secondaryColor={props.secondaryColor}
                   borderColor={props.borderColor}
+                  cardBg={props.cardBg}
                 />
               </div>
             }
@@ -204,6 +216,7 @@ function Main(props: any) {
                     userFilter={userId}
                     secondaryColor={props.secondaryColor}
                     borderColor={props.borderColor}
+                    cardBg={props.cardBg}
                   />
                 </div>
               )) ||
@@ -215,6 +228,7 @@ function Main(props: any) {
                     userFilter={"*"}
                     secondaryColor={props.secondaryColor}
                     borderColor={props.borderColor}
+                    cardBg={props.cardBg}
                   />
                 </div>
               ))
@@ -229,6 +243,7 @@ function Main(props: any) {
                   userFilter={userId}
                   secondaryColor={props.secondaryColor}
                   borderColor={props.borderColor}
+                  cardBg={props.cardBg}
                 />
               </div>
             }
@@ -237,7 +252,7 @@ function Main(props: any) {
             path="/folders"
             element={
               <div className={`${containerStyles}`}>
-                <Folders secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
+                <Folders secondaryColor={props.secondaryColor} borderColor={props.borderColor} cardBg={props.cardBg} />
               </div>
             }
           />
@@ -246,7 +261,7 @@ function Main(props: any) {
             element={
               (role === "supervisor" || role === "account") && (
                 <div className={`${containerStyles}`}>
-                  <TaskForm secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
+                  <TaskForm secondaryColor={props.secondaryColor} borderColor={props.borderColor} cardBg={props.cardBg} />
                 </div>
               )
             }
