@@ -140,7 +140,7 @@ function Main(props: any) {
             }
           />
           <Route
-            path="/Setting"
+            path="/setting"
             element={
               <div className={`${containerStyles}`}>
                 <ProfileSettings
