@@ -127,6 +127,7 @@ export const TaskDetails = (props: any) => {
                     cliente={cliente}
                     borderColor={props.borderColor}
                     secondaryColor={props.secondaryColor}
+                    cardBg={props.cardBg}
                   />
                 )
               })}
@@ -136,6 +137,7 @@ export const TaskDetails = (props: any) => {
               borderColor={props.borderColor}
               secondaryColor={props.secondaryColor}
               role={props.rol}
+              cardBg={props.cardBg}
             />
           </div>
         </div>

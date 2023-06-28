@@ -58,7 +58,7 @@ export function CardComment(props: any) {
   }
 
   return (
-    <div className={`p-4 rounded-lg shadow-lg w-full ${props.comment.id > 0 ? "bg-white/10 border" : "bg-white/0 border-2"}`} style={{ borderColor: props.borderColor, backgroundColor:  props.cardBg }}>
+    <div className={`p-4 rounded-lg shadow-lg w-full ${props.comment.id > 0 ? " border" : "border-2"}`} style={{ borderColor: props.borderColor, backgroundColor: props.cardBg }}>
       <div className="flex flex-row items-center gap-2 w-full mb-2">
         <Link to={"/profile/" + userIdNick} className="flex flex-row gap-2 justify-center items-center">
           <img src={userIdImage} alt="" className="rounded-full w-10 h-10 border-2" width="40" height="40" style={{ borderColor: props.borderColor }} />

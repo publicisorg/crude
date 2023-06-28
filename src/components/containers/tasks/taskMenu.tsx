@@ -225,7 +225,7 @@ export function TaskMenu(props: any) {
         { value: "URGENTE", displayValue: "URGENTE" }];
 
     return (
-        <div className="p-4 rounded-lg shadow-lg w-1/2 border flex flex-col gap-4" style={{ borderColor: props.borderColor }}>
+        <div className="p-4 rounded-lg shadow-lg w-1/2 border flex flex-col gap-4" style={{ borderColor: props.borderColor, backgroundColor: props.cardBg }}>
             <div className="flex flex-row justify-start items-center gap-2">
                 <p className="text-sm">Nombre de tarea:</p>
                 <p className="text-sm">{props.task.name}</p>

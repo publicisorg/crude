@@ -13,7 +13,7 @@ export function WysiwygTextarea(props: any) {
       </div>
       <div className="flex">
         <div className='relative w-full'>
-          <ReactQuill value={value} onChange={setValue} />
+          <ReactQuill value={value} onChange={setValue} className="rounded-lg" style={{backgroundColor: props.secondaryColor}}/>
         </div>
       </div>
     </div>

@@ -112,7 +112,7 @@ export const TaskForm = (props: any) => {
     return (
         <div className='mx-auto p-8 flex flex-col gap-4' >
             <h1 className="text-3xl font-bold mb-4">Nueva Tarea</h1>
-            <form className="flex flex-col gap-6 p-8 bg-white/10 rounded border" onSubmit={handleSubmit} style={{ borderColor: props.borderColor }}>
+            <form className="flex flex-col gap-6 p-8 rounded border" onSubmit={handleSubmit} style={{ borderColor: props.borderColor, backgroundColor: props.cardBg }}>
                 <div className='flex gap-3'>
                     <div className='w-1/2'>
                         <GenericInput required={true} function={setClient} label="Cliente:" placeholder={"L'Oreal"} type="text" id="client" name="client" secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
@@ -126,7 +126,7 @@ export const TaskForm = (props: any) => {
                 <GenericSelect required={true} label="Estado:" data={taskStates} onChange={setState} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
                 <GenericSelect required={true} label="Prioridad:" data={taskPriority} onChange={setPriority} secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
                 <GenericInput required={true} function={setDate} label="Fecha de entrega:" type="date" id="finishDate" name="finishDate" secondaryColor={props.secondaryColor} borderColor={props.borderColor} />
-                <WysiwygTextarea function={handleTextareaChange} label="Comentario:" id="comment" name="comment" />
+                <WysiwygTextarea function={handleTextareaChange} label="Comentario:" id="comment" name="comment" secondaryColor={props.secondaryColor}/>
                 <button
                     type="submit"
                     className="bg-green-500/30 hover:bg-green-700 w-full flex h-min items-center justify-center p-0.5 text-center font-medium focus:z-10 rounded-lg"
