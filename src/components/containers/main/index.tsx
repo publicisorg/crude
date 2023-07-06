@@ -15,7 +15,8 @@ import Login from "../../../pages/Login";
 import { ProfileUsers } from "../profile";
 import { ProfileUsersPublic } from "../profile/ProfilePublic";
 import News from "../news";
-import { ProfileSettings } from "../setting";
+
+import { ProfileSettings } from "../Setting";
 
 const containerStyles = "ml-80 h-screen relative overflow-y-auto";
 
